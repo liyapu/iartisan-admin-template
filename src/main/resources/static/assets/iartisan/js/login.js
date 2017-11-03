@@ -1,6 +1,4 @@
-layui.config({
-    base: "/assets/plugins/core/"
-}).use(['form', 'layer'], function () {
+layui.use(['form', 'layer'], function () {
     var form = layui.form,
         //layer = parent.layer === undefined ? layui.layer : parent.layer,
         $ = layui.$;

@@ -18,10 +18,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author King
  * @since 2017/11/2
  */
-//@Configuration
+@Configuration
 public class WebMvcFilter extends WebMvcConfigurerAdapter {
 
-    //@Bean
+    @Bean
     public FilterRegistrationBean siteMeshFilter() {
         FilterRegistrationBean fitler = new FilterRegistrationBean();
         WebSiteMeshConfig siteMeshFilter = new WebSiteMeshConfig();
@@ -29,7 +29,7 @@ public class WebMvcFilter extends WebMvcConfigurerAdapter {
         return fitler;
     }
 
-   /* @Bean
+    @Bean
     public EmbeddedServletContainerCustomizer containerCustomizer() {
 
         return new EmbeddedServletContainerCustomizer() {
@@ -40,13 +40,13 @@ public class WebMvcFilter extends WebMvcConfigurerAdapter {
                 container.addErrorPages(error404Page, error500Page);
             }
         };
-    }*/
+    }
 
-    /*@Override
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
         registry.addInterceptor(new AuthenticationInterceptor())
                 .addPathPatterns("/*")
                 .excludePathPatterns("/login", "/index", "/authenticate");
-    }*/
+    }
 }

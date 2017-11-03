@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,15 +29,14 @@ public class AuthenticateController {
     @Autowired(required = false)
     private AuthenticationService authenticatorService;
 
-    @Value("${iartisan.admin.authenticate.success:/home}")
+    @Value("${iartisan.admin.authenticate.success:index}")
     private String authenticateSuccessPage;
 
     @Value("${iartisan.admin.authenticate.error:login}")
     private String authenticateErrorPage;
 
 
-
-    @RequestMapping(ReqContants.REQ_AUTHENTICATE)
+    @PostMapping(ReqContants.REQ_AUTHENTICATE)
     public String authenticate(RealmBean authenticator, HttpServletRequest request, Model model) {
         //判断用户名和密码是否正确
         if (StringUtils.isEmpty(authenticator.getUserName()) || StringUtils.isEmpty(authenticator.getUserPwd())) {
@@ -49,6 +49,6 @@ public class AuthenticateController {
             model.addAttribute(WebConstants._ERR_MSG, "用户名或密码不存在");
             return authenticateErrorPage;
         }
-        return "redirect:" + authenticateSuccessPage;
+        return authenticateSuccessPage;
     }
 }

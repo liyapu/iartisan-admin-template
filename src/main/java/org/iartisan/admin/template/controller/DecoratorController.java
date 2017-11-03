@@ -21,10 +21,18 @@ public class DecoratorController {
     @Value("${iartisan.admin.authenticate.login:login}")
     private String loginPage;
 
+    @Value("${iartisan.admin.authenticate.decorator:decorator}")
+    private String decoratorPage;
+
     @RequestMapping(ReqContants.REQ_LOGOUT)
     public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
         return loginPage;
+    }
+
+    @RequestMapping(ReqContants.REQ_DECORATOR)
+    public String decorator() {
+        return decoratorPage;
     }
 
     @GetMapping(ReqContants.REQ_LOGIN)

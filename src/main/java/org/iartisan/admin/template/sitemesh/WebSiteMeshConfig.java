@@ -4,9 +4,11 @@ import org.iartisan.runtime.env.EnvContextConfig;
 import org.iartisan.runtime.utils.StringUtils;
 import org.sitemesh.builder.SiteMeshFilterBuilder;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 public class WebSiteMeshConfig extends ConfigurableSiteMeshFilter {
 
     private List<String> excluedPaths = new ArrayList<>();
@@ -28,10 +30,10 @@ public class WebSiteMeshConfig extends ConfigurableSiteMeshFilter {
     protected void applyCustomConfiguration(SiteMeshFilterBuilder builder) {
         builder.addTagRuleBundles(new ExtHtmlRuleBundle());
         //include 请求
-        /*builder.addDecoratorPath("/*", "/decorator");
-        //exclude 请求
+        builder.addDecoratorPath("/*", "/decorator");
         for (String excluedPath : excluedPaths) {
+            System.out.println(excluedPath);
             builder.addExcludedPath(excluedPath);
-        }*/
+        }
     }
 }
