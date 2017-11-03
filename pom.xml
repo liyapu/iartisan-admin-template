@@ -76,7 +76,7 @@
             <artifactId>sitemesh</artifactId>
             <version>${sitemesh.version}</version>
         </dependency>
-        <!--   <dependency>
+        <dependency>
              <groupId>org.apache.shiro</groupId>
              <artifactId>shiro-core</artifactId>
              <version>${shiro.version}</version>
@@ -85,7 +85,7 @@
              <groupId>org.apache.shiro</groupId>
              <artifactId>shiro-spring</artifactId>
              <version>${shiro.version}</version>
-         </dependency>-->
+         </dependency>
     </dependencies>
 
     <build>

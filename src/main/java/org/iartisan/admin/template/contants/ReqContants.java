@@ -41,8 +41,8 @@ public class ReqContants {
 
     public static final String REQ_EXPORT_DATA_LIST = "exportDataList";
 
-    public static final String REQ_LOGIN = "login";//登录页面
+    public static final String REQ_LOGIN = "/login";//登录页面
 
-    public static final String REQ_DECORATOR = "decorator";//装饰页面
+    public static final String REQ_DECORATOR = "/decorator";//装饰页面
 
 }

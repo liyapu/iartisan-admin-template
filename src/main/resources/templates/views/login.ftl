@@ -24,7 +24,7 @@
             <input class="layui-input" name="userPwd" placeholder="密码" lay-verify="required" type="password"
                    autocomplete="off">
         </div>
-    <#-- <div class="layui-form-item form_code">
+	<#-- <div class="layui-form-item form_code">
          <input class="layui-input" name="code" placeholder="验证码" lay-verify="required" type="text"
                 autocomplete="off">
          &lt;#&ndash;<div class="code"><img src="../../images/code.jpg" width="116" height="36"></div>&ndash;&gt;

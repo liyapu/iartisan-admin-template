@@ -1,6 +1,6 @@
-package org.iartisan.admin.template.shiro.oauth2;
+package org.iartisan.admin.template.shiro;
 
-/*
+
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.web.filter.authc.AuthenticatingFilter;
 
@@ -20,4 +20,4 @@ public class OAuth2AuthorizingFilter extends AuthenticatingFilter {
         return false;
     }
 
-}*/
+}

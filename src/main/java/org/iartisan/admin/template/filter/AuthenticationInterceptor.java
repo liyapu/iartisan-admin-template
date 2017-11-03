@@ -1,7 +1,8 @@
 package org.iartisan.admin.template.filter;
 
-import org.iartisan.runtime.constants.WebConstants;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.support.RequestContext;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,6 +23,8 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
             response.sendRedirect(request.getContextPath() + "/index");
             return false;
         }*/
+/*        RequestContext context = new RequestContext();
+        context.getContextPath()*/
         return true;
     }
 
