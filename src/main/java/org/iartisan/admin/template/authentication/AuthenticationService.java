@@ -18,7 +18,7 @@ import java.util.Set;
  * @author King
  * @since 2017/11/3
  */
-@Service
+//@Service
 public class AuthenticationService extends AuthorizingRealm {
 
     //鉴权 判断用户拥有的权限

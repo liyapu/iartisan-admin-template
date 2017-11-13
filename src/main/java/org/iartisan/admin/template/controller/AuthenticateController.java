@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author King
  * @since 2017/4/13
  */
-@Controller
+//@Controller
 public class AuthenticateController {
 
     @Value("${iartisan.admin.authenticate.success:index}")
