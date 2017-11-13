@@ -20,7 +20,7 @@
     <!-- 顶部 -->
     <div class="layui-header header">
         <div class="layui-main">
-            <a href="#" class="logo">iartisan-blog</a>
+            <a href="#" class="logo">iartisan-template</a>
             <!-- 显示/隐藏菜单 -->
             <a href="javascript:;" class="iconfont hideMenu icon-menu1"></a>
             <!-- 搜索 -->
