@@ -42,11 +42,11 @@ public class WebMvcFilter extends WebMvcConfigurerAdapter {
         };
     }
 
-    @Override
+   /* @Override
     public void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
         registry.addInterceptor(new AuthenticationInterceptor())
                 .addPathPatterns("/*")
                 .excludePathPatterns("/login", "/index", "/authenticate");
-    }
+    }*/
 }

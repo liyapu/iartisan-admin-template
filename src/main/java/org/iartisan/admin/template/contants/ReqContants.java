@@ -15,6 +15,8 @@ public class ReqContants {
 
     public static final String REQ_INDEX = "/index";
 
+    public static final String REQ_MAIN = "/main";
+
     public static final String REQ_QUERY_DATA_PAGE = "queryDataPage";
 
     public static final String REQ_QUERY_DATA_DIALOG = "queryDataDialog";

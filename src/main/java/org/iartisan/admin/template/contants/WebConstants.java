@@ -2,7 +2,7 @@ package org.iartisan.admin.template.contants;
 
 /**
  * <p>
- *
+ * web 端常量配置
  * @author King
  * @since 2017/4/21
  */

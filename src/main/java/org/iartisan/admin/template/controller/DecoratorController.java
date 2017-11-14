@@ -1,7 +1,7 @@
 package org.iartisan.admin.template.controller;
 
+import org.apache.shiro.SecurityUtils;
 import org.iartisan.admin.template.contants.ReqContants;
-import org.iartisan.runtime.bean.Page;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +25,9 @@ public class DecoratorController {
     @Value("${iartisan.admin.authenticate.decorator:decorator}")
     private String decoratorPage;
 
+    @Value("${iartisan.admin.authenticate.logout:logout}")
+    private String logoutPage;
+
     private static final String PAGE_MAIN = "main";
 
     @RequestMapping(ReqContants.REQ_LOGOUT)
@@ -43,14 +46,20 @@ public class DecoratorController {
         return loginPage;
     }
 
-    @GetMapping("index")
+    @GetMapping(ReqContants.REQ_INDEX)
     public String index() {
         return "index";
     }
 
-    @GetMapping("main")
+    @GetMapping(ReqContants.REQ_MAIN)
     public String main() {
         return PAGE_MAIN;
+    }
+
+    @GetMapping(ReqContants.REQ_LOGOUT)
+    public String logout() {
+        SecurityUtils.getSubject().logout();
+        return logoutPage;
     }
 
 }

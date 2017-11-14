@@ -29,12 +29,6 @@ public class AuthenticateController {
     @Value("${iartisan.admin.authenticate.error:login}")
     private String authenticateErrorPage;
 
-    @Value("${iartisan.admin.authenticate.logout:logout}")
-    private String logoutPage;
-
-
-
-
     @PostMapping(ReqContants.REQ_AUTHENTICATE)
     public String authenticate(RealmBean authenticator) {
         //判断用户名和密码是否正确
@@ -48,9 +42,5 @@ public class AuthenticateController {
         return "redirect:" + authenticateSuccessPage;
     }
 
-    @GetMapping(ReqContants.REQ_LOGOUT)
-    public String logout() {
-        SecurityUtils.getSubject().logout();
-        return logoutPage;
-    }
+
 }
