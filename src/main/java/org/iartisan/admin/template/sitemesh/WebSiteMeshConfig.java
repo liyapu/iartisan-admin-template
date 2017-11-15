@@ -4,11 +4,13 @@ import org.iartisan.runtime.env.EnvContextConfig;
 import org.iartisan.runtime.utils.StringUtils;
 import org.sitemesh.builder.SiteMeshFilterBuilder;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Configuration
 public class WebSiteMeshConfig extends ConfigurableSiteMeshFilter {
 
     private List<String> excluedPaths = new ArrayList<>();

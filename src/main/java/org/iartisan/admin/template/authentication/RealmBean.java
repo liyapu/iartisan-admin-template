@@ -9,6 +9,8 @@ package org.iartisan.admin.template.authentication;
  */
 public class RealmBean {
 
+    private String userId;
+
     private String userName;
 
     private String userPwd;//用户密码
@@ -27,5 +29,13 @@ public class RealmBean {
 
     public void setUserPwd(String userPwd) {
         this.userPwd = userPwd;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
