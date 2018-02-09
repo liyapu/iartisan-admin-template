@@ -7,7 +7,7 @@ layui.config({
 		$ = layui.$;
     	layer = parent.layer === undefined ? layui.layer : top.layer;
 		tab = layui.bodyTab({
-			openTabNum : "50",  //最大可打开窗口数量
+			openTabNum : "5",  //最大可打开窗口数量
 			url : "json/navs.json" //获取菜单json地址
 		});
 

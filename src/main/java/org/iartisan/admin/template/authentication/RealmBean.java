@@ -1,5 +1,7 @@
 package org.iartisan.admin.template.authentication;
 
+import java.util.List;
+
 /**
  * <p>
  * 登录用户
@@ -14,6 +16,8 @@ public class RealmBean {
     private String userName;
 
     private String userPwd;//用户密码
+
+    private List<MenuTree> menuTrees;
 
     public String getUserName() {
         return userName;
