@@ -1,7 +1,7 @@
 package org.iartisan.admin.template.controller;
 
 import org.apache.shiro.SecurityUtils;
-import org.iartisan.admin.template.contants.ReqContants;
+import org.iartisan.runtime.web.contants.ReqContants;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

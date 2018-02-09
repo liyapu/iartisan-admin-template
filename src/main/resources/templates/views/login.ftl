@@ -1,37 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html class="loginHtml">
 <head>
     <meta charset="utf-8">
-    <title>登录--layui后台管理模板</title>
+    <title>登录--layui后台管理模板 2.0</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="../../favicon.ico">
+
     <link rel="stylesheet" href="/assets/iartisan/plugins/layui/css/layui.css" media="all"/>
-    <link rel="stylesheet" href="/assets/iartisan/css/login.css" media="all"/>
+    <link rel="stylesheet" href="/assets/iartisan/css/public.css" media="all"/>
 </head>
-<body>
-<div class="login">
-    <h1>layuiCMS-管理登录</h1>
-    <form class="layui-form" action="/authenticate" id="formLogin" autocomplete="off" method="post">
-        <div class="layui-form-item">
-            <input class="layui-input" name="userName" placeholder="用户名" lay-verify="required" type="text"
-                   autocomplete="off">
-        </div>
-        <div class="layui-form-item">
-            <input class="layui-input" name="userPwd" placeholder="密码" lay-verify="required" type="password"
-                   autocomplete="off">
-        </div>
-	<#-- <div class="layui-form-item form_code">
-         <input class="layui-input" name="code" placeholder="验证码" lay-verify="required" type="text"
-                autocomplete="off">
-         &lt;#&ndash;<div class="code"><img src="../../images/code.jpg" width="116" height="36"></div>&ndash;&gt;
-     </div>-->
-        <button class="layui-btn login_btn" lay-submit="" lay-filter="login">登录</button>
-    </form>
-</div>
+<body class="loginBody">
+<form class="layui-form" autocomplete="off">
+    <div class="login_face"><img src="/assets/iartisan/images/face.jpg" class="userAvatar"></div>
+    <div class="layui-form-item input-item">
+        <label for="userName">用户名</label>
+        <input type="text" placeholder="请输入用户名" id="userName" class="layui-input" lay-verify="required" autocomplete="off">
+    </div>
+    <div class="layui-form-item input-item">
+        <label for="password">密码</label>
+        <input type="password" placeholder="请输入密码" id="password" class="layui-input" lay-verify="required" autocomplete="off">
+    </div>
+    <div class="layui-form-item input-item" id="imgCode">
+        <label for="code">验证码</label>
+        <input type="text" placeholder="请输入验证码" id="code" class="layui-input">
+        <img src="../../images/code.jpg">
+    </div>
+    <div class="layui-form-item">
+        <button class="layui-btn layui-block" lay-filter="login" lay-submit>登录</button>
+    </div>
+   <#-- <div class="layui-form-item layui-row">
+        <a href="javascript:;" class="seraph icon-qq layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>
+        <a href="javascript:;" class="seraph icon-wechat layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>
+        <a href="javascript:;" class="seraph icon-sina layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>
+    </div>-->
+</form>
 <script type="text/javascript" src="/assets/iartisan/plugins/layui/layui.js"></script>
 <script type="text/javascript" src="/assets/iartisan/js/login.js"></script>
 </body>
