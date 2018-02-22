@@ -12,6 +12,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/assets/iartisan/css/font/font.css" media="all"/>
     <link rel="stylesheet" href="/assets/plugins/layui/css/layui.css" media="all"/>
 </head>
 <body class="childrenBody">

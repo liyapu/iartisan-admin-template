@@ -1,6 +1,7 @@
 package org.iartisan.admin.template;
 
 import org.iartisan.runtime.env.EnvPropertiesLoader;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,6 +17,7 @@ import java.util.Properties;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"org.iartisan.admin.template"})
+@MapperScan(basePackages = {"org.iartisan.admin.template.authentication.support.dbm.mapper"})
 public class WebBootRun {
 
     public static void main(String[] args) {

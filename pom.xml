@@ -16,6 +16,8 @@
         <java.version>1.8</java.version>
         <sitemesh.version>3.0.1</sitemesh.version>
         <shiro.version>1.4.0</shiro.version>
+        <mybatis-plus.version>2.1.4</mybatis-plus.version>
+        <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
     </properties>
 
     <developers>
@@ -86,6 +88,27 @@
              <artifactId>shiro-spring</artifactId>
              <version>${shiro.version}</version>
          </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.29</version>
+
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.38</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatisplus-spring-boot-starter</artifactId>
+            <version>${mybatisplus-spring-boot-starter.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -150,6 +173,42 @@
                     <releaseProfiles>release</releaseProfiles>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.iartisan</groupId>
+                <artifactId>iartisan-generator-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <configuration>
+                    <templateConfig>
+                        <loadPath>classpath</loadPath>
+                        <templatePath>/templates/iartisan/</templatePath>
+                    </templateConfig>
+                    <baseConfig>
+                        <directory>D://</directory>
+                        <orm>mybatis-plus</orm>
+                        <author>King</author>
+                    </baseConfig>
+                    <!-- 数据库连接 -->
+                    <dataSourceConfig>
+                        <driverName>com.mysql.jdbc.Driver</driverName>
+                        <url>jdbc:mysql://127.0.0.1:3306/pigeon_app</url>
+                        <!--用户名 -->
+                        <user>root</user>
+                        <!-- 密码 -->
+                        <password>root</password>
+                        <dbType>mysql</dbType>
+                    </dataSourceConfig>
+                    <tableConfig>
+                        <tableNames>system_user</tableNames>
+                    </tableConfig>
+                    <!--dao 层配置-->
+                    <daoConfig>
+                        <modelPackage>org.iartisan.admin.template.authentication.support.dbm.model</modelPackage>
+                        <daoPackage>org.iartisan.admin.template.authentication.support.dbm.mapper</daoPackage>
+                        <mapperXmlPackage>org.iartisan.admin.template.authentication.support.dbm.mapper</mapperXmlPackage>
+                    </daoConfig>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <distributionManagement>
@@ -162,5 +221,4 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
-
 </project>

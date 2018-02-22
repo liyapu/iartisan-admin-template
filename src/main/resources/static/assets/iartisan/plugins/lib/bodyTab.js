@@ -33,7 +33,7 @@ layui.define(["element","jquery"],function(exports){
                 ulHtml += '<li class="layui-nav-item">';
             }
             if(data[i].children != undefined && data[i].children.length > 0){
-                ulHtml += '<a href="javascript:;">';
+                ulHtml += '<a>';
                 if(data[i].icon != undefined && data[i].icon != ''){
                     if(data[i].icon.indexOf("icon-") != -1){
                         ulHtml += '<i class="seraph '+data[i].icon+'" data-icon="'+data[i].icon+'"></i>';
@@ -47,9 +47,9 @@ layui.define(["element","jquery"],function(exports){
                 ulHtml += '<dl class="layui-nav-child">';
                 for(var j=0;j<data[i].children.length;j++){
                     if(data[i].children[j].target == "_blank"){
-                        ulHtml += '<dd><a href="javascript:;" data-url="'+data[i].children[j].href+'" target="'+data[i].children[j].target+'">';
+                        ulHtml += '<dd><a data-url="'+data[i].children[j].href+'" target="'+data[i].children[j].target+'">';
                     }else{
-                        ulHtml += '<dd><a href="javascript:;" data-url="'+data[i].children[j].href+'">';
+                        ulHtml += '<dd><a data-url="'+data[i].children[j].href+'">';
                     }
                     if(data[i].children[j].icon != undefined && data[i].children[j].icon != ''){
                         if(data[i].children[j].icon.indexOf("icon-") != -1){
@@ -63,9 +63,9 @@ layui.define(["element","jquery"],function(exports){
                 ulHtml += "</dl>";
             }else{
                 if(data[i].target == "_blank"){
-                    ulHtml += '<a href="javascript:;" data-url="'+data[i].href+'" target="'+data[i].target+'">';
+                    ulHtml += '<a data-url="'+data[i].href+'" target="'+data[i].target+'">';
                 }else{
-                    ulHtml += '<a href="javascript:;" data-url="'+data[i].href+'">';
+                    ulHtml += '<a data-url="'+data[i].href+'">';
                 }
                 if(data[i].icon != undefined && data[i].icon != ''){
                     if(data[i].icon.indexOf("icon-") != -1){
@@ -82,10 +82,9 @@ layui.define(["element","jquery"],function(exports){
     }
 	//获取二级菜单数据
 	Tab.prototype.render = function() {
-        var _this = this;
 		//显示左侧菜单
 		var _this = this;
-		$(".navBar ul").html('<li class="layui-nav-item layui-this"><a href="javascript:;" data-url="page/main.html"><i class="layui-icon" data-icon=""></i><cite>后台首页</cite></a></li>').append(_this.navBar(dataStr)).height($(window).height()-210);
+		$(".navBar ul").html('<li class="layui-nav-item layui-this"><a data-url="page/main.html"><i class="layui-icon" data-icon=""></i><cite>后台首页</cite></a></li>').append(_this.navBar(dataStr)).height($(window).height()-210);
 		element.init();  //初始化页面元素
 		$(window).resize(function(){
 			$(".navBar").height($(window).height()-210);
@@ -189,13 +188,14 @@ layui.define(["element","jquery"],function(exports){
 
 	//顶部窗口移动
 	Tab.prototype.tabMove = function(){
-		$(window).on("resize",function(){
+		$(window).on("resize",function(event){
 			var topTabsBox = $("#top_tabs_box"),
 				topTabsBoxWidth = $("#top_tabs_box").width(),
 				topTabs = $("#top_tabs"),
 				topTabsWidth = $("#top_tabs").width(),
 				tabLi = topTabs.find("li.layui-this"),
-				top_tabs = document.getElementById("top_tabs");
+				top_tabs = document.getElementById("top_tabs"),
+				event = event || window.event;
 
 			if(topTabsWidth > topTabsBoxWidth){
 				if(tabLi.position().left > topTabsBoxWidth || tabLi.position().left+topTabsBoxWidth > topTabsWidth){
@@ -222,9 +222,9 @@ layui.define(["element","jquery"],function(exports){
 				    dx = top_tabs.offsetLeft;
 				}
 				function move(){
-					var self=this;
-					window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
-				    if(flag){
+					var self = this;
+                    if(flag){
+						window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
 				        var touch ;
 				        if(event.touches){
 				            touch = event.touches[0];
@@ -308,23 +308,25 @@ layui.define(["element","jquery"],function(exports){
 		//删除tab后重置session中的menu和curmenu
 		liIndex = $(this).parent("li").index();
 		var menu = JSON.parse(window.sessionStorage.getItem("menu"));
-		//获取被删除元素
-		delMenu = menu[liIndex-1];
-		var curmenu = window.sessionStorage.getItem("curmenu")=="undefined" ? undefined : window.sessionStorage.getItem("curmenu")=="" ? '' : JSON.parse(window.sessionStorage.getItem("curmenu"));
-		if(JSON.stringify(curmenu) != JSON.stringify(menu[liIndex-1])){  //如果删除的不是当前选中的tab
-			// window.sessionStorage.setItem("curmenu",JSON.stringify(curmenu));
-			curNav = JSON.stringify(curmenu);
-		}else{
-			if($(this).parent("li").length > liIndex){
-				window.sessionStorage.setItem("curmenu",curmenu);
-				curNav = curmenu;
-			}else{
-				window.sessionStorage.setItem("curmenu",JSON.stringify(menu[liIndex-1]));
-				curNav = JSON.stringify(menu[liIndex-1]);
-			}
-		}
-		menu.splice((liIndex-1), 1);
-		window.sessionStorage.setItem("menu",JSON.stringify(menu));
+		if(menu != null) {
+            //获取被删除元素
+            delMenu = menu[liIndex - 1];
+            var curmenu = window.sessionStorage.getItem("curmenu") == "undefined" ? undefined : window.sessionStorage.getItem("curmenu") == "" ? '' : JSON.parse(window.sessionStorage.getItem("curmenu"));
+            if (JSON.stringify(curmenu) != JSON.stringify(menu[liIndex - 1])) {  //如果删除的不是当前选中的tab
+                // window.sessionStorage.setItem("curmenu",JSON.stringify(curmenu));
+                curNav = JSON.stringify(curmenu);
+            } else {
+                if ($(this).parent("li").length > liIndex) {
+                    window.sessionStorage.setItem("curmenu", curmenu);
+                    curNav = curmenu;
+                } else {
+                    window.sessionStorage.setItem("curmenu", JSON.stringify(menu[liIndex - 1]));
+                    curNav = JSON.stringify(menu[liIndex - 1]);
+                }
+            }
+            menu.splice((liIndex - 1), 1);
+            window.sessionStorage.setItem("menu", JSON.stringify(menu));
+        }
 		element.tabDelete("bodyTab",$(this).parent("li").attr("lay-id")).init();
 		bodyTab.tabMove();
 	})

@@ -11,6 +11,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="/assets/iartisan/css/font/font.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/plugins/layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/css/index.css" media="all"/>
 </head>
@@ -54,7 +55,7 @@
                     <a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>
                 </li>
                 <li class="layui-nav-item" id="userInfo">
-                    <a href="javascript:;"><img src="/assets/iartisan/images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName">驊驊龔頾</cite></a>
+                    <a href="javascript:;"><img src="/assets/iartisan/images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName">${_user.userName!''}</cite></a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="seraph icon-ziliao" data-icon="icon-ziliao"></i><cite>个人资料</cite></a></dd>
                         <dd><a href="javascript:;" data-url="page/user/changePwd.html"><i class="seraph icon-xiugai" data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>
@@ -71,17 +72,17 @@
     <div class="layui-side layui-bg-black">
         <div class="user-photo">
             <a class="img" title="我的头像" ><img src="/assets/iartisan/images/face.jpg" class="userAvatar"></a>
-            <p>你好！<span class="userName">驊驊龔頾</span>, 欢迎登录</p>
+            <p>你好！<span class="userName">${_user.userName!''}</span>, 欢迎登录</p>
         </div>
         <!-- 搜索 -->
-        <div class="layui-form component">
+        <#--<div class="layui-form component">
             <select name="search" id="search" lay-search lay-filter="searchPage">
                 <option value="">搜索页面或功能</option>
                 <option value="1">layer</option>
                 <option value="2">form</option>
             </select>
             <i class="layui-icon">&#xe615;</i>
-        </div>
+        </div>-->
         <div class="navBar layui-side-scroll" id="navBar">
             <ul class="layui-nav layui-nav-tree">
                 <li class="layui-nav-item layui-this">
@@ -92,7 +93,7 @@
     </div>
     <!-- 右侧内容 -->
     <div class="layui-body layui-form">
-        <div class="layui-tab mag0" lay-filter="bodyTab" id="top_tabs_box">
+        <div class="layui-tab mag0" lay-filter="bodyTab" id="top_tabs_box" style="margin: 0px;">
             <ul class="layui-tab-title top_tab" id="top_tabs">
                 <li class="layui-this" lay-id=""><i class="layui-icon">&#xe68e;</i> <cite>后台首页</cite></li>
             </ul>
@@ -115,7 +116,7 @@
     </div>
     <!-- 底部 -->
     <div class="layui-footer footer">
-        <p><span>copyright @2018 驊驊龔頾</span>　　<a onclick="donation()" class="layui-btn layui-btn-danger layui-btn-sm">捐赠作者</a></p>
+        <p><span>copyright @2018 </span><a onclick="donation()" class="layui-btn layui-btn-danger layui-btn-sm">捐赠作者</a></p>
     </div>
 </div>
 

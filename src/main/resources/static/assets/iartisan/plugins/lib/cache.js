@@ -7,7 +7,7 @@ layui.use(['form','jquery',"layer"],function() {
 
     //判断是否web端打开
     if(!/http(s*):\/\//.test(location.href)){
-        layer.alert("请先将项目部署到 localhost 下再进行访问，否则部分数据将无法显示");
+        layer.alert("请先将项目部署到 localhost 下再进行访问【建议通过tomcat、webstorm、hb等方式运行，不建议通过iis方式运行】，否则部分数据将无法显示");
     }else{    //判断是否处于锁屏状态【如果关闭以后则未关闭浏览器之前不再显示】
         if(window.sessionStorage.getItem("lockcms") != "true" && window.sessionStorage.getItem("showNotice") != "true"){
             showNotice();
@@ -64,8 +64,8 @@ layui.use(['form','jquery',"layer"],function() {
             title : false,
             type : 1,
             content : '<div class="admin-header-lock" id="lock-box">'+
-                            '<div class="admin-header-lock-img"><img src="images/face.jpg" class="userAvatar"/></div>'+
-                            '<div class="admin-header-lock-name" id="lockUserName">驊驊龔頾</div>'+
+                            '<div class="admin-header-lock-img"><img src="/assets/iartisan/images/face.jpg" class="userAvatar"/></div>'+
+                            '<div class="admin-header-lock-name" id="lockUserName"></div>'+
                             '<div class="input_btn">'+
                                 '<input type="password" class="admin-header-lock-input layui-input" autocomplete="off" placeholder="请输入密码解锁.." name="lockPwd" id="lockPwd" />'+
                                 '<button class="layui-btn" id="unlock">解锁</button>'+
@@ -107,7 +107,8 @@ layui.use(['form','jquery',"layer"],function() {
             }
         }
     });
-    $(document).on('keydown', function() {
+    $(document).on('keydown', function(event) {
+        var event = event || window.event;
         if(event.keyCode == 13) {
             $("#unlock").click();
         }

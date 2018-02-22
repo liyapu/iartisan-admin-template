@@ -9,12 +9,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/assets/iartisan/css/font/font.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/plugins/layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/css/public.css" media="all"/>
 </head>
 <body class="childrenBody">
 <blockquote class="layui-elem-quote layui-bg-green">
-    <div id="nowTime"></div>
+    <div id="nowTime">亲爱的${_user.userName!''}， 欢迎使用layuiCMS 2.0模版 </div>
 </blockquote>
 <div class="layui-row layui-col-space10 panel_box">
     <div class="panel layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">

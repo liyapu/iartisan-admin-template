@@ -7,9 +7,9 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
-import org.iartisan.admin.template.authentication.AuthenticationService;
 import org.iartisan.runtime.env.EnvContextConfig;
 import org.iartisan.runtime.utils.StringUtils;
+import org.iartisan.runtime.web.authentication.AuthenticationService;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;

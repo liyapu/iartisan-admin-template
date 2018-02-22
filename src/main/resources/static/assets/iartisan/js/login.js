@@ -1,24 +1,24 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['form', 'layer', 'jquery', 'router'], function () {
+}).use(['form', 'layer', 'jquery', 'router', 'md5'], function () {
     var form = layui.form,
-        layer = parent.layer === undefined ? layui.layer : top.layer,
         router = layui.router,
+        md = layui.md5,
         $ = layui.jquery;
-
-    $(".loginBody .seraph").click(function () {
-        layer.msg("这只是做个样式，至于功能，你见过哪个后台能这样登录的？还是老老实实的找管理员去注册吧", {
-            time: 5000
-        });
-    });
     //登录按钮
     form.on("submit(login)", function (data) {
-        $(this).text("登录中...").attr("disabled", "disabled").addClass("layui-disabled");
+        var _that = $(this);
+        _that.text("登录中...").attr("disabled", "disabled").addClass("layui-disabled");
+        //密码md5
+        var pwd = $.md5("00");
         router.post({
                 url: "/authenticate",
-                data: data.field,
+                data: {userName: data.field["userName"], userPwd: pwd},
                 success: function (res) {
                     location.href = res.message;
+                },
+                error: function () {
+                    _that.text("登录").removeAttr("disabled").removeClass("layui-disabled");
                 }
             }
         );
