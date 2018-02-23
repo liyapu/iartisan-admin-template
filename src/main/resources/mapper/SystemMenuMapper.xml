@@ -4,8 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.iartisan.admin.template.authentication.support.dbm.mapper.SystemMenuMapper">
 
-    <sql id="BASE_COLUMN_RESULT">
+    <sql id="Base_Column_List">
         MENU_ID,MENU_NAME,MENU_PERMISSION,MENU_URL,MENU_ICON,PARENT_MENU_ID,CREATE_TIME,UPDATE_TIME
     </sql>
+
+    <select id="selectFirstMenus" resultType="systemMenu">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from system_menu
+        where (PARENT_MENU_ID IS NULL OR length(PARENT_MENU_ID)=0)
+        AND MENU_ID IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectSecondMenus" resultType="systemMenu">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from system_menu
+        where PARENT_MENU_ID =#{parentMenuId}
+        AND MENU_ID IN
+        <foreach item="item" collection="menuIds" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
 
 </mapper>

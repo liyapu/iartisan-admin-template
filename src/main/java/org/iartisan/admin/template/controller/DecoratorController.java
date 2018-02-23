@@ -25,9 +25,6 @@ public class DecoratorController {
     @Value("${iartisan.admin.authenticate.decorator:decorator}")
     private String decoratorPage;
 
-    @Value("${iartisan.admin.authenticate.logout:logout}")
-    private String logoutPage;
-
     private static final String PAGE_MAIN = "main";
 
     @RequestMapping(ReqContants.REQ_LOGOUT)
@@ -54,12 +51,6 @@ public class DecoratorController {
     @GetMapping(ReqContants.REQ_MAIN)
     public String main() {
         return PAGE_MAIN;
-    }
-
-    @GetMapping(ReqContants.REQ_LOGOUT)
-    public String logout() {
-        SecurityUtils.getSubject().logout();
-        return logoutPage;
     }
 
 }

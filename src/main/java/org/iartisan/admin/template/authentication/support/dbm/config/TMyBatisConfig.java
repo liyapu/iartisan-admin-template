@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * @since 2017/10/19
  */
 @Configuration
-public class AdminMyBatisConfig extends MyBatisConfig {
+public class TMyBatisConfig extends MyBatisConfig {
 
 }

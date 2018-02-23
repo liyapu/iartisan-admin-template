@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.iartisan.admin.template.authentication.support.dbm.mapper.SystemRolePermissionMapper">
+
+    <sql id="BASE_COLUMN_RESULT">
+        ROLE_ID,PERMISSION_ID,PERMISSION_TYPE,CREATE_TIME
+    </sql>
+
+    <select id="selectPermissions" resultType="string">
+        SELECT DISTINCT PERMISSION_ID from system_role_permission WHERE ROLE_ID IN
+        <foreach item="item" collection="roleIds" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        <if test="permissionType!=null">
+            AND PERMISSION_TYPE= #{permissionType}
+        </if>
+    </select>
+</mapper>

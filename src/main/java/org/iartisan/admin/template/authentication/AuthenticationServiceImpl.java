@@ -1,14 +1,13 @@
 package org.iartisan.admin.template.authentication;
 
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemUserDO;
-import org.iartisan.admin.template.authentication.support.service.AdminSupport;
+import org.iartisan.admin.template.authentication.support.service.UserService;
 import org.iartisan.runtime.web.authentication.AuthenticationService;
 import org.iartisan.runtime.web.authentication.MenuTree;
 import org.iartisan.runtime.web.authentication.RealmBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -22,12 +21,12 @@ import java.util.Set;
 public class AuthenticationServiceImpl extends AuthenticationService {
 
     @Autowired
-    private AdminSupport adminSupport;
+    private UserService userService;
 
     @Override
     protected RealmBean getRealmBean(String userName, String userPwd) {
         //判断用户名密码是否正确
-        SystemUserDO userDO = adminSupport.login(userName, userPwd);
+        SystemUserDO userDO = userService.login(userName, userPwd);
         if (null == userDO) {
             return null;
         }
@@ -36,10 +35,8 @@ public class AuthenticationServiceImpl extends AuthenticationService {
         bean.setUserName(userDO.getUserName());
         bean.setUserId(userDO.getUserId());
         //加载用户菜单列表
-
-        //查询用户所属role
-
-        //通过role 获取拥有的资源列表
+        List<MenuTree> trees = userService.getMenus(userDO.getUserId());
+        bean.setMenuTrees(trees);
         return bean;
     }
 

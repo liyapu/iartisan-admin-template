@@ -1,9 +1,13 @@
 package org.iartisan.admin.template.authentication.support.dbm.model;
 
 import java.util.Date;
+import java.util.List;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import org.apache.ibatis.annotations.Property;
+import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.type.Alias;
 /**
 * system_menu 表模型
@@ -68,6 +72,8 @@ public class SystemMenuDO {
         */
         @TableField("UPDATE_TIME")
         private Date updateTime;
+
+        private List<String> menuIds;
 
 
         public String getMenuId(){
@@ -134,4 +140,11 @@ public class SystemMenuDO {
           this.updateTime = updateTime;
       }
 
+    public List<String> getMenuIds() {
+        return menuIds;
+    }
+
+    public void setMenuIds(List<String> menuIds) {
+        this.menuIds = menuIds;
+    }
 }

@@ -34,17 +34,17 @@
             </ul>
             <ul class="layui-nav topLevelMenus" pc>
                 <li class="layui-nav-item layui-this" data-menu="contentManagement">
-                    <a href="javascript:;"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>内容管理</cite></a>
+                    <a href="javascript:;"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>业务系统</cite></a>
                 </li>
                 <li class="layui-nav-item" data-menu="memberCenter" pc>
-                    <a href="javascript:;"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>用户中心</cite></a>
+                    <a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a>
                 </li>
-                <li class="layui-nav-item" data-menu="systemeSttings" pc>
+              <#--  <li class="layui-nav-item" data-menu="systemeSttings" pc>
                     <a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a>
                 </li>
                 <li class="layui-nav-item" data-menu="seraphApi" pc>
                     <a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>使用文档</cite></a>
-                </li>
+                </li>-->
             </ul>
             <!-- 顶部右侧菜单 -->
             <ul class="layui-nav top_menu">
@@ -62,7 +62,7 @@
                         <dd><a href="javascript:;" class="showNotice"><i class="layui-icon">&#xe645;</i><cite>系统公告</cite><#--<span class="layui-badge-dot"></span>--></a></dd>
        <#--                 <dd pc><a href="javascript:;" class="functionSetting"><i class="layui-icon">&#xe620;</i><cite>功能设定</cite>&lt;#&ndash;<span class="layui-badge-dot"></span>&ndash;&gt;</a></dd>
                         <dd pc><a href="javascript:;" class="changeSkin"><i class="layui-icon">&#xe61b;</i><cite>更换皮肤</cite></a></dd>-->
-                        <dd><a href="page/login/login.html" class="signOut"><i class="seraph icon-tuichu"></i><cite>退出</cite></a></dd>
+                        <dd><a href="/logout" class="signOut"><i class="seraph icon-tuichu"></i><cite>退出</cite></a></dd>
                     </dl>
                 </li>
             </ul>
@@ -86,7 +86,7 @@
         <div class="navBar layui-side-scroll" id="navBar">
             <ul class="layui-nav layui-nav-tree">
                 <li class="layui-nav-item layui-this">
-                    <a href="javascript:;" data-url="${context.contextPath}/main"><i class="layui-icon" data-icon=""></i><cite>后台首页</cite></a>
+                    <a href="javascript:;" data-url="${context.contextPath}/main"><i class="layui-icon" data-icon=""></i><cite>首页</cite></a>
                 </li>
             </ul>
         </div>
@@ -95,7 +95,7 @@
     <div class="layui-body layui-form">
         <div class="layui-tab mag0" lay-filter="bodyTab" id="top_tabs_box" style="margin: 0px;">
             <ul class="layui-tab-title top_tab" id="top_tabs">
-                <li class="layui-this" lay-id=""><i class="layui-icon">&#xe68e;</i> <cite>后台首页</cite></li>
+                <li class="layui-this" lay-id=""><i class="layui-icon">&#xe68e;</i> <cite>首页</cite></li>
             </ul>
             <ul class="layui-nav closeBox">
                 <li class="layui-nav-item">
