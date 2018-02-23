@@ -15,9 +15,9 @@
 </head>
 <body class="childrenBody">
 <blockquote class="layui-elem-quote layui-bg-green">
-    <div id="nowTime">亲爱的${_user.userName!''}， 欢迎使用layuiCMS 2.0模版 </div>
+    <div id="nowTime">亲爱的${_user.userName!''}， 欢迎使用：${_title!''} </div>
 </blockquote>
-<div class="layui-row layui-col-space10 panel_box">
+<#--<div class="layui-row layui-col-space10 panel_box">
     <div class="panel layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">
         <a href="javascript:;" data-url="http://fly.layui.com/case/u/3198216" target="_blank">
             <div class="panel_icon layui-bg-green">
@@ -222,7 +222,7 @@
             </ul>
         </div>
     </div>
-</div>
+</div>-->
 
 <script type="text/javascript" src="/assets/iartisan/plugins/layui/layui.js"></script>
 <script type="text/javascript" src="/assets/iartisan/js/main.js"></script>

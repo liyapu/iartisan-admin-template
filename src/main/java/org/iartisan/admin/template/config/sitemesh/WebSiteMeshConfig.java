@@ -1,4 +1,4 @@
-package org.iartisan.admin.template.sitemesh;
+package org.iartisan.admin.template.config.sitemesh;
 
 import org.iartisan.runtime.env.EnvContextConfig;
 import org.iartisan.runtime.utils.StringUtils;

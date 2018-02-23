@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>layui后台管理模板 2.0</title>
+    <title>${_title!''}</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
@@ -20,13 +20,13 @@
     <!-- 顶部 -->
     <div class="layui-header header">
         <div class="layui-main mag0">
-            <a href="#" class="logo">layuiCMS 2.0</a>
+            <a href="javascript:void(0);" class="logo">${_title!''}</a>
             <!-- 显示/隐藏菜单 -->
             <a href="javascript:;" class="seraph hideMenu icon-caidan"></a>
             <!-- 顶级菜单 -->
             <ul class="layui-nav mobileTopLevelMenus" mobile>
                 <li class="layui-nav-item" data-menu="contentManagement">
-                    <a href="javascript:;"><i class="seraph icon-caidan"></i><cite>layuiCMS</cite></a>
+                    <a href="javascript:;"><i class="seraph icon-caidan"></i><cite>${_title!''}</cite></a>
                     <dl class="layui-nav-child">
 
                     </dl>
@@ -48,20 +48,20 @@
             </ul>
             <!-- 顶部右侧菜单 -->
             <ul class="layui-nav top_menu">
-                <li class="layui-nav-item" pc>
-                    <a href="javascript:;" class="clearCache"><i class="layui-icon" data-icon="&#xe640;">&#xe640;</i><cite>清除缓存</cite><span class="layui-badge-dot"></span></a>
+                <#--<li class="layui-nav-item" pc>
+                    <a href="javascript:;" class="clearCache"><i class="layui-icon" data-icon="&#xe640;">&#xe640;</i><cite>清除缓存</cite>&lt;#&ndash;<span class="layui-badge-dot"></span>&ndash;&gt;</a>
                 </li>
                 <li class="layui-nav-item lockcms" pc>
                     <a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>
-                </li>
+                </li>-->
                 <li class="layui-nav-item" id="userInfo">
                     <a href="javascript:;"><img src="/assets/iartisan/images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName">${_user.userName!''}</cite></a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="seraph icon-ziliao" data-icon="icon-ziliao"></i><cite>个人资料</cite></a></dd>
                         <dd><a href="javascript:;" data-url="page/user/changePwd.html"><i class="seraph icon-xiugai" data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>
-                        <dd><a href="javascript:;" class="showNotice"><i class="layui-icon">&#xe645;</i><cite>系统公告</cite><span class="layui-badge-dot"></span></a></dd>
-                        <dd pc><a href="javascript:;" class="functionSetting"><i class="layui-icon">&#xe620;</i><cite>功能设定</cite><span class="layui-badge-dot"></span></a></dd>
-                        <dd pc><a href="javascript:;" class="changeSkin"><i class="layui-icon">&#xe61b;</i><cite>更换皮肤</cite></a></dd>
+                        <dd><a href="javascript:;" class="showNotice"><i class="layui-icon">&#xe645;</i><cite>系统公告</cite><#--<span class="layui-badge-dot"></span>--></a></dd>
+       <#--                 <dd pc><a href="javascript:;" class="functionSetting"><i class="layui-icon">&#xe620;</i><cite>功能设定</cite>&lt;#&ndash;<span class="layui-badge-dot"></span>&ndash;&gt;</a></dd>
+                        <dd pc><a href="javascript:;" class="changeSkin"><i class="layui-icon">&#xe61b;</i><cite>更换皮肤</cite></a></dd>-->
                         <dd><a href="page/login/login.html" class="signOut"><i class="seraph icon-tuichu"></i><cite>退出</cite></a></dd>
                     </dl>
                 </li>
@@ -99,7 +99,8 @@
             </ul>
             <ul class="layui-nav closeBox">
                 <li class="layui-nav-item">
-                    <a href="javascript:;"><i class="layui-icon caozuo">&#xe643;</i> 页面操作</a>
+                    <a href="javascript:;"><i class="layui-icon caozuo">&#xe643;</i>
+                        <span style="margin-left: 6px;">页面操作</span></a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" class="refresh refreshThis"><i class="layui-icon">&#x1002;</i> 刷新当前</a></dd>
                         <dd><a href="javascript:;" class="closePageOther"><i class="seraph icon-prohibit"></i> 关闭其他</a></dd>
@@ -116,7 +117,7 @@
     </div>
     <!-- 底部 -->
     <div class="layui-footer footer">
-        <p><span>copyright @2018 </span><a onclick="donation()" class="layui-btn layui-btn-danger layui-btn-sm">捐赠作者</a></p>
+        <p><span style="color: #01AAED;">2018 &copy; powerd by iartisan</span><#--<a onclick="donation()" class="layui-btn layui-btn-danger layui-btn-sm">捐赠作者</a>--></p>
     </div>
 </div>
 

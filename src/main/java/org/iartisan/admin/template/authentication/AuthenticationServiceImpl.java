@@ -36,11 +36,10 @@ public class AuthenticationServiceImpl extends AuthenticationService {
         bean.setUserName(userDO.getUserName());
         bean.setUserId(userDO.getUserId());
         //加载用户菜单列表
-        List<MenuTree> menuTreeList = new ArrayList<>();
-        MenuTree tree = new MenuTree();
-        tree.setTitle("test");
-        menuTreeList.add(tree);
-        bean.setMenuTrees(menuTreeList);
+
+        //查询用户所属role
+
+        //通过role 获取拥有的资源列表
         return bean;
     }
 

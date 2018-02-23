@@ -1,4 +1,4 @@
-package org.iartisan.admin.template.shiro;
+package org.iartisan.admin.template.config.shiro;
 
 
 import org.apache.shiro.authc.AuthenticationToken;

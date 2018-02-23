@@ -1,4 +1,4 @@
-package org.iartisan.admin.template.sitemesh;
+package org.iartisan.admin.template.config.sitemesh;
 
 import org.sitemesh.SiteMeshContext;
 import org.sitemesh.content.ContentProperty;

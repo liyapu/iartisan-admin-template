@@ -199,7 +199,7 @@
                         <dbType>mysql</dbType>
                     </dataSourceConfig>
                     <tableConfig>
-                        <tableNames>system_user</tableNames>
+                        <tableNames>system_resource</tableNames>
                     </tableConfig>
                     <!--dao 层配置-->
                     <daoConfig>
