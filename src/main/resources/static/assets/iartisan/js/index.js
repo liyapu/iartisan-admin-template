@@ -53,14 +53,42 @@ layui.config({
 
     //隐藏左侧导航
     $(".hideMenu").click(function () {
+        layer.closeAll();
         if ($(".topLevelMenus li.layui-this a").data("url")) {
             layer.msg("此栏目状态下左侧菜单不可展开");  //主要为了避免左侧显示的内容与顶部菜单不匹配
             return false;
         }
         $(".layui-layout-admin").toggleClass("showMenu");
+        if ($(".layui-layout-admin").hasClass("showMenu")) {
+            $("#navBar ul li.layui-nav-item").each(function (item, index) {
+                var that = $(this),
+                    text = that.children("a:eq(0)").find("cite").text();
+                that.on("mouseenter", function () {
+                    layer.tips(text, that, {tips: 1});
+                });
+            });
+        } else {
+            $("#navBar ul li.layui-nav-item").each(function (item, index) {
+                var that = $(this);
+                that.unbind("mouseenter");
+            });
+        }
         //渲染顶部窗口
         tab.tabMove();
-    })
+    });
+    $("#navBar").on("click", function () {
+        layer.closeAll();
+        var that = $(this);
+
+        if ($(".layui-layout-admin").hasClass("showMenu")) {
+            $(".layui-layout-admin").removeClass("showMenu");
+            that.find("ul li").each(function (item, index) {
+                var that = $(this);
+                that.unbind("mouseenter");
+            });
+        }
+    });
+
 
     //通过顶部菜单获取左侧二三级菜单   注：此处只做演示之用，实际开发中通过接口传参的方式获取导航数据
     getData("contentManagement");

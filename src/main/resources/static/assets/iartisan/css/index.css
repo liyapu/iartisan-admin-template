@@ -230,11 +230,34 @@ iframe {
     background-color: #FF5722;
     border-radius: 5px;
     position: relative;
-    left:200px;
+    left: 200px;
+}
+
+.showMenu .hideMenu {
+    left: 0px;
+}
+
+.logo-image {
+    width: 60px;
+    display: none
+}
+
+.showMenu .logo-image {
+    display: block;
 }
 
 .hideMenu:hover {
     color: #fff;
+}
+
+.layui-layout-left {
+    left: 250px;
+}
+
+.showMenu .layui-layout-left {
+    left: 50px;
+    transition: all .3s;
+    -webkit-transition: all .3s;
 }
 
 .layui-nav cite {
@@ -276,13 +299,18 @@ iframe {
 }
 
 .showMenu.layui-layout-admin .layui-side {
-    width:60px; overflow: hidden;
+    width: 60px;
+    overflow: hidden;
 }
 
 .showMenu .layui-body, .showMenu .layui-footer {
     left: 60px;
 }
-.showMenu .header{padding-left: 60px; z-index: 1;}
+
+.showMenu .header {
+    padding-left: 60px;
+    z-index: 1;
+}
 
 /*左侧用户头像*/
 .top_menu {
@@ -291,15 +319,19 @@ iframe {
     right: 0;
     top: 0;
 }
-.showMenu.layui-layout-admin .layui-side cite{
+
+.showMenu.layui-layout-admin .layui-side cite {
     display: none;
 }
-.showMenu.layui-layout-admin .layui-side .layui-nav-child{
+
+.showMenu.layui-layout-admin .layui-side .layui-nav-child {
     display: none;
 }
-.showMenu .logo{
+
+.showMenu .logo {
     display: none;
 }
+
 .layui-layout-admin .layui-side {
     left: 0;
     overflow: hidden;
@@ -410,7 +442,7 @@ iframe {
 /*layui-body*/
 .layui-body {
     overflow: hidden; /*border-top:5px solid #23262E;*/
-   /* border-left: 2px solid #1AA094;*/
+    /* border-left: 2px solid #1AA094;*/
     background: #fff;
 }
 
@@ -559,7 +591,7 @@ iframe {
 .footer {
     text-align: center;
     line-height: 44px;
-   /* border-left: 2px solid #1AA094;*/
+    /* border-left: 2px solid #1AA094;*/
     z-index: 999;
 }
 
@@ -656,10 +688,11 @@ iframe {
 }
 
 /*修改顶部高度*/
-.header .layui-nav-child, .layui-body, .layui-layout-admin , .header .layui-nav-bar {
+.header .layui-nav-child, .layui-body, .layui-layout-admin, .header .layui-nav-bar {
     top: 50px !important;
 }
-.layui-side{
+
+.layui-side {
     top: 0px !important;
     z-index: 9999;
 }

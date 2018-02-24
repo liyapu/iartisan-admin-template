@@ -29,10 +29,16 @@
                 <li class="layui-nav-item" data-menu="contentManagement">
                     <a href="javascript:;"><i class="seraph icon-caidan"></i><cite>layuiCMS</cite></a>
                     <dl class="layui-nav-child">
-                        <dd class="layui-this" data-menu="contentManagement"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>内容管理</cite></a></dd>
-                        <dd data-menu="memberCenter"><a href="javascript:;"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>用户中心</cite></a></dd>
-                        <dd data-menu="systemeSttings"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a></dd>
-                        <dd data-menu="seraphApi"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>使用文档</cite></a></dd>
+                        <dd class="layui-this" data-menu="contentManagement"><a href="javascript:;"><i
+                                class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>内容管理</cite></a></dd>
+                        <dd data-menu="memberCenter"><a href="javascript:;"><i class="seraph icon-icon10"
+                                                                               data-icon="icon-icon10"></i><cite>用户中心</cite></a>
+                        </dd>
+                        <dd data-menu="systemeSttings"><a href="javascript:;"><i class="layui-icon"
+                                                                                 data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a>
+                        </dd>
+                        <dd data-menu="seraphApi"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>使用文档</cite></a>
+                        </dd>
                     </dl>
                 </li>
             </ul>
@@ -68,10 +74,13 @@
     </div>
     <!-- 左侧导航 -->
     <div class="layui-side layui-bg-black">
-        <div class="logo" > ${_title!''} </div>
-        <div class="user-photo">
-            <a class="img" title="我的头像" ><img src="/assets/iartisan/images/face.jpg" class="userAvatar"></a>
+        <div class="logo"> ${_title!''}</div>
+        <div class="logo-image">
+            <img src="/assets/iartisan/images/face.jpg" style="width: 60px;height: 50px;">
         </div>
+       <#-- <div class="user-photo">
+            <a class="img" title="我的头像"><img src="/assets/iartisan/images/face.jpg" class="userAvatar"></a>
+        </div>-->
         <div class="navBar layui-side-scroll" id="navBar">
             <ul class="layui-nav layui-nav-tree">
                 <li class="layui-nav-item layui-this">
