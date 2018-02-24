@@ -20,48 +20,46 @@
     <!-- 顶部 -->
     <div class="layui-header header">
         <div class="layui-main mag0">
-            <a href="javascript:void(0);" class="logo">${_title!''}</a>
             <!-- 显示/隐藏菜单 -->
-            <a href="javascript:;" class="seraph hideMenu icon-caidan"></a>
+            <a href="javascript:;" class="seraph hideMenu">
+                <i class="layui-icon layui-icon-shrink-right"></i>
+            </a>
             <!-- 顶级菜单 -->
-            <ul class="layui-nav mobileTopLevelMenus" mobile>
+            <ul class="layui-nav mobileTopLevelMenus layui-layout-left" mobile>
                 <li class="layui-nav-item" data-menu="contentManagement">
-                    <a href="javascript:;"><i class="seraph icon-caidan"></i><cite>${_title!''}</cite></a>
+                    <a href="javascript:;"><i class="seraph icon-caidan"></i><cite>layuiCMS</cite></a>
                     <dl class="layui-nav-child">
-
+                        <dd class="layui-this" data-menu="contentManagement"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>内容管理</cite></a></dd>
+                        <dd data-menu="memberCenter"><a href="javascript:;"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>用户中心</cite></a></dd>
+                        <dd data-menu="systemeSttings"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a></dd>
+                        <dd data-menu="seraphApi"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>使用文档</cite></a></dd>
                     </dl>
                 </li>
             </ul>
-            <ul class="layui-nav topLevelMenus" pc>
+            <ul class="layui-nav topLevelMenus layui-layout-left" pc>
                 <li class="layui-nav-item layui-this" data-menu="contentManagement">
                     <a href="javascript:;"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>业务系统</cite></a>
                 </li>
                 <li class="layui-nav-item" data-menu="memberCenter" pc>
                     <a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a>
                 </li>
-              <#--  <li class="layui-nav-item" data-menu="systemeSttings" pc>
-                    <a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a>
-                </li>
-                <li class="layui-nav-item" data-menu="seraphApi" pc>
-                    <a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>使用文档</cite></a>
-                </li>-->
             </ul>
             <!-- 顶部右侧菜单 -->
             <ul class="layui-nav top_menu">
-                <#--<li class="layui-nav-item" pc>
-                    <a href="javascript:;" class="clearCache"><i class="layui-icon" data-icon="&#xe640;">&#xe640;</i><cite>清除缓存</cite>&lt;#&ndash;<span class="layui-badge-dot"></span>&ndash;&gt;</a>
-                </li>
-                <li class="layui-nav-item lockcms" pc>
-                    <a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>
-                </li>-->
                 <li class="layui-nav-item" id="userInfo">
-                    <a href="javascript:;"><img src="/assets/iartisan/images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName">${_user.userName!''}</cite></a>
+                    <a href="javascript:;"><img src="/assets/iartisan/images/face.jpg" class="layui-nav-img userAvatar"
+                                                width="35" height="35"><cite
+                            class="adminName">${_user.userName!''}</cite></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="seraph icon-ziliao" data-icon="icon-ziliao"></i><cite>个人资料</cite></a></dd>
-                        <dd><a href="javascript:;" data-url="page/user/changePwd.html"><i class="seraph icon-xiugai" data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>
-                        <dd><a href="javascript:;" class="showNotice"><i class="layui-icon">&#xe645;</i><cite>系统公告</cite><#--<span class="layui-badge-dot"></span>--></a></dd>
-       <#--                 <dd pc><a href="javascript:;" class="functionSetting"><i class="layui-icon">&#xe620;</i><cite>功能设定</cite>&lt;#&ndash;<span class="layui-badge-dot"></span>&ndash;&gt;</a></dd>
-                        <dd pc><a href="javascript:;" class="changeSkin"><i class="layui-icon">&#xe61b;</i><cite>更换皮肤</cite></a></dd>-->
+                        <dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="seraph icon-ziliao"
+                                                                                         data-icon="icon-ziliao"></i><cite>个人资料</cite></a>
+                        </dd>
+                        <dd><a href="javascript:;" data-url="page/user/changePwd.html"><i class="seraph icon-xiugai"
+                                                                                          data-icon="icon-xiugai"></i><cite>修改密码</cite></a>
+                        </dd>
+                        <dd><a href="javascript:;" class="showNotice"><i
+                                class="layui-icon">&#xe645;</i><cite>系统公告</cite><#--<span class="layui-badge-dot"></span>-->
+                        </a></dd>
                         <dd><a href="/logout" class="signOut"><i class="seraph icon-tuichu"></i><cite>退出</cite></a></dd>
                     </dl>
                 </li>
@@ -70,23 +68,16 @@
     </div>
     <!-- 左侧导航 -->
     <div class="layui-side layui-bg-black">
+        <div class="logo" > ${_title!''} </div>
         <div class="user-photo">
             <a class="img" title="我的头像" ><img src="/assets/iartisan/images/face.jpg" class="userAvatar"></a>
-            <p>你好！<span class="userName">${_user.userName!''}</span>, 欢迎登录</p>
         </div>
-        <!-- 搜索 -->
-        <#--<div class="layui-form component">
-            <select name="search" id="search" lay-search lay-filter="searchPage">
-                <option value="">搜索页面或功能</option>
-                <option value="1">layer</option>
-                <option value="2">form</option>
-            </select>
-            <i class="layui-icon">&#xe615;</i>
-        </div>-->
         <div class="navBar layui-side-scroll" id="navBar">
             <ul class="layui-nav layui-nav-tree">
                 <li class="layui-nav-item layui-this">
-                    <a href="javascript:;" data-url="${context.contextPath}/main"><i class="layui-icon" data-icon=""></i><cite>首页</cite></a>
+                    <a href="javascript:;" data-url="${context.contextPath}/main">
+                        <i class="layui-icon" data-icon=""></i><cite>首页</cite>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -102,8 +93,10 @@
                     <a href="javascript:;"><i class="layui-icon caozuo">&#xe643;</i>
                         <span style="margin-left: 6px;">页面操作</span></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" class="refresh refreshThis"><i class="layui-icon">&#x1002;</i> 刷新当前</a></dd>
-                        <dd><a href="javascript:;" class="closePageOther"><i class="seraph icon-prohibit"></i> 关闭其他</a></dd>
+                        <dd><a href="javascript:;" class="refresh refreshThis"><i class="layui-icon">&#x1002;</i>
+                            刷新当前</a></dd>
+                        <dd><a href="javascript:;" class="closePageOther"><i class="seraph icon-prohibit"></i> 关闭其他</a>
+                        </dd>
                         <dd><a href="javascript:;" class="closePageAll"><i class="seraph icon-guanbi"></i> 关闭全部</a></dd>
                     </dl>
                 </li>
@@ -117,7 +110,9 @@
     </div>
     <!-- 底部 -->
     <div class="layui-footer footer">
-        <p><span style="color: #01AAED;">2018 &copy; powerd by iartisan</span><#--<a onclick="donation()" class="layui-btn layui-btn-danger layui-btn-sm">捐赠作者</a>--></p>
+        <p><span
+                style="color: #01AAED;">2018 &copy; powerd by iartisan</span><#--<a onclick="donation()" class="layui-btn layui-btn-danger layui-btn-sm">捐赠作者</a>-->
+        </p>
     </div>
 </div>
 
