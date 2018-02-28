@@ -52,6 +52,9 @@
             </ul>
             <!-- 顶部右侧菜单 -->
             <ul class="layui-nav top_menu">
+                <li class="layui-nav-item" pc>
+                    <a href="javascript:;" class="about"><i class="layui-icon">&#xe65f;</i></a>
+                </li>
                 <li class="layui-nav-item" id="userInfo">
                     <a href="javascript:;"><img src="/assets/iartisan/images/face.jpg" class="layui-nav-img userAvatar"
                                                 width="35" height="35"><cite

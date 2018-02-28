@@ -1,7 +1,7 @@
 package org.iartisan.admin.template.authentication;
 
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemUserDO;
-import org.iartisan.admin.template.authentication.support.service.UserService;
+import org.iartisan.admin.template.authentication.support.service.UserSupportService;
 import org.iartisan.runtime.web.authentication.AuthenticationService;
 import org.iartisan.runtime.web.authentication.MenuTree;
 import org.iartisan.runtime.web.authentication.RealmBean;
@@ -21,7 +21,7 @@ import java.util.Set;
 public class AuthenticationServiceImpl extends AuthenticationService {
 
     @Autowired
-    private UserService userService;
+    private UserSupportService userService;
 
     @Override
     protected RealmBean getRealmBean(String userName, String userPwd) {

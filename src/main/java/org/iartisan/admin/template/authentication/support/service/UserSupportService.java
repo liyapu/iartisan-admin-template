@@ -8,7 +8,13 @@ import org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemRolePermissionDO;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemUserDO;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemUserRoleDO;
+import org.iartisan.admin.template.authentication.support.service.entity.UserEntity;
+import org.iartisan.runtime.bean.Page;
+import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.jdbc.PageHelper;
+import org.iartisan.runtime.utils.StringUtils;
 import org.iartisan.runtime.web.authentication.MenuTree;
+import org.iartisan.runtime.web.authentication.RealmBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +29,7 @@ import java.util.List;
  * @since 2018/2/22
  */
 @Service
-public class UserService {
+public class UserSupportService {
 
     @Autowired
     private SystemUserMapper systemUserMapper;
@@ -80,6 +86,7 @@ public class UserService {
             MenuTree firstTree = new MenuTree();
             firstTree.setTitle(firstMenu.getMenuName());
             firstTree.setIcon(firstMenu.getMenuIcon());
+            firstTree.setHref(firstMenu.getMenuUrl());
             SystemMenuDO secondQuery = new SystemMenuDO();
             secondQuery.setMenuIds(menuIds);
             secondQuery.setParentMenuId(firstMenu.getMenuId());
@@ -91,6 +98,7 @@ public class UserService {
                     MenuTree secondTree = new MenuTree();
                     secondTree.setTitle(secondMenu.getMenuName());
                     secondTree.setIcon(secondMenu.getMenuIcon());
+                    secondTree.setHref(secondMenu.getMenuUrl());
                     children.add(secondTree);
                 }
                 firstTree.setChildren(children);
@@ -101,5 +109,25 @@ public class UserService {
         return result;
     }
 
+
+    public PageWrapper<UserEntity> getUserPageData(Page page, String userName) {
+        SystemUserDO userDO = new SystemUserDO();
+        if (StringUtils.isNotEmpty(userName)) {
+            userDO.setUserName(userName);
+        }
+        PageWrapper<SystemUserDO> dbResult = PageHelper.getPageData(systemUserMapper, page, userDO);
+        PageWrapper<UserEntity> result = new PageWrapper<>(dbResult.getPage());
+        List<UserEntity> pageList = new ArrayList<>();
+        for (SystemUserDO o : dbResult.getDataList()) {
+            UserEntity bean = new UserEntity();
+            bean.setUserName(o.getUserName());
+            bean.setUserId(o.getUserId());
+            bean.setUserStatus(o.getStatus());
+            bean.setCreateDate(o.getCreateTime());
+            pageList.add(bean);
+        }
+        result.setDataList(pageList);
+        return result;
+    }
 
 }

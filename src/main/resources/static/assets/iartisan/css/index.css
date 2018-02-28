@@ -441,8 +441,9 @@ iframe {
 
 /*layui-body*/
 .layui-body {
-    overflow: hidden; /*border-top:5px solid #23262E;*/
-    /* border-left: 2px solid #1AA094;*/
+    overflow: hidden;
+    border-top: 5px solid #5FB878;
+    border-left: 2px solid #5FB878;
     background: #fff;
 }
 
@@ -591,7 +592,7 @@ iframe {
 .footer {
     text-align: center;
     line-height: 44px;
-    /* border-left: 2px solid #1AA094;*/
+    border-left: 2px solid #5FB878;
     z-index: 999;
 }
 
@@ -709,4 +710,7 @@ iframe {
 
 .hideMenu {
     margin-top: 10px;
+}
+.layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after{
+    background-color:#AA3130
 }

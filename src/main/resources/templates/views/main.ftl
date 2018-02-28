@@ -32,22 +32,13 @@
                     <tr>
                         <td>当前版本</td>
                         <td>
-                            <script type="text/html" template="">
-                                v{{ layui.admin.v }}
-                                <a href="http://fly.layui.com/docs/3/" target="_blank"
-                                   style="padding-left: 15px;">更新日志</a>
-                            </script>
-                            v1.0.0-beta6 <a href="http://fly.layui.com/docs/3/" target="_blank"
-                                            style="padding-left: 15px;">更新日志</a>
+                            0.0.1
                         </td>
                     </tr>
                     <tr>
                         <td>基于框架</td>
                         <td>
-                            <script type="text/html" template="">
-                                layui-v{{ layui.v }}
-                            </script>
-                            layui-v2.2.6-rc2
+                            layui-2.2.5 ，layuiCMS 2.0
                         </td>
                     </tr>
                     <tr>
@@ -58,8 +49,6 @@
                         <td>获取渠道</td>
                         <td style="padding-bottom: 0;">
                             <div class="layui-btn-container">
-                                <a href="http://www.layui.com/admin/" target="_blank"
-                                   class="layui-btn layui-btn-danger">获取授权</a>
                                 <a href="http://fly.layui.com/download/layuiAdmin/" target="_blank" class="layui-btn">立即下载</a>
                             </div>
                         </td>
@@ -70,8 +59,6 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript" src="/assets/iartisan/plugins/layui/layui.js"></script>
 <script type="text/javascript" src="/assets/iartisan/js/main.js"></script>
 </body>
 </html>

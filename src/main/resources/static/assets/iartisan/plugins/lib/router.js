@@ -48,7 +48,7 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
             });
         },
         table: function (options) {
-            table.render({
+            var tableIns = table.render({
                 elem: options.elem,
                 url: options.url,
                 method: options.type || 'get',
@@ -56,6 +56,7 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
                 page: true,
                 skin: options.skin || 'line',
                 limits: options.limits || [10],
+                where: options.where || {},
                 response: {
                     statusCode: "000000",
                     dataName: "dataList",
@@ -66,6 +67,7 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
                     limitName: 'pageSize' //每页数据量的参数名，默认：limit
                 }
             });
+            return tableIns;
         },
         location: function (href) {
             location.href = href;

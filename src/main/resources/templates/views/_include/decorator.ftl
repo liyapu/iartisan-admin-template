@@ -13,7 +13,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="/assets/iartisan/css/font/font.css" media="all"/>
-    <link rel="stylesheet" href="/assets/plugins/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="/assets/iartisan/plugins/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="/assets/iartisan/css/public.css" media="all"/>
+    <script type="text/javascript" src="/assets/iartisan/plugins/layui/layui.js"></script>
 </head>
 <body class="childrenBody">
 <sitemesh:write property='body'/>

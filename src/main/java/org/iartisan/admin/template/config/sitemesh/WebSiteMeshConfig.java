@@ -19,7 +19,7 @@ public class WebSiteMeshConfig extends ConfigurableSiteMeshFilter {
 
     public void setExcluedPaths() {
         String excluedPath = EnvContextConfig.get(_CONFIG);
-        excluedPath = excluedPath + ",/main,/authenticate,/index";
+        excluedPath = excluedPath + ",/authenticate,/index";
         if (StringUtils.isNotEmpty(excluedPath)) {
             excluedPaths = Arrays.asList(excluedPath.split(","));
         }
@@ -35,7 +35,6 @@ public class WebSiteMeshConfig extends ConfigurableSiteMeshFilter {
         //include 请求
         builder.addDecoratorPath("/*", "/decorator");
         for (String excluedPath : excluedPaths) {
-            System.out.println(excluedPath);
             builder.addExcludedPath(excluedPath);
         }
     }

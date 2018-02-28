@@ -22,7 +22,7 @@ public class DecoratorController {
     @Value("${iartisan.admin.authenticate.login:login}")
     private String loginPage;
 
-    @Value("${iartisan.admin.authenticate.decorator:decorator}")
+    @Value("${iartisan.admin.authenticate.decorator:_include/decorator}")
     private String decoratorPage;
 
     private static final String PAGE_MAIN = "main";
