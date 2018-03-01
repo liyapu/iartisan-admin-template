@@ -4,6 +4,7 @@ import org.iartisan.admin.template.authentication.support.service.ResourceSuppor
 import org.iartisan.admin.template.authentication.support.service.RoleSupportService;
 import org.iartisan.admin.template.authentication.support.service.entity.AuthEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.ResourceEntity;
+import org.iartisan.admin.template.authentication.support.service.entity.RoleEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.web.WebR;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.List;
 
 /**
@@ -53,9 +53,12 @@ public class RoleSupportController {
         return VIEW_PREFIX + "role_add";
     }
 
+    @ResponseBody
     @PostMapping(ReqContants.REQ_ADD_DATA)
-    public String addData() {
-        return VIEW_PREFIX + "role_add";
+    public WebR addData(RoleEntity roleEntity) {
+        authSupportService.addRole(roleEntity);
+        WebR r = new WebR();
+        return r;
     }
 
     @ResponseBody

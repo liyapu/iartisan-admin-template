@@ -7,7 +7,10 @@ layui.config({
         layer = parent.layer === undefined ? layui.layer : top.layer;
 
 
-    var urls = {getResourceData: "/roleSupport/getResourceData"};
+    var urls = {
+        getResourceData: "/roleSupport/getResourceData",
+        addData: "/roleSupport/addData"
+    };
 
     var xtree;
 
@@ -38,6 +41,17 @@ layui.config({
             auths.push(oCks[i].value);
         }
         var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
+        router.post({
+            url: urls.addData,
+            data: {"roleName": data.field.roleName, "permissions": auths.join(",")},
+            success: function () {
+                top.layer.close(index);
+                layer.closeAll("iframe");
+                parent.location.reload();
+            }
+        });
+
+        /* var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});*/
         /* setTimeout(function(){
              top.layer.close(index);
              top.layer.msg("用户添加成功！");

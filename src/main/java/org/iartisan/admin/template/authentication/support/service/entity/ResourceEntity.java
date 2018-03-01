@@ -10,9 +10,9 @@ public class ResourceEntity {
 
     private String title;
 
-    private String value;
+    private String value; //id|type
 
-    private boolean checked = true;
+    private boolean checked = false;
 
     private List<ResourceEntity> data;
 
