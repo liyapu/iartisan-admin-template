@@ -12,6 +12,8 @@ public class ResourceEntity {
 
     private String value;
 
+    private boolean checked = true;
+
     private List<ResourceEntity> data;
 
     public String getTitle() {
@@ -36,5 +38,13 @@ public class ResourceEntity {
 
     public void setData(List<ResourceEntity> data) {
         this.data = data;
+    }
+
+    public boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }

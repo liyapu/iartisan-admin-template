@@ -20,12 +20,21 @@ layui.config({
             where: {"roleName": $("#roleName").val()},
             cols: [[
                 {
-                    field: 'roleId',
                     title: '角色ID',
+                    templet: function (d) {
+                        return "<a class='layui-btn layui-btn-xs layui-btn-primary' lay-event=\"detail\">" + d.roleId + "</a>";
+                    }
                 },
                 {
                     field: 'roleName',
                     title: '角色名称',
+                },
+                {
+                    field: 'roleName',
+                    title: '操作',
+                    templet: function () {
+                        return "<a class=\"layui-btn layui-btn-xs layui-btn-danger\" lay-event=\"del\">删除</a>";
+                    }
                 }
             ]]
         });
@@ -43,27 +52,28 @@ layui.config({
                 layer.close(index)
                 tableIns.reload();
             });
+        } else if (layEvent == 'detail') {
+            layer.msg("想看详情不容易");
         }
     });
-    
-    $("#btnAdd").click(function () {
+
+    $("#btnAddPage").click(function () {
         var index = layui.layer.open({
-            title : "添加角色",
-            type : 2,
-            content :urls.addDataPage,
-            success : function(layero, index){
-                var body = layui.layer.getChildFrame('body', index);
-                setTimeout(function(){
+            title: "添加角色",
+            type: 2,
+            content: urls.addDataPage,
+            success: function () {
+                setTimeout(function () {
                     layui.layer.tips('点击此处返回角色管理', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
                     });
-                },500)
+                }, 500)
             }
         });
         layui.layer.full(index);
-    });
-    //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
-    $(window).on("resize",function(){
-        layui.layer.full(index);
+        //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
+        $(window).on("resize", function () {
+            layui.layer.full(index);
+        });
     });
 });

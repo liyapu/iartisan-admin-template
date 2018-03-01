@@ -53,6 +53,11 @@ public class RoleSupportController {
         return VIEW_PREFIX + "role_add";
     }
 
+    @PostMapping(ReqContants.REQ_ADD_DATA)
+    public String addData() {
+        return VIEW_PREFIX + "role_add";
+    }
+
     @ResponseBody
     @GetMapping("getResourceData")
     public WebR getResourceData() {
