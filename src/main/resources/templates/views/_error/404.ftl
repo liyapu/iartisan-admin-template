@@ -25,5 +25,4 @@
     </div>
 </div>
 <script type="text/javascript" src="/assets/iartisan/plugins/layui/layui.js"></script>
-
 </body></html>

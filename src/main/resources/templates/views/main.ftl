@@ -59,6 +59,5 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/assets/iartisan/js/main.js"></script>
 </body>
 </html>

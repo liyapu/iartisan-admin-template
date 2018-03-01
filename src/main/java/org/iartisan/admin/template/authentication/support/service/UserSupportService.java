@@ -12,6 +12,7 @@ import org.iartisan.admin.template.authentication.support.service.entity.UserEnt
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.jdbc.PageHelper;
+import org.iartisan.runtime.utils.CollectionUtil;
 import org.iartisan.runtime.utils.StringUtils;
 import org.iartisan.runtime.web.authentication.MenuTree;
 import org.iartisan.runtime.web.authentication.RealmBean;
@@ -75,8 +76,9 @@ public class UserSupportService {
         SystemRolePermissionDO dbQuery = new SystemRolePermissionDO();
         dbQuery.setRoleIds(roles);
         List<String> menuIds = systemRolePermissionMapper.selectPermissions(dbQuery);
-        //得到一级菜单
-        List<SystemMenuDO> firstMenus = systemMenuMapper.selectFirstMenus(menuIds);
+        SystemMenuDO systemMenuDO = new SystemMenuDO();
+        systemMenuDO.setMenuIds(menuIds);
+        List<SystemMenuDO> firstMenus = systemMenuMapper.selectFirstMenus(systemMenuDO);
         //得到二级菜单
         if (firstMenus == null) {
             return null;

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface SystemMenuMapper extends MybatisBaseMapper<SystemMenuDO> {
 
-    List<SystemMenuDO> selectFirstMenus(List<String> t);
+    List<SystemMenuDO> selectFirstMenus(SystemMenuDO t);
 
     List<SystemMenuDO> selectSecondMenus(SystemMenuDO t);
 

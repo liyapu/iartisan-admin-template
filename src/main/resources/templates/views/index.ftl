@@ -28,7 +28,7 @@
             <ul class="layui-nav mobileTopLevelMenus layui-layout-left" mobile>
                 <li class="layui-nav-item" data-menu="contentManagement">
                     <a href="javascript:;"><i class="seraph icon-caidan"></i><cite>layuiCMS</cite></a>
-                    <dl class="layui-nav-child">
+                    <#--<dl class="layui-nav-child">
                         <dd class="layui-this" data-menu="contentManagement"><a href="javascript:;"><i
                                 class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>内容管理</cite></a></dd>
                         <dd data-menu="memberCenter"><a href="javascript:;"><i class="seraph icon-icon10"
@@ -39,16 +39,16 @@
                         </dd>
                         <dd data-menu="seraphApi"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>使用文档</cite></a>
                         </dd>
-                    </dl>
+                    </dl>-->
                 </li>
             </ul>
             <ul class="layui-nav topLevelMenus layui-layout-left" pc>
-                <li class="layui-nav-item layui-this" data-menu="contentManagement">
+                <#--<li class="layui-nav-item layui-this" data-menu="contentManagement">
                     <a href="javascript:;"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>业务系统</cite></a>
                 </li>
                 <li class="layui-nav-item" data-menu="memberCenter" pc>
                     <a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a>
-                </li>
+                </li>-->
             </ul>
             <!-- 顶部右侧菜单 -->
             <ul class="layui-nav top_menu">

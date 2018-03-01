@@ -13,10 +13,12 @@
         <include refid="Base_Column_List"/>
         from system_menu
         where (PARENT_MENU_ID IS NULL OR length(PARENT_MENU_ID)=0)
-        AND MENU_ID IN
-        <foreach item="item" collection="list" open="(" separator="," close=")">
-            #{item}
-        </foreach>
+        <if test="menuIds != null">
+           AND MENU_ID IN
+            <foreach item="item" collection="menuIds" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
     </select>
 
     <select id="selectSecondMenus" resultType="systemMenu">
@@ -24,10 +26,12 @@
         <include refid="Base_Column_List"/>
         from system_menu
         where PARENT_MENU_ID =#{parentMenuId}
-        AND MENU_ID IN
-        <foreach item="item" collection="menuIds" open="(" separator="," close=")">
-            #{item}
-        </foreach>
+        <if test="menuIds != null">
+            AND MENU_ID IN
+            <foreach item="item" collection="menuIds" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
     </select>
 
     <select id="selectPage" resultType="systemMenu">

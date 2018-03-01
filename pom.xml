@@ -205,7 +205,7 @@
                         <dbType>mysql</dbType>
                     </dataSourceConfig>
                     <tableConfig>
-                        <tableNames>system_role_permission</tableNames>
+                        <tableNames>system_role</tableNames>
                     </tableConfig>
                     <!--dao 层配置-->
                     <daoConfig>
