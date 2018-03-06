@@ -3,7 +3,7 @@ layui.config({
 }).use(['jquery', 'router', 'table', 'layer', 'util'], function () {
     var router = layui.router, $ = layui.jquery, table = layui.table,
         layer = parent.layer === undefined ? layui.layer : top.layer,
-        util = layui.util;
+        util = layui.util, form = layui.form;
 
     var urls = {
         queryPageData: "/userSupport/queryPageData"
@@ -19,10 +19,10 @@ layui.config({
             type: 'post',
             where: {"userName": $("#userName").val()},
             cols: [[
-                {
+                /*{
                     field: 'userId',
                     title: '用户ID',
-                },
+                },*/
                 {
                     field: 'userName',
                     title: '用户名',
@@ -34,7 +34,9 @@ layui.config({
                 {
                     title: '状态',
                     templet: function (d) {
-                        return d.userStatus == 'E' ? "<span style='color: #009688;'>正常</span>" : "<span style='color: #FF5722;'>停用</span>";
+                        var checked = d.userStatus == 'E' ? 'checked' : null;
+                        var status = "<input type='checkbox' value=" + d.userId + " lay-skin='switch' lay-text='正常|停用' lay-filter='status' " + checked + "> ";
+                        return status;
 
                     }
                 },
@@ -50,8 +52,9 @@ layui.config({
                     fixed: "right",
                     align: "center",
                     templet: function () {
-                        return "<a class=\"layui-btn layui-btn-xs layui-btn-danger\" lay-event=\"del\">删除</a>";
-                        /*"<a class=\"layui-btn layui-btn-xs\" lay-event=\"edit\">编辑</a>" +*/
+                        var html = "<a class=\"layui-btn layui-btn-xs\" lay-event=\"edit\">编辑</a>"
+                        html += "<a class=\"layui-btn layui-btn-xs layui-btn-danger\" lay-event=\"del\">删除</a>";
+                        return html;
 
                     }
                 }
@@ -71,7 +74,15 @@ layui.config({
                 layer.close(index)
                 tableIns.reload();
             });
+        } else if (layEvent == 'status') {
+            layer.alert("status");
         }
+    });
+    //监听性别操作
+    form.on('switch(status)', function (obj) {
+
+        return true;
+        //layer.tips(this.value + '：' + obj.elem.checked, obj.othis);
     });
 
 });

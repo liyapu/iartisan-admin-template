@@ -21,14 +21,10 @@ layui.config({
             where: {"roleName": $("#roleName").val()},
             cols: [[
                 {
-                    title: '角色ID',
-                    templet: function (d) {
-                        return "<a class='layui-btn layui-btn-xs layui-btn-primary' lay-event=\"detail\">" + d.roleId + "</a>";
-                    }
-                },
-                {
-                    field: 'roleName',
                     title: '角色名称',
+                    templet: function (d) {
+                        return "<a class='layui-table-link' lay-event=\"detail\" href='javascript:void(0);'>" + d.roleName + "</a>";
+                    }
                 },
                 {
                     field: 'roleName',
