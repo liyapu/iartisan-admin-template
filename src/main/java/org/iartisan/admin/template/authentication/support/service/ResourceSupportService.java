@@ -1,7 +1,9 @@
 package org.iartisan.admin.template.authentication.support.service;
 
 import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemMenuMapper;
+import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemRolePermissionMapper;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO;
+import org.iartisan.admin.template.authentication.support.dbm.model.SystemRolePermissionDO;
 import org.iartisan.admin.template.authentication.support.service.entity.ResourceEntity;
 import org.iartisan.runtime.utils.CollectionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,10 @@ public class ResourceSupportService {
 
     @Autowired
     private SystemMenuMapper systemMenuMapper;
+
+    @Autowired
+    private SystemRolePermissionMapper systemRolePermissionMapper;
+
 
     public List<ResourceEntity> getResourceList() {
         List<ResourceEntity> result = new ArrayList<>();
@@ -51,5 +57,31 @@ public class ResourceSupportService {
             }
         }
         return result;
+    }
+
+    public List<ResourceEntity> getResourceListByRoleId(String roleId) {
+        List<ResourceEntity> dbResult = getResourceList();
+        if (CollectionUtil.isNotEmpty(dbResult)) {
+            SystemRolePermissionDO dbQuery = new SystemRolePermissionDO();
+            List<String> roles = new ArrayList<>();
+            roles.add(roleId);
+            dbQuery.setRoleIds(roles);
+            List<String> permissionIds = systemRolePermissionMapper.selectPermissions(dbQuery);
+            for (ResourceEntity resourceEntity : dbResult) {
+                if (CollectionUtil.isNotEmpty(resourceEntity.getData())) {
+                    List<ResourceEntity> data = resourceEntity.getData();
+                    for (ResourceEntity datum : data) {
+                        if (permissionIds.contains(datum.getValue())) {
+                            datum.setChecked(true);
+                        }
+                    }
+                } else {
+                    if (permissionIds.contains(resourceEntity.getValue())) {
+                        resourceEntity.setChecked(true);
+                    }
+                }
+            }
+        }
+        return dbResult;
     }
 }

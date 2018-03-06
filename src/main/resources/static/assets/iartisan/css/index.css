@@ -442,7 +442,7 @@ iframe {
 /*layui-body*/
 .layui-body {
     overflow: hidden;
-    border-top: 5px solid #5FB878;
+    border-top: 3px solid #5FB878;
     border-left: 2px solid #5FB878;
     background: #fff;
 }

@@ -38,6 +38,16 @@ public class RoleSupportService {
     private SystemRolePermissionMapper systemRolePermissionMapper;
 
 
+    public AuthEntity getAuthDetail(String roleId) {
+        SystemRoleDO dbResult = systemRoleMapper.selectById(roleId);
+        AuthEntity result = new AuthEntity();
+        if (null != dbResult) {
+            result.setRoleId(dbResult.getRoleId());
+            result.setRoleName(dbResult.getRoleName());
+        }
+        return result;
+    }
+
     public PageWrapper<AuthEntity> getAuthPageData(Page page, String roleName) {
         SystemRoleDO roleDO = new SystemRoleDO();
         if (StringUtils.isNotEmpty(roleName)) {

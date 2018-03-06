@@ -9,12 +9,15 @@ import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
+import org.iartisan.runtime.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.util.List;
 
 /**
@@ -23,12 +26,12 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("roleSupport")
-public class RoleSupportController {
+public class RoleSupportController extends BaseController {
 
     private static final String VIEW_PREFIX = "role/";
 
     @Autowired
-    private RoleSupportService authSupportService;
+    private RoleSupportService roleSupportService;
 
     @Autowired
     private ResourceSupportService resourceSupportService;
@@ -42,7 +45,7 @@ public class RoleSupportController {
     @ResponseBody
     @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
     public WebR queryPageData(Page page, String roleName) {
-        PageWrapper<AuthEntity> pageData = authSupportService.getAuthPageData(page, roleName);
+        PageWrapper<AuthEntity> pageData = roleSupportService.getAuthPageData(page, roleName);
         WebR webR = new WebR(pageData.getPage());
         webR.setDataList(pageData.getDataList());
         return webR;
@@ -56,7 +59,7 @@ public class RoleSupportController {
     @ResponseBody
     @PostMapping(ReqContants.REQ_ADD_DATA)
     public WebR addData(RoleEntity roleEntity) {
-        authSupportService.addRole(roleEntity);
+        roleSupportService.addRole(roleEntity);
         WebR r = new WebR();
         return r;
     }
@@ -70,4 +73,19 @@ public class RoleSupportController {
         return r;
     }
 
+    @ResponseBody
+    @GetMapping("getResourceListByRoleId")
+    public WebR getResourceListByRoleId(String roleId) {
+        List<ResourceEntity> dataList = resourceSupportService.getResourceListByRoleId(roleId);
+        WebR r = new WebR();
+        r.setDataList(dataList);
+        return r;
+    }
+
+    @GetMapping(ReqContants.REQ_QUERY_DETAIL_DATA)
+    public String queryDetailData(String roleId, Model model) {
+        AuthEntity authEntity = roleSupportService.getAuthDetail(roleId);
+        model.addAttribute(_data, authEntity);
+        return VIEW_PREFIX + "role_detail";
+    }
 }

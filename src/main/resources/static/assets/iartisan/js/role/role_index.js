@@ -7,6 +7,7 @@ layui.config({
     var urls = {
         queryPageData: "/roleSupport/queryPageData",
         addDataPage: "/roleSupport/addDataPage",
+        queryDetailData: "/roleSupport/queryDetailData"
     };
     queryPageData();
 
@@ -53,7 +54,21 @@ layui.config({
                 tableIns.reload();
             });
         } else if (layEvent == 'detail') {
-            layer.msg("想看详情不容易");
+            var index = layui.layer.open({
+                title: '角色详情',
+                type: 2,
+                content: urls.queryDetailData + "?roleId=" + data.roleId,
+                area: ['500px', '500px'],
+                skin: 'layui-layer-lan',
+                maxmin: true,
+                btn: "关闭",
+                close: function (index) {
+                    layer.close(index);
+                }
+            });
+            /*$(window).on("resize", function () {
+                layui.layer.restore(index);
+            });*/
         }
     });
 
