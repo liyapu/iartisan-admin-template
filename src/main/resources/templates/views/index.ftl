@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>${_title!''}</title>
@@ -15,80 +16,49 @@
     <link rel="stylesheet" href="/assets/iartisan/plugins/layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/css/index.css" media="all"/>
 </head>
-<body class="main_body">
+
+<body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
-    <!-- 顶部 -->
-    <div class="layui-header header">
-        <div class="layui-main mag0">
-            <!-- 显示/隐藏菜单 -->
-            <a href="javascript:;" class="seraph hideMenu">
-                <i class="layui-icon layui-icon-shrink-right"></i>
-            </a>
-            <!-- 顶级菜单 -->
-            <ul class="layui-nav mobileTopLevelMenus layui-layout-left" mobile>
-                <li class="layui-nav-item" data-menu="contentManagement">
-                    <a href="javascript:;"><i class="seraph icon-caidan"></i><cite>layuiCMS</cite></a>
-                    <#--<dl class="layui-nav-child">
-                        <dd class="layui-this" data-menu="contentManagement"><a href="javascript:;"><i
-                                class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>内容管理</cite></a></dd>
-                        <dd data-menu="memberCenter"><a href="javascript:;"><i class="seraph icon-icon10"
-                                                                               data-icon="icon-icon10"></i><cite>用户中心</cite></a>
-                        </dd>
-                        <dd data-menu="systemeSttings"><a href="javascript:;"><i class="layui-icon"
-                                                                                 data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a>
-                        </dd>
-                        <dd data-menu="seraphApi"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>使用文档</cite></a>
-                        </dd>
-                    </dl>-->
-                </li>
-            </ul>
-            <ul class="layui-nav topLevelMenus layui-layout-left" pc>
-                <#--<li class="layui-nav-item layui-this" data-menu="contentManagement">
-                    <a href="javascript:;"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>业务系统</cite></a>
-                </li>
-                <li class="layui-nav-item" data-menu="memberCenter" pc>
-                    <a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a>
-                </li>-->
-            </ul>
-            <!-- 顶部右侧菜单 -->
-            <ul class="layui-nav top_menu">
-                <li class="layui-nav-item" pc>
-                    <a href="javascript:;" class="about"><i class="layui-icon">&#xe65f;</i></a>
-                </li>
-                <li class="layui-nav-item" id="userInfo">
-                    <a href="javascript:;"><img src="/assets/iartisan/images/face.jpg" class="layui-nav-img userAvatar"
-                                                width="35" height="35"><cite
-                            class="adminName">${_user.userName!''}</cite></a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="seraph icon-ziliao"
-                                                                                         data-icon="icon-ziliao"></i><cite>个人资料</cite></a>
-                        </dd>
-                        <dd><a href="javascript:;" data-url="page/user/changePwd.html"><i class="seraph icon-xiugai"
-                                                                                          data-icon="icon-xiugai"></i><cite>修改密码</cite></a>
-                        </dd>
-                        <dd><a href="javascript:;" class="showNotice"><i
-                                class="layui-icon">&#xe645;</i><cite>系统公告</cite><#--<span class="layui-badge-dot"></span>-->
-                        </a></dd>
-                        <dd><a href="/logout" class="signOut"><i class="seraph icon-tuichu"></i><cite>退出</cite></a></dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
+    <!-- 头部 -->
+    <div class="layui-header">
+        <div class="layui-logo"><img src="/assets/iartisan/images/face.jpg"/>${_title!''}</div>
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item">
+                <a href="javascript:;" id="switchNav"><i class="layui-icon">&#xe668;</i></a>
+            </li>
+           <#-- <li class="layui-nav-item"><a href="">最新活动</a></li>-->
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item" pc>
+                <a href="javascript:;" class="about"><i class="layui-icon">&#xe65f;</i></a>
+            </li>
+            <li class="layui-nav-item" id="userInfo">
+                <a href="javascript:;"><img src="/assets/iartisan/images/face.jpg" class="layui-nav-img userAvatar"
+                                            width="35" height="35"><cite
+                        class="adminName">${_user.userName!''}</cite></a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="seraph icon-ziliao"
+                                                                                     data-icon="icon-ziliao"></i><cite>个人资料</cite></a>
+                    </dd>
+                    <dd><a href="javascript:;" data-url="page/user/changePwd.html"><i class="seraph icon-xiugai"
+                                                                                      data-icon="icon-xiugai"></i><cite>修改密码</cite></a>
+                    </dd>
+                    <dd><a href="javascript:;" class="showNotice"><i
+                            class="layui-icon">&#xe645;</i><cite>系统公告</cite><#--<span class="layui-badge-dot"></span>-->
+                    </a></dd>
+                    <dd><a href="/logout" class="signOut"><i class="seraph icon-tuichu"></i><cite>退出</cite></a></dd>
+                </dl>
+            </li>
+        </ul>
     </div>
-    <!-- 左侧导航 -->
+    <!-- 侧边栏 -->
     <div class="layui-side layui-bg-black">
-        <div class="logo"> ${_title!''}</div>
-        <div class="logo-image">
-            <img src="/assets/iartisan/images/face.jpg" style="width: 60px;height: 50px;">
-        </div>
-       <#-- <div class="user-photo">
-            <a class="img" title="我的头像"><img src="/assets/iartisan/images/face.jpg" class="userAvatar"></a>
-        </div>-->
-        <div class="navBar layui-side-scroll" id="navBar">
-            <ul class="layui-nav layui-nav-tree">
+        <div class="layui-side-scroll navBar">
+            <ul class="layui-nav layui-nav-tree" id="index-nav" lay-filter="index-nav">
                 <li class="layui-nav-item layui-this">
                     <a href="javascript:;" data-url="${context.contextPath}/main">
-                        <i class="layui-icon" data-icon=""></i><cite>首页</cite>
+                        <i class="layui-icon" data-icon=""></i>
+                        <span>首页</span>
                     </a>
                 </li>
             </ul>
@@ -121,19 +91,19 @@
         </div>
     </div>
     <!-- 底部 -->
+    <!-- 底部 -->
     <div class="layui-footer footer">
         <p><span
                 style="color: #01AAED;">2018 &copy; powerd by iartisan</span><#--<a onclick="donation()" class="layui-btn layui-btn-danger layui-btn-sm">捐赠作者</a>-->
         </p>
     </div>
+    <!-- 手机屏幕遮罩层 -->
+    <div class="site-mobile-shade"></div>
 </div>
-
-<!-- 移动导航 -->
-<div class="site-tree-mobile layui-hide"><i class="layui-icon">&#xe602;</i></div>
-<div class="site-mobile-shade"></div>
 
 <script type="text/javascript" src="/assets/iartisan/plugins/layui/layui.js"></script>
 <script type="text/javascript" src="/assets/iartisan/js/index.js"></script>
 <script type="text/javascript" src="/assets/iartisan/plugins/lib/cache.js"></script>
 </body>
+
 </html>
