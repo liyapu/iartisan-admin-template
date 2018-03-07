@@ -4,10 +4,7 @@ import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemRoleM
 import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemRolePermissionMapper;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemRoleDO;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemRolePermissionDO;
-import org.iartisan.admin.template.authentication.support.dbm.model.SystemUserDO;
-import org.iartisan.admin.template.authentication.support.service.entity.AuthEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.RoleEntity;
-import org.iartisan.admin.template.authentication.support.service.entity.UserEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.jdbc.PageHelper;
@@ -17,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.management.relation.Role;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,9 +36,9 @@ public class RoleSupportService {
     private SystemRolePermissionMapper systemRolePermissionMapper;
 
 
-    public AuthEntity getAuthDetail(String roleId) {
+    public RoleEntity getAuthDetail(String roleId) {
         SystemRoleDO dbResult = systemRoleMapper.selectById(roleId);
-        AuthEntity result = new AuthEntity();
+        RoleEntity result = new RoleEntity();
         if (null != dbResult) {
             result.setRoleId(dbResult.getRoleId());
             result.setRoleName(dbResult.getRoleName());
@@ -48,18 +46,19 @@ public class RoleSupportService {
         return result;
     }
 
-    public PageWrapper<AuthEntity> getAuthPageData(Page page, String roleName) {
+    public PageWrapper<RoleEntity> getAuthPageData(Page page, String roleName) {
         SystemRoleDO roleDO = new SystemRoleDO();
         if (StringUtils.isNotEmpty(roleName)) {
             roleDO.setRoleName(roleName);
         }
         PageWrapper<SystemRoleDO> dbResult = PageHelper.getPageData(systemRoleMapper, page, roleDO);
-        PageWrapper<AuthEntity> result = new PageWrapper<>(dbResult.getPage());
-        List<AuthEntity> pageList = new ArrayList<>();
+        PageWrapper<RoleEntity> result = new PageWrapper<>(dbResult.getPage());
+        List<RoleEntity> pageList = new ArrayList<>();
         for (SystemRoleDO o : dbResult.getDataList()) {
-            AuthEntity bean = new AuthEntity();
+            RoleEntity bean = new RoleEntity();
             bean.setRoleId(o.getRoleId());
             bean.setRoleName(o.getRoleName());
+            bean.setCreateTime(o.getCreateTime());
             pageList.add(bean);
         }
         result.setDataList(pageList);

@@ -2,7 +2,6 @@ package org.iartisan.admin.template.controller.support;
 
 import org.iartisan.admin.template.authentication.support.service.ResourceSupportService;
 import org.iartisan.admin.template.authentication.support.service.RoleSupportService;
-import org.iartisan.admin.template.authentication.support.service.entity.AuthEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.ResourceEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.RoleEntity;
 import org.iartisan.runtime.bean.Page;
@@ -45,7 +44,7 @@ public class RoleSupportController extends BaseController {
     @ResponseBody
     @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
     public WebR queryPageData(Page page, String roleName) {
-        PageWrapper<AuthEntity> pageData = roleSupportService.getAuthPageData(page, roleName);
+        PageWrapper<RoleEntity> pageData = roleSupportService.getAuthPageData(page, roleName);
         WebR webR = new WebR(pageData.getPage());
         webR.setDataList(pageData.getDataList());
         return webR;
@@ -84,7 +83,7 @@ public class RoleSupportController extends BaseController {
 
     @GetMapping(ReqContants.REQ_QUERY_DETAIL_DATA)
     public String queryDetailData(String roleId, Model model) {
-        AuthEntity authEntity = roleSupportService.getAuthDetail(roleId);
+        RoleEntity authEntity = roleSupportService.getAuthDetail(roleId);
         model.addAttribute(_data, authEntity);
         return VIEW_PREFIX + "role_detail";
     }

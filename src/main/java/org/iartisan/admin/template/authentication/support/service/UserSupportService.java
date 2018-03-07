@@ -1,25 +1,24 @@
 package org.iartisan.admin.template.authentication.support.service;
 
+import com.baomidou.mybatisplus.mapper.Condition;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import org.iartisan.admin.template.authentication.support.PermissionType;
 import org.iartisan.admin.template.authentication.support.dbm.mapper.*;
-import org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO;
-import org.iartisan.admin.template.authentication.support.dbm.model.SystemRolePermissionDO;
-import org.iartisan.admin.template.authentication.support.dbm.model.SystemUserDO;
-import org.iartisan.admin.template.authentication.support.dbm.model.SystemUserRoleDO;
+import org.iartisan.admin.template.authentication.support.dbm.model.*;
+import org.iartisan.admin.template.authentication.support.service.entity.RoleEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.UserEntity;
+import org.iartisan.admin.template.authentication.support.service.entity.UserRoleEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.jdbc.PageHelper;
 import org.iartisan.runtime.utils.CollectionUtil;
 import org.iartisan.runtime.utils.StringUtils;
 import org.iartisan.runtime.web.authentication.MenuTree;
-import org.iartisan.runtime.web.authentication.RealmBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -44,6 +43,9 @@ public class UserSupportService {
     @Autowired
     private SystemMenuMapper systemMenuMapper;
 
+    @Autowired
+    private SystemRoleMapper systemRoleMapper;
+
     public SystemUserDO login(String userName, String userPwd) {
         SystemUserDO dbQuery = new SystemUserDO();
         dbQuery.setUserName(userName);
@@ -52,7 +54,7 @@ public class UserSupportService {
     }
 
     //获取角色列表
-    private List<String> getRolesByUserId(String userId) {
+    private List<String> getRoleIdsByUserId(String userId) {
         SystemUserRoleDO systemUserRoleDO = new SystemUserRoleDO();
         systemUserRoleDO.setUserId(userId);
         Wrapper<SystemUserRoleDO> query = new EntityWrapper<>(systemUserRoleDO);
@@ -69,7 +71,7 @@ public class UserSupportService {
 
     //获取菜单列表
     public List<MenuTree> getMenus(String userId) {
-        List<String> roles = getRolesByUserId(userId);
+        List<String> roles = getRoleIdsByUserId(userId);
         if (null == roles) {
             return null;
         }
@@ -129,6 +131,29 @@ public class UserSupportService {
             pageList.add(bean);
         }
         result.setDataList(pageList);
+        return result;
+    }
+
+    //获取角色列表
+    public UserRoleEntity getRoleByUserId(String userId) {
+        List<String> userRoleIds = getRoleIdsByUserId(userId);
+        UserRoleEntity result = new UserRoleEntity();
+        //查询用所有角色
+        List<SystemRoleDO> dbRoleResult = systemRoleMapper.selectList(Condition.EMPTY);
+        if (CollectionUtil.isNotEmpty(dbRoleResult)) {
+            List<RoleEntity> roleEntities = new ArrayList<>();
+            for (SystemRoleDO roleDO : dbRoleResult) {
+                RoleEntity roleEntity = new RoleEntity();
+                roleEntity.setRoleId(roleDO.getRoleId());
+                roleEntity.setRoleName(roleDO.getRoleName());
+                if (userRoleIds.contains(roleDO.getRoleId())) {
+                    roleEntity.setOwn(true);
+                }
+                roleEntities.add(roleEntity);
+            }
+            result.setRoleEntities(roleEntities);
+            //查询用户信息
+        }
         return result;
     }
 

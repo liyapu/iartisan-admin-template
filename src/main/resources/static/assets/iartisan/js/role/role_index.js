@@ -2,7 +2,8 @@ layui.config({
     base: "/assets/iartisan/plugins/lib/"
 }).use(['jquery', 'router', 'table', 'layer'], function () {
     var router = layui.router, $ = layui.jquery, table = layui.table,
-        layer = parent.layer === undefined ? layui.layer : top.layer;
+        layer = parent.layer === undefined ? layui.layer : top.layer,
+        util=layui.util;
 
     var urls = {
         queryPageData: "/roleSupport/queryPageData",
@@ -24,6 +25,12 @@ layui.config({
                     title: '角色名称',
                     templet: function (d) {
                         return "<a class='layui-table-link' lay-event=\"detail\" href='javascript:void(0);'>" + d.roleName + "</a>";
+                    }
+                },
+                {
+                    title: '创建时间',
+                    templet: function (d) {
+                       return util.toDateString(d.createTime);
                     }
                 },
                 {
@@ -55,7 +62,7 @@ layui.config({
                 type: 2,
                 content: urls.queryDetailData + "?roleId=" + data.roleId,
                 area: ['500px', '500px'],
-                skin: 'layui-layer-lan',
+                skin: 'layui-layer-molv',
                 maxmin: true,
                 btn: "关闭",
                 close: function (index) {

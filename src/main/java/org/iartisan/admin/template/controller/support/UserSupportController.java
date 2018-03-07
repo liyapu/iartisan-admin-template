@@ -7,8 +7,10 @@ import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.authentication.MenuTree;
 import org.iartisan.runtime.web.contants.ReqContants;
+import org.iartisan.runtime.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("userSupport")
-public class UserSupportController {
+public class UserSupportController extends BaseController {
 
     private static final String VIEW_PREFIX = "user/";
 
@@ -42,5 +44,12 @@ public class UserSupportController {
         WebR webR = new WebR(pageData.getPage());
         webR.setDataList(pageData.getDataList());
         return webR;
+    }
+
+    @GetMapping(ReqContants.REQ_MODIFY_DATA_DIALOG)
+    public String modifyDataDialog(String userId, Model model) {
+        //查询用户所有角色
+        model.addAttribute(_data, userSupportService.getRoleByUserId(userId));
+        return VIEW_PREFIX + "user_modify";
     }
 }
