@@ -269,6 +269,7 @@
     box-sizing: border-box;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
     margin-top:8px;
+    border-top: 2px solid #5FB878;
 }
 
 /*多窗口页面操作下拉*/
@@ -282,6 +283,7 @@
     position: absolute;
     right:0;
     top: 0;
+    border-top: 2px solid #5FB878;
 }
 
 .closeBox .layui-nav-item {
@@ -332,6 +334,7 @@
 .layui-tab-title .layui-this {
     background-color: #5FB878;
     color: #fff;
+    height: 40px;
 }
 
 .layui-tab-title .layui-this:after {
@@ -374,13 +377,4 @@ iframe {
 }
 .layui-nav cite {
     margin-left: 5px;
-}
-
-/*修改顶部高度*/
-.header .layui-nav-child, .layui-body, .layui-layout-admin, .header .layui-nav-bar {
-    top: 50px !important;
-}
-.top_menu.layui-nav .layui-nav-child dd.layui-this a, .closeBox.layui-nav .layui-nav-child dd.layui-this a, .closeBox .layui-nav-child dd.layui-this, .top_menu .layui-nav-child dd.layui-this {
-    background: none;
-    color: #333;
 }
