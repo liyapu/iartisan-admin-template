@@ -41,6 +41,7 @@
 .layui-layout-admin .layui-header {
     background-color: #ffffff;
     box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+   /* border-bottom: 1px solid #f6f6f6;*/
 }
 
 .layui-layout-admin .layui-header .layui-nav .layui-nav-item a {
@@ -71,7 +72,7 @@
 /**重写header的logo部分颜色*/
 .layui-layout-admin .layui-logo {
     width: 220px;
-    background-color: #4E5465;
+    background-color: #4E5465 !important;
     color: #fff;
     font-size: 20px;
     font-family: Myriad Pro, Helvetica Neue, Arial, Helvetica, sans-serif;
@@ -83,11 +84,6 @@
 .layui-layout-admin .layui-logo img {
     height: 40px;
     margin-right: 10px;
-}
-
-/*dialog超出显示*/
-.layui-layer-page .layui-layer-content {
-    overflow: visible !important;
 }
 
 /*侧导航折叠样式*/
@@ -269,7 +265,7 @@
     box-sizing: border-box;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
     margin-top:8px;
-    border-top: 2px solid #5FB878;
+   /* border-top: 2px solid #5FB878;*/
 }
 
 /*多窗口页面操作下拉*/
@@ -283,7 +279,7 @@
     position: absolute;
     right:0;
     top: 0;
-    border-top: 2px solid #5FB878;
+    /*border-top: 2px solid #5FB878;*/
 }
 
 .closeBox .layui-nav-item {
