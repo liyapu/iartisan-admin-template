@@ -10,15 +10,18 @@ import org.iartisan.admin.template.authentication.support.service.entity.UserEnt
 import org.iartisan.admin.template.authentication.support.service.entity.UserRoleEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.constants.DataStatus;
 import org.iartisan.runtime.jdbc.PageHelper;
 import org.iartisan.runtime.utils.CollectionUtil;
 import org.iartisan.runtime.utils.StringUtils;
+import org.iartisan.runtime.utils.UUIDUtil;
 import org.iartisan.runtime.web.authentication.MenuTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,16 +38,13 @@ public class UserSupportService {
     private SystemUserMapper systemUserMapper;
 
     @Autowired
-    private SystemUserRoleMapper systemUserRoleMapper;
-
-    @Autowired
     private SystemRolePermissionMapper systemRolePermissionMapper;
 
     @Autowired
     private SystemMenuMapper systemMenuMapper;
 
     @Autowired
-    private SystemRoleMapper systemRoleMapper;
+    private RoleSupportService roleSupportService;
 
     public SystemUserDO login(String userName, String userPwd) {
         SystemUserDO dbQuery = new SystemUserDO();
@@ -53,25 +53,10 @@ public class UserSupportService {
         return systemUserMapper.selectOne(dbQuery);
     }
 
-    //获取角色列表
-    private List<String> getRoleIdsByUserId(String userId) {
-        SystemUserRoleDO systemUserRoleDO = new SystemUserRoleDO();
-        systemUserRoleDO.setUserId(userId);
-        Wrapper<SystemUserRoleDO> query = new EntityWrapper<>(systemUserRoleDO);
-        List<SystemUserRoleDO> dbResult = systemUserRoleMapper.selectList(query);
-        if (null == dbResult) {
-            return null;
-        }
-        List<String> result = new ArrayList<>();
-        for (SystemUserRoleDO userRoleDO : dbResult) {
-            result.add(userRoleDO.getRoleId());
-        }
-        return result;
-    }
 
     //获取菜单列表
     public List<MenuTree> getMenus(String userId) {
-        List<String> roles = getRoleIdsByUserId(userId);
+        List<String> roles = roleSupportService.getRoleIdsByUserId(userId);
         if (null == roles) {
             return null;
         }
@@ -134,27 +119,21 @@ public class UserSupportService {
         return result;
     }
 
-    //获取角色列表
-    public UserRoleEntity getRoleByUserId(String userId) {
-        List<String> userRoleIds = getRoleIdsByUserId(userId);
-        UserRoleEntity result = new UserRoleEntity();
-        //查询用所有角色
-        List<SystemRoleDO> dbRoleResult = systemRoleMapper.selectList(Condition.EMPTY);
-        if (CollectionUtil.isNotEmpty(dbRoleResult)) {
-            List<RoleEntity> roleEntities = new ArrayList<>();
-            for (SystemRoleDO roleDO : dbRoleResult) {
-                RoleEntity roleEntity = new RoleEntity();
-                roleEntity.setRoleId(roleDO.getRoleId());
-                roleEntity.setRoleName(roleDO.getRoleName());
-                if (userRoleIds.contains(roleDO.getRoleId())) {
-                    roleEntity.setOwn(true);
-                }
-                roleEntities.add(roleEntity);
-            }
-            result.setRoleEntities(roleEntities);
-            //查询用户信息
+
+    public void addUser(UserEntity userEntity) {
+        SystemUserDO dbInsert = new SystemUserDO();
+        dbInsert.setUserId(UUIDUtil.timeBaseId());
+        dbInsert.setUserName(userEntity.getUserName());
+        dbInsert.setStatus(userEntity.getUserStatus());
+        dbInsert.setCreateTime(new Date());
+        dbInsert.setUserPwd("123456");
+        //设置默认密码
+        //插入角色列表
+        try {
+            systemUserMapper.insert(dbInsert);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return result;
     }
 
 }

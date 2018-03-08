@@ -1,5 +1,6 @@
 package org.iartisan.admin.template.controller.support;
 
+import org.iartisan.admin.template.authentication.support.service.RoleSupportService;
 import org.iartisan.admin.template.authentication.support.service.UserSupportService;
 import org.iartisan.admin.template.authentication.support.service.entity.UserEntity;
 import org.iartisan.runtime.bean.Page;
@@ -11,10 +12,7 @@ import org.iartisan.runtime.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -31,6 +29,10 @@ public class UserSupportController extends BaseController {
 
     @Autowired
     private UserSupportService userSupportService;
+
+    @Autowired
+    private RoleSupportService roleSupportService;
+
 
     @GetMapping(ReqContants.REQ_INDEX)
     public String index() {
@@ -49,12 +51,22 @@ public class UserSupportController extends BaseController {
     @GetMapping(ReqContants.REQ_MODIFY_DATA_DIALOG)
     public String modifyDataDialog(String userId, Model model) {
         //查询用户所有角色
-        model.addAttribute(_data, userSupportService.getRoleByUserId(userId));
+        model.addAttribute(_data, roleSupportService.getRoleByUserId(userId));
         return VIEW_PREFIX + "user_modify";
     }
 
     @GetMapping(ReqContants.REQ_ADD_DATA_DIALOG)
-    public String addDataDialog(String userId, Model model) {
+    public String addDataDialog(Model model) {
+        //查询所有的角色列表
+        model.addAttribute(_data, roleSupportService.getAllRoles());
         return VIEW_PREFIX + "user_add";
+    }
+
+    @ResponseBody
+    @PostMapping(ReqContants.REQ_ADD_DATA)
+    public WebR addData(UserEntity entity) {
+        userSupportService.addUser(entity);
+        WebR r = new WebR();
+        return r;
     }
 }

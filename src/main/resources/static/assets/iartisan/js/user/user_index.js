@@ -102,9 +102,9 @@ layui.config({
         layui.layer.open({
             type: 2,
             title: '添加用户',
-            skin: 'layui-layer-molv',
+           /* skin: 'layui-layer-molv',*/
             area: ['500px', '500px'],
-            content: urls.addDataDialog,
+            content: urls.addDataDialog/*,
             btn: ['提交', '关闭'],
             btnAlign: 'c',
             yes: function () {
@@ -112,7 +112,7 @@ layui.config({
             },
             btn2: function (index) {
                 layer.close(index);
-            }
+            }*/
         });
     });
 

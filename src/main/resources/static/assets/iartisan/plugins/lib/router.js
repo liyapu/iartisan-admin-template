@@ -7,12 +7,14 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
     var router = {
         get: function (options) {
             options = options || {};
+            var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
             return $.ajax({
                 type: options.type || 'get',
                 dataType: options.dataType || 'json',
                 data: options.data || {},
                 url: options.url,
                 success: function (res) {
+                    top.layer.close(index);
                     if (res.code === success_code) {
                         options.success && options.success(res);
                     } else {
@@ -21,6 +23,7 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
                     }
                 },
                 error: function (e) {
+                    top.layer.close(index);
                     layer.msg(err_msg, {shift: 6});
                     options.error && options.error(e);
                 }
@@ -28,12 +31,14 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
         },
         post: function (options) {
             options = options || {};
+            var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
             return $.ajax({
                 type: options.type || 'post',
                 dataType: options.dataType || 'json',
                 data: options.data || {},
                 url: options.url,
                 success: function (res) {
+                    top.layer.close(index);
                     if (res.code === success_code) {
                         options.success && options.success(res);
                     } else {
@@ -42,6 +47,7 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
                     }
                 },
                 error: function (e) {
+                    top.layer.close(index);
                     layer.msg(err_msg, {shift: 6});
                     options.error && options.error(e);
                 }
