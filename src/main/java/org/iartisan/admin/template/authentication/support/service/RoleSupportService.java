@@ -151,4 +151,8 @@ public class RoleSupportService {
         }
         return result;
     }
+
+    public void deleteRole(String roleId) {
+        systemRoleMapper.deleteById(roleId);
+    }
 }

@@ -3,12 +3,13 @@ layui.config({
 }).use(['jquery', 'router', 'table', 'layer'], function () {
     var router = layui.router, $ = layui.jquery, table = layui.table,
         layer = parent.layer === undefined ? layui.layer : top.layer,
-        util=layui.util;
+        util = layui.util;
 
     var urls = {
         queryPageData: "/roleSupport/queryPageData",
         addDataPage: "/roleSupport/addDataPage",
-        queryDetailData: "/roleSupport/queryDetailData"
+        queryDetailData: "/roleSupport/queryDetailData",
+        deleteData: "/roleSupport/deleteData"
     };
     queryPageData();
 
@@ -30,7 +31,7 @@ layui.config({
                 {
                     title: '创建时间',
                     templet: function (d) {
-                       return util.toDateString(d.createTime);
+                        return util.toDateString(d.createTime);
                     }
                 },
                 {
@@ -53,8 +54,12 @@ layui.config({
             data = obj.data;
         if (layEvent == 'del') {
             layer.confirm('确定删除该角色吗？', {icon: 3, title: '提示信息'}, function (index) {
-                layer.close(index)
-                tableIns.reload();
+                layer.close(index);
+                router.post({
+                    url: urls.deleteData, data: {roleId: data.roleId}, success: function () {
+                        tableIns.reload();
+                    }
+                });
             });
         } else if (layEvent == 'detail') {
             var index = layui.layer.open({
@@ -65,6 +70,7 @@ layui.config({
                 skin: 'layui-layer-molv',
                 maxmin: true,
                 btn: "关闭",
+                btnAlign: 'c',
                 close: function (index) {
                     layer.close(index);
                 }

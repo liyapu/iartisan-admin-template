@@ -87,4 +87,13 @@ public class RoleSupportController extends BaseController {
         model.addAttribute(_data, authEntity);
         return VIEW_PREFIX + "role_detail";
     }
+
+    @ResponseBody
+    @PostMapping(ReqContants.REQ_DELETE_DATA)
+    public WebR deleteData(String roleId) {
+        roleSupportService.deleteRole(roleId);
+        WebR r = new WebR();
+        r.setMessage("删除角色成功");
+        return r;
+    }
 }
