@@ -52,4 +52,9 @@ public class UserSupportController extends BaseController {
         model.addAttribute(_data, userSupportService.getRoleByUserId(userId));
         return VIEW_PREFIX + "user_modify";
     }
+
+    @GetMapping(ReqContants.REQ_ADD_DATA_DIALOG)
+    public String addDataDialog(String userId, Model model) {
+        return VIEW_PREFIX + "user_add";
+    }
 }

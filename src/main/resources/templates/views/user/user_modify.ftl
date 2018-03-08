@@ -1,10 +1,10 @@
 <form class="layui-form">
-    <div class="layui-form-item">
+    <#--<div class="layui-form-item">
         <label class="layui-form-label">用户名</label>
         <div class="layui-input-block">
             <input type="text" class="layui-input newsName" placeholder="请输入角色名称" lay-verify="required" name="roleName">
         </div>
-    </div>
+    </div>-->
     <div class="layui-form-item">
         <label class="layui-form-label">所有角色</label>
         <div class="layui-input-block">
@@ -17,6 +17,7 @@
             </#if>
         </div>
     </div>
+    <input type="hidden" name="userId" value="${data.userId!''}">
 </form>
 <script type="text/javascript" src="/assets/iartisan/js/user/user_modify.js"></script>
 <#--

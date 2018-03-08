@@ -7,7 +7,8 @@ layui.config({
 
     var urls = {
         queryPageData: "/userSupport/queryPageData",
-        modifyDataDialog: "/userSupport/modifyDataDialog"
+        modifyDataDialog: "/userSupport/modifyDataDialog",
+        addDataDialog: "/userSupport/addDataDialog"
     };
     queryPageData();
 
@@ -76,35 +77,43 @@ layui.config({
                 tableIns.reload();
             });
         } else if (layEvent == 'edit') {
-            var that = this;
-            //多窗口模式，层叠置顶
             layui.layer.open({
-                type: 2, //此处以iframe举例
-                title: '用户权限修改',
+                type: 2,
+                title: '用户信息修改',
                 skin: 'layui-layer-molv',
                 area: ['500px', '500px'],
-                maxmin: true,
                 content: urls.modifyDataDialog + "?userId=" + data.userId,
-                btn: ['提交', '关闭'],//只是为了演示
+                btn: ['提交', '关闭'],
                 yes: function () {
-                    //提交修改数据
+
                 },
                 btn2: function (index) {
                     layer.close(index);
                 }
-
-                /*,zIndex: layer.zIndex //重点1
-                ,success: function(layero){
-                    layer.setTop(layero); //重点2
-                }*/
             });
         }
     });
     //监听性别操作
     form.on('switch(status)', function (obj) {
-
         return true;
-        //layer.tips(this.value + '：' + obj.elem.checked, obj.othis);
+    });
+
+    $("#btnAdd").click(function () {
+        layui.layer.open({
+            type: 2,
+            title: '添加用户',
+            skin: 'layui-layer-molv',
+            area: ['500px', '500px'],
+            content: urls.addDataDialog,
+            btn: ['提交', '关闭'],
+            btnAlign: 'c',
+            yes: function () {
+
+            },
+            btn2: function (index) {
+                layer.close(index);
+            }
+        });
     });
 
 });
