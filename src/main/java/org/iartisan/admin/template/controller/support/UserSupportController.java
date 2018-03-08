@@ -69,4 +69,12 @@ public class UserSupportController extends BaseController {
         WebR r = new WebR();
         return r;
     }
+
+    @ResponseBody
+    @PostMapping("changeStatus")
+    public WebR changeStatus(String userId, String status) {
+        userSupportService.changeStatus(userId, status);
+        WebR r = new WebR();
+        return r;
+    }
 }

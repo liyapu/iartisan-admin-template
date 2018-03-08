@@ -136,4 +136,13 @@ public class UserSupportService {
         }
     }
 
+    public void changeStatus(String userId, String status) {
+        //删除用户 非物理删除
+        SystemUserDO dbModify = new SystemUserDO();
+        dbModify.setUserId(userId);
+        dbModify.setStatus(status);
+        dbModify.setCreateTime(new Date());
+        systemUserMapper.updateById(dbModify);
+    }
+
 }

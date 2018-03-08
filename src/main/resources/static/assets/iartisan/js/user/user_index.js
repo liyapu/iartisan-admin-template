@@ -8,7 +8,8 @@ layui.config({
     var urls = {
         queryPageData: "/userSupport/queryPageData",
         modifyDataDialog: "/userSupport/modifyDataDialog",
-        addDataDialog: "/userSupport/addDataDialog"
+        addDataDialog: "/userSupport/addDataDialog",
+        changeStatus: "/userSupport/changeStatus"
     };
     queryPageData();
 
@@ -21,10 +22,6 @@ layui.config({
             type: 'post',
             where: {"userName": $("#userName").val()},
             cols: [[
-                /*{
-                    field: 'userId',
-                    title: '用户ID',
-                },*/
                 {
                     field: 'userName',
                     title: '用户名',
@@ -55,7 +52,7 @@ layui.config({
                     align: "center",
                     templet: function () {
                         var html = "<a class=\"layui-btn layui-btn-xs\" lay-event=\"edit\">编辑</a>"
-                        html += "<a class=\"layui-btn layui-btn-xs layui-btn-danger\" lay-event=\"del\">删除</a>";
+                        /*   html += "<a class=\"layui-btn layui-btn-xs layui-btn-danger\" lay-event=\"del\">删除</a>";*/
                         return html;
 
                     }
@@ -95,14 +92,26 @@ layui.config({
     });
     //监听性别操作
     form.on('switch(status)', function (obj) {
-        return true;
+        var checked = this.checked;
+        var index = layui.layer.load(1, {
+            shade: [0.1,'#fff'] //0.1透明度的白色背景
+        });
+        $.post(urls.changeStatus, {userId: obj.value, status: checked ? 'E' : 'D'}, function (res) {
+            layui.layer.close(index);
+            if (!res.code.eq('000000')) {
+                //如果不成功则返回
+                obj.elem.checked = checked;
+            }
+        }).always(function() {
+            layui.layer.close(index);
+        });;
     });
 
     $("#btnAdd").click(function () {
         layui.layer.open({
             type: 2,
             title: '添加用户',
-           /* skin: 'layui-layer-molv',*/
+            /* skin: 'layui-layer-molv',*/
             area: ['500px', '500px'],
             content: urls.addDataDialog/*,
             btn: ['提交', '关闭'],

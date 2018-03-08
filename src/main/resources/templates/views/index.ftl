@@ -92,7 +92,7 @@
     </div>
     <!-- 底部 -->
     <!-- 底部 -->
-    <div class="layui-footer footer" style="background-color: #f9f9f9;border-top: 1px solid #bab0a0;">
+    <div class="layui-footer footer" style="background-color: #f9f9f9;border-top: 1px solid #f9f9f9;">
         <p><span style="color: #bab0a0;">2018 &copy; powerd by iartisan</span><#--<a onclick="donation()" class="layui-btn layui-btn-danger layui-btn-sm">捐赠作者</a>-->
         </p>
     </div>

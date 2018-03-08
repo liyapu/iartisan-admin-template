@@ -86,15 +86,17 @@ layui.config({
             title: "添加角色",
             type: 2,
             content: urls.addDataPage,
-            success: function () {
-                setTimeout(function () {
+            area: ['600px', '500px'],
+            maxmin: true,
+           /* success: function () {
+                /!*setTimeout(function () {
                     layui.layer.tips('点击此处返回角色管理', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
                     });
-                }, 500)
-            }
+                }, *!/500)
+            }*/
         });
-        layui.layer.full(index);
+       /* layui.layer.full(index);*/
         //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
         $(window).on("resize", function () {
             layui.layer.full(index);
