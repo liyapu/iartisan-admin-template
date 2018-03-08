@@ -39,9 +39,10 @@
 
 /**重写header的背景色和字体颜色*/
 .layui-layout-admin .layui-header {
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
+    background-color: #f9f9f9;
     box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
-    /* border-bottom: 1px solid #f6f6f6;*/
+     border-bottom: 1px solid #bab0a0;
 }
 
 .layui-layout-admin .layui-header .layui-nav .layui-nav-item a {
@@ -216,6 +217,7 @@
     line-height: 44px;
     /*border-left: 2px solid #5FB878;*/
     z-index: 999;
+    background-color: #f9f9f9;
 }
 
 /*样式改变的过渡*/
@@ -261,7 +263,7 @@
     height: 40px;
     line-height: 40px;
     /*padding: 0 80px 0 40px;*/
-    background-color: #fff;
+    background-color: #f9f9f9;
     box-sizing: border-box;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
     margin-top: 8px;
@@ -277,7 +279,7 @@
 .closeBox {
     height: 40px;
     line-height: 40px;
-    background-color: #fff;
+    background-color: #f9f9f9;
     box-sizing: border-box;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
     margin-top: 8px;
