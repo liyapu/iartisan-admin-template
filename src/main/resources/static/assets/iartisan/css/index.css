@@ -41,7 +41,7 @@
 .layui-layout-admin .layui-header {
     background-color: #ffffff;
     box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
-   /* border-bottom: 1px solid #f6f6f6;*/
+    /* border-bottom: 1px solid #f6f6f6;*/
 }
 
 .layui-layout-admin .layui-header .layui-nav .layui-nav-item a {
@@ -264,8 +264,13 @@
     background-color: #fff;
     box-sizing: border-box;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
-    margin-top:8px;
-   /* border-top: 2px solid #5FB878;*/
+    margin-top: 8px;
+    /* border-top: 2px solid #5FB878;*/
+}
+
+#top_tabs_box .layui-tab-title li {
+    min-width: 0;
+    border-right: 1px solid #f6f6f6;
 }
 
 /*多窗口页面操作下拉*/
@@ -275,9 +280,9 @@
     background-color: #fff;
     box-sizing: border-box;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
-    margin-top:8px;
+    margin-top: 8px;
     position: absolute;
-    right:0;
+    right: 0;
     top: 0;
     /*border-top: 2px solid #5FB878;*/
 }
@@ -325,6 +330,7 @@
 .layui-tab-title {
     height: 40px;
     border: none;
+    min-width: 0;
 }
 
 .layui-tab-title .layui-this {
@@ -339,7 +345,6 @@
 
 .layui-tab-title li cite {
     font-style: normal;
-    min-width: 0;
     max-width: 160px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -357,20 +362,24 @@
     -webkit-overflow-scrolling: touch;
     overflow: auto;
 }
+
 .layui-tab-item {
     margin-top: 8px;
 }
+
 iframe {
     position: absolute;
     height: 100%;
     width: 100%;
     border: none;
-   /* margin-top: 1px;*/
+    /* margin-top: 1px;*/
 }
+
 .layui-tab-title li cite {
     font-style: normal;
     padding-left: 5px;
 }
+
 .layui-nav cite {
     margin-left: 5px;
 }
