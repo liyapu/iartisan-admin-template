@@ -92,9 +92,8 @@
     </div>
     <!-- 底部 -->
     <!-- 底部 -->
-    <div class="layui-footer footer">
-        <p><span
-                style="color: #01AAED;">2018 &copy; powerd by iartisan</span><#--<a onclick="donation()" class="layui-btn layui-btn-danger layui-btn-sm">捐赠作者</a>-->
+    <div class="layui-footer footer" style="background-color: #f9f9f9;border-top: 1px solid #bab0a0;">
+        <p><span style="color: #bab0a0;">2018 &copy; powerd by iartisan</span><#--<a onclick="donation()" class="layui-btn layui-btn-danger layui-btn-sm">捐赠作者</a>-->
         </p>
     </div>
     <!-- 手机屏幕遮罩层 -->

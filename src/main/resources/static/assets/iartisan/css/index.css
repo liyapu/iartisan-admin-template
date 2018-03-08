@@ -256,7 +256,8 @@
 #top_tabs_box {
     padding-right: 138px;
     height: 40px;
-    border-bottom: 1px solid #e2e2e2;
+    /*border-bottom: 1px solid #bab0a0;*/
+    /*border-bottom: 1px solid transparent;*/
 }
 
 #top_tabs {
@@ -267,12 +268,13 @@
     box-sizing: border-box;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
     margin-top: 8px;
-    /* border-top: 2px solid #5FB878;*/
+    /*border-bottom: 1px solid #5FB878;*/
 }
 
 #top_tabs_box .layui-tab-title li {
     min-width: 0;
     border-right: 1px solid #f6f6f6;
+    color: #bab0a0;
 }
 
 /*多窗口页面操作下拉*/
@@ -336,8 +338,7 @@
 }
 
 .layui-tab-title .layui-this {
-    background-color: #5FB878;
-    color: #fff;
+    background-color: #666;
     height: 40px;
 }
 
