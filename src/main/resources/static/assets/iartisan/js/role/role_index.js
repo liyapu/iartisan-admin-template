@@ -8,6 +8,7 @@ layui.config({
     var urls = {
         queryPageData: "/roleSupport/queryPageData",
         addDataPage: "/roleSupport/addDataPage",
+        addData: "/roleSupport/addData",
         queryDetailData: "/roleSupport/queryDetailData",
         deleteData: "/roleSupport/deleteData"
     };
@@ -75,9 +76,9 @@ layui.config({
                     layer.close(index);
                 }
             });
-            /*$(window).on("resize", function () {
+            $(window).on("resize", function () {
                 layui.layer.restore(index);
-            });*/
+            });
         }
     });
 
@@ -89,17 +90,23 @@ layui.config({
             area: ['600px', '500px'],
             maxmin: true,
             btn: ['添加', '关闭'],
-            btnAlign:'c',
-            skin: 'layui-layer-molv'
-           /* success: function () {
-                /!*setTimeout(function () {
-                    layui.layer.tips('点击此处返回角色管理', '.layui-layer-setwin .layui-layer-close', {
-                        tips: 3
-                    });
-                }, *!/500)
-            }*/
+            btnAlign: 'c',
+            skin: 'layui-layer-molv',
+            yes: function (index, layero) {
+                router.post({
+                    url: urls.addData,
+                    data: layero.find('iframe').contents().find("#formAdd").serialize(),
+                    success: function (res) {
+                        layui.layer.close(index);
+                        layer.alert(res.message);
+                        tableIns.reload();
+                    }
+                });
+            },
+            btn2: function (index) {
+                layer.close(index);
+            }
         });
-       /* layui.layer.full(index);*/
         //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
         $(window).on("resize", function () {
             layui.layer.full(index);

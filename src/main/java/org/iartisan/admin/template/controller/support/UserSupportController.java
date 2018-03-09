@@ -77,4 +77,12 @@ public class UserSupportController extends BaseController {
         WebR r = new WebR();
         return r;
     }
+
+    @ResponseBody
+    @PostMapping(ReqContants.REQ_DELETE_DATA)
+    public WebR deleteData(String userId) {
+        userSupportService.deleteByUserId(userId);
+        WebR r = new WebR();
+        return r;
+    }
 }

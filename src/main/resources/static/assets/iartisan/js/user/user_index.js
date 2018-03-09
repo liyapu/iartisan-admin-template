@@ -9,7 +9,8 @@ layui.config({
         modifyDataDialog: "/userSupport/modifyDataDialog",
         addDataDialog: "/userSupport/addDataDialog",
         changeStatus: "/userSupport/changeStatus",
-        addData: "/userSupport/addData"
+        addData: "/userSupport/addData",
+        deleteData: "/userSupport/deleteData"
     };
     queryPageData();
 
@@ -21,6 +22,7 @@ layui.config({
             url: urls.queryPageData,
             type: 'post',
             where: {"userName": $("#userName").val()},
+            even: true,
             cols: [[
                 {
                     field: 'userName',
@@ -52,6 +54,7 @@ layui.config({
                     align: "center",
                     templet: function () {
                         var html = "<a class='layui-btn layui-btn-xs' lay-event='edit'>编辑</a>";
+                        html += "<a class='layui-btn layui-btn-xs layui-btn-danger' lay-event='del'>删除</a>";
                         return html;
 
                     }
@@ -80,6 +83,15 @@ layui.config({
                 btn2: function (index) {
                     layer.close(index);
                 }
+            });
+        } else if (layEvent == 'del') {
+            layer.confirm('确定删除该用户吗？', {icon: 3, title: '提示信息'}, function (index) {
+                layer.close(index);
+                $.post(urls.deleteData, {userId: data.userId}, function (res) {
+                    if (res.code == '000000') {
+                        tableIns.reload();
+                    }
+                });
             });
         }
     });

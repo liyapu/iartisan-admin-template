@@ -1,4 +1,4 @@
-<form class="layui-form layui-row layui-col-space10">
+<form class="layui-form layui-row layui-col-space10" id="formAdd">
     <div class="layui-col-md9 layui-col-xs12">
         <div class="layui-row layui-col-space12">
             <div class="layui-col-md12 layui-col-xs12">

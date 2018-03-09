@@ -8,8 +8,7 @@ layui.config({
 
 
     var urls = {
-        getResourceData: "/roleSupport/getResourceData",
-        addData: "/roleSupport/addData"
+        getResourceData: "/roleSupport/getResourceData"
     };
 
     var xtree;
@@ -32,34 +31,4 @@ layui.config({
             });
         }
     });
-
-    form.on("submit(formData)", function (data) {
-        var oCks = xtree.GetChecked();
-        var auths = new Array();
-        for (var i = 0; i < oCks.length; i++) {
-            var partent = xtree.GetParent(oCks[i].value);
-            auths.push(oCks[i].value);
-        }
-        var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
-        router.post({
-            url: urls.addData,
-            data: {"roleName": data.field.roleName, "permissions": auths.join(",")},
-            success: function () {
-                top.layer.close(index);
-                layer.closeAll("iframe");
-                parent.location.reload();
-            }
-        });
-
-        /* var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});*/
-        /* setTimeout(function(){
-             top.layer.close(index);
-             top.layer.msg("用户添加成功！");
-             layer.closeAll("iframe");
-             //刷新父页面
-             parent.location.reload();
-         },2000);*/
-
-        return false;
-    })
 });

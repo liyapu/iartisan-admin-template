@@ -15,6 +15,13 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
                 success: callback
             });
         },
+        ajaxPost: function (url, data, callback) {
+            $.post(url, data, function (res) {
+                if (res.code === success_code) {
+                    callback || layer.msg(res.message)
+                }
+            })
+        },
         get: function (options) {
             options = options || {};
             /*var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});*/
@@ -74,6 +81,7 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
                 limits: options.limits || [10],
                 where: options.where || {},
                 height: 472,
+                even: options.even || false,
                 response: {
                     statusCode: "000000",
                     dataName: "dataList",

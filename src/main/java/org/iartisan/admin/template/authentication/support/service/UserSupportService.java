@@ -145,4 +145,8 @@ public class UserSupportService {
         systemUserMapper.updateById(dbModify);
     }
 
+    public void deleteByUserId(String userId) {
+        systemUserMapper.deleteById(userId);
+    }
+
 }
