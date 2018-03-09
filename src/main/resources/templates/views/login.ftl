@@ -21,7 +21,7 @@
         <form class="layui-form" autocomplete="off">
             <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
                 <div class="layui-form-item">
-                    <label class="layadmin-user-login-icon layui-icon" for="userName">&#xe770;</label>
+                    <label class="layadmin-user-login-icon layui-icon" for="userName">&#xe612;</label>
                     <input type="text" name="userName" id="userName" lay-verify="required" lay-verType="tips" class="layui-input" autocomplete="off">
                 </div>
                 <div class="layui-form-item">
