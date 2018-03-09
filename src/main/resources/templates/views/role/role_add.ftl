@@ -5,7 +5,8 @@
                 <div class="layui-form-item magt3">
                     <label class="layui-form-label">角色名称</label>
                     <div class="layui-input-block">
-                        <input type="text" class="layui-input newsName" placeholder="请输入角色名称" lay-verify="required" name="roleName">
+                        <input type="text" class="layui-input newsName" placeholder="请输入角色名称" lay-verify="required"
+                               name="roleName">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -17,15 +18,16 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">授权</label>
                     <div class="layui-input-block">
-                        <div id="auths" style="border:1px solid block;"></div>
+                        <div id="permissions" name="permissions" style="border:1px solid block;"></div>
                     </div>
                 </div>
-               <#-- <div class="layui-form-item">
-                    <div class="layui-input-block">
-                        <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="formData" id="btnAdd" type="button">添加</button>
-                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                    </div>
-                </div>-->
+            <#-- <div class="layui-form-item">
+                 <div class="layui-input-block">
+                     <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="formData" id="btnAdd" type="button">添加</button>
+                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                 </div>
+             </div>-->
+                <input type="hidden" lay-submit="" lay-filter="formData" id="btnFormAdd"/>
             </div>
         </div>
     </div>

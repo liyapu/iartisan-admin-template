@@ -93,18 +93,12 @@ layui.config({
             btnAlign: 'c',
             skin: 'layui-layer-molv',
             yes: function (index, layero) {
-                router.post({
-                    url: urls.addData,
-                    data: layero.find('iframe').contents().find("#formAdd").serialize(),
-                    success: function (res) {
-                        layui.layer.close(index);
-                        layer.alert(res.message);
-                        tableIns.reload();
-                    }
-                });
+                layero.find('iframe').contents().find("#formAdd").find("#btnFormAdd").click();
+                layui.layer.close(index);
+                tableIns.reload();
             },
             btn2: function (index) {
-                layer.close(index);
+                layui.layer.close(index);
             }
         });
         //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）

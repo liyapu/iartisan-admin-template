@@ -8,7 +8,8 @@ layui.config({
 
 
     var urls = {
-        getResourceData: "/roleSupport/getResourceData"
+        getResourceData: "/roleSupport/getResourceData",
+        addData: "/roleSupport/addData"
     };
 
     var xtree;
@@ -18,7 +19,7 @@ layui.config({
         success: function (res) {
             //创建tree
             xtree = new layuiXtree({
-                elem: 'auths',             //放xtree的容器（必填，只能为id，注意不带#号）
+                elem: 'permissions',             //放xtree的容器（必填，只能为id，注意不带#号）
                 form: form,                //layui form对象 （必填）
                 data: res.dataList,        //数据，结构请参照下面 （必填）
                 isopen: true,              //初次加载时全部展开，默认true （选填）
@@ -31,4 +32,23 @@ layui.config({
             });
         }
     });
+
+    form.on("submit(formData)", function (data) {
+        var oCks = xtree.GetChecked();
+        var auths = new Array();
+        for (var i = 0; i < oCks.length; i++) {
+            var partent = xtree.GetParent(oCks[i].value);
+            auths.push(oCks[i].value);
+        }
+        //var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
+        router.post({
+            url: urls.addData,
+            data: {"roleName": data.field.roleName, "permissions": auths.join(",")},
+            success: function () {
+                //top.layer.close(index);
+                return true;
+            }
+        });
+        return true;
+    })
 });
