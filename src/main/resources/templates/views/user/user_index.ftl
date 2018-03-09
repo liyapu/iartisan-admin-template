@@ -21,5 +21,5 @@
         </div>
     </form>
 </blockquote>
-<table id="dataList" lay-filter="dataList"></table>
+<table id="dataList" lay-filter="_table"></table>
 <script type="text/javascript" src="/assets/iartisan/js/user/user_index.js"></script>

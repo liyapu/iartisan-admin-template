@@ -1,15 +1,15 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['jquery', 'router', 'table', 'layer', 'util'], function () {
-    var router = layui.router, $ = layui.jquery, table = layui.table,
-        layer = parent.layer === undefined ? layui.layer : top.layer,
-        util = layui.util, form = layui.form;
+}).use(['router', 'table', 'util'], function () {
+    var router = layui.router, table = layui.table,
+        util = layui.util;
 
     var urls = {
         queryPageData: "/userSupport/queryPageData",
         modifyDataDialog: "/userSupport/modifyDataDialog",
         addDataDialog: "/userSupport/addDataDialog",
-        changeStatus: "/userSupport/changeStatus"
+        changeStatus: "/userSupport/changeStatus",
+        addData: "/userSupport/addData"
     };
     queryPageData();
 
@@ -51,8 +51,7 @@ layui.config({
                     fixed: "right",
                     align: "center",
                     templet: function () {
-                        var html = "<a class=\"layui-btn layui-btn-xs\" lay-event=\"edit\">编辑</a>"
-                        /*   html += "<a class=\"layui-btn layui-btn-xs layui-btn-danger\" lay-event=\"del\">删除</a>";*/
+                        var html = "<a class='layui-btn layui-btn-xs' lay-event='edit'>编辑</a>";
                         return html;
 
                     }
@@ -65,15 +64,9 @@ layui.config({
         queryPageData();
     });
     //列表操作
-    table.on('tool(dataList)', function (obj) {
-        var layEvent = obj.event,
-            data = obj.data;
-        if (layEvent == 'del') {
-            layer.confirm('确定删除该用户吗？', {icon: 3, title: '提示信息'}, function (index) {
-                layer.close(index)
-                tableIns.reload();
-            });
-        } else if (layEvent == 'edit') {
+    table.on('tool(_table)', function (obj) {
+        var layEvent = obj.event, data = obj.data;
+        if (layEvent == 'edit') {
             layui.layer.open({
                 type: 2,
                 title: '用户信息修改',
@@ -94,7 +87,7 @@ layui.config({
     form.on('switch(status)', function (obj) {
         var checked = this.checked;
         var index = layui.layer.load(1, {
-            shade: [0.1,'#fff'] //0.1透明度的白色背景
+            shade: [0.1, '#fff'] //0.1透明度的白色背景
         });
         $.post(urls.changeStatus, {userId: obj.value, status: checked ? 'E' : 'D'}, function (res) {
             layui.layer.close(index);
@@ -102,27 +95,39 @@ layui.config({
                 //如果不成功则返回
                 obj.elem.checked = checked;
             }
-        }).always(function() {
+        }).always(function () {
             layui.layer.close(index);
-        });;
+        });
+        ;
     });
 
     $("#btnAdd").click(function () {
+        //Ajax获取
+        /* $.get(urls.addDataDialog, {}, function (res) {*/
         layui.layer.open({
             type: 2,
             title: '添加用户',
-            /* skin: 'layui-layer-molv',*/
             area: ['500px', '500px'],
-            content: urls.addDataDialog/*,
+            content: urls.addDataDialog,
             btn: ['提交', '关闭'],
             btnAlign: 'c',
-            yes: function () {
-
+            yes: function (index, layero) {
+                //layer.alert(layero.find('iframe').contentDocument);
+                router.post({
+                    url: urls.addData,
+                    data: layero.find('iframe').contents().find("#formAdd").serialize(),
+                    success: function (res) {
+                        layui.layer.close(index);
+                        layer.alert(res.message);
+                        tableIns.reload('dataList', {});
+                    }
+                });
             },
             btn2: function (index) {
                 layer.close(index);
-            }*/
+            }
         });
     });
+    /*});*/
 
 });

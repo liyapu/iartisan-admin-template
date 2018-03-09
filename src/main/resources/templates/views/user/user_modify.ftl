@@ -1,4 +1,4 @@
-<form class="layui-form">
+<form class="layui-form" id="formModify">
     <#--<div class="layui-form-item">
         <label class="layui-form-label">用户名</label>
         <div class="layui-input-block">
@@ -19,7 +19,7 @@
     </div>
     <input type="hidden" name="userId" value="${data.userId!''}">
 </form>
-<script type="text/javascript" src="/assets/iartisan/js/user/user_modify.js"></script>
+<#--<script type="text/javascript" src="/assets/iartisan/js/user/user_modify.js"></script>-->
 <#--
 <table id="dataList" lay-filter="dataList"></table>
 <script type="text/javascript" src="/assets/iartisan/js/user/user_index.js"></script>-->

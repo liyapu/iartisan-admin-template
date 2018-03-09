@@ -5,6 +5,16 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
     var success_code = "000000", err_msg = "请求异常，请重试";
 
     var router = {
+
+        ajaxGet: function (url, data, options, callback) {
+            return $.ajax({
+                type: 'get',
+                data: data,
+                url: url,
+                async: options.async || false,
+                success: callback
+            });
+        },
         get: function (options) {
             options = options || {};
             /*var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});*/
@@ -38,7 +48,7 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
                 data: options.data || {},
                 url: options.url,
                 success: function (res) {
-                   /* top.layer.close(index);*/
+                    /* top.layer.close(index);*/
                     if (res.code === success_code) {
                         options.success && options.success(res);
                     } else {
@@ -63,7 +73,7 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
                 skin: options.skin || 'line',
                 limits: options.limits || [10],
                 where: options.where || {},
-                height : 472,
+                height: 472,
                 response: {
                     statusCode: "000000",
                     dataName: "dataList",

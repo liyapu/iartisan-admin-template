@@ -1,14 +1,14 @@
-var $, tab, dataStr, layer;
+var $, tab, menus, layer,form,element;
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
 }).use(['form', 'element', 'layer', 'jquery', 'bodyTab'], function () {
-    var $ = layui.$, element = layui.element;
-    $ = layui.$;
+    $ = layui.$, element = layui.element,
     layer = parent.layer === undefined ? layui.layer : top.layer;
     tab = layui.bodyTab({
-        openTabNum: "5",  //最大可打开窗口数量
+        openTabNum: "10",  //最大可打开窗口数量
         url: "/getMenus" //获取菜单json地址
-    });
+    }),
+    form=layui.form;
     //切换导航栏按钮点击事件
     $("#switchNav").click(function () {
         switchNav();
@@ -43,7 +43,7 @@ layui.config({
 
     function getLeftMenus() {
         $.get(tab.tabConfig.url, function (data) {
-            dataStr = data.dataList;
+            menus = data.dataList;
             tab.render();
         })
     }

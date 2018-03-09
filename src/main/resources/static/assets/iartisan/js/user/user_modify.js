@@ -1,3 +1,4 @@
+/*
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
 }).use(['jquery', 'router', 'table', 'layer', 'util'], function () {
@@ -5,4 +6,4 @@ layui.config({
 
 
 
-});
+});*/
