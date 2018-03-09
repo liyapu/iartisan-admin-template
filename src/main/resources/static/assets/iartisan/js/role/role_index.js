@@ -88,6 +88,9 @@ layui.config({
             content: urls.addDataPage,
             area: ['600px', '500px'],
             maxmin: true,
+            btn: ['添加', '关闭'],
+            btnAlign:'c',
+            skin: 'layui-layer-molv'
            /* success: function () {
                 /!*setTimeout(function () {
                     layui.layer.tips('点击此处返回角色管理', '.layui-layer-setwin .layui-layer-close', {
