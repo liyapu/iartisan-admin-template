@@ -16,7 +16,7 @@ import java.util.Properties;
  * @since 2017/10/19
  */
 @SpringBootApplication
-@ComponentScan(basePackages = {"org.iartisan.admin.template"})
+@ComponentScan(basePackages = {"org.iartisan.admin.template","org.iartisan.runtime.web.config"})
 @MapperScan(basePackages = {"org.iartisan.admin.template.authentication.support.dbm.mapper"})
 public class WebBootRun {
 

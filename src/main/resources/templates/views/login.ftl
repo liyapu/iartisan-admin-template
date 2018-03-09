@@ -9,34 +9,47 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="icon" href="../../favicon.ico">
-
     <link rel="stylesheet" href="/assets/iartisan/plugins/layui/css/layui.css" media="all"/>
-    <link rel="stylesheet" href="/assets/iartisan/css/public.css" media="all"/>
+    <link rel="stylesheet" href="/assets/iartisan/css/login.css" media="all"/>
 </head>
-<body class="loginBody">
-<form class="layui-form" autocomplete="off">
-    <div class="login_face"><img src="/assets/iartisan/images/face.jpg" class="userAvatar" style="margin-top: 15px;">
+<body>
+<div class="layadmin-user-login">
+    <div class="layadmin-user-login-main">
+        <div class="layadmin-user-login-box layadmin-user-login-header">
+            <h2>${_title!''}</h2>
+        </div>
+        <form class="layui-form" autocomplete="off">
+            <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon" for="userName">&#xe770;</label>
+                    <input type="text" name="userName" id="userName" lay-verify="required" lay-verType="tips" class="layui-input" autocomplete="off">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon" for="password">&#xe672;</label>
+                    <input type="password" name="password" id="password" lay-verType="tips" lay-verify="required" class="layui-input" autocomplete="off">
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-row">
+                        <div class="layui-col-xs7">
+                            <label class="layadmin-user-login-icon layui-icon"
+                                   for="vercode">&#xe60d;</label>
+                            <input type="text" name="vercode" id="vercode" lay-verType="tips"
+                                   lay-verify="required" placeholder="图形验证码" class="layui-input">
+                        </div>
+                        <div class="layui-col-xs5">
+                            <div style="margin-left: 10px;">
+                                <img  src="/captcha" style="width: 100%;" onclick="this.src=this.src">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn-fluid" lay-filter="login" lay-submit>登 录</button>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="layui-form-item input-item">
-        <label for="userName">用户名</label>
-        <input type="text" placeholder="请输入用户名" id="userName" name="userName" class="layui-input" lay-verify="required"
-               autocomplete="off">
-    </div>
-    <div class="layui-form-item input-item">
-        <label for="password">密码</label>
-        <input type="password" placeholder="请输入密码" id="userPwd" name="userPwd" class="layui-input" lay-verify="required"
-               autocomplete="off">
-    </div>
-    <div class="layui-form-item input-item" id="imgCode">
-        <label for="code">验证码</label>
-        <input type="text" placeholder="请输入验证码" id="code" class="layui-input">
-        <img src="../../images/code.jpg">
-    </div>
-    <div class="layui-form-item">
-        <button class="layui-btn layui-block" lay-filter="login" lay-submit>登录</button>
-    </div>
-</form>
+</div>
 <script type="text/javascript" src="/assets/iartisan/plugins/layui/layui.js"></script>
 <script type="text/javascript" src="/assets/iartisan/js/login.js"></script>
 </body>
