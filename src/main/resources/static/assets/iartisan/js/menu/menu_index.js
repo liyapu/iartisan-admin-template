@@ -7,7 +7,8 @@ layui.config({
     var urls = {
         queryPageData: "/menuSupport/queryPageData",
         addDataPage: "/menuSupport/addDataDialog",
-        deleteData: "/menuSupport/deleteData"
+        deleteData: "/menuSupport/deleteData",
+        modifyDataDialog: "/menuSupport/modifyDataDialog"
     };
     queryPageData();
 
@@ -39,9 +40,9 @@ layui.config({
                     fixed: "right",
                     align: "center",
                     templet: function () {
-                        return "<a class=\"layui-btn layui-btn-xs layui-btn-danger\" lay-event=\"del\">删除</a>";
-                        /*"<a class=\"layui-btn layui-btn-xs\" lay-event=\"edit\">编辑</a>" +*/
-
+                        var html = "<a class='layui-btn layui-btn-xs' lay-event='edit'>编辑</a>";
+                        html += "<a class='layui-btn layui-btn-xs layui-btn-danger' lay-event='edit'>删除</a>";
+                        return html;
                     }
                 }
             ]]
@@ -66,6 +67,23 @@ layui.config({
                 tableIns.reload();
             });
         }
+        if (layEvent == 'edit') {
+            layui.layer.open({
+                type: 2,
+                title: '菜单信息修改',
+                skin: 'layui-layer-molv',
+                area: ['500px', '500px'],
+                content: urls.modifyDataDialog + "?menuId=" + data.id,
+                btn: ['修改', '关闭'],
+                btnAlign: 'c',
+                yes: function (index, layero) {
+                    layero.find('iframe').contents().find("#formModify").find("#btnModify").click();
+                },
+                btn2: function (index) {
+                    layer.close(index);
+                }
+            });
+        }
     });
 
     $("#btnAddPage").click(function () {
@@ -80,7 +98,6 @@ layui.config({
             skin: 'layui-layer-molv',
             yes: function (index, layero) {
                 layero.find('iframe').contents().find("#formAdd").find("#btnAdd").click();
-                //tableIns.reload();
             },
             btn2: function (index) {
                 layui.layer.close(index);

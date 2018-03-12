@@ -32,7 +32,7 @@ public class MenuSupportController extends BaseController {
     @Autowired
     private MenuSupportService menuSupportService;
 
-    //index
+
     @GetMapping(ReqContants.REQ_INDEX)
     public String index() {
         return VIEW_PREFIX + "menu_index";
@@ -68,5 +68,12 @@ public class MenuSupportController extends BaseController {
         menuSupportService.deleteData(menuId);
         WebR webR = new WebR();
         return webR;
+    }
+
+    @GetMapping(ReqContants.REQ_MODIFY_DATA_DIALOG)
+    public String modifyDataDialog(Model model, String menuId) {
+        //查询一级菜单
+        model.addAttribute(_data, menuSupportService.getMenuById(menuId));
+        return VIEW_PREFIX + "menu_modify";
     }
 }

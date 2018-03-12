@@ -72,4 +72,15 @@ public class MenuSupportService {
         systemMenuMapper.deleteById(menuId);
     }
 
+    public MenuEntity getMenuById(String menuId) {
+        SystemMenuDO dbResult = systemMenuMapper.selectById(menuId);
+        MenuEntity result = new MenuEntity();
+        result.setParentMenuId(dbResult.getParentMenuId());
+        result.setMenuUrl(dbResult.getMenuUrl());
+        result.setMenuName(dbResult.getMenuName());
+        result.setMenuIcon(dbResult.getMenuIcon());
+        result.setMenuPermission(dbResult.getMenuPermission());
+        return result;
+    }
+
 }
