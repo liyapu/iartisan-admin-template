@@ -14,7 +14,7 @@
                         <button class="layui-btn" id="btnQuery" type="button">查询</button>
                     </div>
                     <div class="layui-inline">
-                        <button class="layui-btn layui-btn-normal" type="button">
+                        <button class="layui-btn layui-btn-normal" type="button" id="btnAddPage">
                             <i class="layui-icon">&#xe608;</i>添加
                         </button>
                     </div>

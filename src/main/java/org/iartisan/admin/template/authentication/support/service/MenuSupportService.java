@@ -2,9 +2,12 @@ package org.iartisan.admin.template.authentication.support.service;
 
 import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemMenuMapper;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO;
+import org.iartisan.admin.template.authentication.support.service.entity.MenuEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.jdbc.PageHelper;
+import org.iartisan.runtime.utils.CollectionUtil;
+import org.iartisan.runtime.utils.UUIDUtil;
 import org.iartisan.runtime.web.authentication.MenuTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +41,31 @@ public class MenuSupportService {
         }
         result.setDataList(pageList);
         return result;
+    }
+
+    public List<MenuTree> getFirstMenus() {
+        List<SystemMenuDO> firstMenuList = systemMenuMapper.selectFirstMenus(new SystemMenuDO());
+        List<MenuTree> result = new ArrayList<>();
+        if (CollectionUtil.isNotEmpty(firstMenuList)) {
+            for (SystemMenuDO systemMenuDO : firstMenuList) {
+                MenuTree tree = new MenuTree();
+                tree.setId(systemMenuDO.getMenuId());
+                tree.setTitle(systemMenuDO.getMenuName());
+                result.add(tree);
+            }
+        }
+        return result;
+    }
+
+    public void addMenu(MenuEntity menuEntity) {
+        SystemMenuDO dbInsert = new SystemMenuDO();
+        dbInsert.setMenuId(UUIDUtil.shortId());
+        dbInsert.setMenuName(menuEntity.getMenuName());
+        dbInsert.setParentMenuId(menuEntity.getParentMenuId());
+        dbInsert.setMenuUrl(menuEntity.getMenuUrl());
+        dbInsert.setMenuIcon(menuEntity.getMenuIcon());
+        dbInsert.setMenuPermission(menuEntity.getMenuPermission());
+        systemMenuMapper.insert(dbInsert);
     }
 
 }

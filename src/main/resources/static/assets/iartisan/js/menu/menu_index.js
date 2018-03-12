@@ -5,7 +5,8 @@ layui.config({
         layer = parent.layer === undefined ? layui.layer : top.layer;
 
     var urls = {
-        queryPageData: "/menuSupport/queryPageData"
+        queryPageData: "/menuSupport/queryPageData",
+        addDataPage: "/menuSupport/addDataDialog",
     };
     queryPageData();
 
@@ -34,8 +35,8 @@ layui.config({
                 },
                 {
                     title: '操作',
-                    fixed:"right",
-                    align:"center",
+                    fixed: "right",
+                    align: "center",
                     templet: function () {
                         return "<a class=\"layui-btn layui-btn-xs layui-btn-danger\" lay-event=\"del\">删除</a>";
                         /*"<a class=\"layui-btn layui-btn-xs\" lay-event=\"edit\">编辑</a>" +*/
@@ -61,4 +62,23 @@ layui.config({
         }
     });
 
+    $("#btnAddPage").click(function () {
+        var index = layui.layer.open({
+            title: "添加菜单",
+            type: 2,
+            content: urls.addDataPage,
+            area: ['600px', '500px'],
+            maxmin: true,
+            btn: ['添加', '关闭'],
+            btnAlign: 'c',
+            skin: 'layui-layer-molv',
+            yes: function (index, layero) {
+                layero.find('iframe').contents().find("#formAdd").find("#btnAdd").click();
+                tableIns.reload();
+            },
+            btn2: function (index) {
+                layui.layer.close(index);
+            }
+        });
+    });
 });
