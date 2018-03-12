@@ -4,11 +4,11 @@
         <div class="layui-input-inline">
             <select name="parentMenuId" lay-verify="required">
                 <option value="">/</option>
-            <#if data ?? >
-                <#list data as val>
-                    <option>${val.title}</option>
-                </#list>
-            </#if>
+                <#if data ?? >
+                    <#list data as val>
+                        <option value="${val.id}">${val.title}</option>
+                    </#list>
+                </#if>
             </select>
         </div>
     </div>

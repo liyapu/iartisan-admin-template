@@ -68,4 +68,8 @@ public class MenuSupportService {
         systemMenuMapper.insert(dbInsert);
     }
 
+    public void deleteData(String menuId) {
+        systemMenuMapper.deleteById(menuId);
+    }
+
 }

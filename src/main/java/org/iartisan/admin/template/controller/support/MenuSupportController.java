@@ -61,4 +61,12 @@ public class MenuSupportController extends BaseController {
         WebR webR = new WebR();
         return webR;
     }
+
+    @ResponseBody
+    @PostMapping(ReqContants.REQ_DELETE_DATA)
+    public WebR deleteData(String menuId) {
+        menuSupportService.deleteData(menuId);
+        WebR webR = new WebR();
+        return webR;
+    }
 }

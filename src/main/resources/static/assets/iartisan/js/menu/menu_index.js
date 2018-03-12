@@ -7,6 +7,7 @@ layui.config({
     var urls = {
         queryPageData: "/menuSupport/queryPageData",
         addDataPage: "/menuSupport/addDataDialog",
+        deleteData: "/menuSupport/deleteData"
     };
     queryPageData();
 
@@ -56,7 +57,12 @@ layui.config({
             data = obj.data;
         if (layEvent == 'del') {
             layer.confirm('确定删除该菜单吗？', {icon: 3, title: '提示信息'}, function (index) {
-                layer.close(index)
+                layer.close(index);
+                router.post({
+                    url: urls.deleteData, data: {menuId: data.id}, success: function () {
+                        tableIns.reload();
+                    }
+                });
                 tableIns.reload();
             });
         }
