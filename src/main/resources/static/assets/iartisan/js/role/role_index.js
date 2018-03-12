@@ -93,9 +93,7 @@ layui.config({
             btnAlign: 'c',
             skin: 'layui-layer-molv',
             yes: function (index, layero) {
-                layero.find('iframe').contents().find("#formAdd").find("#btnFormAdd").click();
-                layui.layer.close(index);
-                tableIns.reload();
+                layero.find('iframe').contents().find("#formAdd").find("#btnAdd").click();
             },
             btn2: function (index) {
                 layui.layer.close(index);

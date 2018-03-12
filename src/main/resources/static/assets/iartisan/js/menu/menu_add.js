@@ -1,6 +1,6 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['jquery', 'router'], function () {
+}).use(['jquery', 'router', 'table'], function () {
 
     var router = layui.router;
 
@@ -14,9 +14,13 @@ layui.config({
             url: urls.addData,
             data: data.field,
             success: function () {
-                return false;
+                layer.closeAll("iframe");
+                //刷新父页面
+                parent.location.reload();
             }
         });
         return false;
-    })
+    });
+
+
 });

@@ -33,22 +33,21 @@ layui.config({
         }
     });
 
-    form.on("submit(formData)", function (data) {
+    form.on("submit(addData)", function (data) {
         var oCks = xtree.GetChecked();
         var auths = new Array();
         for (var i = 0; i < oCks.length; i++) {
-            var partent = xtree.GetParent(oCks[i].value);
             auths.push(oCks[i].value);
         }
-        //var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
         router.post({
             url: urls.addData,
             data: {"roleName": data.field.roleName, "permissions": auths.join(",")},
             success: function () {
-                //top.layer.close(index);
-                return true;
+                layer.closeAll("iframe");
+                //刷新父页面
+                parent.location.reload();
             }
         });
-        return true;
+        return false;
     })
 });

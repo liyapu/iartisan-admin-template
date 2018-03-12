@@ -18,12 +18,13 @@
             <div class="layui-input-block">
             <#if data ?? >
                 <#list data as val >
-                    <input type="checkbox" name="roles" id="roles" title="${val.roleName}" lay-skin="primary"
+                    <input type="checkbox" name="roles" title="${val.roleName}" lay-skin="primary"
                            value="${val.roleId!''}"/>
                 </#list>
             </#if>
             </div>
         </div>
+        <input type="hidden" lay-submit="" lay-filter="addData" id="btnAdd"/>
     </form>
 </div>
-<#--<script type="text/javascript" src="/assets/iartisan/js/user/user_add.js"></script>-->
+<script type="text/javascript" src="/assets/iartisan/js/user/user_add.js"></script>

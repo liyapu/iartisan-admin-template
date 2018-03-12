@@ -80,7 +80,7 @@ layui.config({
             skin: 'layui-layer-molv',
             yes: function (index, layero) {
                 layero.find('iframe').contents().find("#formAdd").find("#btnAdd").click();
-                tableIns.reload();
+                //tableIns.reload();
             },
             btn2: function (index) {
                 layui.layer.close(index);

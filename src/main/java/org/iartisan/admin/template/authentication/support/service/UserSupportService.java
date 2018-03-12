@@ -44,6 +44,9 @@ public class UserSupportService {
     private SystemMenuMapper systemMenuMapper;
 
     @Autowired
+    private SystemUserRoleMapper systemUserRoleMapper;
+
+    @Autowired
     private RoleSupportService roleSupportService;
 
     public SystemUserDO login(String userName, String userPwd) {
@@ -122,15 +125,17 @@ public class UserSupportService {
 
     public void addUser(UserEntity userEntity) {
         SystemUserDO dbInsert = new SystemUserDO();
-        dbInsert.setUserId(UUIDUtil.timeBaseId());
+        String userId = UUIDUtil.timeBaseId();
+        dbInsert.setUserId(userId);
         dbInsert.setUserName(userEntity.getUserName());
         dbInsert.setStatus(userEntity.getUserStatus());
         dbInsert.setCreateTime(new Date());
-        dbInsert.setUserPwd("123456");
         //设置默认密码
-        //插入角色列表
+        dbInsert.setUserPwd("123456");
         try {
             systemUserMapper.insert(dbInsert);
+            //插入角色列表
+            addRole(userId, userEntity.getRoles());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -143,6 +148,26 @@ public class UserSupportService {
         dbModify.setStatus(status);
         dbModify.setCreateTime(new Date());
         systemUserMapper.updateById(dbModify);
+    }
+
+    public void modifyData(UserEntity userEntity) {
+        SystemUserRoleDO entity = new SystemUserRoleDO();
+        entity.setUserId(userEntity.getUserId());
+        //更新角色信息
+        Wrapper<SystemUserRoleDO> dbDel = new EntityWrapper<>(entity);
+        systemUserRoleMapper.delete(dbDel);
+        addRole(userEntity.getUserId(), userEntity.getRoles());
+    }
+
+    private void addRole(String userId, String roleStr) {
+        String[] roles = roleStr.split(",");
+        for (String role : roles) {
+            SystemUserRoleDO db = new SystemUserRoleDO();
+            db.setUserId(userId);
+            db.setRoleId(role);
+            db.setCreateTime(new Date());
+            systemUserRoleMapper.insert(db);
+        }
     }
 
     public void deleteByUserId(String userId) {

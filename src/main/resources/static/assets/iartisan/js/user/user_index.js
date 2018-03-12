@@ -76,9 +76,9 @@ layui.config({
                 skin: 'layui-layer-molv',
                 area: ['500px', '500px'],
                 content: urls.modifyDataDialog + "?userId=" + data.userId,
-                btn: ['提交', '关闭'],
-                yes: function () {
-
+                btn: ['修改', '关闭'],
+                yes: function (index, layero) {
+                    layero.find('iframe').contents().find("#formModify").find("#btnModify").click();
                 },
                 btn2: function (index) {
                     layer.close(index);
@@ -113,9 +113,7 @@ layui.config({
         ;
     });
 
-    $("#btnAdd").click(function () {
-        //Ajax获取
-        /* $.get(urls.addDataDialog, {}, function (res) {*/
+    $("#btnAddPage").click(function () {
         layui.layer.open({
             type: 2,
             title: '添加用户',
@@ -124,22 +122,11 @@ layui.config({
             btn: ['提交', '关闭'],
             btnAlign: 'c',
             yes: function (index, layero) {
-                //layer.alert(layero.find('iframe').contentDocument);
-                router.post({
-                    url: urls.addData,
-                    data: layero.find('iframe').contents().find("#formAdd").serialize(),
-                    success: function (res) {
-                        layui.layer.close(index);
-                        layer.alert(res.message);
-                        tableIns.reload('dataList', {});
-                    }
-                });
+                layero.find('iframe').contents().find("#formAdd").find("#btnAdd").click();
             },
             btn2: function (index) {
                 layer.close(index);
             }
         });
     });
-    /*});*/
-
 });

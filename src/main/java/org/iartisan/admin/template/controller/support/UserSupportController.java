@@ -71,6 +71,14 @@ public class UserSupportController extends BaseController {
     }
 
     @ResponseBody
+    @PostMapping(ReqContants.REQ_MODIFY_DATA)
+    public WebR modifyData(UserEntity entity) {
+        userSupportService.modifyData(entity);
+        WebR r = new WebR();
+        return r;
+    }
+
+    @ResponseBody
     @PostMapping("changeStatus")
     public WebR changeStatus(String userId, String status) {
         userSupportService.changeStatus(userId, status);

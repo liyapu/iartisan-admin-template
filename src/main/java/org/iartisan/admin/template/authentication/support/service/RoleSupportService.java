@@ -5,11 +5,14 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemRoleMapper;
 import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemRolePermissionMapper;
+import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemUserMapper;
 import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemUserRoleMapper;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemRoleDO;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemRolePermissionDO;
+import org.iartisan.admin.template.authentication.support.dbm.model.SystemUserDO;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemUserRoleDO;
 import org.iartisan.admin.template.authentication.support.service.entity.RoleEntity;
+import org.iartisan.admin.template.authentication.support.service.entity.UserEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.UserRoleEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
@@ -44,6 +47,9 @@ public class RoleSupportService {
 
     @Autowired
     private SystemUserRoleMapper systemUserRoleMapper;
+
+    @Autowired
+    private SystemUserMapper systemUserMapper;
 
     public List<RoleEntity> getAllRoles() {
         List<SystemRoleDO> dbRoleResult = systemRoleMapper.selectList(Condition.EMPTY);
@@ -148,6 +154,11 @@ public class RoleSupportService {
             }
             result.setRoleEntities(roleEntities);
             //查询用户信息
+            SystemUserDO userDO = systemUserMapper.selectById(userId);
+            UserEntity userEntity = new UserEntity();
+            userEntity.setUserId(userId);
+            userEntity.setUserName(userDO.getUserName());
+            result.setUserEntity(userEntity);
         }
         return result;
     }

@@ -2,7 +2,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">父级名称</label>
         <div class="layui-input-inline">
-            <select name="parentMenuId" lay-verify="required">
+            <select name="parentMenuId">
                 <option value="">/</option>
                 <#if data ?? >
                     <#list data as val>

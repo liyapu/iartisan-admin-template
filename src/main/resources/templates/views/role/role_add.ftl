@@ -21,13 +21,7 @@
                         <div id="permissions" name="permissions" style="border:1px solid block;"></div>
                     </div>
                 </div>
-            <#-- <div class="layui-form-item">
-                 <div class="layui-input-block">
-                     <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="formData" id="btnAdd" type="button">添加</button>
-                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                 </div>
-             </div>-->
-                <input type="hidden" lay-submit="" lay-filter="formData" id="btnFormAdd"/>
+                <input type="hidden" lay-submit="" lay-filter="addData" id="btnAdd"/>
             </div>
         </div>
     </div>
