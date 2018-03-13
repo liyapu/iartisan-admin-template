@@ -8,6 +8,8 @@ public class MenuEntity {
 
     private String menuName;
 
+    private String menuId;
+
     private String menuUrl;
 
     private String menuIcon;
@@ -54,5 +56,13 @@ public class MenuEntity {
 
     public void setMenuPermission(String menuPermission) {
         this.menuPermission = menuPermission;
+    }
+
+    public String getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(String menuId) {
+        this.menuId = menuId;
     }
 }

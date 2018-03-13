@@ -73,7 +73,17 @@ public class MenuSupportController extends BaseController {
     @GetMapping(ReqContants.REQ_MODIFY_DATA_DIALOG)
     public String modifyDataDialog(Model model, String menuId) {
         //查询一级菜单
+        model.addAttribute("firstMenus", menuSupportService.getFirstMenus());
+        //查询一级菜单
         model.addAttribute(_data, menuSupportService.getMenuById(menuId));
         return VIEW_PREFIX + "menu_modify";
+    }
+
+    @ResponseBody
+    @PostMapping(ReqContants.REQ_MODIFY_DATA)
+    public WebR modifyData(MenuEntity menuEntity) {
+        menuSupportService.modifyData(menuEntity);
+        WebR webR = new WebR();
+        return webR;
     }
 }

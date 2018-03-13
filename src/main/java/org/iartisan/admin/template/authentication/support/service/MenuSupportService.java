@@ -80,7 +80,19 @@ public class MenuSupportService {
         result.setMenuName(dbResult.getMenuName());
         result.setMenuIcon(dbResult.getMenuIcon());
         result.setMenuPermission(dbResult.getMenuPermission());
+        result.setParentMenuId(dbResult.getParentMenuId());
+        result.setMenuId(dbResult.getMenuId());
         return result;
+    }
+
+    public void modifyData(MenuEntity menuEntity) {
+        SystemMenuDO dbModify = new SystemMenuDO();
+        dbModify.setMenuId(menuEntity.getMenuId());
+        dbModify.setMenuName(menuEntity.getMenuName());
+        dbModify.setMenuPermission(menuEntity.getMenuPermission());
+        dbModify.setMenuUrl(menuEntity.getMenuUrl());
+        dbModify.setMenuIcon(menuEntity.getMenuIcon());
+        systemMenuMapper.updateById(dbModify);
     }
 
 }
