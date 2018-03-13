@@ -13,7 +13,7 @@ layui.config({
         var pwd = $.md5("00");
         router.post({
                 url: "/authenticate",
-                data: {userName: data.field["userName"], userPwd: pwd},
+                data: {userName: data.field["userName"], userPwd: pwd,vercode:data.field["vercode"]},
                 success: function (res) {
                     location.href = res.message;
                 },

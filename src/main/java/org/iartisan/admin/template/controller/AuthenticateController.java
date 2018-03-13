@@ -1,6 +1,7 @@
 package org.iartisan.admin.template.controller;
 
 
+import com.google.code.kaptcha.Constants;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -35,11 +36,18 @@ public class AuthenticateController {
 
     @ResponseBody
     @PostMapping(ReqContants.REQ_AUTHENTICATE)
-    public WebR authenticate(RealmBean realmBean) {
+    public WebR authenticate(RealmBean realmBean, String vercode) {
         WebR r = new WebR();
         //判断用户名和密码是否正确
         if (StringUtils.isEmpty(realmBean.getUserName()) || StringUtils.isEmpty(realmBean.getUserPwd())) {
             r.isError("用户名或者密码不能为空!!");
+            return r;
+        }
+        //验证验证码
+        //判断验证码是否正确
+        if (StringUtils.isEmpty(vercode) ||
+                !WebUtil.getShiroSession().getAttribute(Constants.KAPTCHA_SESSION_KEY).toString().equals(vercode)) {
+            r.isError("验证码错误");
             return r;
         }
         Subject subject = SecurityUtils.getSubject();
