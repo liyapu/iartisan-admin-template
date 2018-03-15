@@ -26,9 +26,16 @@
         <setting name="jdbcTypeForNull" value="NULL"/>
         <setting name="mapUnderscoreToCamelCase" value="true" />
     </settings>
+    <typeAliases>
+
+            <typeAlias type="org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO" alias="systemMenu"></typeAlias>
+
+    </typeAliases>
+
     <plugins>
         <plugin interceptor="com.baomidou.mybatisplus.plugins.PaginationInterceptor"></plugin>
         <!-- 性能拦截器，兼打印sql，不建议生产环境配置-->
         <plugin interceptor="com.baomidou.mybatisplus.plugins.PerformanceInterceptor"></plugin>
     </plugins>
+
 </configuration>

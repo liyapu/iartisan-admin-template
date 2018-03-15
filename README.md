@@ -1,9 +1,15 @@
 # iartisan-admin-template
 基于spring-boot，快速构建后台系统
 `集成shiro，sitemesh，mybatis-plus，freemaker` 
-目前只完成基础架的搭建，很多功能细节尚未实现
+基础功能都已完成：用户管理、菜单管理、权限管理
 
-前端框架：layui,layuiCMS 2.0
+## 演示地址
+- http://140.143.246.200:8080/
+- 用户名/密码  admin  /  admin
+
+##前端框架：
+- layui
+- layuiCMS 2.0
 
 
 ### 1.项目部署
