@@ -24,18 +24,20 @@
         <setting name="lazyLoadingEnabled" value="true"/>
         <!--当没有为参数提供特定的 JDBC 类型时，为空值指定 JDBC 类型。 某些驱动需要指定列的 JDBC 类型，多数情况直接用一般类型即可，比如 NULL、VARCHAR 或 OTHER。-->
         <setting name="jdbcTypeForNull" value="NULL"/>
-        <setting name="mapUnderscoreToCamelCase" value="true" />
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <typeAliases>
 
-            <typeAlias type="org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO" alias="systemMenu"></typeAlias>
+        <typeAlias type="org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO"
+                   alias="systemMenu"></typeAlias>
 
     </typeAliases>
 
     <plugins>
         <plugin interceptor="com.baomidou.mybatisplus.plugins.PaginationInterceptor"></plugin>
-        <!-- 性能拦截器，兼打印sql，不建议生产环境配置-->
+        <!-- 性能拦截器，兼打印sql，不建议生产环境配置
         <plugin interceptor="com.baomidou.mybatisplus.plugins.PerformanceInterceptor"></plugin>
+        -->
     </plugins>
 
 </configuration>
