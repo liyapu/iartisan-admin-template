@@ -41,7 +41,7 @@ layui.config({
                     align: "center",
                     templet: function () {
                         var html = "<a class='layui-btn layui-btn-xs' lay-event='edit'>编辑</a>";
-                        html += "<a class='layui-btn layui-btn-xs layui-btn-danger' lay-event='edit'>删除</a>";
+                        html += "<a class='layui-btn layui-btn-xs layui-btn-danger' lay-event='del'>删除</a>";
                         return html;
                     }
                 }
