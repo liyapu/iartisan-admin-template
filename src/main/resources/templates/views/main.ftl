@@ -49,7 +49,7 @@
                         <td>获取渠道</td>
                         <td style="padding-bottom: 0;">
                             <div class="layui-btn-container">
-                                <a href="http://fly.layui.com/download/layuiAdmin/" target="_blank" class="layui-btn">立即下载</a>
+                                <a href="https://gitee.com/iartisan/iartisan-admin-template" target="_blank" class="layui-btn">立即下载</a>
                             </div>
                         </td>
                     </tr>
