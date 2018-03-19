@@ -1,12 +1,12 @@
-package org.iartisan.admin.template.controller.support;
+package org.iartisan.admin.template.controller.support.rest;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.iartisan.admin.template.authentication.support.service.RoleSupportService;
 import org.iartisan.admin.template.authentication.support.service.UserSupportService;
 import org.iartisan.admin.template.authentication.support.service.entity.UserEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.web.WebR;
-import org.iartisan.runtime.web.authentication.MenuTree;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,25 +21,16 @@ import org.springframework.web.bind.annotation.*;
  * @author King
  * @since 2018/2/26
  */
-@Controller
+@RestController
 @RequestMapping("userSupport")
-public class UserSupportController extends BaseController {
+public class UserSupportRestController extends BaseController {
 
     private static final String VIEW_PREFIX = "user/";
 
     @Autowired
     private UserSupportService userSupportService;
 
-    @Autowired
-    private RoleSupportService roleSupportService;
 
-
-    @GetMapping(ReqContants.REQ_INDEX)
-    public String index() {
-        return VIEW_PREFIX + "user_index";
-    }
-
-    @ResponseBody
     @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
     public WebR queryPageData(Page page, String userName) {
         PageWrapper<UserEntity> pageData = userSupportService.getUserPageData(page, userName);
@@ -48,21 +39,6 @@ public class UserSupportController extends BaseController {
         return webR;
     }
 
-    @GetMapping(ReqContants.REQ_MODIFY_DATA_DIALOG)
-    public String modifyDataDialog(String userId, Model model) {
-        //查询用户所有角色
-        model.addAttribute(_data, roleSupportService.getRoleByUserId(userId));
-        return VIEW_PREFIX + "user_modify";
-    }
-
-    @GetMapping(ReqContants.REQ_ADD_DATA_DIALOG)
-    public String addDataDialog(Model model) {
-        //查询所有的角色列表
-        model.addAttribute(_data, roleSupportService.getAllRoles());
-        return VIEW_PREFIX + "user_add";
-    }
-
-    @ResponseBody
     @PostMapping(ReqContants.REQ_ADD_DATA)
     public WebR addData(UserEntity entity) {
         userSupportService.addUser(entity);
@@ -70,7 +46,6 @@ public class UserSupportController extends BaseController {
         return r;
     }
 
-    @ResponseBody
     @PostMapping(ReqContants.REQ_MODIFY_DATA)
     public WebR modifyData(UserEntity entity) {
         userSupportService.modifyData(entity);
@@ -78,7 +53,6 @@ public class UserSupportController extends BaseController {
         return r;
     }
 
-    @ResponseBody
     @PostMapping("changeStatus")
     public WebR changeStatus(String userId, String status) {
         userSupportService.changeStatus(userId, status);
@@ -86,7 +60,7 @@ public class UserSupportController extends BaseController {
         return r;
     }
 
-    @ResponseBody
+    @RequiresPermissions("deletedata")
     @PostMapping(ReqContants.REQ_DELETE_DATA)
     public WebR deleteData(String userId) {
         userSupportService.deleteByUserId(userId);

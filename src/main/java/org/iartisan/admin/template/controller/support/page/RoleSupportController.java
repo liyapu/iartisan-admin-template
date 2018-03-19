@@ -1,4 +1,4 @@
-package org.iartisan.admin.template.controller.support;
+package org.iartisan.admin.template.controller.support.page;
 
 import org.iartisan.admin.template.authentication.support.service.ResourceSupportService;
 import org.iartisan.admin.template.authentication.support.service.RoleSupportService;
@@ -32,54 +32,18 @@ public class RoleSupportController extends BaseController {
     @Autowired
     private RoleSupportService roleSupportService;
 
-    @Autowired
-    private ResourceSupportService resourceSupportService;
-
 
     @GetMapping(ReqContants.REQ_INDEX)
     public String index() {
         return VIEW_PREFIX + "role_index";
     }
 
-    @ResponseBody
-    @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
-    public WebR queryPageData(Page page, String roleName) {
-        PageWrapper<RoleEntity> pageData = roleSupportService.getAuthPageData(page, roleName);
-        WebR webR = new WebR(pageData.getPage());
-        webR.setDataList(pageData.getDataList());
-        return webR;
-    }
 
     @GetMapping(ReqContants.REQ_ADD_DATA_PAGE)
     public String addDataPage() {
         return VIEW_PREFIX + "role_add";
     }
 
-    @ResponseBody
-    @PostMapping(ReqContants.REQ_ADD_DATA)
-    public WebR addData(RoleEntity roleEntity) {
-        roleSupportService.addRole(roleEntity);
-        WebR r = new WebR();
-        return r;
-    }
-
-    @ResponseBody
-    @GetMapping("getResourceData")
-    public WebR getResourceData() {
-        List<ResourceEntity> dataList = resourceSupportService.getResourceList();
-        WebR r = new WebR();
-        r.setDataList(dataList);
-        return r;
-    }
-
-    @ResponseBody
-    @GetMapping("getResourceListByRoleId")
-    public WebR getResourceListByRoleId(String roleId) {
-        List<ResourceEntity> dataList = resourceSupportService.getResourceListByRoleId(roleId);
-        WebR r = new WebR();
-        r.setDataList(dataList);
-        return r;
-    }
 
     @GetMapping(ReqContants.REQ_QUERY_DETAIL_DATA)
     public String queryDetailData(String roleId, Model model) {
@@ -88,12 +52,4 @@ public class RoleSupportController extends BaseController {
         return VIEW_PREFIX + "role_detail";
     }
 
-    @ResponseBody
-    @PostMapping(ReqContants.REQ_DELETE_DATA)
-    public WebR deleteData(String roleId) {
-        roleSupportService.deleteRole(roleId);
-        WebR r = new WebR();
-        r.setMessage("删除角色成功");
-        return r;
-    }
 }
