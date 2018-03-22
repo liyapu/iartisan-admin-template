@@ -3,6 +3,7 @@ package org.iartisan.admin.template.controller;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import org.iartisan.runtime.web.contants.ReqContants;
+import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.utils.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,11 +23,16 @@ import java.io.IOException;
  * @since 2018/2/9
  */
 @Controller
-public class IndexController {
+public class IndexController extends BaseController {
 
     @PostMapping(ReqContants.REQ_INDEX)
     public String index() {
         return "index";
+    }
+
+    @GetMapping("")
+    public String redirectIndex() {
+        return _redirect + "index";
     }
 
     @Autowired
