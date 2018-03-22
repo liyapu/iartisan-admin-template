@@ -87,11 +87,14 @@ layui.config({
         } else if (layEvent == 'del') {
             layer.confirm('确定删除该用户吗？', {icon: 3, title: '提示信息'}, function (index) {
                 layer.close(index);
-                $.post(urls.deleteData, {userId: data.userId}, function (res) {
+                /*$.post(urls.deleteData, {userId: data.userId}, function (res) {
                     if (res.code == '000000') {
                         tableIns.reload();
                     }
-                });
+                });*/
+                router.post({url:urls.deleteData,success:function () {
+                    tableIns.reload();
+                }})
             });
         }
     });
