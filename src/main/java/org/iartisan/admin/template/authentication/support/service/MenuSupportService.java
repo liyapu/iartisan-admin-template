@@ -1,7 +1,9 @@
 package org.iartisan.admin.template.authentication.support.service;
 
 import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemMenuMapper;
+import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemRolePermissionMapper;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO;
+import org.iartisan.admin.template.authentication.support.dbm.model.SystemRolePermissionDO;
 import org.iartisan.admin.template.authentication.support.service.entity.MenuEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
@@ -24,6 +26,12 @@ public class MenuSupportService {
 
     @Autowired
     private SystemMenuMapper systemMenuMapper;
+
+    @Autowired
+    private RoleSupportService roleSupportService;
+
+    @Autowired
+    private SystemRolePermissionMapper systemRolePermissionMapper;
 
     public PageWrapper<MenuTree> getMenuPageData(Page page, String menuName) {
         SystemMenuDO systemMenuDO = new SystemMenuDO();
@@ -95,4 +103,49 @@ public class MenuSupportService {
         systemMenuMapper.updateById(dbModify);
     }
 
+    //获取菜单列表
+    public List<MenuTree> getMenus(String userId) {
+        List<String> roles = roleSupportService.getRoleIdsByUserId(userId);
+        if (null == roles) {
+            return null;
+        }
+        SystemRolePermissionDO dbQuery = new SystemRolePermissionDO();
+        dbQuery.setRoleIds(roles);
+        List<String> menuIds = systemRolePermissionMapper.selectPermissions(dbQuery);
+        SystemMenuDO systemMenuDO = new SystemMenuDO();
+        systemMenuDO.setMenuIds(menuIds);
+        List<SystemMenuDO> firstMenus = systemMenuMapper.selectFirstMenus(systemMenuDO);
+        //得到二级菜单
+        if (firstMenus == null) {
+            return null;
+        }
+        List<MenuTree> result = new ArrayList<>();
+        for (SystemMenuDO firstMenu : firstMenus) {
+            MenuTree firstTree = new MenuTree();
+            firstTree.setTitle(firstMenu.getMenuName());
+            firstTree.setIcon(firstMenu.getMenuIcon());
+            firstTree.setHref(firstMenu.getMenuUrl());
+            firstTree.setPermission(firstMenu.getMenuPermission());
+            SystemMenuDO secondQuery = new SystemMenuDO();
+            secondQuery.setMenuIds(menuIds);
+            secondQuery.setParentMenuId(firstMenu.getMenuId());
+            List<SystemMenuDO> secondMenus = systemMenuMapper.selectSecondMenus(secondQuery);
+            if (null != secondMenus) {
+                //添加二级菜单
+                List<MenuTree> children = new ArrayList<>();
+                for (SystemMenuDO secondMenu : secondMenus) {
+                    MenuTree secondTree = new MenuTree();
+                    secondTree.setTitle(secondMenu.getMenuName());
+                    secondTree.setIcon(secondMenu.getMenuIcon());
+                    secondTree.setHref(secondMenu.getMenuUrl());
+                    secondTree.setPermission(secondMenu.getMenuPermission());
+                    children.add(secondTree);
+                }
+                firstTree.setChildren(children);
+            }
+            result.add(firstTree);
+        }
+        //查找二级菜单
+        return result;
+    }
 }
