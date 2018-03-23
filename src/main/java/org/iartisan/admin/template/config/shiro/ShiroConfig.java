@@ -1,5 +1,6 @@
 package org.iartisan.admin.template.config.shiro;
 
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -14,6 +15,7 @@ import org.iartisan.runtime.web.contants.ReqContants;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -42,10 +44,10 @@ public class ShiroConfig {
     public void setFilterMap() {
         String filterPath = EnvContextConfig.get(_CONFIG, "");
         filterPath = filterPath + ",/assets/iartisan/**," + ReqContants.REQ_AUTHENTICATE +
-                "," + ReqContants.REQ_LOGIN + ",/webjars/**"+",/captcha";
+                "," + ReqContants.REQ_LOGIN + ",/webjars/**" + ",/captcha";
         List<String> filterPaths = Arrays.asList(filterPath.split(","));
         for (String path : filterPaths) {
-            if (StringUtils.isNotEmpty(path)){
+            if (StringUtils.isNotEmpty(path)) {
                 filterMap.put(path, anon);
             }
         }
@@ -65,6 +67,7 @@ public class ShiroConfig {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(authenticationService);
         securityManager.setSessionManager(sessionManager);
+        securityManager.setCacheManager(ehCacheManager());
         return securityManager;
     }
 
@@ -83,10 +86,18 @@ public class ShiroConfig {
         return new LifecycleBeanPostProcessor();
     }
 
+    @Bean(name = "ehCacheManager")
+    @DependsOn("lifecycleBeanPostProcessor")
+    public EhCacheManager ehCacheManager() {
+        EhCacheManager ehCacheManager = new EhCacheManager();
+        return ehCacheManager;
+    }
+
     @Bean
     public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
         DefaultAdvisorAutoProxyCreator proxyCreator = new DefaultAdvisorAutoProxyCreator();
         proxyCreator.setProxyTargetClass(true);
+
         return proxyCreator;
     }
 
