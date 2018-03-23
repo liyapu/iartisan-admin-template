@@ -23,4 +23,13 @@ layui.config({
     });
 
 
+    form.on('select(parentMenuId)', function (data) {
+        var obj = data.value;
+        if (obj == '') {
+            $("#menuUrl").removeAttr("lay-verify");
+        } else {
+            $("#menuUrl").attr("lay-verify", "required");
+        }
+    });
+
 });

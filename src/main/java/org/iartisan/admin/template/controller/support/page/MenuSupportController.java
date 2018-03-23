@@ -34,13 +34,13 @@ public class MenuSupportController extends BaseController {
     private MenuSupportService menuSupportService;
 
 
-    @RequiresPermissions("auth:manage:menu:index")
+    //@RequiresPermissions("auth:manage:menu:index")
     @GetMapping(ReqContants.REQ_INDEX)
     public String index() {
         return VIEW_PREFIX + "menu_index";
     }
 
-    @RequiresPermissions("auth:manage:menu:addDataDialog")
+    //@RequiresPermissions("auth:manage:menu:addDataDialog")
     @GetMapping(ReqContants.REQ_ADD_DATA_DIALOG)
     public String addDataDialog(Model model) {
         //查询一级菜单
@@ -49,7 +49,7 @@ public class MenuSupportController extends BaseController {
     }
 
 
-    @RequiresPermissions("auth:manage:menu:modifyDataDialog")
+    //@RequiresPermissions("auth:manage:menu:modifyDataDialog")
     @GetMapping(ReqContants.REQ_MODIFY_DATA_DIALOG)
     public String modifyDataDialog(Model model, String menuId) {
         //查询一级菜单
