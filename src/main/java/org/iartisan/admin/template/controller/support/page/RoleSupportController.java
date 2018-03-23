@@ -1,5 +1,6 @@
 package org.iartisan.admin.template.controller.support.page;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.iartisan.admin.template.authentication.support.service.ResourceSupportService;
 import org.iartisan.admin.template.authentication.support.service.RoleSupportService;
 import org.iartisan.admin.template.authentication.support.service.entity.ResourceEntity;
@@ -9,6 +10,7 @@ import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
+import org.iartisan.runtime.web.controller.ISupportPageController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -25,7 +28,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("roleSupport")
-public class RoleSupportController extends BaseController {
+public class RoleSupportController extends BaseController implements ISupportPageController {
 
     private static final String VIEW_PREFIX = "role/";
 
@@ -33,23 +36,37 @@ public class RoleSupportController extends BaseController {
     private RoleSupportService roleSupportService;
 
 
+    @RequiresPermissions("auth:manage:role:index")
     @GetMapping(ReqContants.REQ_INDEX)
     public String index() {
         return VIEW_PREFIX + "role_index";
     }
 
 
+    @RequiresPermissions("auth:manage:role:addDataPage")
     @GetMapping(ReqContants.REQ_ADD_DATA_PAGE)
     public String addDataPage() {
         return VIEW_PREFIX + "role_add";
     }
 
 
-    @GetMapping(ReqContants.REQ_QUERY_DETAIL_DATA)
-    public String queryDetailData(String roleId, Model model) {
+    @RequiresPermissions("auth:manage:role:queryDetailPage")
+    @GetMapping(ReqContants.REQ_QUERY_DETAIL_PAGE)
+    public String queryDetailPage(String roleId, Model model) {
         RoleEntity authEntity = roleSupportService.getAuthDetail(roleId);
         model.addAttribute(_data, authEntity);
         return VIEW_PREFIX + "role_detail";
+    }
+
+
+    @Override
+    public String addDataDialog(Model model) {
+        return null;
+    }
+
+    @Override
+    public String modifyDataDialog(Model model, Serializable keyId) {
+        return null;
     }
 
 }

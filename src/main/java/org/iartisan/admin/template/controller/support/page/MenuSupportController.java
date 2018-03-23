@@ -9,6 +9,7 @@ import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.authentication.MenuTree;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
+import org.iartisan.runtime.web.controller.ISupportPageController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -26,7 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("menuSupport")
-public class MenuSupportController extends BaseController {
+public class MenuSupportController extends BaseController implements ISupportPageController {
 
     private static final String VIEW_PREFIX = "menu/";
 
@@ -34,13 +37,13 @@ public class MenuSupportController extends BaseController {
     private MenuSupportService menuSupportService;
 
 
-    //@RequiresPermissions("auth:manage:menu:index")
+    @RequiresPermissions("auth:manage:menu:index")
     @GetMapping(ReqContants.REQ_INDEX)
     public String index() {
         return VIEW_PREFIX + "menu_index";
     }
 
-    //@RequiresPermissions("auth:manage:menu:addDataDialog")
+    @RequiresPermissions("auth:manage:menu:addDataDialog")
     @GetMapping(ReqContants.REQ_ADD_DATA_DIALOG)
     public String addDataDialog(Model model) {
         //查询一级菜单
@@ -48,14 +51,13 @@ public class MenuSupportController extends BaseController {
         return VIEW_PREFIX + "menu_add";
     }
 
-
-    //@RequiresPermissions("auth:manage:menu:modifyDataDialog")
+    @RequiresPermissions("auth:manage:menu:modifyDataDialog")
     @GetMapping(ReqContants.REQ_MODIFY_DATA_DIALOG)
-    public String modifyDataDialog(Model model, String menuId) {
+    public String modifyDataDialog(Model model, Serializable menuId) {
         //查询一级菜单
         model.addAttribute("firstMenus", menuSupportService.getFirstMenus());
         //查询一级菜单
-        model.addAttribute(_data, menuSupportService.getMenuById(menuId));
+        model.addAttribute(_data, menuSupportService.getMenuById(menuId.toString()));
         return VIEW_PREFIX + "menu_modify";
     }
 }
