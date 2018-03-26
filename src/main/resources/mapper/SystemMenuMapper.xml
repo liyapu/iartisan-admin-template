@@ -46,5 +46,11 @@
         from system_menu
         where 1=1
     </select>
+    <select id="selectList" resultType="systemMenu">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from system_menu
+        where 1=1
+    </select>
 
 </mapper>

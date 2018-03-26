@@ -30,6 +30,8 @@
 
         <typeAlias type="org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO"
                    alias="systemMenu"></typeAlias>
+        <typeAlias type="org.iartisan.admin.template.authentication.support.dbm.model.SystemRolePermissionDO"
+                   alias="systemRolePermission"></typeAlias>
 
     </typeAliases>
 

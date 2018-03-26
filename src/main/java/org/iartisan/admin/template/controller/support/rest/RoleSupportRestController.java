@@ -5,14 +5,13 @@ import org.iartisan.admin.template.authentication.support.service.ResourceSuppor
 import org.iartisan.admin.template.authentication.support.service.RoleSupportService;
 import org.iartisan.admin.template.authentication.support.service.entity.ResourceEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.RoleEntity;
+import org.iartisan.admin.template.authentication.support.service.entity.ZTreeEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,7 +43,7 @@ public class RoleSupportRestController extends BaseController {
 
     @GetMapping("getResourceData")
     public WebR getResourceData() {
-        List<ResourceEntity> dataList = resourceSupportService.getResourceList();
+        List<ZTreeEntity> dataList = resourceSupportService.getResourceTree();
         WebR r = new WebR();
         r.setDataList(dataList);
         return r;
@@ -52,7 +51,7 @@ public class RoleSupportRestController extends BaseController {
 
     @GetMapping("getResourceListByRoleId")
     public WebR getResourceListByRoleId(String roleId) {
-        List<ResourceEntity> dataList = resourceSupportService.getResourceListByRoleId(roleId);
+        List<ZTreeEntity> dataList = resourceSupportService.getResourceListByRoleId(roleId);
         WebR r = new WebR();
         r.setDataList(dataList);
         return r;

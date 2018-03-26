@@ -18,7 +18,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">授权</label>
                     <div class="layui-input-block">
-                        <div id="permissions" name="permissions" style="border:1px solid block;"></div>
+                        <div style="border:1px solid block;">
+                            <ul id="permissions" name="permissions"  class="ztree"></ul>
+                        </div>
                     </div>
                 </div>
                 <input type="hidden" lay-submit="" lay-filter="addData" id="btnAdd"/>
@@ -26,5 +28,5 @@
         </div>
     </div>
 </form>
-<script type="text/javascript" src="/assets/iartisan/plugins/xtree/layui-xtree.js"></script>
+<link rel="stylesheet" href="/assets/iartisan/plugins/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
 <script type="text/javascript" src="/assets/iartisan/js/role/role_add.js"></script>

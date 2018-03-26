@@ -1,5 +1,6 @@
 package org.iartisan.admin.template.authentication.support.service;
 
+import com.baomidou.mybatisplus.mapper.Condition;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import org.iartisan.admin.template.authentication.support.PermissionType;
@@ -10,6 +11,7 @@ import org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemResourceDO;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemRolePermissionDO;
 import org.iartisan.admin.template.authentication.support.service.entity.ResourceEntity;
+import org.iartisan.admin.template.authentication.support.service.entity.ZTreeEntity;
 import org.iartisan.runtime.utils.CollectionUtil;
 import org.iartisan.runtime.web.authentication.MenuTree;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,49 +45,35 @@ public class ResourceSupportService {
     private MenuSupportService menuSupportService;
 
 
-    private static final String split = "|";
+    public static final String split = "|";
 
-    public List<ResourceEntity> getResourceList() {
-        List<ResourceEntity> result = new ArrayList<>();
+    public List<ZTreeEntity> getResourceTree() {
+        List<ZTreeEntity> result = new ArrayList<>();
         //加载菜单列表
-        List<SystemMenuDO> firstMenuList = systemMenuMapper.selectFirstMenus(new SystemMenuDO());
-        if (CollectionUtil.isNotEmpty(firstMenuList)) {
-            for (SystemMenuDO o : firstMenuList) {
-                ResourceEntity firstEntity = new ResourceEntity();
-                firstEntity.setTitle(o.getMenuName());
-                firstEntity.setValue(o.getMenuId());
-                //查询二级菜单
-                SystemMenuDO dbQuery = new SystemMenuDO();
-                dbQuery.setParentMenuId(o.getMenuId());
-                List<SystemMenuDO> secondMenuList = systemMenuMapper.selectSecondMenus(dbQuery);
-                List<ResourceEntity> secondData = new ArrayList<>();
-                if (CollectionUtil.isNotEmpty(secondMenuList)) {
-                    for (SystemMenuDO second : secondMenuList) {
-                        ResourceEntity secondEntity = new ResourceEntity();
-                        secondEntity.setTitle(second.getMenuName());
-                        secondEntity.setValue(second.getMenuId() + split + "m");
-                        List<ResourceEntity> resourceData = new ArrayList<>();
-                        //添加resource的内容
-                        List<SystemResourceDO> resourceDOS = getResourceByMenuId(second.getMenuId());
-                        if (CollectionUtil.isNotEmpty(resourceDOS)) {
-                            for (SystemResourceDO resourceDO : resourceDOS) {
-                                ResourceEntity resourceEntity = new ResourceEntity();
-                                resourceEntity.setTitle(resourceDO.getResourceName());
-                                resourceEntity.setValue(resourceDO.getResourceId() + split + "r");
-                                resourceEntity.setData(new ArrayList<>());
-                                resourceData.add(resourceEntity);
-                            }
-                        }
-                        secondEntity.setData(resourceData);
-                        secondData.add(secondEntity);
+        List<SystemMenuDO> menuDOList = systemMenuMapper.selectList(Condition.EMPTY);
+        if (CollectionUtil.isNotEmpty(menuDOList)) {
+            for (SystemMenuDO systemMenuDO : menuDOList) {
+                ZTreeEntity entity = new ZTreeEntity();
+                entity.setId(systemMenuDO.getMenuId() + split + "m");
+                entity.setpId(systemMenuDO.getParentMenuId() + split + "m");
+                entity.setName(systemMenuDO.getMenuName());
+                result.add(entity);
+                //查询resource
+                List<SystemResourceDO> resourceDOS = getResourceByMenuId(systemMenuDO.getMenuId());
+                if (CollectionUtil.isNotEmpty(resourceDOS)) {
+                    for (SystemResourceDO resourceDO : resourceDOS) {
+                        ZTreeEntity resourceEntity = new ZTreeEntity();
+                        resourceEntity.setId(resourceDO.getResourceId() + split + "r");
+                        resourceEntity.setpId(systemMenuDO.getMenuId() + split + "m");
+                        resourceEntity.setName(resourceDO.getResourceName());
+                        result.add(resourceEntity);
                     }
                 }
-                firstEntity.setData(secondData);
-                result.add(firstEntity);
             }
         }
         return result;
     }
+
 
     private List<SystemResourceDO> getResourceByMenuId(String menuId) {
         SystemResourceDO resourceDO = new SystemResourceDO();
@@ -94,28 +82,24 @@ public class ResourceSupportService {
         return dbResult;
     }
 
-    public List<ResourceEntity> getResourceListByRoleId(String roleId) {
-        List<ResourceEntity> dbResult = getResourceList();
+    public List<ZTreeEntity> getResourceListByRoleId(String roleId) {
+        List<ZTreeEntity> dbResult = getResourceTree();
         if (CollectionUtil.isNotEmpty(dbResult)) {
             SystemRolePermissionDO dbQuery = new SystemRolePermissionDO();
-            List<String> roles = new ArrayList<>();
-            roles.add(roleId);
-            dbQuery.setRoleIds(roles);
-            List<String> permissionIds = systemRolePermissionMapper.selectPermissions(dbQuery);
-            for (ResourceEntity resourceEntity : dbResult) {
-                if (CollectionUtil.isNotEmpty(resourceEntity.getData())) {
-                    List<ResourceEntity> data = resourceEntity.getData();
-                    for (ResourceEntity datum : data) {
-                        if (permissionIds.contains(datum.getValue())) {
-                            datum.setChecked(true);
+            dbQuery.setRoleId(roleId);
+            List<SystemRolePermissionDO> permissionDOS = systemRolePermissionMapper.selectList(new EntityWrapper<>(dbQuery));
+            if (CollectionUtil.isNotEmpty(permissionDOS)) {
+                for (ZTreeEntity entity : dbResult) {
+                    //
+                    for (SystemRolePermissionDO permissionDO : permissionDOS) {
+                        if (entity.getId().equals(permissionDO.getPermissionId() + split + permissionDO.getPermissionType())) {
+                            entity.setChecked(true);
+                           // permissionDOS.remove(permissionDO);
                         }
-                    }
-                } else {
-                    if (permissionIds.contains(resourceEntity.getValue())) {
-                        resourceEntity.setChecked(true);
                     }
                 }
             }
+
         }
         return dbResult;
     }

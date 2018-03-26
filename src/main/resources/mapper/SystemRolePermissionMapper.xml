@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.iartisan.admin.template.authentication.support.dbm.mapper.SystemRolePermissionMapper">
 
-    <sql id="BASE_COLUMN_RESULT">
+    <sql id="Base_Column_List">
         ROLE_ID,PERMISSION_ID,PERMISSION_TYPE,CREATE_TIME
     </sql>
 
@@ -15,6 +15,16 @@
         </foreach>
         <if test="permissionType!=null">
             AND PERMISSION_TYPE= #{permissionType}
+        </if>
+    </select>
+
+    <select id="selectList" resultType="systemRolePermission">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from system_role_permission
+        where 1=1
+        <if test="roleId=null">
+            and ROLE_ID=#{roleId}
         </if>
     </select>
 </mapper>
