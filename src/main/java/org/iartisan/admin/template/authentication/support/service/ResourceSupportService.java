@@ -87,7 +87,7 @@ public class ResourceSupportService {
         if (CollectionUtil.isNotEmpty(dbResult)) {
             SystemRolePermissionDO dbQuery = new SystemRolePermissionDO();
             dbQuery.setRoleId(roleId);
-            List<SystemRolePermissionDO> permissionDOS = systemRolePermissionMapper.selectList(new EntityWrapper<>(dbQuery));
+            List<SystemRolePermissionDO> permissionDOS = systemRolePermissionMapper.selectList(dbQuery);
             if (CollectionUtil.isNotEmpty(permissionDOS)) {
                 for (ZTreeEntity entity : dbResult) {
                     //

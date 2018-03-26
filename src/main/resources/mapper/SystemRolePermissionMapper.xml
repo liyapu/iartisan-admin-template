@@ -18,12 +18,12 @@
         </if>
     </select>
 
-    <select id="selectList" resultType="systemRolePermission">
+    <select id="selectList" parameterType="systemRolePermission" resultType="systemRolePermission">
         SELECT
         <include refid="Base_Column_List"/>
         from system_role_permission
         where 1=1
-        <if test="roleId=null">
+        <if test="roleId!=null">
             and ROLE_ID=#{roleId}
         </if>
     </select>

@@ -15,4 +15,5 @@ public interface SystemRolePermissionMapper extends MybatisBaseMapper<SystemRole
 
     List<String> selectPermissions(SystemRolePermissionDO t);
 
+    List<SystemRolePermissionDO> selectList(SystemRolePermissionDO t);
 }
