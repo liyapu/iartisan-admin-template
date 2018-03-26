@@ -43,6 +43,8 @@ public class ResourceSupportService {
     private MenuSupportService menuSupportService;
 
 
+    private static final String split = "|";
+
     public List<ResourceEntity> getResourceList() {
         List<ResourceEntity> result = new ArrayList<>();
         //加载菜单列表
@@ -61,10 +63,21 @@ public class ResourceSupportService {
                     for (SystemMenuDO second : secondMenuList) {
                         ResourceEntity secondEntity = new ResourceEntity();
                         secondEntity.setTitle(second.getMenuName());
-                        secondEntity.setValue(second.getMenuId());
-                        secondEntity.setData(new ArrayList<>());
-                        secondData.add(secondEntity);
+                        secondEntity.setValue(second.getMenuId() + split + "m");
+                        List<ResourceEntity> resourceData = new ArrayList<>();
                         //添加resource的内容
+                        List<SystemResourceDO> resourceDOS = getResourceByMenuId(second.getMenuId());
+                        if (CollectionUtil.isNotEmpty(resourceDOS)) {
+                            for (SystemResourceDO resourceDO : resourceDOS) {
+                                ResourceEntity resourceEntity = new ResourceEntity();
+                                resourceEntity.setTitle(resourceDO.getResourceName());
+                                resourceEntity.setValue(resourceDO.getResourceId() + split + "r");
+                                resourceEntity.setData(new ArrayList<>());
+                                resourceData.add(resourceEntity);
+                            }
+                        }
+                        secondEntity.setData(resourceData);
+                        secondData.add(secondEntity);
                     }
                 }
                 firstEntity.setData(secondData);
@@ -72,6 +85,13 @@ public class ResourceSupportService {
             }
         }
         return result;
+    }
+
+    private List<SystemResourceDO> getResourceByMenuId(String menuId) {
+        SystemResourceDO resourceDO = new SystemResourceDO();
+        resourceDO.setMenuId(menuId);
+        List<SystemResourceDO> dbResult = systemResourceMapper.selectList(new EntityWrapper<>(resourceDO));
+        return dbResult;
     }
 
     public List<ResourceEntity> getResourceListByRoleId(String roleId) {

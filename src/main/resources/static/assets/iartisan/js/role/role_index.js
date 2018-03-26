@@ -9,7 +9,7 @@ layui.config({
         queryPageData: "/roleSupport/queryPageData",
         addDataPage: "/roleSupport/addDataPage",
         addData: "/roleSupport/addData",
-        queryDetailData: "/roleSupport/queryDetailData",
+        queryDetailPage: "/roleSupport/queryDetailPage",
         deleteData: "/roleSupport/deleteData"
     };
     queryPageData();
@@ -66,7 +66,7 @@ layui.config({
             var index = layui.layer.open({
                 title: '角色详情',
                 type: 2,
-                content: urls.queryDetailData + "?roleId=" + data.roleId,
+                content: urls.queryDetailPage + "?roleId=" + data.roleId,
                 area: ['500px', '500px'],
                 skin: 'layui-layer-molv',
                 maxmin: true,

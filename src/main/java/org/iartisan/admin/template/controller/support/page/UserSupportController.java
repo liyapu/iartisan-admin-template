@@ -41,22 +41,27 @@ public class UserSupportController extends BaseController implements ISupportPag
         return VIEW_PREFIX + "user_index";
     }
 
+    @RequiresPermissions("auth:manage:user:addDataDialog")
+    @GetMapping(ReqContants.REQ_ADD_DATA_DIALOG)
+    public String addDataPage(Model model) {
+        //查询所有的角色列表
+        model.addAttribute(_data, roleSupportService.getAllRoles());
+        return VIEW_PREFIX + "user_add";
+    }
+
 
     @RequiresPermissions("auth:manage:user:modifyDataDialog")
     @GetMapping(ReqContants.REQ_MODIFY_DATA_DIALOG)
-    public String modifyDataDialog(Model model, Serializable userId) {
+    public String modifyDataDialog(Model model, String userId) {
         //查询用户所有角色
         model.addAttribute(_data, roleSupportService.getRoleByUserId(userId.toString()));
         return VIEW_PREFIX + "user_modify";
     }
 
-
-    @RequiresPermissions("auth:manage:user:addDataDialog")
-    @GetMapping(ReqContants.REQ_ADD_DATA_DIALOG)
-    public String addDataDialog(Model model) {
-        //查询所有的角色列表
-        model.addAttribute(_data, roleSupportService.getAllRoles());
-        return VIEW_PREFIX + "user_add";
+    @Override
+    public String queryDetailPage(Model model, String keyId) {
+        return null;
     }
+
 
 }

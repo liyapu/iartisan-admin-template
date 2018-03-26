@@ -45,7 +45,7 @@ public class MenuSupportController extends BaseController implements ISupportPag
 
     @RequiresPermissions("auth:manage:menu:addDataDialog")
     @GetMapping(ReqContants.REQ_ADD_DATA_DIALOG)
-    public String addDataDialog(Model model) {
+    public String addDataPage(Model model) {
         //查询一级菜单
         model.addAttribute(_data, menuSupportService.getFirstMenus());
         return VIEW_PREFIX + "menu_add";
@@ -53,11 +53,16 @@ public class MenuSupportController extends BaseController implements ISupportPag
 
     @RequiresPermissions("auth:manage:menu:modifyDataDialog")
     @GetMapping(ReqContants.REQ_MODIFY_DATA_DIALOG)
-    public String modifyDataDialog(Model model, Serializable menuId) {
+    public String modifyDataDialog(Model model, String menuId) {
         //查询一级菜单
         model.addAttribute("firstMenus", menuSupportService.getFirstMenus());
         //查询一级菜单
         model.addAttribute(_data, menuSupportService.getMenuById(menuId.toString()));
         return VIEW_PREFIX + "menu_modify";
+    }
+
+    @Override
+    public String queryDetailPage(Model model, String keyId) {
+        return null;
     }
 }

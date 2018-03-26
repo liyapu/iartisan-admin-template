@@ -42,17 +42,15 @@ public class RoleSupportController extends BaseController implements ISupportPag
         return VIEW_PREFIX + "role_index";
     }
 
-
     @RequiresPermissions("auth:manage:role:addDataPage")
     @GetMapping(ReqContants.REQ_ADD_DATA_PAGE)
-    public String addDataPage() {
+    public String addDataPage(Model model) {
         return VIEW_PREFIX + "role_add";
     }
 
-
     @RequiresPermissions("auth:manage:role:queryDetailPage")
     @GetMapping(ReqContants.REQ_QUERY_DETAIL_PAGE)
-    public String queryDetailPage(String roleId, Model model) {
+    public String queryDetailPage(Model model, String roleId) {
         RoleEntity authEntity = roleSupportService.getAuthDetail(roleId);
         model.addAttribute(_data, authEntity);
         return VIEW_PREFIX + "role_detail";
@@ -60,13 +58,7 @@ public class RoleSupportController extends BaseController implements ISupportPag
 
 
     @Override
-    public String addDataDialog(Model model) {
+    public String modifyDataDialog(Model model, String keyId) {
         return null;
     }
-
-    @Override
-    public String modifyDataDialog(Model model, Serializable keyId) {
-        return null;
-    }
-
 }
