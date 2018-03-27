@@ -19,6 +19,8 @@ public class ZTreeEntity {
 
     private boolean checked;
 
+    private boolean chkDisabled=false;
+
     public String getpId() {
         return pId;
     }
@@ -57,5 +59,13 @@ public class ZTreeEntity {
 
     public void setChecked(boolean checked) {
         this.checked = checked;
+    }
+
+    public boolean isChkDisabled() {
+        return chkDisabled;
+    }
+
+    public void setChkDisabled(boolean chkDisabled) {
+        this.chkDisabled = chkDisabled;
     }
 }

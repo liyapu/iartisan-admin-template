@@ -6,8 +6,8 @@ layui.config({
 
     var urls = {
         queryPageData: "/userSupport/queryPageData",
-        modifyDataDialog: "/userSupport/modifyDataDialog",
-        addDataDialog: "/userSupport/addDataDialog",
+        modifyDataPage: "/userSupport/modifyDataPage",
+        addDataPage: "/userSupport/addDataPage",
         changeStatus: "/userSupport/changeStatus",
         addData: "/userSupport/addData",
         deleteData: "/userSupport/deleteData"
@@ -75,7 +75,7 @@ layui.config({
                 title: '用户信息修改',
                 skin: 'layui-layer-molv',
                 area: ['500px', '500px'],
-                content: urls.modifyDataDialog + "?userId=" + data.userId,
+                content: urls.modifyDataPage + "?userId=" + data.userId,
                 btn: ['修改', '关闭'],
                 yes: function (index, layero) {
                     layero.find('iframe').contents().find("#formModify").find("#btnModify").click();
@@ -92,7 +92,7 @@ layui.config({
                         tableIns.reload();
                     }
                 });*/
-                router.post({url:urls.deleteData,success:function () {
+                router.post({url:urls.deleteData,data:{userId: data.userId},success:function () {
                     tableIns.reload();
                 }})
             });
@@ -121,7 +121,7 @@ layui.config({
             type: 2,
             title: '添加用户',
             area: ['500px', '500px'],
-            content: urls.addDataDialog,
+            content: urls.addDataPage,
             btn: ['提交', '关闭'],
             btnAlign: 'c',
             yes: function (index, layero) {

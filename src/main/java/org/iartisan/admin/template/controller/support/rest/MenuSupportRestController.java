@@ -9,8 +9,11 @@ import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.authentication.MenuTree;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
+import org.iartisan.runtime.web.controller.ISupportRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -21,9 +24,8 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("menuSupport")
-public class MenuSupportRestController extends BaseController {
+public class MenuSupportRestController extends BaseController implements ISupportRestController<MenuEntity>{
 
-    private static final String VIEW_PREFIX = "menu/";
 
     @Autowired
     private MenuSupportService menuSupportService;
@@ -37,6 +39,7 @@ public class MenuSupportRestController extends BaseController {
         return webR;
     }
 
+    @RequiresPermissions("auth:manage:menu:addData")
     @PostMapping(ReqContants.REQ_ADD_DATA)
     public WebR addData(MenuEntity menuEntity) {
         menuSupportService.addMenu(menuEntity);
@@ -44,7 +47,7 @@ public class MenuSupportRestController extends BaseController {
         return webR;
     }
 
-    @RequiresPermissions("deletedata")
+    @RequiresPermissions("auth:manage:menu:deleteData")
     @PostMapping(ReqContants.REQ_DELETE_DATA)
     public WebR deleteData(String menuId) {
         menuSupportService.deleteData(menuId);
@@ -52,6 +55,8 @@ public class MenuSupportRestController extends BaseController {
         return webR;
     }
 
+
+    @RequiresPermissions("auth:manage:menu:modifyData")
     @PostMapping(ReqContants.REQ_MODIFY_DATA)
     public WebR modifyData(MenuEntity menuEntity) {
         menuSupportService.modifyData(menuEntity);

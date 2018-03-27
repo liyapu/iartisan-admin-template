@@ -80,7 +80,7 @@ public class UserSupportService {
         dbInsert.setCreateTime(new Date());
         try {
             //设置默认密码
-            dbInsert.setUserPwd(MD5Util.MD5(EnvContextConfig.get("admin.default.password", "123456")));
+            dbInsert.setUserPwd(MD5Util.MD5(EnvContextConfig.get("admin.default.password", "123456")).toLowerCase());
             systemUserMapper.insert(dbInsert);
             //插入角色列表
             addUserRole(userId, userEntity.getRoles());

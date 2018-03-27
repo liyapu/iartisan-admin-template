@@ -58,7 +58,7 @@ public class RoleSupportController extends BaseController implements ISupportPag
 
 
     @Override
-    public String modifyDataDialog(Model model, String keyId) {
+    public String modifyDataPage(Model model, String keyId) {
         return null;
     }
 }

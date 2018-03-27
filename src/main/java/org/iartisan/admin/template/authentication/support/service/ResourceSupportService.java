@@ -10,7 +10,6 @@ import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemRoleP
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemResourceDO;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemRolePermissionDO;
-import org.iartisan.admin.template.authentication.support.service.entity.ResourceEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.ZTreeEntity;
 import org.iartisan.runtime.utils.CollectionUtil;
 import org.iartisan.runtime.web.authentication.MenuTree;
@@ -82,7 +81,7 @@ public class ResourceSupportService {
         return dbResult;
     }
 
-    public List<ZTreeEntity> getResourceListByRoleId(String roleId) {
+    public List<ZTreeEntity> getResourceListByRoleId(String roleId, boolean chkDisabled) {
         List<ZTreeEntity> dbResult = getResourceTree();
         if (CollectionUtil.isNotEmpty(dbResult)) {
             SystemRolePermissionDO dbQuery = new SystemRolePermissionDO();
@@ -94,9 +93,10 @@ public class ResourceSupportService {
                     for (SystemRolePermissionDO permissionDO : permissionDOS) {
                         if (entity.getId().equals(permissionDO.getPermissionId() + split + permissionDO.getPermissionType())) {
                             entity.setChecked(true);
-                           // permissionDOS.remove(permissionDO);
+                            // permissionDOS.remove(permissionDO);
                         }
                     }
+                    entity.setChkDisabled(chkDisabled);
                 }
             }
 

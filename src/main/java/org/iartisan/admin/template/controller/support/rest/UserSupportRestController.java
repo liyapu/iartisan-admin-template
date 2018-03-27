@@ -1,7 +1,6 @@
 package org.iartisan.admin.template.controller.support.rest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.iartisan.admin.template.authentication.support.service.RoleSupportService;
 import org.iartisan.admin.template.authentication.support.service.UserSupportService;
 import org.iartisan.admin.template.authentication.support.service.entity.UserEntity;
 import org.iartisan.runtime.bean.Page;
@@ -9,9 +8,8 @@ import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
+import org.iartisan.runtime.web.controller.ISupportRestController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -23,9 +21,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("userSupport")
-public class UserSupportRestController extends BaseController {
-
-    private static final String VIEW_PREFIX = "user/";
+public class UserSupportRestController extends BaseController implements ISupportRestController<UserEntity> {
 
     @Autowired
     private UserSupportService userSupportService;
@@ -39,6 +35,7 @@ public class UserSupportRestController extends BaseController {
         return webR;
     }
 
+    @RequiresPermissions("auth:manage:user:addData")
     @PostMapping(ReqContants.REQ_ADD_DATA)
     public WebR addData(UserEntity entity) {
         userSupportService.addUser(entity);
@@ -46,6 +43,7 @@ public class UserSupportRestController extends BaseController {
         return r;
     }
 
+    @RequiresPermissions("auth:manage:user:modifyData")
     @PostMapping(ReqContants.REQ_MODIFY_DATA)
     public WebR modifyData(UserEntity entity) {
         userSupportService.modifyData(entity);
@@ -53,6 +51,7 @@ public class UserSupportRestController extends BaseController {
         return r;
     }
 
+    @RequiresPermissions("auth:manage:user:changeStatus")
     @PostMapping("changeStatus")
     public WebR changeStatus(String userId, String status) {
         userSupportService.changeStatus(userId, status);
@@ -60,7 +59,7 @@ public class UserSupportRestController extends BaseController {
         return r;
     }
 
-    @RequiresPermissions("deletedata")
+    @RequiresPermissions("auth:manage:user:deleteData")
     @PostMapping(ReqContants.REQ_DELETE_DATA)
     public WebR deleteData(String userId) {
         userSupportService.deleteByUserId(userId);

@@ -3,6 +3,7 @@ package org.iartisan.admin.template.controller.support.rest;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.iartisan.admin.template.authentication.support.service.ResourceSupportService;
 import org.iartisan.admin.template.authentication.support.service.RoleSupportService;
+import org.iartisan.admin.template.authentication.support.service.entity.MenuEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.ResourceEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.RoleEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.ZTreeEntity;
@@ -11,9 +12,11 @@ import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
+import org.iartisan.runtime.web.controller.ISupportRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -22,7 +25,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("roleSupport")
-public class RoleSupportRestController extends BaseController {
+public class RoleSupportRestController extends BaseController implements ISupportRestController<RoleEntity> {
 
 
     @Autowired
@@ -32,7 +35,7 @@ public class RoleSupportRestController extends BaseController {
     private ResourceSupportService resourceSupportService;
 
 
-    @RequiresPermissions("deletedata")
+    @RequiresPermissions("auth:manage:role:deleteData")
     @PostMapping(ReqContants.REQ_DELETE_DATA)
     public WebR deleteData(String roleId) {
         roleSupportService.deleteRole(roleId);
@@ -51,7 +54,7 @@ public class RoleSupportRestController extends BaseController {
 
     @GetMapping("getResourceListByRoleId")
     public WebR getResourceListByRoleId(String roleId) {
-        List<ZTreeEntity> dataList = resourceSupportService.getResourceListByRoleId(roleId);
+        List<ZTreeEntity> dataList = resourceSupportService.getResourceListByRoleId(roleId, true);
         WebR r = new WebR();
         r.setDataList(dataList);
         return r;
@@ -65,6 +68,13 @@ public class RoleSupportRestController extends BaseController {
         return webR;
     }
 
+
+    @Override
+    public WebR modifyData(RoleEntity roleEntity) {
+        return null;
+    }
+
+    @RequiresPermissions("auth:manage:role:addData")
     @PostMapping(ReqContants.REQ_ADD_DATA)
     public WebR addData(RoleEntity roleEntity) {
         roleSupportService.addRole(roleEntity);
