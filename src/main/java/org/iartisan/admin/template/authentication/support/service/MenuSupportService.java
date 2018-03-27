@@ -1,5 +1,6 @@
 package org.iartisan.admin.template.authentication.support.service;
 
+import org.iartisan.admin.template.authentication.support.PermissionType;
 import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemMenuMapper;
 import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemRolePermissionMapper;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO;
@@ -111,6 +112,7 @@ public class MenuSupportService {
         }
         SystemRolePermissionDO dbQuery = new SystemRolePermissionDO();
         dbQuery.setRoleIds(roles);
+        dbQuery.setPermissionType(PermissionType.m.name());
         List<String> menuIds = systemRolePermissionMapper.selectPermissions(dbQuery);
         SystemMenuDO systemMenuDO = new SystemMenuDO();
         systemMenuDO.setMenuIds(menuIds);

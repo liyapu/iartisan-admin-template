@@ -113,6 +113,7 @@ public class ResourceSupportService {
         List<MenuTree> menuTreeList = menuSupportService.getMenus(userId);
         if (CollectionUtil.isNotEmpty(menuTreeList)) {
             for (MenuTree tree : menuTreeList) {
+                //result.add(tree.getPermission());
                 List<MenuTree> secondTrees = tree.getChildren();
                 if (CollectionUtil.isNotEmpty(secondTrees)) {
                     for (MenuTree secondTree : secondTrees) {
