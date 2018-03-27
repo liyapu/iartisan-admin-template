@@ -10,7 +10,7 @@ layui.config({
         var _that = $(this);
         _that.text("登录中...").attr("disabled", "disabled").addClass("layui-disabled");
         //密码md5
-        var pwd = $.md5("00");
+        var pwd = $.md5(data.field["password"]);
         router.post({
                 url: "/authenticate",
                 data: {userName: data.field["userName"], userPwd: pwd,vercode:data.field["vercode"]},

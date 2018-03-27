@@ -61,19 +61,4 @@ public class AuthenticateController {
         }
         return r;
     }
-
-    @ResponseBody
-    @GetMapping("getMenus")
-    public WebR getMenus() {
-        WebR webR = new WebR();
-        RealmBean realmBean = (RealmBean) WebUtil.getShiroSession().getAttribute(WebConstants._USER);
-        webR.setDataList(realmBean.getMenuTrees());
-        return webR;
-    }
-
-    @GetMapping(value = ReqContants.REQ_LOGOUT)
-    public String logout() {
-        WebUtil.getShiroSubject().logout();
-        return "redirect:index";
-    }
 }
