@@ -1,14 +1,14 @@
-var $, tab, menus, layer,form,element;
+var $, tab, menus, layer, form, element;
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
 }).use(['form', 'element', 'layer', 'jquery', 'bodyTab'], function () {
     $ = layui.$, element = layui.element,
-    layer = parent.layer === undefined ? layui.layer : top.layer;
+        layer = layui.layer;
     tab = layui.bodyTab({
         openTabNum: "10",  //最大可打开窗口数量
         url: "/getMenus" //获取菜单json地址
     }),
-    form=layui.form;
+        form = layui.form;
     //切换导航栏按钮点击事件
     $("#switchNav").click(function () {
         switchNav();
@@ -59,6 +59,31 @@ layui.config({
         }
         $(this).parent("li").siblings().removeClass("layui-nav-itemed");
     })
+
+    $("#donation").on("click", function () {
+        layer.msg("暂不需要捐助");
+    });
+
+    $('*[lay-tips]').on('mouseenter', function () {
+        var content = $(this).attr('lay-tips');
+        this.index = layer.tips(content, this, {
+            tips: [1, '#3A3D49']
+        });
+    }).on('mouseleave', function () {
+        layer.close(this.index);
+    });
+
+    $("#clearCache").on('mouseenter', function () {
+        var content = $(this).attr('lay-tips');
+        this.index = layer.tips(content, this, {
+            time: -1, tips: [1, '#3A3D49']
+        });
+    }).on('mouseleave', function () {
+        layer.close(this.index);
+    }).on("click", function () {
+        window.sessionStorage.removeItem("showNotice");
+        layer.msg("缓存清除成功！");
+    });
 });
 
 //打开新窗口

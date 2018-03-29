@@ -25,6 +25,7 @@ public class AdminWebMvcConfiguration implements ServletContextInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         servletContext.setAttribute("_title", EnvContextConfig.get("iartisan.admin.title"));
+        servletContext.setAttribute("_authorEmail", EnvContextConfig.get("iartisan.author.email"));
     }
 
     @Bean

@@ -16,27 +16,27 @@
         <label class="layui-form-label">菜单名称</label>
         <div class="layui-input-inline">
             <input type="text" class="layui-input" placeholder="请输入菜单名称" lay-verify="required"
-                   name="menuName" value="${data.menuName!''}">
+                   name="menuName" value="${data.menuName!''}" lay-verType="tips">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">权限代码</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input" placeholder="请输入菜单名称" lay-verify="required"
-                   name="menuPermission" value="${data.menuPermission!''}">
+            <input type="text" class="layui-input" <#--placeholder="请输入菜单名称"--> <#--lay-verify="required"-->
+                   name="menuPermission" value="${data.menuPermission!''}" disabled>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">链接</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input" placeholder="请输入菜单名称" lay-verify="required"
-                   name="menuUrl" value="${data.menuUrl!''}">
+            <input type="text" class="layui-input" <#--placeholder="请输入菜单名称"--> <#--lay-verify="required"-->
+                   name="menuUrl" value="${data.menuUrl!''}" disabled>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">图标</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input" placeholder="请输入菜单名称" lay-verify="required"
+            <input type="text" class="layui-input" placeholder="请输入图标代码"
                    name="menuIcon">
         </div>
         <div class="layui-form-mid"><i class="layui-icon"> ${data.menuIcon!''}</i></div>
