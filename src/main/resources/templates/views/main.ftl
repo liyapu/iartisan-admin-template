@@ -21,7 +21,9 @@
 <div class="layui-row layui-col-space10">
     <div class="layui-col-lg6 layui-col-md12">
         <div class="layui-card">
-            <div class="layui-card-header">版本信息</div>
+            <div class="layui-card-header">版本信息<a href='https://gitee.com/iartisan/iartisan-admin-template' target="_blank"><img
+                    src='https://gitee.com/iartisan/iartisan-admin-template/widgets/widget_4.svg'
+                    alt='Fork me on Gitee'></img></a></div>
             <div class="layui-card-body layui-text">
                 <table class="layui-table">
                     <colgroup>
@@ -38,7 +40,7 @@
                     <tr>
                         <td>基于框架</td>
                         <td>
-                            layui-2.2.5 ，layuiCMS 2.0
+                            spring-boot,mybatis-plus,layui-2.2.5 ，layuiCMS 2.0
                         </td>
                     </tr>
                     <tr>
@@ -49,7 +51,8 @@
                         <td>获取渠道</td>
                         <td style="padding-bottom: 0;">
                             <div class="layui-btn-container">
-                                <a href="https://gitee.com/iartisan/iartisan-admin-template" target="_blank" class="layui-btn">立即下载</a>
+                                <a href="https://gitee.com/iartisan/iartisan-admin-template" target="_blank"
+                                   class="layui-btn">立即下载</a>
                             </div>
                         </td>
                     </tr>
