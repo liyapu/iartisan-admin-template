@@ -44,4 +44,4 @@
     <input type="hidden" name="menuId" value="${data.menuId!''}">
     <input type="hidden" lay-submit="" lay-filter="submitData" id="btnModify"/>
 </form>
-<script type="text/javascript" src="/assets/iartisan/js/menu/menu_modify.js"></script>
+<script type="text/javascript" src="/assets/iartisan/js/menu/menu_modify.js?${staticVerison!'1'}"></script>

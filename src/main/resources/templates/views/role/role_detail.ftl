@@ -22,4 +22,4 @@
     <input type="hidden" id="roleId" value="${data.roleId}" >
 </form>
 <link rel="stylesheet" href="/assets/iartisan/plugins/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
-<script type="text/javascript" src="/assets/iartisan/js/role/role_detail.js"></script>
+<script type="text/javascript" src="/assets/iartisan/js/role/role_detail.js?${staticVerison!'1'}"></script>

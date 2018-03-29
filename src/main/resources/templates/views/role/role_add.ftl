@@ -29,4 +29,4 @@
     </div>
 </form>
 <link rel="stylesheet" href="/assets/iartisan/plugins/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
-<script type="text/javascript" src="/assets/iartisan/js/role/role_add.js"></script>
+<script type="text/javascript" src="/assets/iartisan/js/role/role_add.js?${staticVerison!'1'}"></script>

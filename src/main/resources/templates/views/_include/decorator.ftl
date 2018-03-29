@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="/assets/iartisan/css/font/font.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/plugins/layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/css/public.css" media="all"/>
-    <script type="text/javascript" src="/assets/iartisan/plugins/layui/layui.js"></script>
-    <script type="text/javascript" src="/assets/iartisan/js/decorator.js"></script>
+    <script type="text/javascript" src="/assets/iartisan/plugins/layui/layui.js?${staticVerison!'1'}"></script>
+    <script type="text/javascript" src="/assets/iartisan/js/decorator.js?${staticVerison!'1'}"></script>
 </head>
 <body class="childrenBody">
 <sitemesh:write property='body'/>

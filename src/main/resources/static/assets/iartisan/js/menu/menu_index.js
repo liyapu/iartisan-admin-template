@@ -41,8 +41,8 @@ layui.config({
                     align: "center",
                     templet: function (d) {
                         var html = "<a class='layui-btn layui-btn-xs' lay-event='edit'>编辑</a>";
-                       /* html += "<a class='layui-btn layui-btn-xs layui-btn-danger' lay-event='del'>删除</a>";*/
-                        html += "<a class='layui-btn layui-btn-xs layui-btn-normal' lay-event='del'>子权限管理</a>";
+                        /* html += "<a class='layui-btn layui-btn-xs layui-btn-danger' lay-event='del'>删除</a>";*/
+                        html += "<a class='layui-btn layui-btn-xs layui-btn-normal' lay-event='addMenuSource'>子权限管理</a>";
                         return html;
                     }
                 }
@@ -58,8 +58,8 @@ layui.config({
         var _that = $(this);
         var layEvent = obj.event,
             data = obj.data;
-        if (layEvent == 'del') {
-            layer.confirm('确定删除该菜单吗？', {icon: 3, title: '提示信息'}, function (index) {
+        if (layEvent == 'addMenuSource') {
+            /*layer.confirm('确定删除该菜单吗？', {icon: 3, title: '提示信息'}, function (index) {
                 layer.close(index);
                 router.post({
                     url: urls.deleteData, data: {menuId: data.id}, success: function () {
@@ -67,7 +67,8 @@ layui.config({
                     }
                 });
                 tableIns.reload();
-            });
+            });*/
+            layer.msg("功能开发中");
         }
         if (layEvent == 'edit') {
             layui.layer.open({
@@ -112,7 +113,7 @@ layui.config({
         this.index = layer.tips('<div style="padding: 10px; font-size: 14px; color: #eee;">' + content + '</div>', this, {
             time: -1, maxWidth: 280, tips: [4, '#3A3D49']
         });
-    }).on('mouseleave', function(){
+    }).on('mouseleave', function () {
         layer.close(this.index);
     });
 });

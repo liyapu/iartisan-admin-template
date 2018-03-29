@@ -26,6 +26,7 @@ public class AdminWebMvcConfiguration implements ServletContextInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
         servletContext.setAttribute("_title", EnvContextConfig.get("iartisan.admin.title"));
         servletContext.setAttribute("_authorEmail", EnvContextConfig.get("iartisan.author.email"));
+        servletContext.setAttribute("staticVerison", EnvContextConfig.get("iartisan.static.version","00000"));
     }
 
     @Bean

@@ -51,6 +51,6 @@
     </div>
 </div>
 <script type="text/javascript" src="/assets/iartisan/plugins/layui/layui.js"></script>
-<script type="text/javascript" src="/assets/iartisan/js/login.js"></script>
+<script type="text/javascript" src="/assets/iartisan/js/login.js?${staticVerison!'1'}"></script>
 </body>
 </html>

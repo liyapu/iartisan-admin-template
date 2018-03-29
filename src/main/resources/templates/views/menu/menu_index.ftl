@@ -26,4 +26,4 @@
 
 <table id="dataList" lay-filter="dataList"></table>
 
-<script type="text/javascript" src="/assets/iartisan/js/menu/menu_index.js"></script>
+<script type="text/javascript" src="/assets/iartisan/js/menu/menu_index.js?${staticVerison!'1'}"></script>

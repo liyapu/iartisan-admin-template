@@ -20,4 +20,4 @@
     <input type="hidden" name="userId" value="${data.userEntity.userId!''}">
     <input type="hidden" lay-submit="" lay-filter="modifyData" id="btnModify"/>
 </form>
-<script type="text/javascript" src="/assets/iartisan/js/user/user_modify.js"></script>
+<script type="text/javascript" src="/assets/iartisan/js/user/user_modify.js?${staticVerison!'1'}"></script>

@@ -42,4 +42,4 @@
     </div>
     <input type="hidden" lay-submit="" lay-filter="addData" id="btnAdd"/>
 </form>
-<script type="text/javascript" src="/assets/iartisan/js/menu/menu_add.js"></script>
+<script type="text/javascript" src="/assets/iartisan/js/menu/menu_add.js?${staticVerison!'1'}"></script>

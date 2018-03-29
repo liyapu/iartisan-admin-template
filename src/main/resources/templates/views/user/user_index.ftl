@@ -22,4 +22,4 @@
     </form>
 </blockquote>
 <table id="dataList" lay-filter="_table"></table>
-<script type="text/javascript" src="/assets/iartisan/js/user/user_index.js"></script>
+<script type="text/javascript" src="/assets/iartisan/js/user/user_index.js?${staticVerison!'1'}"></script>

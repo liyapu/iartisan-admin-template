@@ -98,7 +98,7 @@
 <!-- 手机屏幕遮罩层 -->
 <div class="site-mobile-shade"></div>
 <script type="text/javascript" src="/assets/iartisan/plugins/layui/layui.js"></script>
-<script type="text/javascript" src="/assets/iartisan/js/index.js"></script>
+<script type="text/javascript" src="/assets/iartisan/js/index.js?${staticVerison!'1'}"></script>
 <script type="text/javascript" src="/assets/iartisan/plugins/lib/cache.js"></script>
 </body>
 
