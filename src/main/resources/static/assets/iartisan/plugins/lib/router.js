@@ -80,7 +80,7 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
                 skin: options.skin || 'line',
                 limits: options.limits || [10],
                 where: options.where || {},
-                height: 472,
+                height: options.height || 472,
                 even: options.even || false,
                 response: {
                     statusCode: "000000",

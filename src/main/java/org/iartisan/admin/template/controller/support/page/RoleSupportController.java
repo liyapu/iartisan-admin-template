@@ -1,13 +1,8 @@
 package org.iartisan.admin.template.controller.support.page;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.iartisan.admin.template.authentication.support.service.ResourceSupportService;
 import org.iartisan.admin.template.authentication.support.service.RoleSupportService;
-import org.iartisan.admin.template.authentication.support.service.entity.ResourceEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.RoleEntity;
-import org.iartisan.runtime.bean.Page;
-import org.iartisan.runtime.bean.PageWrapper;
-import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportPageController;
@@ -15,12 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author King
@@ -51,7 +41,7 @@ public class RoleSupportController extends BaseController implements ISupportPag
     @RequiresPermissions("auth:manage:role:queryDetailPage")
     @GetMapping(ReqContants.REQ_QUERY_DETAIL_PAGE)
     public String queryDetailPage(Model model, String roleId) {
-        RoleEntity authEntity = roleSupportService.getAuthDetail(roleId);
+        RoleEntity authEntity = roleSupportService.getRoleDetail(roleId);
         model.addAttribute(_data, authEntity);
         return VIEW_PREFIX + "role_detail";
     }

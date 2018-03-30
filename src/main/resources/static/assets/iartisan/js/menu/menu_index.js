@@ -6,9 +6,10 @@ layui.config({
 
     var urls = {
         queryPageData: "/menuSupport/queryPageData",
-        addDataPage: "/menuSupport/addDataDialog",
+        addDataPage: "/menuSupport/addDataPage",
         deleteData: "/menuSupport/deleteData",
-        modifyDataPage: "/menuSupport/modifyDataPage"
+        modifyDataPage: "/menuSupport/modifyDataPage",
+        addResourceIndex: "/resourceSupport/index"
     };
     queryPageData();
 
@@ -55,20 +56,23 @@ layui.config({
     });
     //列表操作
     table.on('tool(dataList)', function (obj) {
-        var _that = $(this);
         var layEvent = obj.event,
             data = obj.data;
         if (layEvent == 'addMenuSource') {
-            /*layer.confirm('确定删除该菜单吗？', {icon: 3, title: '提示信息'}, function (index) {
-                layer.close(index);
-                router.post({
-                    url: urls.deleteData, data: {menuId: data.id}, success: function () {
-                        tableIns.reload();
-                    }
-                });
-                tableIns.reload();
-            });*/
-            layer.msg("功能开发中");
+            layui.layer.open({
+                type: 2,
+                maxmin: true,
+                anim: 1,
+                title: '添加子菜单 <span style="margin-left: 5px;font-size: 10px">[' + data.title + "]</span>",
+                skin: 'layui-layer-molv',
+                area: ['800px', '600px'],
+                content: urls.addResourceIndex + "?menuId=" + data.id,
+                btn: ['关闭'],
+                btnAlign: 'c',
+                btn1: function (index) {
+                    layer.close(index);
+                }
+            });
         }
         if (layEvent == 'edit') {
             layui.layer.open({

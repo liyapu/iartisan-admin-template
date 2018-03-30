@@ -3,8 +3,6 @@ package org.iartisan.admin.template.controller.support.rest;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.iartisan.admin.template.authentication.support.service.ResourceSupportService;
 import org.iartisan.admin.template.authentication.support.service.RoleSupportService;
-import org.iartisan.admin.template.authentication.support.service.entity.MenuEntity;
-import org.iartisan.admin.template.authentication.support.service.entity.ResourceEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.RoleEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.ZTreeEntity;
 import org.iartisan.runtime.bean.Page;
@@ -15,8 +13,6 @@ import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -62,7 +58,7 @@ public class RoleSupportRestController extends BaseController implements ISuppor
 
     @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
     public WebR queryPageData(Page page, String roleName) {
-        PageWrapper<RoleEntity> pageData = roleSupportService.getAuthPageData(page, roleName);
+        PageWrapper<RoleEntity> pageData = roleSupportService.getRolePageData(page, roleName);
         WebR webR = new WebR(pageData.getPage());
         webR.setDataList(pageData.getDataList());
         return webR;

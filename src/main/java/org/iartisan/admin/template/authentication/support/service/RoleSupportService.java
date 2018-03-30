@@ -65,7 +65,7 @@ public class RoleSupportService {
         return result;
     }
 
-    public RoleEntity getAuthDetail(String roleId) {
+    public RoleEntity getRoleDetail(String roleId) {
         SystemRoleDO dbResult = systemRoleMapper.selectById(roleId);
         RoleEntity result = new RoleEntity();
         if (null != dbResult) {
@@ -75,7 +75,7 @@ public class RoleSupportService {
         return result;
     }
 
-    public PageWrapper<RoleEntity> getAuthPageData(Page page, String roleName) {
+    public PageWrapper<RoleEntity> getRolePageData(Page page, String roleName) {
         SystemRoleDO roleDO = new SystemRoleDO();
         if (StringUtils.isNotEmpty(roleName)) {
             roleDO.setRoleName(roleName);
