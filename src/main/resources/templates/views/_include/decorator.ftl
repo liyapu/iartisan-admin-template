@@ -18,7 +18,7 @@
     <script type="text/javascript" src="/assets/iartisan/plugins/layui/layui.js?${staticVerison!'1'}"></script>
     <script type="text/javascript" src="/assets/iartisan/js/decorator.js?${staticVerison!'1'}"></script>
 </head>
-<body class="childrenBody">
+<#--<body class="childrenBody">-->
 <sitemesh:write property='body'/>
-</body>
+<#--</body>-->
 </html>

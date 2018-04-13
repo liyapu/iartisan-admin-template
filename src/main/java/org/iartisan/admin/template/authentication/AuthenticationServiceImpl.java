@@ -50,6 +50,9 @@ public class AuthenticationServiceImpl extends AuthenticationService {
         bean.setUserId(userDO.getUserId());
         //加载用户菜单列表
         List<MenuTree> trees = menuSupportService.getMenus(userDO.getUserId());
+        if (null == trees) {
+            throw new AuthenticationException("用户没有相应的操作权限");
+        }
         bean.setMenuTrees(trees);
         return bean;
     }

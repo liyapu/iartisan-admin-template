@@ -18,7 +18,7 @@
     <div id="nowTime">亲爱的${_user.userName!''}， 欢迎使用：${_title!''} </div>
 </blockquote>
 
-<div class="layui-row layui-col-space10">
+<div class="layui-row">
     <div class="layui-col-lg6 layui-col-md12">
         <div class="layui-card">
             <div class="layui-card-header">版本信息<a href='https://gitee.com/iartisan/iartisan-admin-template' target="_blank"><img

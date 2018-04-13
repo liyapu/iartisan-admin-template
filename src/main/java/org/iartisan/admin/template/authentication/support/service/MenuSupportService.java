@@ -114,6 +114,9 @@ public class MenuSupportService {
         dbQuery.setRoleIds(roles);
         dbQuery.setPermissionType(PermissionType.m.name());
         List<String> menuIds = systemRolePermissionMapper.selectPermissions(dbQuery);
+        if (null == menuIds) {
+            return null;
+        }
         SystemMenuDO systemMenuDO = new SystemMenuDO();
         systemMenuDO.setMenuIds(menuIds);
         List<SystemMenuDO> firstMenus = systemMenuMapper.selectFirstMenus(systemMenuDO);

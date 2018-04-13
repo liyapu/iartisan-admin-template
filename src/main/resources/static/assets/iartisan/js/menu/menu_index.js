@@ -68,10 +68,7 @@ layui.config({
                 area: ['800px', '600px'],
                 content: urls.addResourceIndex + "?menuId=" + data.id,
                 btn: ['关闭'],
-                btnAlign: 'c',
-                btn1: function (index) {
-                    layer.close(index);
-                }
+                btnAlign: 'c'
             });
         }
         if (layEvent == 'edit') {

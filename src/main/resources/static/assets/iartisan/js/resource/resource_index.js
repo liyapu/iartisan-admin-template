@@ -6,11 +6,8 @@ layui.config({
         util = layui.util;
 
     var urls = {
-        queryPageData: "/roleSupport/queryPageData",
-        addDataPage: "/roleSupport/addDataPage",
-        addData: "/roleSupport/addData",
-        queryDetailPage: "/roleSupport/queryDetailPage",
-        deleteData: "/roleSupport/deleteData"
+        queryPageData: "/resourceSupport/queryPageData",
+        addDataPage: "/resourceSupport/addDataPage"
     };
     queryPageData();
 
@@ -83,12 +80,13 @@ layui.config({
         }
     });
 
-    $("#btnAddPage").click(function () {
-        var index = layui.layer.open({
+    $("#btnAddPage").on("click", function () {
+        var value = $(this).val();
+        layui.layer.open({
             title: "添加菜单资源权限",
             type: 2,
-            content: urls.addDataPage,
-            area: ['300px', '300px'],
+            content: urls.addDataPage + "?menuId=" + value,
+            area: ['400px', '250px'],
             btn: ['添加', '关闭'],
             btnAlign: 'c',
             anim: 1,

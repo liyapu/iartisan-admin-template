@@ -23,7 +23,7 @@ public class ResourceSupportController extends BaseController implements ISuppor
 
     @GetMapping(ReqContants.REQ_INDEX)
     public String index(Model model, String menuId) {
-        model.addAttribute("menuId", menuId);
+        model.addAttribute(_data, menuId);
         return VIEW_PREFIX + "resource_index";
     }
 
@@ -32,7 +32,13 @@ public class ResourceSupportController extends BaseController implements ISuppor
         return null;
     }
 
-    @Override
+    @GetMapping(ReqContants.REQ_ADD_DATA_PAGE)
+    public String addDataPage(Model model, String menuId) {
+        model.addAttribute(_data, menuId);
+        return VIEW_PREFIX + "resource_add";
+    }
+
+
     public String addDataPage(Model model) {
         return null;
     }

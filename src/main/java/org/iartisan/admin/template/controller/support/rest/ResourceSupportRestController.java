@@ -43,6 +43,13 @@ public class ResourceSupportRestController extends BaseController implements ISu
         return null;
     }
 
+    /**
+     * 查询resource
+     *
+     * @param page
+     * @param menuId
+     * @return
+     */
     @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
     public WebR queryPageData(Page page, String menuId) {
         return null;

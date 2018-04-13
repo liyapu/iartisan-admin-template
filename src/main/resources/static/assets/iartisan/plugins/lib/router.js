@@ -77,10 +77,10 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
                 method: options.type || 'get',
                 cols: options.cols,
                 page: true,
-                skin: options.skin || 'line',
+                skin: options.skin || ['line','row'],
                 limits: options.limits || [10],
                 where: options.where || {},
-                height: options.height || 472,
+                height: options.height,
                 even: options.even || false,
                 response: {
                     statusCode: "000000",
