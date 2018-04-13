@@ -4,6 +4,7 @@ import org.iartisan.admin.template.authentication.support.service.ResourceSuppor
 import org.iartisan.admin.template.authentication.support.service.entity.ResourceEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.env.EnvContextConfig;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
@@ -30,6 +31,12 @@ public class ResourceSupportRestController extends BaseController implements ISu
     @PostMapping(ReqContants.REQ_DELETE_DATA)
     public WebR deleteData(String resourceId) {
         WebR r = new WebR();
+        //演示环境不支持删除操作
+        String env = EnvContextConfig.get("env", "prod");
+        if ("demo".equals(env)) {
+            r.isError("演示环境不支持删除操作");
+            return r;
+        }
         resourceSupportService.deleteResourceById(resourceId);
         return r;
     }
