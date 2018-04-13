@@ -1,6 +1,7 @@
 package org.iartisan.admin.template.authentication.support.service.entity;
 
 import java.util.Date;
+
 /**
  * @author King
  * @since 2018/3/1
@@ -14,6 +15,8 @@ public class ResourceEntity {
     private String resourcePermission;
 
     private Date createTime;
+
+    private String menuId;
 
     public String getId() {
         return id;
@@ -45,5 +48,13 @@ public class ResourceEntity {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(String menuId) {
+        this.menuId = menuId;
     }
 }

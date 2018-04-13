@@ -10,16 +10,18 @@ import org.iartisan.admin.template.authentication.support.dbm.mapper.SystemRoleP
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemResourceDO;
 import org.iartisan.admin.template.authentication.support.dbm.model.SystemRolePermissionDO;
+import org.iartisan.admin.template.authentication.support.service.entity.ResourceEntity;
 import org.iartisan.admin.template.authentication.support.service.entity.ZTreeEntity;
+import org.iartisan.runtime.bean.Page;
+import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.jdbc.PageHelper;
 import org.iartisan.runtime.utils.CollectionUtil;
+import org.iartisan.runtime.utils.UUIDUtil;
 import org.iartisan.runtime.web.authentication.MenuTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * <p>
@@ -143,5 +145,41 @@ public class ResourceSupportService {
         return result;
     }
 
+
+    /**
+     * 添加资源数据
+     *
+     * @param resourceEntity
+     */
+    public void addResourceData(ResourceEntity resourceEntity) {
+        SystemResourceDO dbInsert = new SystemResourceDO();
+        dbInsert.setMenuId(resourceEntity.getMenuId());
+        dbInsert.setResourceId(UUIDUtil.shortId());
+        dbInsert.setResourceName(resourceEntity.getResourceName());
+        dbInsert.setResourcePermission(resourceEntity.getResourcePermission());
+        dbInsert.setCreateTime(new Date());
+        systemResourceMapper.insert(dbInsert);
+    }
+
+    public PageWrapper<ResourceEntity> getResourcePageData(Page page, String menuId) {
+        SystemResourceDO dbResourceQuery = new SystemResourceDO();
+        dbResourceQuery.setMenuId(menuId);
+        PageWrapper<SystemResourceDO> dbResult = PageHelper.getPageData(systemResourceMapper, page, dbResourceQuery);
+        PageWrapper<ResourceEntity> result = new PageWrapper<>(dbResult.getPage());
+        List<ResourceEntity> pageList = new ArrayList<>();
+        for (SystemResourceDO o : dbResult.getDataList()) {
+            ResourceEntity entity = new ResourceEntity();
+            entity.setId(o.getResourceId());
+            entity.setResourceName(o.getResourceName());
+            entity.setResourcePermission(o.getResourcePermission());
+            pageList.add(entity);
+        }
+        result.setDataList(pageList);
+        return result;
+    }
+
+    public void deleteResourceById(String resourceId) {
+        systemResourceMapper.deleteById(resourceId);
+    }
 
 }

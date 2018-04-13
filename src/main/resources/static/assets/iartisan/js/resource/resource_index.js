@@ -7,7 +7,8 @@ layui.config({
 
     var urls = {
         queryPageData: "/resourceSupport/queryPageData",
-        addDataPage: "/resourceSupport/addDataPage"
+        addDataPage: "/resourceSupport/addDataPage",
+        deleteData: "/resourceSupport/deleteData"
     };
     queryPageData();
 
@@ -18,24 +19,34 @@ layui.config({
             elem: "#dataList",
             url: urls.queryPageData,
             type: 'post',
-            where: {"roleName": $("#roleName").val()},
+            height: 600,
+            where: {"menuId": $("#menuId").val()},
             height: 250,
             cols: [[
                 {
-                    title: '角色名称',
-                    templet: function (d) {
-                        return "<a class='layui-table-link' lay-event=\"detail\" href='javascript:void(0);'>" + d.roleName + "</a>";
-                    }
+                    title: '资源名称',
+                    field: "resourceName",
+                    width: "30%",
+                    align: "center",
+                },
+                {
+                    title: '权限代码',
+                    field: "resourcePermission",
+                    width: "30%",
+                    align: "center",
                 },
                 {
                     title: '创建时间',
+                    width: "25%",
+                    align: "center",
                     templet: function (d) {
                         return util.toDateString(d.createTime);
                     }
                 },
                 {
-                    field: 'roleName',
                     title: '操作',
+                    width: "15%",
+                    align: "center",
                     templet: function () {
                         return "<a class=\"layui-btn layui-btn-xs layui-btn-danger\" lay-event=\"del\">删除</a>";
                     }
@@ -52,10 +63,10 @@ layui.config({
         var layEvent = obj.event,
             data = obj.data;
         if (layEvent == 'del') {
-            layer.confirm('确定删除该角色吗？', {icon: 3, title: '提示信息'}, function (index) {
+            layer.confirm('确定删除该资源吗？', {icon: 3, title: '提示信息'}, function (index) {
                 layer.close(index);
                 router.post({
-                    url: urls.deleteData, data: {roleId: data.roleId}, success: function () {
+                    url: urls.deleteData, data: {resourceId: data.id}, success: function () {
                         tableIns.reload();
                     }
                 });
@@ -81,7 +92,7 @@ layui.config({
     });
 
     $("#btnAddPage").on("click", function () {
-        var value = $(this).val();
+        var value = $("#menuId").val();
         layui.layer.open({
             title: "添加菜单资源权限",
             type: 2,
