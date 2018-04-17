@@ -1,8 +1,8 @@
 package org.iartisan.admin.template.controller.support.rest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.iartisan.admin.template.authentication.support.service.MenuSupportService;
-import org.iartisan.admin.template.authentication.support.service.entity.MenuEntity;
+import org.iartisan.admin.template.authentication.MenuSupportService;
+import org.iartisan.admin.template.authentication.service.entity.MenuEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.web.WebR;
@@ -12,8 +12,6 @@ import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.Serializable;
 
 /**
  * <p>

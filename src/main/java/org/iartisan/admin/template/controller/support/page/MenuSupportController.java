@@ -1,7 +1,8 @@
 package org.iartisan.admin.template.controller.support.page;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.iartisan.admin.template.authentication.support.service.MenuSupportService;
+import org.iartisan.admin.template.authentication.MenuSupportService;
+import org.iartisan.runtime.web.annotation.WebLog;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportPageController;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 /**
  * <p>
  * menu support
@@ -27,6 +29,7 @@ public class MenuSupportController extends BaseController implements ISupportPag
     private MenuSupportService menuSupportService;
 
 
+    @WebLog("菜单管理初始页面")
     @RequiresPermissions("auth:manage:menu:index")
     @GetMapping(ReqContants.REQ_INDEX)
     public String index() {

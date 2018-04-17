@@ -1,8 +1,8 @@
 package org.iartisan.admin.template.controller.support.page;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.iartisan.admin.template.authentication.support.service.RoleSupportService;
-import org.iartisan.admin.template.authentication.support.service.entity.RoleEntity;
+import org.iartisan.admin.template.authentication.RoleSupportService;
+import org.iartisan.admin.template.authentication.service.entity.RoleEntity;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportPageController;

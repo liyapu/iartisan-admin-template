@@ -1,7 +1,7 @@
 package org.iartisan.admin.template.controller.support.rest;
 
-import org.iartisan.admin.template.authentication.support.service.ResourceSupportService;
-import org.iartisan.admin.template.authentication.support.service.entity.ResourceEntity;
+import org.iartisan.admin.template.authentication.ResourceSupportService;
+import org.iartisan.admin.template.authentication.service.entity.ResourceEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.env.EnvContextConfig;

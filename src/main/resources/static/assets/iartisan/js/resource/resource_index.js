@@ -97,7 +97,7 @@ layui.config({
             title: "添加菜单资源权限",
             type: 2,
             content: urls.addDataPage + "?menuId=" + value,
-            area: ['400px', '250px'],
+            area: ['50%', '60%'],
             btn: ['添加', '关闭'],
             btnAlign: 'c',
             anim: 1,

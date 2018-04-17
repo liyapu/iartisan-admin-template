@@ -20,7 +20,7 @@
         <logger name="log4j.logger.java.sql" level="${LEVEL}" additivity="false">
             <appender-ref ref="Console"/>
         </logger>
-        <logger name="org.iartisan.admin.template.authentication.support.dbm.mapper" level="${LEVEL}" />
+        <logger name="org.iartisan.admin.template.dao.mapper" level="${LEVEL}" />
         <root level="${LEVEL}">
             <appenderref ref="Console" />
         </root>

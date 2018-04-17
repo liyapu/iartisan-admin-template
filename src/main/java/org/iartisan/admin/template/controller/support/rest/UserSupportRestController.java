@@ -1,8 +1,8 @@
 package org.iartisan.admin.template.controller.support.rest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.iartisan.admin.template.authentication.support.service.UserSupportService;
-import org.iartisan.admin.template.authentication.support.service.entity.UserEntity;
+import org.iartisan.admin.template.authentication.UserSupportService;
+import org.iartisan.admin.template.authentication.service.entity.UserEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.web.WebR;

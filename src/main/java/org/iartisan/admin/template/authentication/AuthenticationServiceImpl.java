@@ -1,10 +1,7 @@
 package org.iartisan.admin.template.authentication;
 
 import org.apache.shiro.authc.AuthenticationException;
-import org.iartisan.admin.template.authentication.support.dbm.model.SystemUserDO;
-import org.iartisan.admin.template.authentication.support.service.MenuSupportService;
-import org.iartisan.admin.template.authentication.support.service.ResourceSupportService;
-import org.iartisan.admin.template.authentication.support.service.UserSupportService;
+import org.iartisan.admin.template.dao.model.SystemUserDO;
 import org.iartisan.runtime.constants.DataStatus;
 import org.iartisan.runtime.web.authentication.AuthenticationService;
 import org.iartisan.runtime.web.authentication.MenuTree;

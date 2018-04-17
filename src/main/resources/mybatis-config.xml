@@ -28,9 +28,9 @@
     </settings>
     <typeAliases>
 
-        <typeAlias type="org.iartisan.admin.template.authentication.support.dbm.model.SystemMenuDO"
+        <typeAlias type="org.iartisan.admin.template.dao.model.SystemMenuDO"
                    alias="systemMenu"></typeAlias>
-        <typeAlias type="org.iartisan.admin.template.authentication.support.dbm.model.SystemRolePermissionDO"
+        <typeAlias type="org.iartisan.admin.template.dao.model.SystemRolePermissionDO"
                    alias="systemRolePermission"></typeAlias>
 
     </typeAliases>

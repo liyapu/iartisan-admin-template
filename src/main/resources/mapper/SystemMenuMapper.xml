@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.iartisan.admin.template.authentication.support.dbm.mapper.SystemMenuMapper">
+<mapper namespace="org.iartisan.admin.template.dao.mapper.SystemMenuMapper">
 
     <sql id="Base_Column_List">
         MENU_ID,MENU_NAME,MENU_PERMISSION,MENU_URL,MENU_ICON,PARENT_MENU_ID,CREATE_TIME,UPDATE_TIME

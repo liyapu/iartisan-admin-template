@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.iartisan.admin.template.authentication.support.dbm.mapper.SystemRolePermissionMapper">
+<mapper namespace="org.iartisan.admin.template.dao.mapper.SystemRolePermissionMapper">
 
     <sql id="Base_Column_List">
         ROLE_ID,PERMISSION_ID,PERMISSION_TYPE,CREATE_TIME
