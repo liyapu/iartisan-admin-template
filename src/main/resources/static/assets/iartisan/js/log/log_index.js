@@ -1,8 +1,7 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['jquery', 'router', 'table', 'layer'], function () {
-    var router = layui.router, $ = layui.jquery, table = layui.table,
-        layer = layui.layer;
+}).use(['router', "util"], function () {
+    var router = layui.router, util = layui.util;
 
     var urls = {
         queryPageData: "/log/queryPageData"
@@ -20,22 +19,29 @@ layui.config({
                 {
                     title: '用户',
                     field: 'userName',
-                    align:'center'
+                    align: 'center'
                 },
                 {
                     title: '调用方法',
                     field: 'method',
-                    align:'center'
+                    align: 'center'
                 },
                 {
                     title: '方法描述',
                     field: 'methodDesc',
-                    align:'center'
+                    align: 'center'
                 },
                 {
                     title: '操作IP',
                     field: 'ip',
-                    align:'center'
+                    align: 'center'
+                },
+                {
+                    title: '操作时间',
+                    templet: function (d) {
+                        return util.toDateString(d.startTime);
+                    },
+                    align: 'center'
                 }
             ]]
         });
