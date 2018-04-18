@@ -1,10 +1,11 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['form', 'layer', 'jquery', 'router', 'md5'], function () {
+}).use(['form', 'layer', 'jquery', 'router', 'md5','iartisntips'], function () {
     var form = layui.form,
         router = layui.router,
         md = layui.md5,
-        $ = layui.jquery;
+        $ = layui.jquery,
+        tips = layui.iartisntips;;
     //登录按钮
     form.on("submit(login)", function (data) {
         var _that = $(this);
@@ -24,4 +25,5 @@ layui.config({
         );
         return false;
     });
+    tips.show();
 });

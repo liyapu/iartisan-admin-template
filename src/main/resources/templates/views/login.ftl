@@ -16,17 +16,21 @@
 <div class="layadmin-user-login">
     <div class="layadmin-user-login-main">
         <div class="layadmin-user-login-box layadmin-user-login-header">
-            <h2>${_title!''}</h2>
+            <h2>${_title!''}
+            <i style="font-size: 20px;color: #FF5722;margin-left: 10px;" class="layui-icon" lay-tips="<span style='color:red;'>注意：</span>demo环境只是为了演示用<br>修改和删除操作做了限制，其它操作没有影响！！！"></i>
+            </h2>
         </div>
         <form class="layui-form" autocomplete="off">
             <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
                 <div class="layui-form-item">
                     <label class="layadmin-user-login-icon layui-icon" for="userName">&#xe612;</label>
-                    <input type="text" name="userName" id="userName" lay-verify="required" lay-verType="tips" class="layui-input" autocomplete="off">
+                    <input type="text" name="userName" id="userName" lay-verify="required" lay-verType="tips"
+                           class="layui-input" autocomplete="off">
                 </div>
                 <div class="layui-form-item">
                     <label class="layadmin-user-login-icon layui-icon" for="password">&#xe672;</label>
-                    <input type="password" name="password" id="password" lay-verType="tips" lay-verify="required" class="layui-input" autocomplete="off">
+                    <input type="password" name="password" id="password" lay-verType="tips" lay-verify="required"
+                           class="layui-input" autocomplete="off">
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-row">
@@ -38,15 +42,17 @@
                         </div>
                         <div class="layui-col-xs5">
                             <div style="margin-left: 10px;">
-                                <img  src="/captcha" style="width: 100%;" onclick="this.src=this.src">
+                                <img src="/captcha" style="width: 100%;" onclick="this.src=this.src">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn-fluid" lay-filter="login" lay-submit>登 录</button>
+
                 </div>
             </div>
+
         </form>
     </div>
 </div>
