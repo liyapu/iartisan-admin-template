@@ -30,7 +30,7 @@ import java.util.Date;
  */
 @Aspect
 @Component
-public class SystemLogAspect extends WebAspect {
+public class SysLogAspect extends WebAspect {
 
     @Autowired
     private LogManagementService logManagementService;

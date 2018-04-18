@@ -47,8 +47,10 @@ public class RoleSupportController extends BaseController implements ISupportPag
     }
 
 
-    @Override
-    public String modifyDataPage(Model model, String keyId) {
-        return null;
+    @GetMapping(ReqContants.REQ_MODIFY_DATA_PAGE)
+    public String modifyDataPage(Model model, String roleId) {
+        RoleEntity authEntity = roleSupportService.getRoleDetail(roleId);
+        model.addAttribute(_data, authEntity);
+        return VIEW_PREFIX + "role_modify";
     }
 }

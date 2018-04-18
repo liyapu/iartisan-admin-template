@@ -31,12 +31,6 @@ public class ResourceSupportRestController extends BaseController implements ISu
     @PostMapping(ReqContants.REQ_DELETE_DATA)
     public WebR deleteData(String resourceId) {
         WebR r = new WebR();
-        //演示环境不支持删除操作
-        String env = EnvContextConfig.get("env", "prod");
-        if ("demo".equals(env)) {
-            r.isError("演示环境不支持删除操作");
-            return r;
-        }
         resourceSupportService.deleteResourceById(resourceId);
         return r;
     }

@@ -97,7 +97,10 @@ public class RoleSupportService {
     public void addRole(RoleEntity roleEntity) {
         SystemRoleDO dbRoleInsert = new SystemRoleDO();
         dbRoleInsert.setRoleName(roleEntity.getRoleName());
-        String roleId = UUIDUtil.shortId();
+        String roleId = roleEntity.getRoleId();
+        if (StringUtils.isEmpty(roleId)) {
+            roleId = UUIDUtil.shortId();
+        }
         dbRoleInsert.setRoleId(roleId);
         dbRoleInsert.setCreateTime(new Date());
         systemRoleMapper.insert(dbRoleInsert);
@@ -162,7 +165,22 @@ public class RoleSupportService {
         return result;
     }
 
+
+    @Transactional
     public void deleteRole(String roleId) {
         systemRoleMapper.deleteById(roleId);
+        SystemUserRoleDO dbEntity = new SystemUserRoleDO();
+        dbEntity.setRoleId(roleId);
+        //删除用户 角色关联关系
+        Wrapper<SystemUserRoleDO> dbDel = new EntityWrapper<>(dbEntity);
+        systemUserRoleMapper.delete(dbDel);
+    }
+
+    @Transactional
+    public void modifyRole(RoleEntity roleEntity) {
+        RoleEntity entity = getRoleDetail(roleEntity.getRoleId());
+        systemRoleMapper.deleteById(roleEntity.getRoleId());
+        roleEntity.setRoleName(entity.getRoleName());
+        addRole(roleEntity);
     }
 }

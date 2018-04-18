@@ -8,7 +8,7 @@ layui.config({
     var urls = {
         queryPageData: "/roleSupport/queryPageData",
         addDataPage: "/roleSupport/addDataPage",
-        addData: "/roleSupport/addData",
+        modifyDataPage: "/roleSupport/modifyDataPage",
         queryDetailPage: "/roleSupport/queryDetailPage",
         deleteData: "/roleSupport/deleteData"
     };
@@ -27,20 +27,25 @@ layui.config({
                     title: '角色名称',
                     templet: function (d) {
                         return "<a class='layui-table-link' lay-event=\"detail\" href='javascript:void(0);'>" + d.roleName + "</a>";
-                    }
+                    },
+                    align: 'center'
                 },
                 {
                     title: '创建时间',
                     templet: function (d) {
                         return util.toDateString(d.createTime);
-                    }
+                    },
+                    align: 'center'
                 },
                 {
                     field: 'roleName',
                     title: '操作',
                     templet: function () {
-                        return "<a class=\"layui-btn layui-btn-xs layui-btn-danger\" lay-event=\"del\">删除</a>";
-                    }
+                        var html = "<a class='layui-btn layui-btn-xs' lay-event='edit'>编辑</a>";
+                        html += "<a class=\"layui-btn layui-btn-xs layui-btn-danger\" lay-event=\"del\">删除</a>"
+                        return html;
+                    },
+                    align: 'center'
                 }
             ]]
         });
@@ -72,6 +77,26 @@ layui.config({
                 maxmin: true,
                 btn: "关闭",
                 btnAlign: 'c',
+                close: function (index) {
+                    layer.close(index);
+                }
+            });
+            $(window).on("resize", function () {
+                layui.layer.restore(index);
+            });
+        } else if (layEvent == 'edit') {
+            var index = layui.layer.open({
+                title: '角色修改',
+                type: 2,
+                content: urls.modifyDataPage + "?roleId=" + data.roleId,
+                area: ['35%', '80%'],
+                skin: 'layui-layer-molv',
+                maxmin: true,
+                btn: ["修改", "关闭"],
+                btnAlign: 'c',
+                yes: function (index, layero) {
+                    layero.find('iframe').contents().find("#formAdd").find("#btnAdd").click();
+                },
                 close: function (index) {
                     layer.close(index);
                 }

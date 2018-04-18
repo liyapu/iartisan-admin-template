@@ -1,7 +1,7 @@
 var ztree = "";
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['router','zTree'], function () {
+}).use(['router', 'zTree'], function () {
     var $ = layui.jquery, form = layui.form, router = layui.router;
 
     var urls = {
@@ -19,12 +19,14 @@ layui.config({
         }
     };
 
-    router.get({
+    router.post({
         url: urls.getResourceListByRoleId,
-        data: {"roleId": $("#roleId").val()},
+        data: {"roleId": $("#roleId").val(), "chkDisabled": true},
         success: function (res) {
             $.fn.zTree.init($("#permissions"), setting, res.dataList);
             $.fn.zTree.getZTreeObj("permissions").expandAll(true);
         }
     });
+
+
 });

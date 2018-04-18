@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2018/3/19
  */
 @ControllerAdvice(basePackages = {"org.iartisan.admin.template.controller.support.page"})
-public class AdminControllerAdvice {
+public class SysControllerAdvice {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 

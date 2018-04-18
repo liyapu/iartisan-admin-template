@@ -13,6 +13,7 @@ import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 /**
@@ -48,9 +49,9 @@ public class RoleSupportRestController extends BaseController implements ISuppor
         return r;
     }
 
-    @GetMapping("getResourceListByRoleId")
-    public WebR getResourceListByRoleId(String roleId) {
-        List<ZTreeEntity> dataList = resourceSupportService.getResourceListByRoleId(roleId, true);
+    @PostMapping("getResourceListByRoleId")
+    public WebR getResourceListByRoleId(String roleId, boolean chkDisabled) {
+        List<ZTreeEntity> dataList = resourceSupportService.getResourceListByRoleId(roleId, chkDisabled);
         WebR r = new WebR();
         r.setDataList(dataList);
         return r;
@@ -65,9 +66,11 @@ public class RoleSupportRestController extends BaseController implements ISuppor
     }
 
 
-    @Override
+    @PostMapping(ReqContants.REQ_MODIFY_DATA)
     public WebR modifyData(RoleEntity roleEntity) {
-        return null;
+        roleSupportService.modifyRole(roleEntity);
+        WebR r = new WebR();
+        return r;
     }
 
     @RequiresPermissions("auth:manage:role:addData")

@@ -9,12 +9,12 @@
                                name="roleName">
                     </div>
                 </div>
-                <div class="layui-form-item">
+                <#--<div class="layui-form-item">
                     <label class="layui-form-label">备注</label>
                     <div class="layui-input-block">
                         <textarea placeholder="请输入备注" class="layui-textarea abstract" lay-verify="required"></textarea>
                     </div>
-                </div>
+                </div>-->
                 <div class="layui-form-item">
                     <label class="layui-form-label">授权</label>
                     <div class="layui-input-block">
