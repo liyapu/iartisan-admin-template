@@ -16,6 +16,7 @@
                     <button class="layui-btn layui-btn-normal" type="button" id="btnAddPage">
                         <i class="layui-icon">&#xe608;</i> 添加
                     </button>
+                    <i style="color: #FF5722;" class="layui-icon" lay-tips="用户初始密码：<span style='color:red;'>123456</span>"></i>
                 </div>
             </div>
         </div>

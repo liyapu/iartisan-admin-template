@@ -1,8 +1,8 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['router', 'table', 'util'], function () {
+}).use(['router', 'table', 'util', 'iartisntips'], function () {
     var router = layui.router, table = layui.table,
-        util = layui.util;
+        util = layui.util, tips = layui.iartisntips;
 
     var urls = {
         queryPageData: "/userSupport/queryPageData",
@@ -92,9 +92,11 @@ layui.config({
                         tableIns.reload();
                     }
                 });*/
-                router.post({url:urls.deleteData,data:{userId: data.userId},success:function () {
-                    tableIns.reload();
-                }})
+                router.post({
+                    url: urls.deleteData, data: {userId: data.userId}, success: function () {
+                        tableIns.reload();
+                    }
+                })
             });
         }
     });
@@ -106,7 +108,7 @@ layui.config({
         });
         $.post(urls.changeStatus, {userId: obj.value, status: checked ? 'E' : 'D'}, function (res) {
             layui.layer.close(index);
-            if (!res.code=='000000') {
+            if (!res.code == '000000') {
                 //如果不成功则返回
                 obj.elem.checked = checked;
             }
@@ -132,4 +134,5 @@ layui.config({
             }
         });
     });
+    tips.show();
 });
