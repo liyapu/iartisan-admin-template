@@ -44,7 +44,9 @@ public class ShiroConfig {
     public void setFilterMap() {
         String filterPath = EnvContextConfig.get(_CONFIG, "");
         filterPath = filterPath + ",/assets/iartisan/**," + ReqContants.REQ_AUTHENTICATE +
-                "," + ReqContants.REQ_LOGIN + ",/webjars/**" + ",/captcha";
+                "," + ReqContants.REQ_LOGIN + ",/webjars/**" + ",/captcha" + ",/druid/**"+
+                ",/**/*.js"+",/**/*.html"+",/**/*.css"
+        ;
         List<String> filterPaths = Arrays.asList(filterPath.split(","));
         for (String path : filterPaths) {
             if (StringUtils.isNotEmpty(path)) {
