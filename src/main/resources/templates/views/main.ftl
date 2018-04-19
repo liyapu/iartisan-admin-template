@@ -19,11 +19,9 @@
 </blockquote>
 
 <div class="layui-row">
-    <div class="layui-col-lg6 layui-col-md12">
+    <div class="layui-col-lg4 layui-col-md10">
         <div class="layui-card">
-            <div class="layui-card-header">版本信息<a href='https://gitee.com/iartisan/iartisan-admin-template' target="_blank"><img
-                    src='https://gitee.com/iartisan/iartisan-admin-template/widgets/widget_4.svg'
-                    alt='Fork me on Gitee'></img></a></div>
+            <div class="layui-card-header">版本信息</div>
             <div class="layui-card-body layui-text">
                 <table class="layui-table">
                     <colgroup>
@@ -58,6 +56,22 @@
                     </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-lg6 layui-col-md12 layui-col-lg-offset1 layui-col-md-offset1">
+        <div class="layui-card">
+            <div class="layui-card-header">提交记录</div>
+            <div class="layui-card-body layui-text">
+                <script src='https://gitee.com/iartisan/iartisan-admin-template/widget_preview'></script>
+                <style>
+                    .pro_name a{color: #4183c4;}
+                    .osc_git_title{background-color: #fff;}
+                    .osc_git_box{background-color: #fff;}
+                    .osc_git_box{border-color: #E3E9ED;}
+                    .osc_git_info{color: #666;}
+                    .osc_git_main a{color: #9B9B9B;}
+                </style>
             </div>
         </div>
     </div>
