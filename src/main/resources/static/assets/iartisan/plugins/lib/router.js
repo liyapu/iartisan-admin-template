@@ -84,7 +84,7 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
                 even: options.even || false,
                 response: {
                     statusCode: "000000",
-                    dataName: "dataList",
+                    dataName: "data",
                     countName: "totalRecords"
                 },
                 request: {

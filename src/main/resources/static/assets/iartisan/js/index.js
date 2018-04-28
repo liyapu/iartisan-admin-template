@@ -43,7 +43,7 @@ layui.config({
 
     function getLeftMenus() {
         $.get(tab.tabConfig.url, function (data) {
-            menus = data.dataList;
+            menus = data.data;
             tab.render();
         })
     }

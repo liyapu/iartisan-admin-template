@@ -45,7 +45,7 @@ public class RoleSupportRestController extends BaseController implements ISuppor
     public WebR getResourceData() {
         List<ZTreeEntity> dataList = resourceSupportService.getResourceTree();
         WebR r = new WebR();
-        r.setDataList(dataList);
+        r.setData(dataList);
         return r;
     }
 
@@ -53,7 +53,7 @@ public class RoleSupportRestController extends BaseController implements ISuppor
     public WebR getResourceListByRoleId(String roleId, boolean chkDisabled) {
         List<ZTreeEntity> dataList = resourceSupportService.getResourceListByRoleId(roleId, chkDisabled);
         WebR r = new WebR();
-        r.setDataList(dataList);
+        r.setData(dataList);
         return r;
     }
 
@@ -61,7 +61,7 @@ public class RoleSupportRestController extends BaseController implements ISuppor
     public WebR queryPageData(Page page, String roleName) {
         PageWrapper<RoleEntity> pageData = roleSupportService.getRolePageData(page, roleName);
         WebR webR = new WebR(pageData.getPage());
-        webR.setDataList(pageData.getDataList());
+        webR.setData(pageData.getDataList());
         return webR;
     }
 

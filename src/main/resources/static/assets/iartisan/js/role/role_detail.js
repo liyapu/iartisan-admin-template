@@ -23,7 +23,7 @@ layui.config({
         url: urls.getResourceListByRoleId,
         data: {"roleId": $("#roleId").val(), "chkDisabled": true},
         success: function (res) {
-            $.fn.zTree.init($("#permissions"), setting, res.dataList);
+            $.fn.zTree.init($("#permissions"), setting, res.data);
             $.fn.zTree.getZTreeObj("permissions").expandAll(true);
         }
     });

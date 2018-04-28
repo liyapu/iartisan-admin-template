@@ -31,7 +31,7 @@ public class UserSupportRestController extends BaseController implements ISuppor
     public WebR queryPageData(Page page, String userName) {
         PageWrapper<UserEntity> pageData = userSupportService.getUserPageData(page, userName);
         WebR webR = new WebR(pageData.getPage());
-        webR.setDataList(pageData.getDataList());
+        webR.setData(pageData.getDataList());
         return webR;
     }
 

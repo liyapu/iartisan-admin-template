@@ -63,7 +63,7 @@ public class IndexController extends BaseController {
     public WebR getMenus() {
         WebR webR = new WebR();
         RealmBean realmBean = (RealmBean) WebUtil.getShiroSession().getAttribute(WebConstants._USER);
-        webR.setDataList(realmBean.getMenuTrees());
+        webR.setData(realmBean.getMenuTrees());
         return webR;
     }
 
