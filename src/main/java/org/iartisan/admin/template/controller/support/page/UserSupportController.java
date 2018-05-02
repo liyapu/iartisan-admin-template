@@ -2,6 +2,7 @@ package org.iartisan.admin.template.controller.support.page;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.iartisan.admin.template.authentication.RoleSupportService;
+import org.iartisan.runtime.web.annotation.WebLog;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportPageController;
@@ -27,6 +28,7 @@ public class UserSupportController extends BaseController implements ISupportPag
     private RoleSupportService roleSupportService;
 
 
+    @WebLog("用户管理初始页面")
     @RequiresPermissions("auth:manage:user:index")
     @GetMapping(ReqContants.REQ_INDEX)
     public String index() {
