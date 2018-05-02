@@ -32,6 +32,11 @@ layui.config({
                         trigger: 'item',
                         formatter: "{a} ：{d}%"
                     },
+                    legend: {
+                        orient: 'horizontal',
+                        bottom: 'bottom',
+                        data: chartTitle
+                    },
                     series: [
                         {
                             name: '方法占比',
