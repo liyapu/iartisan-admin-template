@@ -28,15 +28,24 @@ layui.config({
                 }
 
                 var option = {
-                    legend: {
-                        orient: 'horizontal',
-                        bottom: 'bottom',
-                        data: chartTitle
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{a} ：{d}%"
                     },
                     series: [
                         {
+                            name: '方法占比',
                             type: 'pie',
-                            data: data
+                            data: data,
+                            radius : '55%',
+                            center: ['40%', '50%'],
+                            itemStyle: {
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
                         }
                     ]
                 };
