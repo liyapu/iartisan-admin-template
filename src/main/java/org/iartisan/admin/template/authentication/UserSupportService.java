@@ -94,7 +94,7 @@ public class UserSupportService {
         SystemUserDO dbModify = new SystemUserDO();
         dbModify.setUserId(userId);
         dbModify.setStatus(status);
-        dbModify.setCreateTime(new Date());
+        dbModify.setUpdateTime(new Date());
         systemUserMapper.updateById(dbModify);
     }
 
@@ -105,6 +105,14 @@ public class UserSupportService {
         Wrapper<SystemUserRoleDO> dbDel = new EntityWrapper<>(entity);
         systemUserRoleMapper.delete(dbDel);
         addUserRole(userEntity.getUserId(), userEntity.getRoles());
+    }
+
+    public void modifyPwd(UserEntity userEntity) {
+        SystemUserDO dbModify = new SystemUserDO();
+        dbModify.setUserId(userEntity.getUserId());
+        dbModify.setUserPwd(userEntity.getUserPwd());
+        dbModify.setUpdateTime(new Date());
+        systemUserMapper.updateById(dbModify);
     }
 
     private void addUserRole(String userId, String roleStr) {

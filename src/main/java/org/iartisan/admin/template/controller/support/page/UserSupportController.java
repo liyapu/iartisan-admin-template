@@ -59,5 +59,8 @@ public class UserSupportController extends BaseController implements ISupportPag
         return VIEW_PREFIX + "user_detail";
     }
 
-
+    @GetMapping("modifyPwdPage")
+    public String modifyPwdPage() {
+        return VIEW_PREFIX + "user_modifyPwd";
+    }
 }

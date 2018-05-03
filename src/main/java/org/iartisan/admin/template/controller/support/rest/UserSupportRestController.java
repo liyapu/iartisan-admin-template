@@ -12,6 +12,8 @@ import org.iartisan.runtime.web.controller.ISupportRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Year;
+
 /**
  * <p>
  * user support
@@ -63,6 +65,16 @@ public class UserSupportRestController extends BaseController implements ISuppor
     @PostMapping(ReqContants.REQ_DELETE_DATA)
     public WebR deleteData(String userId) {
         userSupportService.deleteByUserId(userId);
+        WebR r = new WebR();
+        return r;
+    }
+
+    @PostMapping("modifyPwd")
+    public WebR modifyPwd(String pwd) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUserId(getCustId());
+        userEntity.setUserPwd(pwd);
+        userSupportService.modifyPwd(userEntity);
         WebR r = new WebR();
         return r;
     }

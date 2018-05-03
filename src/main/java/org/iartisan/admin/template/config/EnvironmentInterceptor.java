@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * <p>
+ * 拦截demo环境的一些操作请求
  *
  * @author King
  * @since 2018/4/3

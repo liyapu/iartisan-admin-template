@@ -48,6 +48,6 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter implements Serv
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(environmentInterceptor).addPathPatterns("/**/**/deleteData", "/**/**/modifyData");
+        registry.addInterceptor(environmentInterceptor).addPathPatterns("/**/**/deleteData", "/**/**/modifyData","/userSupport/changeStatus","/userSupport/modifyPwd");
     }
 }

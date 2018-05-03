@@ -108,14 +108,13 @@ layui.config({
         });
         $.post(urls.changeStatus, {userId: obj.value, status: checked ? 'E' : 'D'}, function (res) {
             layui.layer.close(index);
-            if (!res.code == '000000') {
-                //如果不成功则返回
-                obj.elem.checked = checked;
+            if (res.code != '000000') {
+                layer.msg(res.message);
+                queryPageData();
             }
         }).always(function () {
             layui.layer.close(index);
         });
-        ;
     });
 
     $("#btnAddPage").click(function () {
