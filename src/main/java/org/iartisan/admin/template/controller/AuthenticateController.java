@@ -38,22 +38,22 @@ public class AuthenticateController {
     @PostMapping(ReqContants.REQ_AUTHENTICATE)
     public WebR authenticate(RealmBean realmBean, String vercode) {
         WebR r = new WebR();
-        if (null == WebUtil.getShiroSession().getAttribute(Constants.KAPTCHA_SESSION_KEY)) {
+        /*if (null == WebUtil.getShiroSession().getAttribute(Constants.KAPTCHA_SESSION_KEY)) {
             r.isError("验证码已过期，请刷新重试");
             return r;
-        }
+        }*/
         //判断用户名和密码是否正确
         if (StringUtils.isEmpty(realmBean.getUserName()) || StringUtils.isEmpty(realmBean.getUserPwd())) {
             r.isError("用户名或者密码不能为空!!");
             return r;
         }
-        //验证验证码
+        /*//验证验证码
         //判断验证码是否正确
         if (StringUtils.isEmpty(vercode) ||
                 !WebUtil.getShiroSession().getAttribute(Constants.KAPTCHA_SESSION_KEY).toString().equals(vercode)) {
             r.isError("验证码错误");
             return r;
-        }
+        }*/
         Subject subject = SecurityUtils.getSubject();
         //sha256加密
         UsernamePasswordToken token = new UsernamePasswordToken(realmBean.getUserName(), realmBean.getUserPwd());

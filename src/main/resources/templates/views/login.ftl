@@ -32,7 +32,7 @@
                     <input type="password" name="password" id="password" lay-verType="tips" lay-verify="required"
                            class="layui-input" autocomplete="off">
                 </div>
-                <div class="layui-form-item">
+                <#--<div class="layui-form-item">
                     <div class="layui-row">
                         <div class="layui-col-xs7">
                             <label class="layadmin-user-login-icon layui-icon"
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn-fluid" lay-filter="login" lay-submit>登 录</button>
 

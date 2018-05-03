@@ -1,25 +1,15 @@
 package org.iartisan.admin.template.controller;
 
-import com.google.code.kaptcha.Constants;
-import com.google.code.kaptcha.Producer;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.authentication.RealmBean;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.contants.WebConstants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.utils.WebUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.imageio.ImageIO;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
 /**
  * <p>
  *
@@ -38,11 +28,11 @@ public class IndexController extends BaseController {
     public String redirectIndex() {
         return _redirect + "index";
     }
-
+/*
     @Autowired
-    private Producer producer;
+    private Producer producer;*/
 
-    @GetMapping(value = "captcha")
+    /*@GetMapping(value = "captcha")
     public void captcha(HttpServletResponse response) throws IOException {
         response.setHeader("Cache-Control", "no-store, no-cache");
         response.setContentType("image/jpeg");
@@ -56,7 +46,7 @@ public class IndexController extends BaseController {
         ServletOutputStream out = response.getOutputStream();
         ImageIO.write(image, "jpg", out);
         out.flush();
-    }
+    }*/
 
     @ResponseBody
     @GetMapping("getMenus")
