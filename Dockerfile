@@ -1,7 +1,7 @@
 FROM openjdk:8-jre-alpine
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-COPY iartisan-admin-template/target/iartisan-admin-template*.jar  /iartisan-admin-template.jar
+COPY target/iartisan-admin-template*.jar  /iartisan-admin-template.jar
 EXPOSE 8080
 VOLUME ["/wls"]
 
