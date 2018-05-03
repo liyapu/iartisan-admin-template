@@ -26,7 +26,7 @@ layui.config({
     router.get({
         url: urls.getResourceData,
         success: function (res) {
-            $.fn.zTree.init($("#permissions"), setting, res.dataList);
+            $.fn.zTree.init($("#permissions"), setting, res.data);
             $.fn.zTree.getZTreeObj("permissions").expandAll(true);
         }
     });

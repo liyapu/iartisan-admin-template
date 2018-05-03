@@ -28,7 +28,7 @@ layui.define(["element","jquery"],function(exports){
         var ulHtml = '';
         for(var i=0;i<data.length;i++){
             if(data[i].spread || data[i].spread == undefined){
-                ulHtml += '<li class="layui-nav-item layui-nav-itemed">';
+                ulHtml += '<li class="layui-nav-item">';
             }else{
                 ulHtml += '<li class="layui-nav-item">';
             }

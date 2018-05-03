@@ -35,8 +35,7 @@
                                         width="35" height="35"><cite
                     class="adminName">${_user.userName!''}</cite></a>
             <dl class="layui-nav-child">
-                <dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="seraph icon-ziliao"
-                                                                                 data-icon="icon-ziliao"></i><cite>个人资料</cite></a>
+                <dd><a href="javascript:;" id="ziliao" attr-data="${_user.userId!''}"><i class="seraph icon-ziliao" data-icon="icon-ziliao"></i><cite>个人资料</cite></a>
                 </dd>
                 <dd><a href="javascript:;" data-url="page/user/changePwd.html"><i class="seraph icon-xiugai"
                                                                                   data-icon="icon-xiugai"></i><cite>修改密码</cite></a>

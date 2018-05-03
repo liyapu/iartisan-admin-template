@@ -21,6 +21,7 @@ public class WebSiteMeshConfig extends ConfigurableSiteMeshFilter {
         String excluedPath = EnvContextConfig.get(_CONFIG);
         excluedPath = excluedPath + ",/authenticate,/index,/error/*";
         excluedPath = excluedPath + ",/druid/**";
+        excluedPath = excluedPath + ",/userSupport/queryDetailPage";
         if (StringUtils.isNotEmpty(excluedPath)) {
             excluedPaths = Arrays.asList(excluedPath.split(","));
         }

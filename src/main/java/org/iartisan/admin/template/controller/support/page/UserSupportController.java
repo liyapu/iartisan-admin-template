@@ -52,9 +52,11 @@ public class UserSupportController extends BaseController implements ISupportPag
         return VIEW_PREFIX + "user_modify";
     }
 
-    @Override
-    public String queryDetailPage(Model model, String keyId) {
-        return null;
+    @GetMapping(ReqContants.REQ_QUERY_DETAIL_PAGE)
+    public String queryDetailPage(Model model, String userId) {
+        //查询用户所有角色
+        model.addAttribute(_data, roleSupportService.getRoleByUserId(userId));
+        return VIEW_PREFIX + "user_detail";
     }
 
 

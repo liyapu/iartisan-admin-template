@@ -1,13 +1,14 @@
 var $, tab, menus, layer, form, element;
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['form', 'element', 'layer', 'jquery', 'bodyTab'], function () {
+}).use(['form', 'element', 'layer', 'jquery', 'bodyTab', 'router'], function () {
     $ = layui.$, element = layui.element,
         layer = layui.layer;
     tab = layui.bodyTab({
         openTabNum: "10",  //最大可打开窗口数量
         url: "/getMenus" //获取菜单json地址
     }),
+        router = layui.router,
         form = layui.form;
     //切换导航栏按钮点击事件
     $("#switchNav").click(function () {
@@ -83,6 +84,29 @@ layui.config({
     }).on("click", function () {
         window.sessionStorage.removeItem("showNotice");
         layer.msg("缓存清除成功！");
+    });
+
+    var urls = {
+        getUserDetail: "/userSupport/queryDetailPage"
+    }
+    $("#ziliao").click(function () {
+        var userId = $(this).attr("attr-data");
+        router.ajaxGet(urls.getUserDetail, {"userId": userId}, {async: false}, function (res) {
+            top.layer.open({
+                type: 1,
+                title: false, //不显示标题栏,
+                closeBtn: 0,
+                shade: [0.3, '#393D49'],
+                area: ['15%','23%'],
+                id: '_ziliao', //设定一个id，防止重复弹出
+                btn: ['关闭'],
+                btnAlign: 'c',
+                moveType: 1, //拖拽模式，0或者1
+                content:"<div style=\"padding: 10px; line-height: 20px; background-color: #393D49; color: #fff; font-weight: 300;\">" +res+"</div>"
+            });
+        });
+
+
     });
 });
 
