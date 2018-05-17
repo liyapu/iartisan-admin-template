@@ -47,7 +47,7 @@ public class LogRestController extends BaseController implements ISupportRestCon
     public WebR queryPageData(Page page) {
         PageWrapper<LogEntity> pageData = logQueryService.getAllPageData(page);
         WebR webR = new WebR(pageData.getPage());
-        webR.setData(pageData.getDataList());
+        webR.setData(pageData.getData());
         return webR;
     }
 }

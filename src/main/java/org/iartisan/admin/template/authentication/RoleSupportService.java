@@ -82,14 +82,14 @@ public class RoleSupportService {
         PageWrapper<SystemRoleDO> dbResult = PageHelper.getPageData(systemRoleMapper, page, roleDO);
         PageWrapper<RoleEntity> result = new PageWrapper<>(dbResult.getPage());
         List<RoleEntity> pageList = new ArrayList<>();
-        for (SystemRoleDO o : dbResult.getDataList()) {
+        for (SystemRoleDO o : dbResult.getData()) {
             RoleEntity bean = new RoleEntity();
             bean.setRoleId(o.getRoleId());
             bean.setRoleName(o.getRoleName());
             bean.setCreateTime(o.getCreateTime());
             pageList.add(bean);
         }
-        result.setDataList(pageList);
+        result.setData(pageList);
         return result;
     }
 

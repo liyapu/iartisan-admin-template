@@ -33,7 +33,7 @@ public class MenuSupportRestController extends BaseController implements ISuppor
     public WebR queryPageData(Page page, String menuName) {
         PageWrapper<MenuTree> pageData = menuSupportService.getMenuPageData(page, menuName);
         WebR webR = new WebR(pageData.getPage());
-        webR.setData(pageData.getDataList());
+        webR.setData(pageData.getData());
         return webR;
     }
 

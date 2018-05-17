@@ -58,7 +58,7 @@ public class ResourceSupportRestController extends BaseController implements ISu
     public WebR queryPageData(Page page, String menuId) {
         PageWrapper<ResourceEntity> pageData = resourceSupportService.getResourcePageData(page, menuId);
         WebR webR = new WebR(pageData.getPage());
-        webR.setData(pageData.getDataList());
+        webR.setData(pageData.getData());
         return webR;
     }
 }

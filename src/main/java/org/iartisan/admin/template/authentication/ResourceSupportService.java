@@ -167,14 +167,14 @@ public class ResourceSupportService {
         PageWrapper<SystemResourceDO> dbResult = PageHelper.getPageData(systemResourceMapper, page, dbResourceQuery);
         PageWrapper<ResourceEntity> result = new PageWrapper<>(dbResult.getPage());
         List<ResourceEntity> pageList = new ArrayList<>();
-        for (SystemResourceDO o : dbResult.getDataList()) {
+        for (SystemResourceDO o : dbResult.getData()) {
             ResourceEntity entity = new ResourceEntity();
             entity.setId(o.getResourceId());
             entity.setResourceName(o.getResourceName());
             entity.setResourcePermission(o.getResourcePermission());
             pageList.add(entity);
         }
-        result.setDataList(pageList);
+        result.setData(pageList);
         return result;
     }
 

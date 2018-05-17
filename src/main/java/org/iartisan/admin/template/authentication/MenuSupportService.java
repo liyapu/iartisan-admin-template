@@ -40,7 +40,7 @@ public class MenuSupportService {
         PageWrapper<SystemMenuDO> dbResult = PageHelper.getPageData(systemMenuMapper, page, systemMenuDO);
         PageWrapper<MenuTree> result = new PageWrapper<>(dbResult.getPage());
         List<MenuTree> pageList = new ArrayList<>();
-        for (SystemMenuDO menuDO : dbResult.getDataList()) {
+        for (SystemMenuDO menuDO : dbResult.getData()) {
             MenuTree tree = new MenuTree();
             tree.setId(menuDO.getMenuId());
             tree.setTitle(menuDO.getMenuName());
@@ -48,7 +48,7 @@ public class MenuSupportService {
             tree.setIcon(menuDO.getMenuIcon());
             pageList.add(tree);
         }
-        result.setDataList(pageList);
+        result.setData(pageList);
         return result;
     }
 

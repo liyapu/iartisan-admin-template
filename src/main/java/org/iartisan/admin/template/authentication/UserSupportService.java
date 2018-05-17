@@ -59,7 +59,7 @@ public class UserSupportService {
         PageWrapper<SystemUserDO> dbResult = PageHelper.getPageData(systemUserMapper, page, userDO);
         PageWrapper<UserEntity> result = new PageWrapper<>(dbResult.getPage());
         List<UserEntity> pageList = new ArrayList<>();
-        for (SystemUserDO o : dbResult.getDataList()) {
+        for (SystemUserDO o : dbResult.getData()) {
             UserEntity bean = new UserEntity();
             bean.setUserName(o.getUserName());
             bean.setUserId(o.getUserId());
@@ -67,7 +67,7 @@ public class UserSupportService {
             bean.setCreateDate(o.getCreateTime());
             pageList.add(bean);
         }
-        result.setDataList(pageList);
+        result.setData(pageList);
         return result;
     }
 
