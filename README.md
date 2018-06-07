@@ -1,3 +1,5 @@
+![输入图片说明](https://gitee.com/uploads/images/2018/0607/134835_3a2f7e0a_639234.png "hammer_64px_1175591_easyicon.net.png")
+
 # 项目说明
 - iartisan-admin-template是Java快速开发平台，可以快速构建后台项目
 
