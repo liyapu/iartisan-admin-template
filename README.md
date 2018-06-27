@@ -14,6 +14,7 @@
 - 菜单管理
 - 权限管理
 - 操作日志管理
+- druid监控
 
  
 # 技术选型
@@ -53,3 +54,7 @@
 ![输入图片说明](https://gitee.com/uploads/images/2018/0417/160414_a92c8f64_639234.png "image4.png")
 
 ![输入图片说明](https://gitee.com/uploads/images/2018/0502/104128_53a1d51d_639234.jpeg "image.jpg")
+
+### todo
+
+- activiti 工作流
