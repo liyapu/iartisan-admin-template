@@ -3,7 +3,7 @@
     <properties>
         <!-- 文件输出格式 -->
         <property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} |-%-5level [%thread] %c [%L] -| %msg%n</property>
-        <property name="LEVEL" value="info"></property>
+        <property name="LEVEL" value="debug"></property>
     </properties>
 
     <appenders>

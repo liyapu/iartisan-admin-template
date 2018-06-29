@@ -1,10 +1,11 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['router', "util"], function () {
-    var router = layui.router, util = layui.util;
+}).use(['router', "util", 'layer'], function () {
+    var router = layui.router, util = layui.util, layer = layui.layer;
 
     var urls = {
-        queryPageData: "/activiti/deployment/queryPageData"
+        queryPageData: "/activiti/deployment/queryPageData",
+        toDesign:"/activiti/deployment/toDesign"
     };
     queryPageData();
 
@@ -46,4 +47,15 @@ layui.config({
             ]]
         });
     }
+
+    $("#btdDesign").on("click", function () {
+        layer.open({
+                type: 2,
+                maxmin: true,
+                anim: 1,
+                title: '流程设计',
+                content: urls.toDesign
+            }
+        );
+    });
 });

@@ -1,11 +1,12 @@
 package org.iartisan.admin.template;
 
+
+import org.activiti.spring.boot.SecurityAutoConfiguration;
 import org.iartisan.runtime.env.EnvPropertiesLoader;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-
 import java.util.Properties;
 
 /**
@@ -15,8 +16,8 @@ import java.util.Properties;
  * @author King
  * @since 2017/10/19
  */
-@SpringBootApplication
-@ComponentScan(basePackages = {"org.iartisan.admin.template","org.iartisan.runtime.web.config"})
+@SpringBootApplication(exclude = {org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class,SecurityAutoConfiguration.class})
+@ComponentScan(basePackages = {"org.iartisan.admin.template","org.iartisan.runtime.web.config","org.activiti.rest.editor.model","org.activiti.rest.editor.main"})
 @MapperScan(basePackages = {"org.iartisan.admin.template.dao.mapper"})
 public class WebBootRun {
 
