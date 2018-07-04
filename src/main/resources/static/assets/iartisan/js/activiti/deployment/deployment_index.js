@@ -5,7 +5,7 @@ layui.config({
 
     var urls = {
         queryPageData: "/activiti/deployment/queryPageData",
-        toDesign:"/activiti/deployment/toDesign"
+        toDesign: "/activiti/deployment/toDesign"
     };
     queryPageData();
 
@@ -49,7 +49,7 @@ layui.config({
     }
 
     $("#btdDesign").on("click", function () {
-        layer.open({
+        var index = layer.open({
                 type: 2,
                 maxmin: true,
                 anim: 1,
@@ -57,5 +57,6 @@ layui.config({
                 content: urls.toDesign
             }
         );
+       layer.full(index);
     });
 });

@@ -60,6 +60,6 @@ public class ActivitiDeploymentPageController extends BaseController implements 
     @GetMapping("toDesign")
     public String toDesign() throws UnsupportedEncodingException {
         String id = deploymentManagement.design("new","new","new");
-        return "redirect:/activiti/modeler.html?modelId=" + id;
+        return "redirect:/activitiView/modeler.html?modelId=" + id;
     }
 }
