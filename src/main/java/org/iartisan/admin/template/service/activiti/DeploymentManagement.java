@@ -13,6 +13,7 @@ import org.iartisan.runtime.bean.PageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class DeploymentManagement {
     @Autowired
     private ObjectMapper objectMapper;
 
-    public String design(String name,String key,String description) throws UnsupportedEncodingException {
+    public String design(String name, String key, String description) throws UnsupportedEncodingException {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode editorNode = objectMapper.createObjectNode();
         editorNode.put("id", "canvas");
@@ -77,5 +78,9 @@ public class DeploymentManagement {
         repositoryService.saveModel(modelData);
         repositoryService.addModelEditorSource(modelData.getId(), editorNode.toString().getBytes("utf-8"));
         return modelData.getId();
+    }
+
+    public void deploy(String fileName, InputStream inputStream) {
+        repositoryService.createDeployment().addInputStream(fileName, inputStream).name(fileName).deploy();
     }
 }

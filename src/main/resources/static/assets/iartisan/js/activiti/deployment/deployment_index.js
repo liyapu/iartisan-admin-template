@@ -1,11 +1,14 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['router', "util", 'layer'], function () {
-    var router = layui.router, util = layui.util, layer = layui.layer;
+}).use(['router', "util", 'layer', 'upload'], function () {
+    var router = layui.router, util = layui.util, layer = layui.layer,
+        upload = layui.upload;
+
 
     var urls = {
         queryPageData: "/activiti/deployment/queryPageData",
-        toDesign: "/activiti/deployment/toDesign"
+        toDesign: "/activiti/deployment/toDesign",
+        upload: "/activiti/deployment/upload"
     };
     queryPageData();
 
@@ -57,6 +60,15 @@ layui.config({
                 content: urls.toDesign
             }
         );
-       layer.full(index);
+        layer.full(index);
+    });
+
+    upload.render({
+        elem: '#btnUpload',
+        url: urls.upload,
+        accept:"file",
+        done: function (res) {
+            //重新加载流程列表
+        }
     });
 });

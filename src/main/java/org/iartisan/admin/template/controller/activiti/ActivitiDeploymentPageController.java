@@ -1,25 +1,24 @@
 package org.iartisan.admin.template.controller.activiti;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.activiti.editor.constants.ModelDataJsonConstants;
-import org.activiti.engine.ActivitiException;
-import org.apache.commons.lang3.StringUtils;
+
 import org.iartisan.admin.template.service.activiti.DeploymentManagement;
+import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportPageController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Iterator;
 
-import static org.activiti.editor.constants.ModelDataJsonConstants.MODEL_ID;
-import static org.activiti.editor.constants.ModelDataJsonConstants.MODEL_NAME;
 
 /**
  * <p>
@@ -59,7 +58,23 @@ public class ActivitiDeploymentPageController extends BaseController implements 
     //在线设计页面
     @GetMapping("toDesign")
     public String toDesign() throws UnsupportedEncodingException {
-        String id = deploymentManagement.design("new","new","new");
+        String id = deploymentManagement.design("new", "new", "new");
         return "redirect:/activitiView/modeler.html?modelId=" + id;
+    }
+
+    @PostMapping(value = "upload")
+    public WebR uploadFile(HttpServletRequest request) throws IOException {
+        WebR r = new WebR();
+        try {
+            StandardMultipartHttpServletRequest multipartRequest = (StandardMultipartHttpServletRequest) request;
+            MultipartFile multipartFile = multipartRequest.getMultiFileMap().getFirst("file");
+
+            deploymentManagement.deploy(multipartFile.getOriginalFilename(), multipartFile.getInputStream());
+            return r;
+        } catch (Exception ex) {
+            logger.error("Exception", ex);
+            r.isError(ex.getMessage());
+            return r;
+        }
     }
 }
