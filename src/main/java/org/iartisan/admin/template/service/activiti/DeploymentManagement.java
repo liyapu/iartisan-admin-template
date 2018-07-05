@@ -53,9 +53,6 @@ public class DeploymentManagement {
         return resultPage;
     }
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     public String design(String name, String key, String description) throws UnsupportedEncodingException {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode editorNode = objectMapper.createObjectNode();
@@ -82,5 +79,9 @@ public class DeploymentManagement {
 
     public void deploy(String fileName, InputStream inputStream) {
         repositoryService.createDeployment().addInputStream(fileName, inputStream).name(fileName).deploy();
+    }
+
+    public void delete(String deploymentId) {
+        repositoryService.deleteDeployment(deploymentId);
     }
 }

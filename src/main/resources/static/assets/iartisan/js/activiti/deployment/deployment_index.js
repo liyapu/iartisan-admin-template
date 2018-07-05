@@ -1,14 +1,15 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['router', "util", 'layer', 'upload'], function () {
+}).use(['router', "util", 'layer', 'upload', 'table'], function () {
     var router = layui.router, util = layui.util, layer = layui.layer,
-        upload = layui.upload;
+        upload = layui.upload, table = layui.table;
 
 
     var urls = {
         queryPageData: "/activiti/deployment/queryPageData",
         toDesign: "/activiti/deployment/toDesign",
-        upload: "/activiti/deployment/upload"
+        upload: "/activiti/deployment/upload",
+        deleteData: "/activiti/deployment/deleteData"
     };
     queryPageData();
 
@@ -46,11 +47,33 @@ layui.config({
                         return util.toDateString(d.startTime);
                     },
                     align: 'center'
+                },
+                {
+                    title: '操作',
+                    templet: function () {
+                        var html = "<a class='layui-btn layui-btn-danger layui-btn-xs' lay-event='del'>删除</a>";
+                        return html;
+                    }
                 }
             ]]
         });
     }
 
+    table.on('tool(dataList)', function (obj) {
+        var layEvent = obj.event, data = obj.data;
+        if (layEvent == 'del') {
+            layer.confirm("确定删除吗",{async:true}, function (index) {
+                layer.close(index);
+                router.post({
+                    url: urls.deleteData,
+                    data: {deploymentId: data.id},
+                    success: function () {
+                        tableIns.reload();
+                    }
+                });
+            });
+        }
+    });
     $("#btdDesign").on("click", function () {
         var index = layer.open({
                 type: 2,
@@ -66,9 +89,9 @@ layui.config({
     upload.render({
         elem: '#btnUpload',
         url: urls.upload,
-        accept:"file",
+        accept: "file",
         done: function (res) {
-            //重新加载流程列表
+            tableIns.reload();
         }
     });
 });

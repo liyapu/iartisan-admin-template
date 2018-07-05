@@ -11,13 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.Iterator;
 
 
 /**
@@ -62,13 +60,13 @@ public class ActivitiDeploymentPageController extends BaseController implements 
         return "redirect:/activitiView/modeler.html?modelId=" + id;
     }
 
+    @ResponseBody
     @PostMapping(value = "upload")
     public WebR uploadFile(HttpServletRequest request) throws IOException {
         WebR r = new WebR();
         try {
             StandardMultipartHttpServletRequest multipartRequest = (StandardMultipartHttpServletRequest) request;
             MultipartFile multipartFile = multipartRequest.getMultiFileMap().getFirst("file");
-
             deploymentManagement.deploy(multipartFile.getOriginalFilename(), multipartFile.getInputStream());
             return r;
         } catch (Exception ex) {
@@ -76,5 +74,18 @@ public class ActivitiDeploymentPageController extends BaseController implements 
             r.isError(ex.getMessage());
             return r;
         }
+    }
+
+    @ResponseBody
+    @PostMapping(ReqContants.REQ_DELETE_DATA)
+    public WebR delete(String deploymentId) {
+        WebR webR = new WebR();
+        webR.isSuccess("成功");
+        try {
+            deploymentManagement.delete(deploymentId);
+        } catch (Exception e) {
+            webR.isError(e.getMessage());
+        }
+        return webR;
     }
 }
