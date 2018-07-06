@@ -1,12 +1,15 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['router', "util", 'layer','table'], function () {
+}).use(['router', "util", 'layer', 'table'], function () {
     var router = layui.router, util = layui.util, layer = layui.layer, table = layui.table;
 
 
     var urls = {
         queryPageData: "/activiti/model/queryPageData",
-        toDesign: "/activiti/model/toDesign"
+        toDesign: "/activiti/model/toDesign",
+        deleteData: "/activiti/model/deleteData",
+        deploy: "/activiti/model/deploy",
+        modifyDataPage: "/activiti/model/modifyDataPage"
     };
     queryPageData();
 
@@ -47,8 +50,13 @@ layui.config({
                 },
                 {
                     title: '操作',
-                    templet: function () {
-                        var html = "<a class='layui-btn layui-btn-danger layui-btn-xs' lay-event='del'>删除</a>";
+                    templet: function (d) {
+                        var html = "";
+                        if (d.deploymentId == null) {
+                            html += "<a class='layui-btn layui-btn-xs' lay-event='deploy'>发布</a>";
+                        }
+                        html += "<a class='layui-btn layui-btn-primary layui-btn-xs' lay-event='edit'>编辑</a>";
+                        html += "<a class='layui-btn layui-btn-danger layui-btn-xs' lay-event='del'>删除</a>";
                         return html;
                     }
                 }
@@ -59,16 +67,37 @@ layui.config({
     table.on('tool(dataList)', function (obj) {
         var layEvent = obj.event, data = obj.data;
         if (layEvent == 'del') {
-            layer.confirm("确定删除吗",{async:true}, function (index) {
-                layer.close(index);
+            top.layer.confirm("确定删除吗", {async: true}, function (index) {
+                top.layer.close(index);
                 router.post({
                     url: urls.deleteData,
-                    data: {deploymentId: data.id},
+                    data: {modelId: data.id},
                     success: function () {
                         tableIns.reload();
                     }
                 });
             });
+        } else if (layEvent == 'deploy') {
+            top.layer.confirm("确定发布吗", {async: true}, function (index) {
+                top.layer.close(index);
+                router.post({
+                    url: urls.deploy,
+                    data: {modelId: data.id},
+                    success: function () {
+                        tableIns.reload();
+                    }
+                });
+            });
+        } else if (layEvent == 'edit') {
+            var index = layer.open({
+                    type: 2,
+                    maxmin: true,
+                    anim: 1,
+                    title: '流程设计',
+                    content: urls.modifyDataPage + "/" + data.id
+                }
+            );
+            layer.full(index);
         }
     });
     $("#btdDesign").on("click", function () {

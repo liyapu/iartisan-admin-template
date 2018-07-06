@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 
 /**
  * <p>
@@ -45,9 +47,22 @@ public class ActivitiModelRestController extends BaseController implements ISupp
         }
     }
 
-    @Override
-    public WebR deleteData(String s) {
-        return null;
+    @PostMapping("deploy")
+    public WebR deploy(String modelId) {
+        WebR r = new WebR();
+        try {
+            modelManagement.deploy(modelId);
+        } catch (Exception e) {
+            r.isError(e.getMessage());
+        }
+        return r;
+    }
+
+    @PostMapping(ReqContants.REQ_DELETE_DATA)
+    public WebR deleteData(String modelId) {
+        WebR r = new WebR();
+        modelManagement.deleteData(modelId);
+        return r;
     }
 
     @Override
