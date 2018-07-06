@@ -1,15 +1,12 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['router', "util", 'layer', 'upload', 'table'], function () {
-    var router = layui.router, util = layui.util, layer = layui.layer,
-        upload = layui.upload, table = layui.table;
+}).use(['router', "util", 'layer','table'], function () {
+    var router = layui.router, util = layui.util, layer = layui.layer, table = layui.table;
 
 
     var urls = {
-        queryPageData: "/activiti/deployment/queryPageData",
-        toDesign: "/activiti/deployment/toDesign",
-        upload: "/activiti/deployment/upload",
-        deleteData: "/activiti/deployment/deleteData"
+        queryPageData: "/activiti/model/queryPageData",
+        toDesign: "/activiti/model/toDesign"
     };
     queryPageData();
 
@@ -74,13 +71,15 @@ layui.config({
             });
         }
     });
-
-    upload.render({
-        elem: '#btnUpload',
-        url: urls.upload,
-        accept: "file",
-        done: function (res) {
-            tableIns.reload();
-        }
+    $("#btdDesign").on("click", function () {
+        var index = layer.open({
+                type: 2,
+                maxmin: true,
+                anim: 1,
+                title: '流程设计',
+                content: urls.toDesign
+            }
+        );
+        layer.full(index);
     });
 });

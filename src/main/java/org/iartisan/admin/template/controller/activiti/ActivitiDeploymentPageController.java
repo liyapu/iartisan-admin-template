@@ -53,12 +53,7 @@ public class ActivitiDeploymentPageController extends BaseController implements 
         return null;
     }
 
-    //在线设计页面
-    @GetMapping("toDesign")
-    public String toDesign() throws UnsupportedEncodingException {
-        String id = deploymentManagement.design("new", "new", "new");
-        return "redirect:/activitiView/modeler.html?modelId=" + id;
-    }
+
 
     @ResponseBody
     @PostMapping(value = "upload")
