@@ -9,6 +9,8 @@ package org.iartisan.admin.template.service.entity;
  */
 public class LeaveEntity {
 
+    private String processId;
+
     private String beginTime;
 
     private String endTime;
@@ -47,5 +49,13 @@ public class LeaveEntity {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public String getProcessId() {
+        return processId;
+    }
+
+    public void setProcessId(String processId) {
+        this.processId = processId;
     }
 }

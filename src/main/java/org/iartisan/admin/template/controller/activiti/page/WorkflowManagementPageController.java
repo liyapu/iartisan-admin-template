@@ -1,8 +1,10 @@
 package org.iartisan.admin.template.controller.activiti.page;
 
+import org.iartisan.admin.template.service.activiti.DeploymentManagement;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportPageController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,20 +17,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @since 2018/6/28
  */
 @Controller
-@RequestMapping("activiti/workflowStart")
-public class WorkflowStartPageController extends BaseController implements ISupportPageController {
+@RequestMapping("activiti/workflow")
+public class WorkflowManagementPageController extends BaseController implements ISupportPageController {
 
-    private static final String VIEW_PREFIX = "activiti/workflowStart/";
+    private static final String VIEW_PREFIX = "activiti/workflow/";
 
+    @Autowired
+    private DeploymentManagement deploymentManagement;
 
     @GetMapping(ReqContants.REQ_INDEX)
     public String index() {
-        return VIEW_PREFIX + "workflowStart_index";
+        return VIEW_PREFIX + "start/workflowStart_index";
     }
 
     @GetMapping(ReqContants.REQ_ADD_DATA_PAGE)
     public String addDataPage(Model model) {
-        return VIEW_PREFIX + "workflowStart_add";
+        //查询所有流程列表
+        model.addAttribute("deployments", deploymentManagement.getAllDeployments());
+        return VIEW_PREFIX + "start/workflowStart_add";
     }
 
     @Override

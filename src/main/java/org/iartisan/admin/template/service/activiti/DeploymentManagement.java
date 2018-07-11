@@ -31,16 +31,14 @@ public class DeploymentManagement {
     @Autowired
     private RepositoryService repositoryService;
 
-    public PageWrapper<DeploymentEntity> queryDeploymentsPage(Page page) {
-        long total = repositoryService.createDeploymentQuery().count();
-        List<Deployment> result = repositoryService.createDeploymentQuery().orderByDeploymenTime().asc().listPage(
-                (page.getCurrPage() - 1) * page.getPageSize()
-                , page.getPageSize());
-        page.setTotalRecords((int) total);
-        page.setCurrPage(page.getCurrPage() + 1);
-        PageWrapper<DeploymentEntity> resultPage = new PageWrapper<>(page);
+    public List<DeploymentEntity> getAllDeployments() {
+        List<Deployment> result = repositoryService.createDeploymentQuery().list();
+        return convertDeployment(result);
+    }
+
+    public List<DeploymentEntity> convertDeployment(List<Deployment> dataList) {
         List<DeploymentEntity> deploymentEntities = new ArrayList<>();
-        result.forEach(v -> {
+        dataList.forEach(v -> {
             DeploymentEntity entity = new DeploymentEntity();
             entity.setId(v.getId());
             entity.setName(v.getName());
@@ -49,10 +47,20 @@ public class DeploymentManagement {
             entity.setTenantId(v.getTenantId());
             deploymentEntities.add(entity);
         });
-        resultPage.setData(deploymentEntities);
-        return resultPage;
+        return deploymentEntities;
     }
 
+    public PageWrapper<DeploymentEntity> queryDeploymentsPage(Page page) {
+        long total = repositoryService.createDeploymentQuery().count();
+        List<Deployment> result = repositoryService.createDeploymentQuery().orderByDeploymenTime().asc().listPage(
+                (page.getCurrPage() - 1) * page.getPageSize()
+                , page.getPageSize());
+        page.setTotalRecords((int) total);
+        page.setCurrPage(page.getCurrPage() + 1);
+        PageWrapper<DeploymentEntity> resultPage = new PageWrapper<>(page);
+        resultPage.setData(convertDeployment(result));
+        return resultPage;
+    }
 
 
     public void deploy(String fileName, InputStream inputStream) {

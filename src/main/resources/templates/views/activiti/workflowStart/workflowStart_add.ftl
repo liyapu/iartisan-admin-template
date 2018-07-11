@@ -1,6 +1,23 @@
 <form class="layui-form" id="formAdd">
     <div class="layui-form-item">
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+            <legend style="font-size:16px;">流程信息</legend>
+        </fieldset>
+    </div>
+    <div class="layui-form-item">
+        <label for="beginTime" class="layui-form-label">
+            请选择流程
+        </label>
+        <div class="layui-input-inline">
+            <select name="processId" lay-verify="required">
+                <#list deployments as deployment>
+                    <option value="${deployment.id!''}">${deployment.name!''}</option>
+                </#list>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
             <legend style="font-size:16px;">请假信息</legend>
         </fieldset>
     </div>
