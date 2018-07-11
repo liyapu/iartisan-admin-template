@@ -13,10 +13,8 @@ import org.activiti.engine.repository.Model;
 import org.apache.commons.lang3.StringUtils;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
-import org.iartisan.runtime.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -75,6 +73,8 @@ public class ModelManagement {
     }
 
     public void deploy(String modelId) throws IOException {
+        //判断该模型是否已发布
+
         Model modelData = repositoryService.getModel(modelId);
         byte[] bytes = repositoryService.getModelEditorSource(modelData.getId());
         if (bytes == null) {
