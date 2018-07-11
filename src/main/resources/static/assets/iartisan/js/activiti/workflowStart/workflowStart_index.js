@@ -14,7 +14,7 @@ layui.config({
             btn: ['修改', '关闭'],
             btnAlign: 'c',
             yes: function (index, layero) {
-                layero.find('iframe').contents().find("#formModify").find("#btnModify").click();
+                layero.find('iframe').contents().find("#formAdd").find("#btnAdd").click();
             },
             btn2: function (index) {
                 layer.close(index);

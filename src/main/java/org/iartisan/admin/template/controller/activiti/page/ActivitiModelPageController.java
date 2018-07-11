@@ -1,4 +1,4 @@
-package org.iartisan.admin.template.controller.activiti;
+package org.iartisan.admin.template.controller.activiti.page;
 
 
 import org.iartisan.admin.template.service.activiti.ModelManagement;

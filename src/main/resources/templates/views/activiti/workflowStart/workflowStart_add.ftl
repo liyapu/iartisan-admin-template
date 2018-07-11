@@ -1,4 +1,4 @@
-<form class="layui-form layui-form-pane">
+<form class="layui-form" id="formAdd">
     <div class="layui-form-item">
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
             <legend style="font-size:16px;">请假信息</legend>
@@ -50,6 +50,6 @@
             </div>
         </div>
     </div>
+    <input type="hidden" lay-submit="" lay-filter="addData" id="btnAdd"/>
 </form>
-<script type="text/javascript"
-        src="/assets/iartisan/js/activiti/workflowStart/workflowStart_add.js?${staticVerison!'1'}"></script>
+<script type="text/javascript" src="/assets/iartisan/js/activiti/workflowStart/workflowStart_add.js?${staticVerison!'1'}"></script>

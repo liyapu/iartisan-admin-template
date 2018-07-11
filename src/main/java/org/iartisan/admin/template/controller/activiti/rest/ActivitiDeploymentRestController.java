@@ -1,4 +1,4 @@
-package org.iartisan.admin.template.controller.activiti;
+package org.iartisan.admin.template.controller.activiti.rest;
 
 import org.activiti.engine.repository.Deployment;
 import org.iartisan.admin.template.service.activiti.DeploymentManagement;

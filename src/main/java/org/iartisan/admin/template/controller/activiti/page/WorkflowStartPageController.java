@@ -1,4 +1,4 @@
-package org.iartisan.admin.template.controller.activiti;
+package org.iartisan.admin.template.controller.activiti.page;
 
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
