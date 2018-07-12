@@ -9,6 +9,8 @@ package org.iartisan.admin.template.service.activiti.entity;
  */
 public class TaskEntity {
 
+    private String instId;//流程ID
+
     private String taskNodeName;//当前任务节点名称
 
 
@@ -18,5 +20,13 @@ public class TaskEntity {
 
     public void setTaskNodeName(String taskNodeName) {
         this.taskNodeName = taskNodeName;
+    }
+
+    public String getInstId() {
+        return instId;
+    }
+
+    public void setInstId(String instId) {
+        this.instId = instId;
     }
 }

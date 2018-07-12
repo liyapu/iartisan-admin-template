@@ -72,6 +72,7 @@ public class WorkflowManagement {
                     //查询当前节点名称
                     Task task = taskService.createTaskQuery().processInstanceId(v.getId()).active().singleResult();
                     TaskEntity entity = new TaskEntity();
+                    entity.setInstId(v.getId());
                     //todo 查询当前节点处理人
                     if (null != task) {
                         entity.setTaskNodeName(task.getName());

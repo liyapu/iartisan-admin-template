@@ -36,12 +36,17 @@ layui.config({
             type: 'post',
             cols: [[
                 {
-                    title: '任务名称',
+                    title: '流程编号',
                     field: 'taskNodeName',
                     align: 'center'
                 },
                 {
-                    title: '部署时间',
+                    title: '当前任务节点',
+                    field: 'taskNodeName',
+                    align: 'center'
+                },
+                {
+                    title: '流程发起时间',
                     templet: function (d) {
                         return util.toDateString(d.startTime);
                     },
@@ -50,13 +55,15 @@ layui.config({
                 {
                     title: '操作',
                     templet: function () {
-                        var html = "<a class='layui-btn layui-btn-danger layui-btn-xs' lay-event='del'>删除</a>";
+                        var html = "<a class='layui-btn layui-btn-xs' lay-event='del'>查看流程图</a>";
+                        html += "<a class='layui-btn layui-btn-danger layui-btn-xs' lay-event='del'>撤回</a>";
                         return html;
                     }
                 }
             ]]
         });
     }
+
     function loadProcessDefineImg() {
         var processInstanceId = $("#processInstanceId").val();
         var imageUrl = page.ajaxURL.getProcessDefineImg + "?processInstanceId=" + processInstanceId;
@@ -116,5 +123,4 @@ layui.config({
         });
     }
 
-,
 });
