@@ -1,0 +1,22 @@
+package org.iartisan.admin.template.service.activiti.entity;
+
+/**
+ * <p>
+ * task entity
+ *
+ * @author King
+ * @since 2018/7/12
+ */
+public class TaskEntity {
+
+    private String taskNodeName;//当前任务节点名称
+
+
+    public String getTaskNodeName() {
+        return taskNodeName;
+    }
+
+    public void setTaskNodeName(String taskNodeName) {
+        this.taskNodeName = taskNodeName;
+    }
+}

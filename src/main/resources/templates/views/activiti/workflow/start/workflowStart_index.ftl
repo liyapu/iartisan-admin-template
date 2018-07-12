@@ -10,5 +10,5 @@
 </div>
 <table id="dataList" lay-filter="dataList"></table>
 
-<script type="text/javascript" src="/assets/iartisan/js/activiti/workflowStart/workflowStart_index.js?${staticVerison!'1'}"></script>
+<script type="text/javascript" src="/assets/iartisan/js/activiti/workflow/start/workflowStart_index.js?${staticVerison!'1'}"></script>
 

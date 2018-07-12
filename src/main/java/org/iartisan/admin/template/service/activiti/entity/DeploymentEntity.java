@@ -1,4 +1,4 @@
-package org.iartisan.admin.template.service.entity;
+package org.iartisan.admin.template.service.activiti.entity;
 
 import java.util.Date;
 

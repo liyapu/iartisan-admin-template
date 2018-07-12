@@ -1,20 +1,14 @@
 package org.iartisan.admin.template.service.activiti;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.activiti.editor.constants.ModelDataJsonConstants;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
-import org.activiti.engine.repository.Model;
-import org.apache.commons.lang3.StringUtils;
-import org.iartisan.admin.template.service.entity.DeploymentEntity;
+import org.iartisan.admin.template.service.activiti.entity.DeploymentEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 

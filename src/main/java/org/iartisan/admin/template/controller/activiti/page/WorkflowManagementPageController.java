@@ -25,12 +25,12 @@ public class WorkflowManagementPageController extends BaseController implements 
     @Autowired
     private DeploymentManagement deploymentManagement;
 
-    @GetMapping(ReqContants.REQ_INDEX)
+    @GetMapping("start" + ReqContants.REQ_INDEX)
     public String index() {
         return VIEW_PREFIX + "start/workflowStart_index";
     }
 
-    @GetMapping(ReqContants.REQ_ADD_DATA_PAGE)
+    @GetMapping("start/" + ReqContants.REQ_ADD_DATA_PAGE)
     public String addDataPage(Model model) {
         //查询所有流程列表
         model.addAttribute("deployments", deploymentManagement.getAllDeployments());

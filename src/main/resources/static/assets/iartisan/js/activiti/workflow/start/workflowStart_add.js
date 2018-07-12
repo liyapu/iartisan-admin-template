@@ -3,7 +3,7 @@ layui.config({
 }).use(['jquery', 'laydate','router'], function () {
     var laydate = layui.laydate,router=layui.router;
 
-    var urls = {addData: "/activiti/workflowStart/addData"};
+    var urls = {addData: "/activiti/workflow/start/addData"};
 
     laydate.render({elem: '#beginTime'});
     laydate.render({elem: '#endTime'});

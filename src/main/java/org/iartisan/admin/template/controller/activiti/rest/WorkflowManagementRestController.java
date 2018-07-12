@@ -1,7 +1,10 @@
 package org.iartisan.admin.template.controller.activiti.rest;
 
 import org.iartisan.admin.template.service.activiti.WorkflowManagement;
-import org.iartisan.admin.template.service.entity.LeaveEntity;
+import org.iartisan.admin.template.service.activiti.entity.LeaveEntity;
+import org.iartisan.admin.template.service.activiti.entity.TaskEntity;
+import org.iartisan.runtime.bean.Page;
+import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
@@ -38,7 +41,7 @@ public class WorkflowManagementRestController extends BaseController implements 
         return null;
     }
 
-    @PostMapping(ReqContants.REQ_ADD_DATA)
+    @PostMapping("start/" + ReqContants.REQ_ADD_DATA)
     public WebR addData(LeaveEntity leaveEntity) {
         WebR webR = new WebR();
         Map<String, String> variables = new HashMap<>();
@@ -55,9 +58,11 @@ public class WorkflowManagementRestController extends BaseController implements 
      *
      * @return
      */
-    @PostMapping("owner/" + ReqContants.REQ_QUERY_PAGE_DATA)
-    public WebR queryOwnerPageTasks() {
-        WebR r = new WebR();
+    @PostMapping("start/owner/" + ReqContants.REQ_QUERY_PAGE_DATA)
+    public WebR queryOwnerPageTasks(Page page) {
+        PageWrapper<TaskEntity> pageResult = workflowManagement.getPageTasks(getCustId(), page);
+        WebR r = new WebR(pageResult.getPage());
+        r.setData(pageResult.getData());
         return r;
     }
 }

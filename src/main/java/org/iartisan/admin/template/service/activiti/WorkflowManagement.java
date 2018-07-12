@@ -5,12 +5,16 @@ import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.iartisan.admin.template.service.activiti.entity.DeploymentEntity;
+import org.iartisan.admin.template.service.activiti.entity.TaskEntity;
 import org.iartisan.runtime.bean.Page;
+import org.iartisan.runtime.bean.PageWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -48,17 +52,26 @@ public class WorkflowManagement {
         logger.info("===>启动流程{}", processInstance);
     }
 
-    public void getPageTasks(String startedBy, Page page) {
+    public PageWrapper<TaskEntity> getPageTasks(String startedBy, Page page) {
         List<HistoricProcessInstance> result = historyService.createHistoricProcessInstanceQuery().startedBy(startedBy)
                 .listPage((page.getCurrPage() - 1) * page.getPageSize(), page.getPageSize());
         long total = historyService.createHistoricProcessInstanceQuery().startedBy(startedBy).count();
+        List<TaskEntity> dataList = new ArrayList<>();
         result.forEach(v -> {
                     //查询当前节点名称
                     Task task = taskService.createTaskQuery().processInstanceId(v.getId()).active().singleResult();
-                    //查询当前节点处理人
+                    TaskEntity entity = new TaskEntity();
+                    //todo 查询当前节点处理人
+                    if (null != task) {
+                        entity.setTaskNodeName(task.getName());
+                    }
+                    dataList.add(entity);
                 }
         );
-
-
+        page.setTotalRecords((int) total);
+        page.setCurrPage(page.getCurrPage() + 1);
+        PageWrapper<TaskEntity> resultPage = new PageWrapper<>(page);
+        resultPage.setData(dataList);
+        return resultPage;
     }
 }
