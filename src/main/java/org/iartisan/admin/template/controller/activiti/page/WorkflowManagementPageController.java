@@ -1,6 +1,7 @@
 package org.iartisan.admin.template.controller.activiti.page;
 
 import org.iartisan.admin.template.service.activiti.DeploymentManagement;
+import org.iartisan.admin.template.service.activiti.WorkflowManagement;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportPageController;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.InputStream;
 
 /**
  * <p>
@@ -24,6 +28,10 @@ public class WorkflowManagementPageController extends BaseController implements 
 
     @Autowired
     private DeploymentManagement deploymentManagement;
+
+    @Autowired
+    private WorkflowManagement workflowManagement;
+
 
     @GetMapping("start" + ReqContants.REQ_INDEX)
     public String index() {
@@ -45,5 +53,17 @@ public class WorkflowManagementPageController extends BaseController implements 
     @Override
     public String queryDetailPage(Model model, String s) {
         return null;
+    }
+
+    @RequestMapping(value = "/getProcessDefineImg")
+    public void loadProcessDefineImg(String processInstanceId, HttpServletResponse response)
+            throws Exception {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        InputStream resourceAsStream = workflowManagement.getProcessDefinitionImg(processInstanceId);
+        byte[] b = new byte[1024];
+        int len = -1;
+        while ((len = resourceAsStream.read(b, 0, 1024)) != -1) {
+            response.getOutputStream().write(b, 0, len);
+        }
     }
 }

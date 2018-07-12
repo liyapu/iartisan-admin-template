@@ -12,9 +12,12 @@ import org.iartisan.runtime.web.controller.ISupportRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -63,6 +66,20 @@ public class WorkflowManagementRestController extends BaseController implements 
         PageWrapper<TaskEntity> pageResult = workflowManagement.getPageTasks(getCustId(), page);
         WebR r = new WebR(pageResult.getPage());
         r.setData(pageResult.getData());
+        return r;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getProcessTrace")
+    public WebR getProcessTrace(String processInstanceId, HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        WebR r = new WebR();
+        try {
+            List<Map<String, Object>> data = workflowManagement.getProcessTrace(processInstanceId);
+            r.setData(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return r;
     }
 }
