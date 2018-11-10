@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="/assets/iartisan/css/public.css" media="all"/>
 </head>
 <body class="childrenBody" style="background-color: #f2f2f2">
-<blockquote class="layui-elem-quote layui-bg-green" style="border-radius: 6px;">
+<#--<blockquote class="layui-elem-quote layui-bg-green" style="border-radius: 6px;">
     <div id="nowTime">亲爱的${_user.userName!''}， 欢迎使用：${_title!''} </div>
-</blockquote>
+</blockquote>-->
 
 <div class="layui-row">
     <div class="layui-col-lg4 layui-col-md10">
@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-lg6 layui-col-md12 layui-col-lg-offset1 layui-col-md-offset1">
+    <#--<div class="layui-col-lg6 layui-col-md12 layui-col-lg-offset1 layui-col-md-offset1">
         <div class="layui-card">
             <div class="layui-card-header">提交记录</div>
             <div class="layui-card-body layui-text">
@@ -74,7 +74,7 @@
                 </style>
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
 </body>
 </html>

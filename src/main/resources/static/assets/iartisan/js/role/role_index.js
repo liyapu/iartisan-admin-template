@@ -16,6 +16,8 @@ layui.config({
 
     var tableIns;
 
+    var area = ['50%', '99%'];
+
     function queryPageData() {
         tableIns = router.table({
             elem: "#dataList",
@@ -72,7 +74,7 @@ layui.config({
                 title: '角色详情',
                 type: 2,
                 content: urls.queryDetailPage + "?roleId=" + data.roleId,
-                area: ['500px', '500px'],
+                area: area,
                 skin: 'layui-layer-molv',
                 maxmin: true,
                 btn: "关闭",
@@ -89,7 +91,7 @@ layui.config({
                 title: '角色修改',
                 type: 2,
                 content: urls.modifyDataPage + "?roleId=" + data.roleId,
-                area: ['35%', '80%'],
+                area: area,
                 skin: 'layui-layer-molv',
                 maxmin: true,
                 btn: ["修改", "关闭"],
@@ -112,7 +114,7 @@ layui.config({
             title: "添加角色",
             type: 2,
             content: urls.addDataPage,
-            area: ['600px', '500px'],
+            area: area,
             maxmin: true,
             btn: ['添加', '关闭'],
             btnAlign: 'c',

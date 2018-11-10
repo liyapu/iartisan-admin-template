@@ -183,4 +183,19 @@ public class RoleSupportService {
         roleEntity.setRoleName(entity.getRoleName());
         addRole(roleEntity);
     }
+
+    public String getUserRoleNames(String userId) {
+        Wrapper<SystemUserRoleDO> wrapper = new EntityWrapper<>();
+        wrapper.eq("USER_ID", userId);
+        List<SystemUserRoleDO> dbResult = systemUserRoleMapper.selectList(wrapper);
+        StringBuffer buffer = new StringBuffer();
+        if (null != dbResult && dbResult.size() > 0) {
+            dbResult.forEach(v -> {
+                buffer.append(getRoleDetail(v.getRoleId()).getRoleName());
+                buffer.append("&nbsp;&nbsp;&nbsp;");
+            });
+
+        }
+        return buffer.toString();
+    }
 }

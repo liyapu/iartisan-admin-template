@@ -16,6 +16,8 @@ layui.config({
 
     var tableIns;
 
+    var area = ['50%', '80%'];
+
     function queryPageData() {
         tableIns = router.table({
             elem: "#dataList",
@@ -29,7 +31,7 @@ layui.config({
                     title: '用户名',
                 },
                 {
-                    field: 'userName',
+                    field: 'roles',
                     title: '角色列表',
                 },
                 {
@@ -74,7 +76,7 @@ layui.config({
                 type: 2,
                 title: '用户信息修改',
                 skin: 'layui-layer-molv',
-                area: ['500px', '500px'],
+                area: area,
                 content: urls.modifyDataPage + "?userId=" + data.userId,
                 btn: ['修改', '关闭'],
                 yes: function (index, layero) {
@@ -121,8 +123,9 @@ layui.config({
         layui.layer.open({
             type: 2,
             title: '添加用户',
-            area: ['500px', '500px'],
+            area: area,
             content: urls.addDataPage,
+            skin: 'layui-layer-molv',
             btn: ['提交', '关闭'],
             btnAlign: 'c',
             yes: function (index, layero) {

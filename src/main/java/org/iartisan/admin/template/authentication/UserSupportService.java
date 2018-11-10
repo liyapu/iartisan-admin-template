@@ -40,6 +40,9 @@ public class UserSupportService {
     @Autowired
     private SystemUserRoleMapper systemUserRoleMapper;
 
+    @Autowired
+    private RoleSupportService roleSupportService;
+
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -65,6 +68,7 @@ public class UserSupportService {
             bean.setUserId(o.getUserId());
             bean.setUserStatus(o.getStatus());
             bean.setCreateDate(o.getCreateTime());
+            bean.setRoles(roleSupportService.getUserRoleNames(o.getUserId()));
             pageList.add(bean);
         }
         result.setData(pageList);
