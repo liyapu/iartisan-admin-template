@@ -100,6 +100,9 @@ public class RoleSupportService {
         String roleId = roleEntity.getRoleId();
         if (StringUtils.isEmpty(roleId)) {
             roleId = UUIDUtil.shortId();
+        } else {
+            //如果不为空则证明之前存在该授权需要删除再添加
+            deletePermissionByRoleId(roleId);
         }
         dbRoleInsert.setRoleId(roleId);
         dbRoleInsert.setCreateTime(new Date());
@@ -168,12 +171,22 @@ public class RoleSupportService {
 
     @Transactional
     public void deleteRole(String roleId) {
+        //删除角色
         systemRoleMapper.deleteById(roleId);
-        SystemUserRoleDO dbEntity = new SystemUserRoleDO();
-        dbEntity.setRoleId(roleId);
-        //删除用户 角色关联关系
-        Wrapper<SystemUserRoleDO> dbDel = new EntityWrapper<>(dbEntity);
-        systemUserRoleMapper.delete(dbDel);
+        //删除角色关联的用户
+        SystemUserRoleDO userRoleDO = new SystemUserRoleDO();
+        userRoleDO.setRoleId(roleId);
+        Wrapper<SystemUserRoleDO> userWrapper = new EntityWrapper<>(userRoleDO);
+        systemUserRoleMapper.delete(userWrapper);
+        deletePermissionByRoleId(roleId);
+    }
+
+    private void deletePermissionByRoleId(String roleId) {
+        //删除角色关联的权限
+        SystemRolePermissionDO permissionDO = new SystemRolePermissionDO();
+        permissionDO.setRoleId(roleId);
+        Wrapper<SystemRolePermissionDO> permissionWrapper = new EntityWrapper<>(permissionDO);
+        systemRolePermissionMapper.delete(permissionWrapper);
     }
 
     @Transactional
