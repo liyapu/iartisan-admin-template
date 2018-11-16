@@ -2,7 +2,8 @@ var cacheStr = window.sessionStorage.getItem("cache"),
     oneLoginStr = window.sessionStorage.getItem("oneLogin");
 layui.use(['form', 'jquery', "layer"], function () {
     var $ = layui.jquery,
-        layer = parent.layer === undefined ? layui.layer : top.layer;
+        layer = parent.layer === undefined ? layui.layer : top.layer,
+        form = layui.form;
 
     var content = '<div style="padding: 20px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">' +
         'iartisan-admin-template基于spring-boot、layui、layuiCMS等众多优秀开源框架！<br><br>' +
@@ -53,41 +54,46 @@ layui.use(['form', 'jquery', "layer"], function () {
     }
 
     //功能设定
-    $(".functionSetting").click(function(){
+    $(".functionSetting").click(function () {
         layer.open({
             title: "功能设定",
             area: "20%",
             type: "1",
-            content :  '<div class="functionSrtting_box">'+
-            '<form class="layui-form">'+
-            '<div class="layui-form-item">'+
-            '<label class="layui-form-label">Tab切换刷新</label>'+
-            '<div class="layui-input-block">'+
-            '<input type="checkbox" name="changeRefresh" lay-skin="switch" lay-text="开|关">'+
-            '<div class="layui-word-aux">开启后切换窗口刷新当前页面</div>'+
-            '</div>'+
-            '</div>'+
-            '<div class="layui-form-item skinBtn">'+
-            '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-normal" lay-submit="" lay-filter="settingSuccess">确定</a>'+
-            '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-primary" lay-submit="" lay-filter="noSetting">取消</a>'+
-            '</div>'+
-            '</form>'+
-            '</div>',
-            success : function(index, layero){
+            content: '<div class="functionSrtting_box">' +
+                '<form class="layui-form">' +
+                '<div class="layui-form-item">' +
+                '<label class="layui-form-label">Tab切换刷新</label>' +
+                '<div class="layui-input-block">' +
+                '<input type="checkbox" name="changeRefresh" lay-skin="switch" lay-text="开|关">' +
+                '<div class="layui-word-aux">开启后切换窗口刷新当前页面</div>' +
+                '</div>' +
+                '</div>' +
+                '<div class="layui-form-item skinBtn">' +
+                '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-normal" lay-submit="" lay-filter="settingSuccess">确定</a>' +
+                '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-primary" lay-submit="" lay-filter="noSetting">取消</a>' +
+                '</div>' +
+                '</form>' +
+                '</div>',
+            success: function (index, layero) {
                 //如果之前设置过，则设置它的值
-                $(".functionSrtting_box input[name=changeRefresh]").prop("checked",changeRefreshStr=="true" ? true : false);
+                $(".functionSrtting_box input[name=changeRefresh]").prop("checked", changeRefreshStr == "true" ? true : false);
                 //设定
-                form.on("submit(settingSuccess)",function(data){
-                    window.sessionStorage.setItem("changeRefresh",data.field.changeRefresh=="on" ? "true" : "false");
+                form.on("submit(settingSuccess)", function (data) {
+                    window.sessionStorage.setItem("changeRefresh", data.field.changeRefresh == "on" ? "true" : "false");
                     location.reload();
                     return false;
                 });
                 //取消设定
-                form.on("submit(noSetting)",function(){
+                form.on("submit(noSetting)", function () {
                     layer.closeAll("page");
                 });
                 form.render();  //表单渲染
             }
         })
     })
+   //切换主题
+    $(".changeTheme").on('click', function () {
+        window.location = "changeTheme";
+        window.reload();
+    });
 });

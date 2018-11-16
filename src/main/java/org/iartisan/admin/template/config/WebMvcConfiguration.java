@@ -11,6 +11,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -48,6 +49,6 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter implements Serv
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(environmentInterceptor).addPathPatterns("/**/**/deleteData", "/**/**/modifyData","/userSupport/changeStatus","/userSupport/modifyPwd");
+        registry.addInterceptor(environmentInterceptor).addPathPatterns("/**/**/deleteData", "/**/**/modifyData", "/userSupport/changeStatus", "/userSupport/modifyPwd");
     }
 }

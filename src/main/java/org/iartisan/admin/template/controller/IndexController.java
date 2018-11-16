@@ -1,5 +1,6 @@
 package org.iartisan.admin.template.controller;
 
+import org.iartisan.runtime.env.EnvContextConfig;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.authentication.RealmBean;
 import org.iartisan.runtime.web.contants.ReqContants;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 /**
  * <p>
  *
@@ -21,6 +23,10 @@ public class IndexController extends BaseController {
 
     @PostMapping(ReqContants.REQ_INDEX)
     public String index() {
+        System.out.println("=================");
+        if (EnvContextConfig.get("iartisan.page.model").equals("single.page")) {
+            return "singleIndex";
+        }
         return "index";
     }
 

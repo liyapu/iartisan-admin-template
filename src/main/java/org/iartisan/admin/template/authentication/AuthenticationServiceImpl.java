@@ -2,14 +2,19 @@ package org.iartisan.admin.template.authentication;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.iartisan.admin.template.dao.model.SystemUserDO;
+import org.iartisan.admin.template.enums.PageModelEnum;
 import org.iartisan.runtime.constants.DataStatus;
+import org.iartisan.runtime.env.EnvContextConfig;
 import org.iartisan.runtime.web.authentication.AuthenticationService;
 import org.iartisan.runtime.web.authentication.MenuTree;
 import org.iartisan.runtime.web.authentication.RealmBean;
+import org.iartisan.runtime.web.contants.WebConstants;
+import org.iartisan.runtime.web.utils.WebUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import java.util.List;
 import java.util.Set;
@@ -56,6 +61,9 @@ public class AuthenticationServiceImpl extends AuthenticationService {
                 throw new AuthenticationException("用户没有相应的操作权限");
             }
             bean.setMenuTrees(trees);
+            WebUtil.getShiroSession().setAttribute(WebConstants._MENUS, trees);
+            //加载页面样式
+            WebUtil.getShiroSession().setAttribute("_pageModel", EnvContextConfig.get("iartisan.page.model", PageModelEnum.iframe.name()));
             return bean;
         } catch (AuthenticationException e) {
             throw e;

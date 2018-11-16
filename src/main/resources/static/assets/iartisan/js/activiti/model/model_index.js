@@ -101,7 +101,7 @@ layui.config({
         }
     });
     $("#btdDesign").on("click", function () {
-        var index = layer.open({
+        var index = top.layui.layer.open({
                 type: 2,
                 maxmin: true,
                 anim: 1,
