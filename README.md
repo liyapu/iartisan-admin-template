@@ -29,7 +29,7 @@
 - layuiCMS2.0 
 
 ## 演示地址
-- http://admin.shuyuantime.com
+- http://140.143.246.200:8081
 - 用户名/密码  admin  /  admin
 
 ### 1.项目部署
