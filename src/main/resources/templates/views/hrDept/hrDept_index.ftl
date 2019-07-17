@@ -5,9 +5,9 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-header">
-                            部门
+                            <i class="layui-icon">&#xe68e;</i> </i>  部门
                         </div>
-                        <div class="layui-card-body" style="height: 300px;">
+                        <div class="layui-card-body" id="test1">
 
                         </div>
                         <div class="layui-card-header">
@@ -33,3 +33,4 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/assets/iartisan/js/hrDept/hrDept_index.js?${staticVerison!'1'}"></script>
