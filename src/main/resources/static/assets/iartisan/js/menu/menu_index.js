@@ -65,7 +65,7 @@ layui.config({
                 anim: 1,
                 title: '添加子菜单 <span style="margin-left: 5px;font-size: 10px">[' + data.title + "]</span>",
                 skin: 'layui-layer-molv',
-                area: ['60%', '70%'],
+                area: ['80%', '90%'],
                 content: urls.addResourceIndex + "?menuId=" + data.id,
                 btn: ['关闭'],
                 btnAlign: 'c'
@@ -95,7 +95,7 @@ layui.config({
             title: "添加菜单",
             type: 2,
             content: urls.addDataPage,
-            area: ['600px', '500px'],
+            area: ['50%', '88%'],
             maxmin: true,
             btn: ['添加', '关闭'],
             btnAlign: 'c',
