@@ -1,10 +1,9 @@
 package org.iartisan.admin.template.controller.support.rest;
 
 import cn.hutool.json.JSONUtil;
+import org.iartisan.admin.template.authentication.service.entity.ZTreeEntity;
 import org.iartisan.admin.template.service.entity.DeptEntity;
-import org.iartisan.admin.template.service.entity.DeptTreeEntity;
 import org.iartisan.admin.template.service.query.DeptQueryService;
-import org.iartisan.runtime.utils.JsonUtil;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
@@ -51,8 +50,8 @@ public class HrDeptRestSupportController extends BaseController implements ISupp
     @GetMapping(value = ReqContants.REQ_QUERY_LIST_DATA)
     public WebR getDataList() {
         WebR webR = new WebR();
-        List<DeptTreeEntity> deptList = bizDeptQueryService.getDeptList();
-        webR.setData(JSONUtil.toJsonStr(deptList));
+        List<ZTreeEntity> dataList = bizDeptQueryService.getDeptList();
+        webR.setData(dataList);
         return webR;
     }
 }

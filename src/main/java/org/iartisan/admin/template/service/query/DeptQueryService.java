@@ -3,14 +3,14 @@ package org.iartisan.admin.template.service.query;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.google.common.collect.Lists;
+import org.iartisan.admin.template.authentication.service.entity.ZTreeEntity;
 import org.iartisan.admin.template.dao.mapper.BizDeptMapper;
 import org.iartisan.admin.template.dao.model.BizDeptDO;
 import org.iartisan.admin.template.service.entity.DeptEntity;
-import org.iartisan.admin.template.service.entity.DeptTreeEntity;
 import org.iartisan.runtime.support.BaseQueryServiceSupport;
 import org.iartisan.runtime.utils.CollectionUtil;
 import org.springframework.stereotype.Service;
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,49 +21,49 @@ import java.util.List;
 @Service
 public class DeptQueryService extends BaseQueryServiceSupport<BizDeptMapper, DeptEntity> {
 
-    public List<DeptTreeEntity> getDeptList() {
+
+    public List<ZTreeEntity> getDeptList() {
         //获取root节点
         Wrapper<BizDeptDO> queryWrapper = new EntityWrapper<>();
         queryWrapper.isNull("DEPT_PATH");
         List<BizDeptDO> dbResult = this.baseMapper.selectList(queryWrapper);
-        DeptTreeEntity root = new DeptTreeEntity();
-        List<DeptTreeEntity> roots = Lists.newArrayList();
+        List<ZTreeEntity> dataList = new ArrayList<>();
+        ZTreeEntity root = new ZTreeEntity();
         if (CollectionUtil.isNotEmpty(dbResult)) {
             BizDeptDO rootDept = dbResult.get(0);
             root.setId(rootDept.getDeptId());
-            root.setTitle(rootDept.getDeptName());
+            root.setName(rootDept.getDeptName());
+            dataList.add(root);
             //查询下级节点
-            getChildrenTree(root);
+            getChildrenTree(root, dataList);
         }
-        roots.add(root);
-        return roots;
+        return dataList;
     }
 
-    private void getChildrenTree(DeptTreeEntity entity) {
+    private void getChildrenTree(ZTreeEntity entity, List<ZTreeEntity> dataList) {
         //查询下级节点
-        List<DeptTreeEntity> childrenDept = getChildrenDept(entity.getId());
-        entity.setChildren(childrenDept);
+        List<ZTreeEntity> childrenDept = getChildrenDept(entity.getId());
         if (CollectionUtil.isNotEmpty(childrenDept)) {
-            for (DeptTreeEntity o : childrenDept) {
-                List<DeptTreeEntity> _childrenDept = getChildrenDept(o.getId());
-                o.setChildren(_childrenDept);
-                //下直去获取
-                getChildrenTree(o);
+            for (ZTreeEntity o : childrenDept) {
+                o.setpId(entity.getId());
+                dataList.add(o);
+                getChildrenTree(o, dataList);
             }
         }
     }
 
-    private List<DeptTreeEntity> getChildrenDept(String deptId) {
+    private List<ZTreeEntity> getChildrenDept(String deptId) {
         BizDeptDO dbQuery = new BizDeptDO();
         dbQuery.setDeptParent(deptId);
         Wrapper<BizDeptDO> queryWrapper = new EntityWrapper<>(dbQuery);
         List<BizDeptDO> dbResult = this.baseMapper.selectList(queryWrapper);
-        List<DeptTreeEntity> dataList = Lists.newArrayList();
+        List<ZTreeEntity> dataList = Lists.newArrayList();
         if (CollectionUtil.isNotEmpty(dbResult)) {
             dbResult.forEach(v -> {
-                DeptTreeEntity entity = new DeptTreeEntity();
-                entity.setTitle(v.getDeptName());
+                ZTreeEntity entity = new ZTreeEntity();
+                entity.setName(v.getDeptName());
                 entity.setId(v.getDeptId());
+                entity.setpId(deptId);
                 dataList.add(entity);
             });
             return dataList;

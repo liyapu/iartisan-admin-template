@@ -1,8 +1,11 @@
 package org.iartisan.admin.template.controller.support.page;
 
+import org.iartisan.admin.template.service.entity.DeptEntity;
+import org.iartisan.admin.template.service.query.DeptQueryService;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportPageController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +22,9 @@ public class HrDeptPageSupportController extends BaseController implements ISupp
 
     private static final String VIEW_PREFIX = "hrDept/";
 
+    @Autowired
+    private DeptQueryService deptQueryService;
+
     @Override
     @GetMapping(ReqContants.REQ_INDEX)
     public String index() {
@@ -26,8 +32,14 @@ public class HrDeptPageSupportController extends BaseController implements ISupp
     }
 
     @Override
-    @GetMapping(ReqContants.REQ_ADD_DATA_PAGE)
     public String addDataPage(Model model) {
+        return null;
+    }
+
+    @GetMapping(ReqContants.REQ_ADD_DATA_PAGE)
+    public String addDataPage(String parentDeptId, Model model) {
+        DeptEntity entity = deptQueryService.getDataById(parentDeptId);
+        model.addAttribute("parentDept", entity);
         return VIEW_PREFIX + "hrDept_add";
     }
 
