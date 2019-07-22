@@ -7,7 +7,7 @@
                         <div class="layui-card-header">
                             <i class="layui-icon">&#xe68e;</i> </i>  部门
                         </div>
-                        <div class="layui-card-body" id="test1">
+                        <div class="layui-card-body" id="deptTree">
 
                         </div>
                         <div class="layui-card-header">
@@ -24,7 +24,7 @@
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
-                        <div class="layui-card-body" style="height: 400px;">
+                        <div class="layui-card-body" style="height: 400px;" id="rightPage">
 
                         </div>
                     </div>

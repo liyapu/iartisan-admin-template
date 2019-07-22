@@ -1,22 +1,30 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['tree'], function () {
-    let tree = layui.tree;
-    let data = [{
-        title: '陕西'
-        , id: 3
-        , children: [{
-            title: '西安'
-            , id: 3000
-        }, {
-            title: '延安'
-            , id: 3001
-        }]
-    }];
-    //常规用法
-    tree.render({
-        elem: '#test1' //默认是点击节点可进行收缩
-        , data: data
+}).use(['jquery', 'tree', 'router'], function () {
+    let $ = layui.jquery, tree = layui.tree, router = layui.router,
+        urls = {
+            getDataList: "/hrDept/queryListData",
+            addDataPage: "/hrDept/addDataPage"
+        };
+
+    function initTree() {
+        router.ajaxGet(urls.getDataList, {}, {}, function (res) {
+            tree.render({
+                elem: '#deptTree',
+                data: $.parseJSON(res.data),
+                operate: function (obj) {
+
+                }
+            });
+        })
+    }
+
+    //添加按钮
+    $("#btnAddPage").on('click', function () {
+        router.ajaxGet(urls.addDataPage, {}, {}, function (res) {
+            $("#rightPage").html(res);
+        })
     });
 
+    initTree();
 });

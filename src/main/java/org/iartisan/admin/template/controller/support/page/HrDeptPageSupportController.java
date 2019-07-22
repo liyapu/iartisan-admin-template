@@ -26,8 +26,9 @@ public class HrDeptPageSupportController extends BaseController implements ISupp
     }
 
     @Override
+    @GetMapping(ReqContants.REQ_ADD_DATA_PAGE)
     public String addDataPage(Model model) {
-        return null;
+        return VIEW_PREFIX + "hrDept_add";
     }
 
     @Override
