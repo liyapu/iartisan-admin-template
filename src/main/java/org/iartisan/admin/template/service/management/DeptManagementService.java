@@ -10,6 +10,7 @@ import org.iartisan.runtime.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -44,6 +45,11 @@ public class DeptManagementService extends BaseManagementServiceSupport<BizDeptM
         dbInsert.setCreateTime(new Date());
         dbInsert.setUpdateTime(new Date());
         this.baseMapper.insert(dbInsert);
+    }
+
+    @Override
+    public void deleteDataById(Serializable id) {
+        super.deleteDataById(id);
     }
 
 }

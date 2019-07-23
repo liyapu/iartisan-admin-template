@@ -5,7 +5,8 @@ layui.config({
         urls = {
             getDataList: "/hrDept/queryListData",
             addDataPage: "/hrDept/addDataPage",
-            queryDetailPage: "/hrDept/queryDetailPage"
+            queryDetailPage: "/hrDept/queryDetailPage",
+            modifyDataPage: "/hrDept/modifyDataPage",
         },
         layer = layui.layer;
 
@@ -50,8 +51,7 @@ layui.config({
     //添加按钮
     $("#btnAddPage").on('click', function () {
         if (typeof currentDeptId != 'undefined') {
-
-            var index = layui.layer.open({
+            let index = layui.layer.open({
                 title: "添加下级部门",
                 type: 2,
                 content: urls.addDataPage + "?parentDeptId=" + currentDeptId,
@@ -71,6 +71,26 @@ layui.config({
     //刷新
     $("#btnRefresh").on('click', function () {
         initTree();
+    });
+    //刷新
+    $("#btnModify").on('click', function () {
+        if (typeof currentDeptId != 'undefined') {
+            let index = layui.layer.open({
+                title: "修改部门信息",
+                type: 2,
+                content: urls.modifyDataPage + "?deptId=" + currentDeptId,
+                area: ['40%','80%'],
+                btn: ['修改', '关闭'],
+                btnAlign: 'c',
+                skin: 'layui-layer-molv',
+                yes: function (index, layero) {
+                    layero.find('iframe').contents().find("#formAdd").find("#btnAdd").click();
+                },
+                btn2: function (index) {
+                    layui.layer.close(index);
+                }
+            });
+        }
     });
     initTree();
 });

@@ -32,13 +32,17 @@ public class HrDeptRestSupportController extends BaseController implements ISupp
     private DeptManagementService deptManagementService;
 
     @Override
-    public WebR deleteData(String keyId) {
-        return null;
+    @GetMapping(ReqContants.REQ_DELETE_DATA)
+    public WebR deleteData(String deptId) {
+        deptManagementService.deleteDataById(deptId);
+        return new WebR();
     }
 
     @Override
+    @PostMapping(ReqContants.REQ_MODIFY_DATA)
     public WebR modifyData(DeptEntity bizDeptEntity) {
-        return null;
+        deptManagementService.updateData(bizDeptEntity);
+        return new WebR();
     }
 
     @Override

@@ -13,9 +13,10 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn layui-btn-danger" type="button">
+            <button class="layui-btn layui-btn-danger" type="button" id="btnDel" attr-data="${dept.deptId}">
                 删除
             </button>
         </div>
     </div>
 </form>
+<script type="text/javascript" src="/assets/iartisan/js/hrDept/hrDept_detail.js?${staticVerison!'1'}"></script>

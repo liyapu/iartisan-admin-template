@@ -12,8 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.lang.annotation.Retention;
-
 /**
  * 部门管理页面
  *
@@ -47,13 +45,13 @@ public class HrDeptPageSupportController extends BaseController implements ISupp
     }
 
     @Override
-    public String modifyDataPage(Model model, String keyId) {
-        return null;
+    @GetMapping(ReqContants.REQ_MODIFY_DATA_PAGE)
+    public String modifyDataPage(Model model, String deptId) {
+        initData(model, deptId);
+        return VIEW_PREFIX + "hrDept_modify";
     }
 
-    @Override
-    @GetMapping(ReqContants.REQ_QUERY_DETAIL_PAGE)
-    public String queryDetailPage(Model model, String deptId) {
+    private void initData(Model model, String deptId) {
         DeptEntity entity = deptQueryService.getDataById(deptId);
         model.addAttribute("dept", entity);
         DeptEntity parentEntity = null;
@@ -61,6 +59,12 @@ public class HrDeptPageSupportController extends BaseController implements ISupp
             parentEntity = deptQueryService.getDataById(entity.getDeptParent());
         }
         model.addAttribute("parentDept", parentEntity == null ? new DeptEntity() : parentEntity);
+    }
+
+    @Override
+    @GetMapping(ReqContants.REQ_QUERY_DETAIL_PAGE)
+    public String queryDetailPage(Model model, String deptId) {
+        initData(model, deptId);
         return VIEW_PREFIX + "hrDept_detail";
     }
 }

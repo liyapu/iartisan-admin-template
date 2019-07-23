@@ -10,11 +10,11 @@
                         <div class="layui-card-body">
                             <ul id="deptTree" name="deptTree"  class="ztree"></ul>
                         </div>
-                        <div class="layui-card-header layui-input-inline">
+                        <div class="layui-card-header layui-input-inline" style="margin-bottom: 5px;">
                             <button class="layui-btn layui-btn-normal" type="button" id="btnAddPage">
                                 添加下级部门
                             </button>
-                            <button class="layui-btn layui-btn-primary" type="button" id="btnRefresh">
+                            <button class="layui-btn layui-btn-primary" type="button" id="btnModify">
                                 修改
                             </button>
                             <button class="layui-btn" type="button" id="btnRefresh">
