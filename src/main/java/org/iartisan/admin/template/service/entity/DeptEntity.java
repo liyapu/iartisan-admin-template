@@ -8,7 +8,12 @@ import lombok.Data;
 @Data
 public class DeptEntity {
 
+    private String deptId;
+
     private String deptName;
 
     private String deptPath;
+
+    private String deptParent;
+
 }

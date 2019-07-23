@@ -1,6 +1,6 @@
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
-        <div class="layui-col-md3">
+        <div class="layui-col-md4">
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
@@ -10,9 +10,15 @@
                         <div class="layui-card-body">
                             <ul id="deptTree" name="deptTree"  class="ztree"></ul>
                         </div>
-                        <div class="layui-card-header">
+                        <div class="layui-card-header layui-input-inline">
                             <button class="layui-btn layui-btn-normal" type="button" id="btnAddPage">
-                                <i class="layui-icon">&#xe608;</i>添加下级部门
+                                添加下级部门
+                            </button>
+                            <button class="layui-btn layui-btn-primary" type="button" id="btnRefresh">
+                                修改
+                            </button>
+                            <button class="layui-btn" type="button" id="btnRefresh">
+                                刷新
                             </button>
                         </div>
                     </div>
@@ -20,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="layui-col-md9">
+        <div class="layui-col-md8">
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">

@@ -1,8 +1,8 @@
 package org.iartisan.admin.template.controller.support.rest;
 
-import cn.hutool.json.JSONUtil;
 import org.iartisan.admin.template.authentication.service.entity.ZTreeEntity;
 import org.iartisan.admin.template.service.entity.DeptEntity;
+import org.iartisan.admin.template.service.management.DeptManagementService;
 import org.iartisan.admin.template.service.query.DeptQueryService;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
@@ -10,6 +10,7 @@ import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,9 @@ public class HrDeptRestSupportController extends BaseController implements ISupp
     @Autowired
     private DeptQueryService bizDeptQueryService;
 
+    @Autowired
+    private DeptManagementService deptManagementService;
+
     @Override
     public WebR deleteData(String keyId) {
         return null;
@@ -38,8 +42,11 @@ public class HrDeptRestSupportController extends BaseController implements ISupp
     }
 
     @Override
+    @PostMapping(ReqContants.REQ_ADD_DATA)
     public WebR addData(DeptEntity bizDeptEntity) {
-        return null;
+        deptManagementService.addData(bizDeptEntity);
+        //添加部门
+        return new WebR();
     }
 
     /**

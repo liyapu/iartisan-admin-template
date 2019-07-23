@@ -10,6 +10,7 @@ import org.iartisan.admin.template.service.entity.DeptEntity;
 import org.iartisan.runtime.support.BaseQueryServiceSupport;
 import org.iartisan.runtime.utils.CollectionUtil;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +24,10 @@ public class DeptQueryService extends BaseQueryServiceSupport<BizDeptMapper, Dep
 
 
     public List<ZTreeEntity> getDeptList() {
+        BizDeptDO rootQuery = new BizDeptDO();
+        rootQuery.setDeptId("1");
         //获取root节点
-        Wrapper<BizDeptDO> queryWrapper = new EntityWrapper<>();
-        queryWrapper.isNull("DEPT_PATH");
+        Wrapper<BizDeptDO> queryWrapper = new EntityWrapper<>(rootQuery);
         List<BizDeptDO> dbResult = this.baseMapper.selectList(queryWrapper);
         List<ZTreeEntity> dataList = new ArrayList<>();
         ZTreeEntity root = new ZTreeEntity();

@@ -4,7 +4,8 @@ layui.config({
     let $ = layui.jquery, tree = layui.tree, router = layui.router,
         urls = {
             getDataList: "/hrDept/queryListData",
-            addDataPage: "/hrDept/addDataPage"
+            addDataPage: "/hrDept/addDataPage",
+            queryDetailPage: "/hrDept/queryDetailPage"
         },
         layer = layui.layer;
 
@@ -22,6 +23,14 @@ layui.config({
         callback: {
             onClick: function (event, srcEvent, tree) {
                 currentDeptId = tree.id;
+                let load = layer.load(1);
+                router.ajaxGet(urls.queryDetailPage,
+                    {deptId: currentDeptId},
+                    {},
+                    function (res) {
+                        layer.close(load);
+                        $("#rightPage").html(res);
+                    });
             }
         }
     };
@@ -38,18 +47,30 @@ layui.config({
         });
     }
 
-
     //添加按钮
     $("#btnAddPage").on('click', function () {
-        let load = layer.load(1);
-        router.ajaxGet(urls.addDataPage,
-            {parentDeptId: currentDeptId},
-            {},
-            function (res) {
-            layer.close(load);
-            $("#rightPage").html(res);
-        })
-    });
+        if (typeof currentDeptId != 'undefined') {
 
+            var index = layui.layer.open({
+                title: "添加下级部门",
+                type: 2,
+                content: urls.addDataPage + "?parentDeptId=" + currentDeptId,
+                area: ['40%','80%'],
+                btn: ['添加', '关闭'],
+                btnAlign: 'c',
+                skin: 'layui-layer-molv',
+                yes: function (index, layero) {
+                    layero.find('iframe').contents().find("#formAdd").find("#btnAdd").click();
+                },
+                btn2: function (index) {
+                    layui.layer.close(index);
+                }
+            });
+        }
+    });
+    //刷新
+    $("#btnRefresh").on('click', function () {
+        initTree();
+    });
     initTree();
 });
