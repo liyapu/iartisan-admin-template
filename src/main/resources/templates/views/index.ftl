@@ -92,7 +92,7 @@
     </div>
 </div>
 <div class="layui-footer footer" style="background-color: #f9f9f9;border-top: 1px solid #f9f9f9;">
-    <p><span style="color: #bab0a0;">2018 &copy; powerd by <a
+    <p><span style="color: #bab0a0;">2019 &copy; powerd by <a
             href="https://gitee.com/iartisan/iartisan-admin-template" style="color: #01AAED;" target="_blank">iartisan-admin-template</a></span>
         <a href="javascript:void(0);" class="layui-btn layui-btn-sm  layui-btn-disabled" id="donation">捐赠作者</a>
         <a href="mailto:${_authorEmail!''}" class="layui-btn layui-btn-sm layui-btn-warm">给作者提意见</a>

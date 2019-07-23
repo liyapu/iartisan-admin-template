@@ -58,6 +58,13 @@
                 </table>
             </div>
         </div>
+        <div class="layui-card">
+            <div class="layui-card-header"><a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=24r1gyox&utm_source=24r1gyox">
+                    阿里云推广链接</a></div>
+            <div class="layui-card-body layui-text">
+                <a target="_blank" href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=24r1gyox&utm_source=24r1gyox">领好礼</a>
+            </div>
+        </div>
     </div>
     <#--<div class="layui-col-lg6 layui-col-md12 layui-col-lg-offset1 layui-col-md-offset1">
         <div class="layui-card">
