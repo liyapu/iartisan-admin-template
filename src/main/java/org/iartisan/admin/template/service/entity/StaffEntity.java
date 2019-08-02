@@ -8,8 +8,12 @@ import lombok.Data;
 @Data
 public class StaffEntity {
 
+    private String staffId;
+
     private String staffDept;
 
     private String staffName;
+
+    private String staffStatus;
 
 }

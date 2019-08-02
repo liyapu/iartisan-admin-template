@@ -1,7 +1,7 @@
 package org.iartisan.admin.template.controller.support.rest;
 
-import org.iartisan.admin.template.service.entity.DeptEntity;
 import org.iartisan.admin.template.service.entity.StaffEntity;
+import org.iartisan.admin.template.service.management.StaffManagementService;
 import org.iartisan.admin.template.service.query.StaffQueryService;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
@@ -21,10 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("hrStaff")
-public class HrStaffRestSupportController extends BaseController implements ISupportRestController<DeptEntity> {
+public class HrStaffRestSupportController extends BaseController implements ISupportRestController<StaffEntity> {
 
     @Autowired
     private StaffQueryService staffQueryService;
+
+    @Autowired
+    private StaffManagementService staffManagementService;
 
     @Override
     public WebR deleteData(String keyId) {
@@ -32,19 +35,22 @@ public class HrStaffRestSupportController extends BaseController implements ISup
     }
 
     @Override
-    public WebR modifyData(DeptEntity entity) {
+    public WebR modifyData(StaffEntity staffEntity) {
         return null;
     }
 
     @Override
-    public WebR addData(DeptEntity entity) {
-        return null;
+    @PostMapping(ReqContants.REQ_ADD_DATA)
+    public WebR addData(StaffEntity staffEntity) {
+        WebR webR = new WebR();
+        staffManagementService.saveData(staffEntity);
+        return webR;
     }
 
     @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
     public WebR getPageData(Page page, StaffEntity staffEntity) {
         PageWrapper<StaffEntity> pageDataByWrapper = staffQueryService.getPageData(page, staffEntity);
-        WebR webR = new WebR();
+        WebR webR = new WebR(pageDataByWrapper.getPage());
         webR.setData(pageDataByWrapper.getData());
         return webR;
     }

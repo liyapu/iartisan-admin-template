@@ -4,6 +4,7 @@ layui.config({
 }).use(['form', 'element', 'layer', 'jquery', 'bodyTab', 'router'], function () {
     $ = layui.$, element = layui.element,
         layer = layui.layer;
+    layer.config({skin: 'layui-layer-molv'});
     tab = layui.bodyTab({
         openTabNum: "10",  //最大可打开窗口数量
         url: "/getMenus" //获取菜单json地址

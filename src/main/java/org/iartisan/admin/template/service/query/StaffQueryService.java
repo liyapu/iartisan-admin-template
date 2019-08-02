@@ -1,5 +1,7 @@
 package org.iartisan.admin.template.service.query;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import org.iartisan.admin.template.dao.mapper.BizStaffMapper;
 import org.iartisan.admin.template.service.entity.StaffEntity;
 import org.iartisan.runtime.bean.Page;
@@ -23,7 +25,9 @@ public class StaffQueryService extends BaseQueryServiceSupport<BizStaffMapper, S
      */
     @Override
     public PageWrapper<StaffEntity> getPageData(Page page, StaffEntity entity) {
-        return getPageDataByWrapper(page, null);
+        Wrapper wrapper = new EntityWrapper();
+        wrapper.eq("STAFF_DEPT", entity.getStaffDept());
+        return getPageDataByWrapper(page, wrapper);
     }
 
 

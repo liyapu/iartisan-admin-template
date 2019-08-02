@@ -40,7 +40,9 @@ public class HrStaffPageSupportController extends BaseController implements ISup
      */
     @GetMapping("staffManagerPage")
     public String staffManagerPage(Model model, String deptId) {
-        model.addAttribute("deptId", deptId);
+        //查询部门信息
+        DeptEntity deptEntity = deptQueryService.getDataById(deptId);
+        model.addAttribute("deptEntity", deptEntity);
         return VIEW_PREFIX + "hrStaff_manager";
     }
 
@@ -56,18 +58,14 @@ public class HrStaffPageSupportController extends BaseController implements ISup
      * @param deptId
      * @return
      */
-    @PostMapping(value = ReqContants.REQ_ADD_DATA_PAGE)
+    @GetMapping(value = ReqContants.REQ_ADD_DATA_PAGE)
     public String addDataPage(Model model, String deptId) {
-        model.addAttribute("deptId", deptId);
+        //查询部门信息
+        DeptEntity deptEntity = deptQueryService.getDataById(deptId);
+        model.addAttribute("deptEntity", deptEntity);
         return VIEW_PREFIX + "hrStaff_add";
     }
 
-    @GetMapping(ReqContants.REQ_ADD_DATA_PAGE)
-    public String addDataPage(String parentDeptId, Model model) {
-        DeptEntity entity = deptQueryService.getDataById(parentDeptId);
-        model.addAttribute("parentDept", entity);
-        return VIEW_PREFIX + "hrStaff_add";
-    }
 
     @Override
     @GetMapping(ReqContants.REQ_MODIFY_DATA_PAGE)

@@ -19,7 +19,7 @@
 </blockquote>-->
 
 <div class="layui-row">
-    <div class="layui-col-lg4 layui-col-md10">
+    <div class="layui-col-lg10 layui-col-md10">
         <div class="layui-card">
             <div class="layui-card-header">版本信息</div>
             <div class="layui-card-body layui-text">

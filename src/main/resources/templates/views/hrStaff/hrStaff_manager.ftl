@@ -1,5 +1,6 @@
 <blockquote class="layui-elem-quote quoteBox">
     <form class="layui-form">
+        <input type="hidden" name="deptId" id="deptId" value="${deptEntity.deptId}">
         <div class="layui-row">
             <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
                 <div class="layui-inline">

@@ -13,32 +13,35 @@ layui.config({
     let area = ['50%', '80%'];
 
     function queryPageData() {
-        router.table({
+        let tableIns = router.table({
             elem: "#dataList",
             url: urls.queryPageData,
             type: 'post',
-            where: {"userName": $("#userName").val()},
+            where: {"staffDept": $("#deptId").val()},
             even: true,
             cols: [[
                 {
-                    field: 'userName',
-                    title: '用户名',
-                },
-                {
-                    field: 'roles',
-                    title: '角色列表',
+                    field: 'staffName',
+                    title: '员工姓名',
                 },
                 {
                     title: '状态',
                     templet: function (d) {
-                        var checked = d.userStatus == 'E' ? 'checked' : null;
-                        var status = "<input type='checkbox' value=" + d.userId + " lay-skin='switch' lay-text='正常|停用' lay-filter='status' " + checked + "> ";
+                        var checked = d.staffStatus == 'Y' ? 'checked' : null;
+                        var status = "<input type='checkbox' value=" + d.userId + " lay-skin='switch' lay-text='在职|离职' lay-filter='status' " + checked + "> ";
                         return status;
 
                     }
                 },
                 {
                     title: '创建时间',
+                    templet: function (d) {
+                        return util.toDateString(d.createDate);
+
+                    }
+                },
+                {
+                    title: '最后更新时间',
                     templet: function (d) {
                         return util.toDateString(d.createDate);
 
@@ -83,11 +86,6 @@ layui.config({
         } else if (layEvent == 'del') {
             layer.confirm('确定删除该员工吗？', {icon: 3, title: '提示信息'}, function (index) {
                 layer.close(index);
-                /*$.post(urls.deleteData, {userId: data.userId}, function (res) {
-                    if (res.code == '000000') {
-                        tableIns.reload();
-                    }
-                });*/
                 router.post({
                     url: urls.deleteData, data: {userId: data.userId}, success: function () {
                         tableIns.reload();
@@ -101,7 +99,7 @@ layui.config({
             type: 2,
             title: '添加员工',
             area: area,
-            content: urls.addDataPage,
+            content: urls.addDataPage + "?deptId=" + $("#deptId").val(),
             skin: 'layui-layer-molv',
             btn: ['提交', '关闭'],
             btnAlign: 'c',
