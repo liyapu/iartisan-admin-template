@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/assets/iartisan/css/font/font.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/plugins/layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/css/public.css" media="all"/>
+    <link rel="stylesheet" href="/assets/iartisan/css/layui-theme-custom.css" media="all"/>
 </head>
 <body class="childrenBody" style="background-color: #f2f2f2">
 <#--<blockquote class="layui-elem-quote layui-bg-green" style="border-radius: 6px;">

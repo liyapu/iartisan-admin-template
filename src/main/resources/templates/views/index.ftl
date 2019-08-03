@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/assets/iartisan/css/font/font.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/plugins/layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/css/index.css" media="all"/>
+    <link rel="stylesheet" href="/assets/iartisan/css/layui-theme-custom.css" media="all"/>
 </head>
 <body class="layui-layout-body layui-layout-admin">
 <!-- 头部 -->

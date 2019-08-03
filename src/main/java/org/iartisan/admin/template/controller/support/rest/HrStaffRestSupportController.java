@@ -10,6 +10,7 @@ import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportRestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,5 +56,16 @@ public class HrStaffRestSupportController extends BaseController implements ISup
         return webR;
     }
 
+    /**
+     * 更新员工状态
+     * @param staffId
+     * @return
+     */
+    @GetMapping("updateStaffStatus")
+    public WebR updateStaffStatus(String staffId) {
+        WebR webR = new WebR();
+
+        return webR;
+    }
 
 }

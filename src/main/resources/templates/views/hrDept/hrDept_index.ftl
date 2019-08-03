@@ -30,7 +30,7 @@
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
-                        <div class="layui-card-body" style="height: 400px;" id="rightPage">
+                        <div class="layui-card-body" style="height: 100%;" id="rightPage">
 
                         </div>
                     </div>
