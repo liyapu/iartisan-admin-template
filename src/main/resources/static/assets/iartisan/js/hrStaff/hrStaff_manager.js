@@ -6,14 +6,16 @@ layui.config({
 
     let urls = {
         addDataPage: "/hrStaff/addDataPage",
-        queryPageData:"/hrStaff/queryPageData"
+        queryPageData: "/hrStaff/queryPageData",
+        updateStaffStatus: "/hrStaff/updateStaffStatus",
+        deleteData: "/hrStaff/deleteData"
     };
-    queryPageData();
 
     let area = ['50%', '80%'];
-
+    var tableIns;
+    queryPageData();
     function queryPageData() {
-        let tableIns = router.table({
+        tableIns = router.table({
             elem: "#dataList",
             url: urls.queryPageData,
             type: 'post',
@@ -28,7 +30,7 @@ layui.config({
                     title: '状态',
                     templet: function (d) {
                         var checked = d.staffStatus == 'Y' ? 'checked' : null;
-                        var status = "<input type='checkbox' value=" + d.userId + " lay-skin='switch' lay-text='在职|离职' lay-filter='status' " + checked + "> ";
+                        var status = "<input type='checkbox' value=" + d.staffId + " lay-skin='switch' lay-text='在职|离职' lay-filter='staffStatus' " + checked + "> ";
                         return status;
 
                     }
@@ -86,14 +88,30 @@ layui.config({
         } else if (layEvent == 'del') {
             layer.confirm('确定删除该员工吗？', {icon: 3, title: '提示信息'}, function (index) {
                 layer.close(index);
-                router.post({
-                    url: urls.deleteData, data: {userId: data.userId}, success: function () {
+                router.get({
+                    url: urls.deleteData, data: {staffId: data.staffId}, success: function () {
                         tableIns.reload();
                     }
                 })
             });
         }
     });
+    //监听在/离职操作
+    form.on('switch(staffStatus)', function (obj) {
+        let index = layui.layer.load(1, {
+            shade: [0.1, '#fff'] //0.1透明度的白色背景
+        });
+        $.get(urls.updateStaffStatus, {staffId: obj.value}, function (res) {
+            layui.layer.close(index);
+            if (res.code != '000000') {
+                layer.msg(res.message);
+                queryPageData();
+            }
+        }).always(function () {
+            layui.layer.close(index);
+        });
+    });
+
     $("#btnAddPage").click(function () {
         layui.layer.open({
             type: 2,

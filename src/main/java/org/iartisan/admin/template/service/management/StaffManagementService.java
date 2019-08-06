@@ -3,6 +3,7 @@ package org.iartisan.admin.template.service.management;
 import org.iartisan.admin.template.dao.mapper.BizStaffMapper;
 import org.iartisan.admin.template.dao.model.BizStaffDO;
 import org.iartisan.admin.template.service.entity.StaffEntity;
+import org.iartisan.runtime.constants.DataStatus;
 import org.iartisan.runtime.constants.FlagType;
 import org.iartisan.runtime.support.BaseManagementServiceSupport;
 import org.iartisan.runtime.utils.UUIDUtil;
@@ -25,5 +26,23 @@ public class StaffManagementService extends BaseManagementServiceSupport<BizStaf
         dbInsert.setStaffStatus(FlagType.Y.name());
         dbInsert.setCreateTime(new Date());
         this.baseMapper.insert(dbInsert);
+    }
+
+    public void updateStaffStatus(String staffId) {
+        BizStaffDO dbResult = this.baseMapper.selectById(staffId);
+        if (null != dbResult) {
+            dbResult.setStaffStatus(FlagType.Y.name().equals(dbResult.getStaffStatus()) ? FlagType.N.name() : FlagType.Y.name());
+            dbResult.setUpdateTime(new Date());
+            this.baseMapper.updateById(dbResult);
+        }
+    }
+
+    public void deleteByStaffId(String staffId) {
+        BizStaffDO dbResult = this.baseMapper.selectById(staffId);
+        if (null != dbResult) {
+            dbResult.setStatus(DataStatus.D.name());
+            dbResult.setUpdateTime(new Date());
+            this.baseMapper.updateById(dbResult);
+        }
     }
 }

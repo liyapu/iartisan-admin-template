@@ -31,8 +31,11 @@ public class HrStaffRestSupportController extends BaseController implements ISup
     private StaffManagementService staffManagementService;
 
     @Override
-    public WebR deleteData(String keyId) {
-        return null;
+    @GetMapping(ReqContants.REQ_DELETE_DATA)
+    public WebR deleteData(String staffId) {
+        WebR webR = new WebR();
+        staffManagementService.deleteByStaffId(staffId);
+        return webR;
     }
 
     @Override
@@ -64,7 +67,7 @@ public class HrStaffRestSupportController extends BaseController implements ISup
     @GetMapping("updateStaffStatus")
     public WebR updateStaffStatus(String staffId) {
         WebR webR = new WebR();
-
+        staffManagementService.updateStaffStatus(staffId);
         return webR;
     }
 

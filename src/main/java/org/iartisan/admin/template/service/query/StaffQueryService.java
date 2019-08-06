@@ -6,6 +6,7 @@ import org.iartisan.admin.template.dao.mapper.BizStaffMapper;
 import org.iartisan.admin.template.service.entity.StaffEntity;
 import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.constants.DataStatus;
 import org.iartisan.runtime.support.BaseQueryServiceSupport;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ public class StaffQueryService extends BaseQueryServiceSupport<BizStaffMapper, S
     public PageWrapper<StaffEntity> getPageData(Page page, StaffEntity entity) {
         Wrapper wrapper = new EntityWrapper();
         wrapper.eq("STAFF_DEPT", entity.getStaffDept());
+        wrapper.eq("STATUS", DataStatus.E.name());
         return getPageDataByWrapper(page, wrapper);
     }
 
