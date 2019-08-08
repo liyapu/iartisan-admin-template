@@ -3,9 +3,6 @@ layui.config({
 }).use(['form', 'element', 'layer', 'jquery'], function () {
     var $ = layui.$,
         layer = layui.layer;
-    top.layer.config({
-        skin: 'layui-layer-molv'
-    });
     //切换导航栏按钮点击事件
     $("#switchNav").click(function () {
         switchNav();

@@ -22,7 +22,7 @@ public class EnvironmentInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //演示环境不支持删除操作
-        String env = EnvContextConfig.get("env", "prod");
+        String env = EnvContextConfig.get("env", "demo");
         if ("demo".equals(env)) {
             throw new NotAllowedException("demo环境不支持该操作");
         }

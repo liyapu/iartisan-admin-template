@@ -2,16 +2,12 @@ package org.iartisan.admin.template.config;
 
 import org.iartisan.runtime.env.EnvContextConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -31,6 +27,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter implements Serv
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         servletContext.setAttribute("_title", EnvContextConfig.get("iartisan.admin.title"));
+        servletContext.setAttribute("_env", EnvContextConfig.get("env", "demo"));
         servletContext.setAttribute("_authorEmail", EnvContextConfig.get("iartisan.author.email"));
         servletContext.setAttribute("staticVerison", EnvContextConfig.get("iartisan.static.version", "00000"));
     }

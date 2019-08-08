@@ -7,7 +7,6 @@ layui.config({
             staffManagerPage: "/hrStaff/staffManagerPage"
         },
         layer = layui.layer;
-
     let currentDeptId;
 
     let setting = {
@@ -28,6 +27,7 @@ layui.config({
                     {},
                     function (res) {
                         layer.close(load);
+                        $("#rightPage").css("display","block");
                         $("#rightPage").html(res);
                     });
             }
