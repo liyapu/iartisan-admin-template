@@ -107,6 +107,18 @@ layui.config({
 
 
     });
+    $("#btnFull").on('click', function (event) {
+        event.preventDefault();
+        let _that=$(this).find("i");
+        console.log(_that);
+        if (document.fullscreenElement) {
+            document.exitFullscreen()
+                .then(_that.removeClass("layui-icon-screen-restore").addClass("layui-icon-screen-full"));
+        } else {
+            document.documentElement.requestFullscreen()
+                .then(_that.removeClass("layui-icon-screen-full").addClass("layui-icon-screen-restore"));
+        }
+    });
 });
 
 //打开新窗口
