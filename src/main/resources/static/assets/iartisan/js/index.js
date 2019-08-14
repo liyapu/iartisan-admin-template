@@ -2,14 +2,13 @@ var $, tab, menus, layer, form, element;
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
 }).use(['form', 'element', 'layer', 'jquery', 'bodyTab', 'router'], function () {
-    $ = layui.$, element = layui.element,
-        layer = layui.layer;
+     $ = layui.$, element = layui.element,
+        layer = parent.layer === undefined ? layui.layer : top.layer;
     tab = layui.bodyTab({
         openTabNum: "10",  //最大可打开窗口数量
         url: "/getMenus" //获取菜单json地址
     }),
-        router = layui.router,
-        form = layui.form;
+        router = layui.router;
     //切换导航栏按钮点击事件
     $("#switchNav").click(function () {
         switchNav();
@@ -62,7 +61,7 @@ layui.config({
     })
 
     $("#donation").on("click", function () {
-        layer.msg("暂不需要捐助");
+        parent.layer.msg("暂不需要捐助", {shade: 0.5});
     });
 
     $('*[lay-tips]').on('mouseenter', function () {
@@ -83,7 +82,7 @@ layui.config({
         layer.close(this.index);
     }).on("click", function () {
         window.sessionStorage.removeItem("showNotice");
-        layer.msg("缓存清除成功！");
+        layer.msg("缓存清除成功！", {shade: 0.5});
     });
 
     var urls = {
@@ -96,8 +95,8 @@ layui.config({
                 type: 1,
                 title: false, //不显示标题栏,
                 closeBtn: 0,
-                shade: [0.3, '#393D49'],
-                area: ['15%','23%'],
+                shade: [0.5, '#393D49'],
+                area: ['40%','30%'],
                 id: '_ziliao', //设定一个id，防止重复弹出
                 btn: ['关闭'],
                 btnAlign: 'c',
@@ -107,6 +106,18 @@ layui.config({
         });
 
 
+    });
+    $("#btnFull").on('click', function (event) {
+        event.preventDefault();
+        let _that=$(this).find("i");
+        console.log(_that);
+        if (document.fullscreenElement) {
+            document.exitFullscreen()
+                .then(_that.removeClass("layui-icon-screen-restore").addClass("layui-icon-screen-full"));
+        } else {
+            document.documentElement.requestFullscreen()
+                .then(_that.removeClass("layui-icon-screen-full").addClass("layui-icon-screen-restore"));
+        }
     });
 });
 

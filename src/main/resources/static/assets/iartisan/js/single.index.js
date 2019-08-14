@@ -3,9 +3,6 @@ layui.config({
 }).use(['form', 'element', 'layer', 'jquery'], function () {
     var $ = layui.$,
         layer = layui.layer;
-    top.layer.config({
-        skin: 'layui-layer-molv'
-    });
     //切换导航栏按钮点击事件
     $("#switchNav").click(function () {
         switchNav();
@@ -81,5 +78,18 @@ layui.config({
     $("li[name='_layui-nav-item']").on("click", function () {
         $("li[name='_layui-nav-item']").removeClass("layui-nav-itemed");
         $(this).addClass("layui-nav-itemed");
+    });
+
+    $("#btnFull").on('click', function (event) {
+        event.preventDefault();
+        let _that=$(this).find("i");
+        console.log(_that);
+        if (document.fullscreenElement) {
+            document.exitFullscreen()
+                .then(_that.removeClass("layui-icon-screen-restore").addClass("layui-icon-screen-full"));
+        } else {
+            document.documentElement.requestFullscreen()
+                .then(_that.removeClass("layui-icon-screen-full").addClass("layui-icon-screen-restore"));
+        }
     });
 });

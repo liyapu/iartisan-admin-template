@@ -16,7 +16,7 @@ layui.config({
 
     var tableIns;
 
-    var area = ['50%', '99%'];
+    var area = ['50%', '90%'];
 
     function queryPageData() {
         tableIns = router.table({

@@ -1,4 +1,4 @@
-<div class="layui-container layui-col-md-offset3">
+<div class="layui-container">
     <form class="layui-form">
         <div class="layui-form-item">
             <label class="layui-form-label">密码</label>
@@ -19,8 +19,8 @@
         </div>
         <div class="layui-form-item layui-row layui-col-xs12">
             <div class="layui-input-block">
-                <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="restPwd">确认</button>
-                <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary" id="reset">重置</button>
+                <button class="layui-btn" lay-submit="" lay-filter="restPwd">确认</button>
+                <button type="reset" class="layui-btn layui-btn-primary" id="reset">重置</button>
             </div>
         </div>
     </form>

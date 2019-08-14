@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/assets/iartisan/css/font/font.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/plugins/layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/css/public.css" media="all"/>
+    <link rel="stylesheet" href="/assets/iartisan/css/layui-theme-custom.css" media="all"/>
 </head>
 <body class="childrenBody" style="background-color: #f2f2f2">
 <#--<blockquote class="layui-elem-quote layui-bg-green" style="border-radius: 6px;">
@@ -19,7 +20,7 @@
 </blockquote>-->
 
 <div class="layui-row">
-    <div class="layui-col-lg4 layui-col-md10">
+    <div class="layui-col-lg10 layui-col-md10">
         <div class="layui-card">
             <div class="layui-card-header">版本信息</div>
             <div class="layui-card-body layui-text">

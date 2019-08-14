@@ -30,6 +30,11 @@
         <li class="layui-nav-item" pc>
             <a href="javascript:;" lay-tips="点击清除缓存" id="clearCache"><i class="layui-icon">&#xe65f;</i></a>
         </li>
+        <li class="layui-nav-item">
+            <a href="javascript:void(0);" id="btnFull">
+                <i class="fa layui-icon layui-icon-screen-full"></i>
+            </a>
+        </li>
         <li class="layui-nav-item" id="userInfo">
             <a href="javascript:;"><img src="/assets/iartisan/images/face.jpg" class="layui-nav-img userAvatar"
                                         width="35" height="35"><cite

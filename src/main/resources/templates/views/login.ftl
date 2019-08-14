@@ -17,7 +17,11 @@
     <div class="layadmin-user-login-main">
         <div class="layadmin-user-login-box layadmin-user-login-header">
             <h2>${_title!''}
-            <i style="font-size: 20px;color: #FF5722;margin-left: 10px;" class="layui-icon" lay-tips="<span style='color:red;'>注意：</span>demo环境只是为了演示用<br>修改和删除操作做了限制，其它操作没有影响！！！"></i>
+                <#if _env?? && _env='demo' >
+                    <i style="font-size: 20px;color: #FF5722;margin-left: 10px;"
+                       class="layui-icon"
+                       lay-tips="<span style='color:red;'>注意：</span>demo环境只是为了演示用<br>修改和删除操作做了限制，其它操作没有影响！！！"></i>
+                </#if>
             </h2>
         </div>
         <form class="layui-form" autocomplete="off">
