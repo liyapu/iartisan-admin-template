@@ -24,6 +24,7 @@
 
 </div>
 
+<div class="layui-card layui-card-body">
 <table id="dataList" lay-filter="dataList"></table>
-
+</div>
 <script type="text/javascript" src="/assets/iartisan/js/menu/menu_index.js?${staticVerison!'1'}"></script>

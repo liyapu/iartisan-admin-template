@@ -1,8 +1,9 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['jquery', 'router', 'table', 'layer', 'iartisntips'], function () {
-    var router = layui.router, $ = layui.jquery, table = layui.table,
-        layer = layui.layer, tips = layui.iartisntips;
+}).use(['jquery', 'router','layer', 'iartisntips', 'treeGrid'], function () {
+    var router = layui.router, $ = layui.jquery,
+        layer = layui.layer, tips = layui.iartisntips,
+        treeGrid = layui.treeGrid;
 
     var urls = {
         queryPageData: "/menuSupport/queryPageData",
@@ -13,15 +14,17 @@ layui.config({
     };
     queryPageData();
 
-    var tableIns;
-
     function queryPageData() {
-        tableIns = router.table({
-            elem: "#dataList",
-            url: urls.queryPageData,
-            type: 'post',
-            where: {"menuName": $("#menuName").val()},
-            cols: [[
+        treeGrid.render({
+            id: 'dataList'
+            , elem: '#dataList'
+            , url: urls.queryPageData
+            , cellMinWidth: 100
+            , idField: 'id'
+            , treeId: 'id'//树形id字段名称
+            , treeUpId: 'parentMenuId'//树形父id字段名称
+            , treeShowName: 'title'//以树形式显示的字段
+            , cols: [[
                 {
                     field: 'title',
                     title: '菜单名称',
@@ -38,8 +41,6 @@ layui.config({
                 },
                 {
                     title: '操作 <i style="color: #FF5722;" class="layui-icon alone-tips" lay-tips="<span style=\'color:red;\'>子权限管理</span></br>主要是针对菜单下按钮级别的操作进行权限控制</br>该功能主要适用于二级菜单</br>"></i>',
-                    fixed: "right",
-                    align: "center",
                     templet: function (d) {
                         var html = "<a class='layui-btn layui-btn-xs' lay-event='edit'>编辑</a>";
                         /* html += "<a class='layui-btn layui-btn-xs layui-btn-danger' lay-event='del'>删除</a>";*/
@@ -47,15 +48,17 @@ layui.config({
                         return html;
                     }
                 }
-            ]]
+            ]],
+            page:false
         });
     }
 
     $("#btnQuery").on("click", function () {
         queryPageData();
     });
+    let area=['45%', '80%']
     //列表操作
-    table.on('tool(dataList)', function (obj) {
+    treeGrid.on('tool(dataList)', function (obj) {
         var layEvent = obj.event,
             data = obj.data;
         if (layEvent == 'addMenuSource') {
@@ -65,7 +68,7 @@ layui.config({
                 anim: 1,
                 title: '添加子菜单 <span style="margin-left: 5px;font-size: 10px">[' + data.title + "]</span>",
                 skin: 'layui-layer-molv',
-                area: ['80%', '90%'],
+                area: ['80%', '89%'],
                 content: urls.addResourceIndex + "?menuId=" + data.id,
                 btn: ['关闭'],
                 btnAlign: 'c'
@@ -76,7 +79,7 @@ layui.config({
                 type: 2,
                 title: '菜单信息修改',
                 skin: 'layui-layer-molv',
-                area: ['500px', '500px'],
+                area: area,
                 content: urls.modifyDataPage + "?menuId=" + data.id,
                 btn: ['修改', '关闭'],
                 btnAlign: 'c',

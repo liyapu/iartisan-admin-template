@@ -3,15 +3,17 @@ package org.iartisan.admin.template.controller.support.rest;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.iartisan.admin.template.authentication.MenuSupportService;
 import org.iartisan.admin.template.authentication.service.entity.MenuEntity;
-import org.iartisan.runtime.bean.Page;
-import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.authentication.MenuTree;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportRestController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -30,10 +32,10 @@ public class MenuSupportRestController extends BaseController implements ISuppor
 
 
     @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
-    public WebR queryPageData(Page page, String menuName) {
-        PageWrapper<MenuTree> pageData = menuSupportService.getMenuPageData(page, menuName);
-        WebR webR = new WebR(pageData.getPage());
-        webR.setData(pageData.getData());
+    public WebR queryPageData(String menuName) {
+        List<MenuTree> dataList = menuSupportService.getMenuPageData(menuName);
+        WebR webR = new WebR();
+        webR.setData(dataList);
         return webR;
     }
 

@@ -1,14 +1,12 @@
 package org.iartisan.admin.template.authentication;
 
+import com.google.common.collect.Lists;
 import org.iartisan.admin.template.authentication.service.code.PermissionType;
+import org.iartisan.admin.template.authentication.service.entity.MenuEntity;
 import org.iartisan.admin.template.dao.mapper.SystemMenuMapper;
 import org.iartisan.admin.template.dao.mapper.SystemRolePermissionMapper;
 import org.iartisan.admin.template.dao.model.SystemMenuDO;
 import org.iartisan.admin.template.dao.model.SystemRolePermissionDO;
-import org.iartisan.admin.template.authentication.service.entity.MenuEntity;
-import org.iartisan.runtime.bean.Page;
-import org.iartisan.runtime.bean.PageWrapper;
-import org.iartisan.runtime.jdbc.PageHelper;
 import org.iartisan.runtime.utils.CollectionUtil;
 import org.iartisan.runtime.utils.UUIDUtil;
 import org.iartisan.runtime.web.authentication.MenuTree;
@@ -34,23 +32,27 @@ public class MenuSupportService {
     @Autowired
     private SystemRolePermissionMapper systemRolePermissionMapper;
 
-    public PageWrapper<MenuTree> getMenuPageData(Page page, String menuName) {
-        SystemMenuDO systemMenuDO = new SystemMenuDO();
-        systemMenuDO.setMenuName(menuName);
-        PageWrapper<SystemMenuDO> dbResult = PageHelper.getPageData(systemMenuMapper, page, systemMenuDO);
-        PageWrapper<MenuTree> result = new PageWrapper<>(dbResult.getPage());
-        List<MenuTree> pageList = new ArrayList<>();
-        for (SystemMenuDO menuDO : dbResult.getData()) {
-            MenuTree tree = new MenuTree();
-            tree.setId(menuDO.getMenuId());
-            tree.setTitle(menuDO.getMenuName());
-            tree.setHref(menuDO.getMenuUrl());
-            tree.setIcon(menuDO.getMenuIcon());
-            pageList.add(tree);
+    public List<MenuTree> getMenuPageData(String menuName) {
+        List<SystemMenuDO> dbResult = systemMenuMapper.selectFirstMenus(new SystemMenuDO());
+        List<MenuTree> dataList = Lists.newArrayList();
+        for (SystemMenuDO tree : dbResult) {
+            //查询子菜单
+            MenuTree first = convertMenuTree(tree);
+            SystemMenuDO dbQuery = new SystemMenuDO();
+            dbQuery.setParentMenuId(tree.getMenuId());
+            dataList.add(first);
+            List<SystemMenuDO> systemMenuDOS = systemMenuMapper.selectSecondMenus(dbQuery);
+            if (CollectionUtil.isNotEmpty(systemMenuDOS)) {
+                for (SystemMenuDO o : systemMenuDOS) {
+                    MenuTree second = convertMenuTree(o);
+                    second.setParentMenuId(tree.getMenuId());
+                    dataList.add(second);
+                }
+            }
         }
-        result.setData(pageList);
-        return result;
+        return dataList;
     }
+
 
     public List<MenuTree> getFirstMenus() {
         List<SystemMenuDO> firstMenuList = systemMenuMapper.selectFirstMenus(new SystemMenuDO());
@@ -126,11 +128,7 @@ public class MenuSupportService {
         }
         List<MenuTree> result = new ArrayList<>();
         for (SystemMenuDO firstMenu : firstMenus) {
-            MenuTree firstTree = new MenuTree();
-            firstTree.setTitle(firstMenu.getMenuName());
-            firstTree.setIcon(firstMenu.getMenuIcon());
-            firstTree.setHref(firstMenu.getMenuUrl());
-            firstTree.setPermission(firstMenu.getMenuPermission());
+            MenuTree firstTree = convertMenuTree(firstMenu);
             SystemMenuDO secondQuery = new SystemMenuDO();
             secondQuery.setMenuIds(menuIds);
             secondQuery.setParentMenuId(firstMenu.getMenuId());
@@ -139,11 +137,7 @@ public class MenuSupportService {
                 //添加二级菜单
                 List<MenuTree> children = new ArrayList<>();
                 for (SystemMenuDO secondMenu : secondMenus) {
-                    MenuTree secondTree = new MenuTree();
-                    secondTree.setTitle(secondMenu.getMenuName());
-                    secondTree.setIcon(secondMenu.getMenuIcon());
-                    secondTree.setHref(secondMenu.getMenuUrl());
-                    secondTree.setPermission(secondMenu.getMenuPermission());
+                    MenuTree secondTree = convertMenuTree(secondMenu);
                     children.add(secondTree);
                 }
                 firstTree.setChildren(children);
@@ -152,5 +146,15 @@ public class MenuSupportService {
         }
         //查找二级菜单
         return result;
+    }
+
+    private MenuTree convertMenuTree(SystemMenuDO data) {
+        MenuTree tree = new MenuTree();
+        tree.setId(data.getMenuId());
+        tree.setTitle(data.getMenuName());
+        tree.setIcon(data.getMenuIcon());
+        tree.setHref(data.getMenuUrl());
+        tree.setPermission(data.getMenuPermission());
+        return tree;
     }
 }
