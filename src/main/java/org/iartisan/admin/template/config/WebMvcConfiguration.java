@@ -1,15 +1,11 @@
 package org.iartisan.admin.template.config;
 
 import org.iartisan.runtime.env.EnvContextConfig;
+import org.iartisan.runtime.web.config.WebMvcConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -19,7 +15,7 @@ import javax.servlet.ServletException;
  * @since 2018/2/23
  */
 @Configuration
-public class WebMvcConfiguration extends WebMvcConfigurerAdapter implements ServletContextInitializer {
+public class WebMvcConfiguration extends WebMvcConfig implements ServletContextInitializer {
 
     @Autowired
     private EnvironmentInterceptor environmentInterceptor;
@@ -30,17 +26,6 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter implements Serv
         servletContext.setAttribute("_env", EnvContextConfig.get("env", "demo"));
         servletContext.setAttribute("_authorEmail", EnvContextConfig.get("iartisan.author.email"));
         servletContext.setAttribute("staticVerison", EnvContextConfig.get("iartisan.static.version", "00000"));
-    }
-
-    @Bean
-    public EmbeddedServletContainerCustomizer containerCustomizer() {
-
-        return (container -> {
-            ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/error/404");
-            ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/error/500");
-
-            container.addErrorPages(error404Page, error500Page);
-        });
     }
 
 

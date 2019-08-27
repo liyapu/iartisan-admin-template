@@ -11,10 +11,11 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.Model;
 import org.apache.commons.lang3.StringUtils;
-import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.bean.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -32,15 +33,15 @@ public class ModelManagement {
     @Autowired
     private RepositoryService repositoryService;
 
-    public PageWrapper<Model> queryModelPage(Page page) {
+    public PageWrapper<Model> queryModelPage(Pagination page) {
         long total = repositoryService.createModelQuery().count();
         List<Model> result = repositoryService.createModelQuery().listPage(
-                (page.getCurrPage() - 1) * page.getPageSize()
+                (page.getPageIndex() - 1) * page.getPageSize()
                 , page.getPageSize());
         page.setTotalRecords((int) total);
-        page.setCurrPage(page.getCurrPage() + 1);
+        page.setPageIndex(page.getPageIndex() + 1);
         PageWrapper<Model> resultPage = new PageWrapper<>(page);
-        resultPage.setData(result);
+        resultPage.setRows(result);
         return resultPage;
     }
 

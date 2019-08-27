@@ -13,7 +13,7 @@ import org.activiti.engine.task.Task;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.iartisan.admin.template.service.activiti.entity.DeploymentEntity;
 import org.iartisan.admin.template.service.activiti.entity.TaskEntity;
-import org.iartisan.runtime.bean.Page;
+import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,9 +63,9 @@ public class WorkflowManagement {
         logger.info("===>启动流程{}", processInstance);
     }
 
-    public PageWrapper<TaskEntity> getPageTasks(String startedBy, Page page) {
+    public PageWrapper<TaskEntity> getPageTasks(String startedBy, Pagination page) {
         List<HistoricProcessInstance> result = historyService.createHistoricProcessInstanceQuery().startedBy(startedBy)
-                .listPage((page.getCurrPage() - 1) * page.getPageSize(), page.getPageSize());
+                .listPage((page.getPageIndex() - 1) * page.getPageSize(), page.getPageSize());
         long total = historyService.createHistoricProcessInstanceQuery().startedBy(startedBy).count();
         List<TaskEntity> dataList = new ArrayList<>();
         result.forEach(v -> {
@@ -81,9 +81,9 @@ public class WorkflowManagement {
                 }
         );
         page.setTotalRecords((int) total);
-        page.setCurrPage(page.getCurrPage() + 1);
+        page.setPageIndex(page.getPageIndex() + 1);
         PageWrapper<TaskEntity> resultPage = new PageWrapper<>(page);
-        resultPage.setData(dataList);
+        resultPage.setRows(dataList);
         return resultPage;
     }
 

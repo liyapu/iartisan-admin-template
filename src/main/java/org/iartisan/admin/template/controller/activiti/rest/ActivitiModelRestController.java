@@ -1,10 +1,11 @@
 package org.iartisan.admin.template.controller.activiti.rest;
 
 
+import afu.org.checkerframework.checker.oigj.qual.O;
 import org.activiti.engine.repository.Model;
 import org.iartisan.admin.template.service.activiti.ModelManagement;
-import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
@@ -29,11 +30,11 @@ public class ActivitiModelRestController extends BaseController implements ISupp
     private ModelManagement modelManagement;
 
     @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
-    public WebR queryPageData(Page page) {
+    public WebR queryPageData(Pagination page) {
         try {
             PageWrapper<Model> pageData = modelManagement.queryModelPage(page);
             WebR webR = new WebR();
-            webR.setData(pageData.getData());
+            webR.setData(pageData.getRows());
             return webR;
         } catch (Exception e) {
             logger.error("", e);
@@ -54,6 +55,7 @@ public class ActivitiModelRestController extends BaseController implements ISupp
         return r;
     }
 
+    @Override
     @PostMapping(ReqContants.REQ_DELETE_DATA)
     public WebR deleteData(String modelId) {
         WebR r = new WebR();

@@ -1,8 +1,11 @@
 package org.iartisan.admin.template.authentication;
 
-import com.baomidou.mybatisplus.mapper.Condition;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import org.iartisan.admin.template.authentication.service.entity.RoleEntity;
+import org.iartisan.admin.template.authentication.service.entity.UserEntity;
+import org.iartisan.admin.template.authentication.service.entity.UserRoleEntity;
 import org.iartisan.admin.template.dao.mapper.SystemRoleMapper;
 import org.iartisan.admin.template.dao.mapper.SystemRolePermissionMapper;
 import org.iartisan.admin.template.dao.mapper.SystemUserMapper;
@@ -11,11 +14,8 @@ import org.iartisan.admin.template.dao.model.SystemRoleDO;
 import org.iartisan.admin.template.dao.model.SystemRolePermissionDO;
 import org.iartisan.admin.template.dao.model.SystemUserDO;
 import org.iartisan.admin.template.dao.model.SystemUserRoleDO;
-import org.iartisan.admin.template.authentication.service.entity.RoleEntity;
-import org.iartisan.admin.template.authentication.service.entity.UserEntity;
-import org.iartisan.admin.template.authentication.service.entity.UserRoleEntity;
-import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.jdbc.PageHelper;
 import org.iartisan.runtime.utils.CollectionUtil;
 import org.iartisan.runtime.utils.StringUtils;
@@ -51,7 +51,7 @@ public class RoleSupportService {
     private SystemUserMapper systemUserMapper;
 
     public List<RoleEntity> getAllRoles() {
-        List<SystemRoleDO> dbRoleResult = systemRoleMapper.selectList(Condition.EMPTY);
+        List<SystemRoleDO> dbRoleResult = systemRoleMapper.selectList(Wrappers.emptyWrapper());
         List<RoleEntity> result = new ArrayList<>();
         if (CollectionUtil.isNotEmpty(dbRoleResult)) {
             for (SystemRoleDO roleDO : dbRoleResult) {
@@ -74,7 +74,7 @@ public class RoleSupportService {
         return result;
     }
 
-    public PageWrapper<RoleEntity> getRolePageData(Page page, String roleName) {
+    public PageWrapper<RoleEntity> getRolePageData(Pagination page, String roleName) {
         SystemRoleDO roleDO = new SystemRoleDO();
         if (StringUtils.isNotEmpty(roleName)) {
             roleDO.setRoleName(roleName);
@@ -82,18 +82,17 @@ public class RoleSupportService {
         PageWrapper<SystemRoleDO> dbResult = PageHelper.getPageData(systemRoleMapper, page, roleDO);
         PageWrapper<RoleEntity> result = new PageWrapper<>(dbResult.getPage());
         List<RoleEntity> pageList = new ArrayList<>();
-        for (SystemRoleDO o : dbResult.getData()) {
+        for (SystemRoleDO o : dbResult.getRows()) {
             RoleEntity bean = new RoleEntity();
             bean.setRoleId(o.getRoleId());
             bean.setRoleName(o.getRoleName());
             bean.setCreateTime(o.getCreateTime());
             pageList.add(bean);
         }
-        result.setData(pageList);
+        result.setRows(pageList);
         return result;
     }
 
-    @Transactional
     public void addRole(RoleEntity roleEntity) {
         SystemRoleDO dbRoleInsert = new SystemRoleDO();
         dbRoleInsert.setRoleName(roleEntity.getRoleName());
@@ -131,7 +130,7 @@ public class RoleSupportService {
     public List<String> getRoleIdsByUserId(String userId) {
         SystemUserRoleDO systemUserRoleDO = new SystemUserRoleDO();
         systemUserRoleDO.setUserId(userId);
-        Wrapper<SystemUserRoleDO> query = new EntityWrapper<>(systemUserRoleDO);
+        Wrapper<SystemUserRoleDO> query = new QueryWrapper<>(systemUserRoleDO);
         List<SystemUserRoleDO> dbResult = systemUserRoleMapper.selectList(query);
         if (null == dbResult) {
             return null;
@@ -176,7 +175,7 @@ public class RoleSupportService {
         //删除角色关联的用户
         SystemUserRoleDO userRoleDO = new SystemUserRoleDO();
         userRoleDO.setRoleId(roleId);
-        Wrapper<SystemUserRoleDO> userWrapper = new EntityWrapper<>(userRoleDO);
+        Wrapper<SystemUserRoleDO> userWrapper = new QueryWrapper<>(userRoleDO);
         systemUserRoleMapper.delete(userWrapper);
         deletePermissionByRoleId(roleId);
     }
@@ -185,7 +184,7 @@ public class RoleSupportService {
         //删除角色关联的权限
         SystemRolePermissionDO permissionDO = new SystemRolePermissionDO();
         permissionDO.setRoleId(roleId);
-        Wrapper<SystemRolePermissionDO> permissionWrapper = new EntityWrapper<>(permissionDO);
+        Wrapper<SystemRolePermissionDO> permissionWrapper = new QueryWrapper<>(permissionDO);
         systemRolePermissionMapper.delete(permissionWrapper);
     }
 
@@ -198,7 +197,7 @@ public class RoleSupportService {
     }
 
     public String getUserRoleNames(String userId) {
-        Wrapper<SystemUserRoleDO> wrapper = new EntityWrapper<>();
+        QueryWrapper<SystemUserRoleDO> wrapper = new QueryWrapper<>();
         wrapper.eq("USER_ID", userId);
         List<SystemUserRoleDO> dbResult = systemUserRoleMapper.selectList(wrapper);
         StringBuffer buffer = new StringBuffer();

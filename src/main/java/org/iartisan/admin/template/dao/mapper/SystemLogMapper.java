@@ -1,8 +1,6 @@
 package org.iartisan.admin.template.dao.mapper;
 
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import org.apache.ibatis.annotations.Param;
 import org.iartisan.admin.template.dao.model.SystemLogDO;
 import org.iartisan.runtime.jdbc.MybatisBaseMapper;
 

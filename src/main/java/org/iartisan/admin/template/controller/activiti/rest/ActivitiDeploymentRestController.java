@@ -3,8 +3,8 @@ package org.iartisan.admin.template.controller.activiti.rest;
 import org.activiti.engine.repository.Deployment;
 import org.iartisan.admin.template.service.activiti.DeploymentManagement;
 import org.iartisan.admin.template.service.activiti.entity.DeploymentEntity;
-import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
@@ -28,10 +28,10 @@ public class ActivitiDeploymentRestController extends BaseController implements 
     private DeploymentManagement deploymentManagement;
 
     @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
-    public WebR queryPageData(Page page) {
+    public WebR queryPageData(Pagination page) {
         PageWrapper<DeploymentEntity> pageData = deploymentManagement.queryDeploymentsPage(page);
         WebR webR = new WebR(pageData.getPage());
-        webR.setData(pageData.getData());
+        webR.setData(pageData.getRows());
         return webR;
     }
 
