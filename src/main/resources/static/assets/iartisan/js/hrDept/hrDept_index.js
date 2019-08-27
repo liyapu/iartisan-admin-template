@@ -9,6 +9,9 @@ layui.config({
             modifyDataPage: "/hrDept/modifyDataPage",
         },
         layer = layui.layer;
+    layer.config({
+        skin: 'layui-layer-molv'
+    })
 
     let currentDeptId;
 
