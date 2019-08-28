@@ -66,4 +66,9 @@ public class BpmDeploymentPageController extends BaseController {
         }
         return webR;
     }
+
+    @GetMapping("toDesign")
+    public String toDesign() {
+        return "redirect:/modler/index.html#/processes";
+    }
 }

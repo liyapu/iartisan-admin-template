@@ -334,7 +334,7 @@ flowableModeler
 	          	});
 
 	        $rootScope.logout = function () {
-                $rootScope.authenticated = false;
+                /*$rootScope.authenticated = false;
                 $rootScope.authenticationError = false;
                 $http.get(FLOWABLE.APP_URL.getLogoutUrl())
                     .success(function (data, status, headers, config) {
@@ -342,7 +342,7 @@ flowableModeler
                         $rootScope.authenticated = false;
                         $window.location.href = '/';
                         $window.location.reload();
-                    });
+                    });*/
             };
         }
   ])

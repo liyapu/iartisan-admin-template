@@ -21,6 +21,7 @@
         <activiti.version>5.22.0</activiti.version>
         <poi.version>4.0.0</poi.version>
         <flowable.version>6.4.2</flowable.version>
+        <liquibase.version>3.6.2</liquibase.version>
     </properties>
 
     <developers>
@@ -172,6 +173,22 @@
                 <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>jul-to-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

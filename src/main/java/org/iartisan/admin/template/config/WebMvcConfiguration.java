@@ -36,9 +36,4 @@ public class WebMvcConfiguration extends WebMvcConfig implements ServletContextI
         registry.addInterceptor(environmentInterceptor).addPathPatterns("/**/**/deleteData", "/**/**/modifyData", "/userSupport/changeStatus", "/userSupport/modifyPwd");
     }
 
-    @Bean
-    public FlowableModelerAppProperties flowableModelerAppProperties() {
-        FlowableModelerAppProperties flowableModelerAppProperties = new FlowableModelerAppProperties();
-        return flowableModelerAppProperties;
-    }
 }

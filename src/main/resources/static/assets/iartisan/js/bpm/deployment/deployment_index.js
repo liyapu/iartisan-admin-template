@@ -90,7 +90,7 @@ layui.config({
                 maxmin: true,
                 anim: 1,
                 title: '流程设计',
-                content: '/modler/index.html#/processes'
+            content: urls.toDesign
             }
         );
         layer.full(index);

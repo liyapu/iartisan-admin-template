@@ -16,7 +16,8 @@ import java.util.Properties;
  * @author King
  * @since 2017/10/19
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"org.iartisan.admin.template", "org.flowable.ui.modeler", "org.flowable.ui.common"},
+        exclude = {SecurityAutoConfiguration.class})
 @MapperScan(basePackages = {"org.iartisan.admin.template.dao.mapper"})
 public class WebBootstrap {
 

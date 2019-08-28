@@ -21,8 +21,7 @@ FLOWABLE.APP_URL = {
     /* ACCOUNT URLS */
 
     getAccountUrl: function () {
-        // return FLOWABLE.CONFIG.contextRoot + '/app/rest/account';
-        return '/jsite/a/act/model/account';
+        return '/bpm/account/get';
     },
 
     getLogoutUrl: function () {
