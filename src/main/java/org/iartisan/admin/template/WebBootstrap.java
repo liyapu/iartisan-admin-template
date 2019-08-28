@@ -1,11 +1,11 @@
 package org.iartisan.admin.template;
 
 
-import org.activiti.spring.boot.SecurityAutoConfiguration;
 import org.iartisan.runtime.env.EnvPropertiesLoader;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
 import java.util.Properties;
 
@@ -16,7 +16,7 @@ import java.util.Properties;
  * @author King
  * @since 2017/10/19
  */
-@SpringBootApplication(scanBasePackages = {"org.iartisan.admin.template"},exclude = {SecurityAutoConfiguration.class})
+@SpringBootApplication
 @MapperScan(basePackages = {"org.iartisan.admin.template.dao.mapper"})
 public class WebBootstrap {
 

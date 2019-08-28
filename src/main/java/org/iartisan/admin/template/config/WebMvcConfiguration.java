@@ -1,9 +1,11 @@
 package org.iartisan.admin.template.config;
 
+import org.flowable.ui.modeler.properties.FlowableModelerAppProperties;
 import org.iartisan.runtime.env.EnvContextConfig;
 import org.iartisan.runtime.web.config.WebMvcConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
@@ -32,5 +34,11 @@ public class WebMvcConfiguration extends WebMvcConfig implements ServletContextI
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(environmentInterceptor).addPathPatterns("/**/**/deleteData", "/**/**/modifyData", "/userSupport/changeStatus", "/userSupport/modifyPwd");
+    }
+
+    @Bean
+    public FlowableModelerAppProperties flowableModelerAppProperties() {
+        FlowableModelerAppProperties flowableModelerAppProperties = new FlowableModelerAppProperties();
+        return flowableModelerAppProperties;
     }
 }
