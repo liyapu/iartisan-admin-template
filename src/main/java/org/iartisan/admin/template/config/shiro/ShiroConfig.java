@@ -45,8 +45,10 @@ public class ShiroConfig {
         String filterPath = EnvContextConfig.get(_CONFIG, "");
         filterPath = filterPath + ",/assets/iartisan/**," + ReqContants.REQ_AUTHENTICATE +
                 "," + ReqContants.REQ_LOGIN + ",/webjars/**" + ",/captcha" + ",/druid/**"+
-                ",/**/*.js"+",/**/*.html"+",/**/*.css"+",/**/*.png"+
-                ",/**/*.eot,/**/*.svg,/**/*.ttf,/**/*.woff"
+                ",/**/*.js" + ",/**/*.html" + ",/**/*.css" + ",/**/*.ttf" +
+                ",/**/*.eot" + ",/**/*.svg" + ",/**/*.woff" + ",/**/*.otf"
+                + ",/**/*.png"
+                + ",/**/*.woff2"
         ;
         List<String> filterPaths = Arrays.asList(filterPath.split(","));
         for (String path : filterPaths) {
