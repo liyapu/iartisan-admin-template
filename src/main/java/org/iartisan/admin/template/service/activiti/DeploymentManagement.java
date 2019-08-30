@@ -2,6 +2,7 @@ package org.iartisan.admin.template.service.activiti;
 
 import org.flowable.engine.RepositoryService;
 import org.flowable.engine.repository.Deployment;
+import org.flowable.engine.repository.ProcessDefinition;
 import org.iartisan.admin.template.service.activiti.entity.DeploymentEntity;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.bean.Pagination;
@@ -44,15 +45,15 @@ public class DeploymentManagement {
         return deploymentEntities;
     }
 
-    public PageWrapper<DeploymentEntity> queryDeploymentsPage(Pagination page) {
-        long total = repositoryService.createDeploymentQuery().count();
-        List<Deployment> result = repositoryService.createDeploymentQuery().orderByDeploymenTime().asc().listPage(
+    public PageWrapper<ProcessDefinition> getProcessDefinitionPage(Pagination page) {
+        long total = repositoryService.createProcessDefinitionQuery().count();
+        List<ProcessDefinition> result = repositoryService.createProcessDefinitionQuery().orderByProcessDefinitionId().asc().listPage(
                 (page.getPageIndex() - 1) * page.getPageSize()
                 , page.getPageSize());
         page.setTotalRecords((int) total);
         page.setPageIndex(page.getPageIndex() + 1);
-        PageWrapper<DeploymentEntity> resultPage = new PageWrapper<>(page);
-        resultPage.setRows(convertDeployment(result));
+        PageWrapper<ProcessDefinition> resultPage = new PageWrapper<>(page);
+        resultPage.setRows(result);
         return resultPage;
     }
 

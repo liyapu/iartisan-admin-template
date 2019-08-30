@@ -95,4 +95,8 @@ layui.config({
         );
         layer.full(index);
     });
+
+    $("#btnQuery").on('click', function () {
+        queryPageData();
+    });
 });

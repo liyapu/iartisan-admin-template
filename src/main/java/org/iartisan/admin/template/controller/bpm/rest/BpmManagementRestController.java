@@ -1,4 +1,4 @@
-package org.iartisan.admin.template.controller.Bpm.rest;
+package org.iartisan.admin.template.controller.bpm.rest;
 
 import org.iartisan.admin.template.service.activiti.WorkflowManagement;
 import org.iartisan.admin.template.service.activiti.entity.LeaveEntity;

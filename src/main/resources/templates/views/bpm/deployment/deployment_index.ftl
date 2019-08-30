@@ -2,6 +2,9 @@
     <form class="layui-form">
         <div class="layui-row">
             <div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
+                <button class="layui-btn" id="btnQuery" type="button">查询</button>
+            </div>
+            <div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
                 <button class="layui-btn" id="btnUpload" type="button">上传新流程</button>
             </div>
             <div class="layui-col-xs6 layui-col-sm6 layui-col-md2">

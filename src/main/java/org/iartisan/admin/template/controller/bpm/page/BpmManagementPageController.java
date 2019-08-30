@@ -1,4 +1,4 @@
-package org.iartisan.admin.template.controller.Bpm.page;
+package org.iartisan.admin.template.controller.bpm.page;
 
 import org.iartisan.admin.template.service.activiti.DeploymentManagement;
 import org.iartisan.admin.template.service.activiti.WorkflowManagement;

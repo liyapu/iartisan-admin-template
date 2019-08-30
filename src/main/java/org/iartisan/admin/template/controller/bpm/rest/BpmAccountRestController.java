@@ -1,4 +1,4 @@
-package org.iartisan.admin.template.controller.Bpm.rest;
+package org.iartisan.admin.template.controller.bpm.rest;
 
 
 import org.flowable.idm.engine.impl.persistence.entity.UserEntityImpl;
