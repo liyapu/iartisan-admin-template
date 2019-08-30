@@ -3,7 +3,7 @@ layui.config({
 }).use(['jquery', 'layer', 'router', 'util'], function () {
     var $ = layui.jquery, layer = layui.layer, router = layui.router, util = layui.util;
     var urls = {
-        addDataPage: "/activiti/workflow/start/addDataPage",
+        addDataPage: "/bpm/demo/newItem/addDataPage",
         queryPageData: "/activiti/workflow/start/owner/queryPageData",
         getProcessTrace: "/activiti/workflow/start/owner/queryPageData"
     };
@@ -13,10 +13,11 @@ layui.config({
             type: 2,
             title: '发起请假',
             skin: 'layui-layer-molv',
-            area: ['650px', '650px'],
+            area: ['80%', '90%'],
             content: urls.addDataPage,
             btn: ['修改', '关闭'],
             btnAlign: 'c',
+            maxmin:true,
             yes: function (index, layero) {
                 layero.find('iframe').contents().find("#formAdd").find("#btnAdd").click();
             },

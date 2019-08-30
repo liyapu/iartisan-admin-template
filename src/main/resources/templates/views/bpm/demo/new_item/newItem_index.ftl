@@ -10,5 +10,5 @@
 </div>
 <table id="dataList" lay-filter="dataList"></table>
 
-<script type="text/javascript" src="/assets/iartisan/js/bpm/workflow/start/workflowStart_index.js?${staticVerison!'1'}"></script>
+<script type="text/javascript" src="/assets/iartisan/js/bpm/demo/new_item/newItem_index.js?${staticVerison!'1'}"></script>
 

@@ -69,4 +69,4 @@
     </div>
     <input type="hidden" lay-submit="" lay-filter="addData" id="btnAdd"/>
 </form>
-<script type="text/javascript" src="/assets/iartisan/js/bpm/workflow/start/workflowStart_add.js?${staticVerison!'1'}"></script>
+<script type="text/javascript" src="/assets/iartisan/js/bpm/demo/new_item/newItem_add.js?${staticVerison!'1'}"></script>
