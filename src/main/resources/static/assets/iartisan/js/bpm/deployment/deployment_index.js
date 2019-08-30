@@ -3,7 +3,9 @@ layui.config({
 }).use(['router', "util", 'layer', 'upload', 'table'], function () {
     var router = layui.router, util = layui.util, layer = layui.layer,
         upload = layui.upload, table = layui.table;
-
+    layer.config({
+        skin: 'layui-layer-molv'
+    })
 
     var urls = {
         queryPageData: "/bpm/deployment/queryPageData",
@@ -53,7 +55,7 @@ layui.config({
                     title: '操作',
                     templet: function () {
                         var html = "<a class='layui-btn layui-btn-danger layui-btn-xs' lay-event='del'>删除</a>";
-                        html += "<a class='layui-btn layui-btn-danger layui-btn-xs' lay-event='query'>查看流程图</a>";
+                        html += "<a class='layui-btn layui-btn-normal layui-btn-xs' lay-event='query'>查看流程图</a>";
                         return html;
                     }
                 }
@@ -78,7 +80,7 @@ layui.config({
         if (layEvent == 'query') {
             let index = layer.open({
                     type: 2,
-                    maxmin: true,
+                area: ['80%', '90%'],
                     anim: 1,
                     title: '流程设计',
                     content: urls.getDefinitionDetail + "?deploymentId=" + data.id

@@ -1,15 +1,14 @@
 package org.iartisan.admin.template.service.bpm;
 
-import org.aspectj.weaver.ast.Var;
 import org.flowable.bpmn.model.BpmnModel;
 import org.flowable.engine.ProcessEngineConfiguration;
 import org.flowable.engine.RepositoryService;
 import org.flowable.engine.repository.ProcessDefinition;
-import org.flowable.engine.repository.ProcessDefinitionQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
+import java.util.Collections;
 
 /**
  * @author King  2019-8-30
@@ -28,6 +27,10 @@ public class ProcessDefinitionManagement {
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().deploymentId(deployId)
                 .singleResult();
         BpmnModel bpmnModel = repositoryService.getBpmnModel(processDefinition.getId());
-        return processEngineConfiguration.getProcessDiagramGenerator().generateJpgDiagram(bpmnModel);
+        return processEngineConfiguration.getProcessDiagramGenerator().generateDiagram(bpmnModel,
+                "png", Collections.<String>emptyList(),
+                Collections.<String>emptyList(),
+                "宋体", "宋体", "宋体",
+                null, 1.0, false);
     }
 }
