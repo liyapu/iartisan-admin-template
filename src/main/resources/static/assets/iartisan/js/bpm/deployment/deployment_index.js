@@ -5,7 +5,7 @@ layui.config({
         upload = layui.upload, table = layui.table;
     layer.config({
         skin: 'layui-layer-molv'
-    })
+    });
 
     var urls = {
         queryPageData: "/bpm/deployment/queryPageData",

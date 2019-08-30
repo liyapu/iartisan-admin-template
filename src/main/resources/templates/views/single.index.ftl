@@ -66,13 +66,13 @@
                     <#if (first.children?size > 0) >
                         <li class="layui-nav-item" name="_layui-nav-item">
                             <a href="javascript:void(0);">
-                                <i class="layui-icon" data-icon="${first.icon!''}">${first.icon!''}</i>
+                                <i class="layui-icon ${first.icon!''}" data-icon="${first.icon!''}"></i>
                                 <span><cite>${first.title}</cite></span><span class="layui-nav-more"></span>
                             </a>
                             <dl class="layui-nav-child">
                                 <#list (first.children) as second>
                                     <dd class=""><a href="javascript:void(0);" data-url="${second.href!''}">
-                                        <i class="layui-icon" data-icon="${second.icon!''}">${second.icon!''}</i>
+                                        <i class="layui-icon ${second.icon!''}" data-icon="${second.icon!''}"></i>
                                         <span><cite>${second.title!''}</cite></span></a>
                                     </dd>
                                 </#list>
@@ -81,7 +81,7 @@
                     <#else>
                         <li class="layui-nav-item" name="_layui-nav-item">
                             <a href="javascript:void(0);" data-url="${first.href!''}">
-                                <i class="layui-icon" data-icon="${first.icon!''}">${first.icon!''}</i>
+                                <i class="layui-icon ${first.icon!''}" data-icon="${first.icon!''}"></i>
                                 <span><cite>${first.title!''}</cite></span>
                             </a>
                         </li>

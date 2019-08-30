@@ -36,7 +36,8 @@ layui.config({
                 {
                     title: '图标',
                     templet: function (d) {
-                        return "<i class=\"layui-icon\">" + d.icon + "</i>";
+                        let icon = "layui-icon " + d.icon;
+                        return "<i class = '" + icon + "' ></i>";
                     }
                 },
                 {
