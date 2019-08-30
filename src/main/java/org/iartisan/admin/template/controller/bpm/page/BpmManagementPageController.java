@@ -1,7 +1,7 @@
 package org.iartisan.admin.template.controller.bpm.page;
 
-import org.iartisan.admin.template.service.activiti.DeploymentManagement;
-import org.iartisan.admin.template.service.activiti.WorkflowManagement;
+import org.iartisan.admin.template.service.bpm.DeploymentManagement;
+import org.iartisan.admin.template.service.bpm.WorkflowManagement;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportPageController;

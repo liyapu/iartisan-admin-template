@@ -1,7 +1,7 @@
 package org.iartisan.admin.template.controller.bpm.rest;
 
-import org.iartisan.admin.template.service.activiti.WorkflowManagement;
-import org.iartisan.admin.template.service.activiti.entity.LeaveEntity;
+import org.iartisan.admin.template.service.bpm.WorkflowManagement;
+import org.iartisan.admin.template.service.bpm.entity.LeaveEntity;
 import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;

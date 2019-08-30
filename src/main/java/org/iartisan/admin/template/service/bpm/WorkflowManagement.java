@@ -1,4 +1,4 @@
-package org.iartisan.admin.template.service.activiti;
+package org.iartisan.admin.template.service.bpm;
 
 
 import org.flowable.engine.*;

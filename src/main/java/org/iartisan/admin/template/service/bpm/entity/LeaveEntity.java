@@ -1,4 +1,4 @@
-package org.iartisan.admin.template.service.activiti.entity;
+package org.iartisan.admin.template.service.bpm.entity;
 
 /**
  * <p>

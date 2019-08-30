@@ -2,7 +2,7 @@ package org.iartisan.admin.template.controller.bpm.rest;
 
 
 import org.flowable.engine.repository.Model;
-import org.iartisan.admin.template.service.activiti.ModelManagement;
+import org.iartisan.admin.template.service.bpm.ModelManagement;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.web.WebR;

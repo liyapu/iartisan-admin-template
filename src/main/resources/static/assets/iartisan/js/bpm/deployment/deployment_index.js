@@ -8,8 +8,9 @@ layui.config({
     var urls = {
         queryPageData: "/bpm/deployment/queryPageData",
         toDesign: "/bpm/deployment/toDesign",
-        upload: "/bpm/deployment/upload",
-        deleteData: "/bpm/deployment/deleteData"
+        deploy: "/bpm/deployment/deploy",
+        deleteData: "/bpm/deployment/deleteData",
+        getDefinitionDetail: "/bpm/deployment/getDefinitionDetail"
     };
     queryPageData();
 
@@ -52,6 +53,7 @@ layui.config({
                     title: '操作',
                     templet: function () {
                         var html = "<a class='layui-btn layui-btn-danger layui-btn-xs' lay-event='del'>删除</a>";
+                        html += "<a class='layui-btn layui-btn-danger layui-btn-xs' lay-event='query'>查看流程图</a>";
                         return html;
                     }
                 }
@@ -60,7 +62,7 @@ layui.config({
     }
 
     table.on('tool(dataList)', function (obj) {
-        var layEvent = obj.event, data = obj.data;
+        let layEvent = obj.event, data = obj.data;
         if (layEvent == 'del') {
             layer.confirm("确定删除吗",{async:true}, function (index) {
                 layer.close(index);
@@ -73,11 +75,21 @@ layui.config({
                 });
             });
         }
+        if (layEvent == 'query') {
+            let index = layer.open({
+                    type: 2,
+                    maxmin: true,
+                    anim: 1,
+                    title: '流程设计',
+                    content: urls.getDefinitionDetail + "?deploymentId=" + data.id
+                }
+            );
+        }
     });
 
     upload.render({
         elem: '#btnUpload',
-        url: urls.upload,
+        url: urls.deploy,
         accept: "file",
         done: function (res) {
             tableIns.reload();
