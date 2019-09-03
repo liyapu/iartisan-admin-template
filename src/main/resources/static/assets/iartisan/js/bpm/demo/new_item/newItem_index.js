@@ -1,10 +1,11 @@
 layui.config({
     base: "/assets/iartisan/plugins/lib/"
-}).use(['jquery', 'layer', 'router', 'util'], function () {
-    var $ = layui.jquery, layer = layui.layer, router = layui.router, util = layui.util;
+}).use(['jquery', 'layer', 'router', 'util', 'table'], function () {
+    var $ = layui.jquery, layer = layui.layer, router = layui.router, util = layui.util,
+        table = layui.table;
     var urls = {
         addDataPage: "/bpm/demo/newItem/addDataPage",
-        queryPageData: "/activiti/workflow/start/owner/queryPageData",
+        queryPageData: "/bpm/demo/myTask/queryPageData",
         getProcessTrace: "/activiti/workflow/start/owner/queryPageData"
     };
 
@@ -13,9 +14,9 @@ layui.config({
             type: 2,
             title: '发起请假',
             skin: 'layui-layer-molv',
-            area: ['80%', '90%'],
+            area: ['70%', '95%'],
             content: urls.addDataPage,
-            btn: ['修改', '关闭'],
+            btn: ['提交', '取消'],
             btnAlign: 'c',
             maxmin:true,
             yes: function (index, layero) {

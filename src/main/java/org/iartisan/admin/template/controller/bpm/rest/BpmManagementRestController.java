@@ -1,6 +1,6 @@
 package org.iartisan.admin.template.controller.bpm.rest;
 
-import org.iartisan.admin.template.service.bpm.WorkflowManagement;
+import org.iartisan.admin.template.service.bpm.BpmWorkflowManagement;
 import org.iartisan.admin.template.service.bpm.entity.LeaveEntity;
 import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.web.WebR;
@@ -29,7 +29,7 @@ import java.util.Map;
 public class BpmManagementRestController extends BaseController implements ISupportRestController<LeaveEntity> {
 
     @Autowired
-    private WorkflowManagement workflowManagement;
+    private BpmWorkflowManagement workflowManagement;
 
     @Override
     public WebR deleteData(String s) {

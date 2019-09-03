@@ -3,10 +3,10 @@ layui.config({
 }).use(['jquery', 'laydate','router'], function () {
     var laydate = layui.laydate,router=layui.router;
 
-    var urls = {addData: "/activiti/workflow/start/addData"};
+    var urls = {addData: "/bpm/demo/newItem/addData"};
 
-    laydate.render({elem: '#beginTime'});
-    laydate.render({elem: '#endTime'});
+    laydate.render({elem: '#beginTime', trigger: 'click'});
+    laydate.render({elem: '#endTime', trigger: 'click'});
 
     form.on("submit(addData)", function (data) {
         router.post({

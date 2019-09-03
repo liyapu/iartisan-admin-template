@@ -1,7 +1,7 @@
 package org.iartisan.admin.template.controller.bpm.page;
 
 import org.iartisan.admin.template.service.bpm.DeploymentManagement;
-import org.iartisan.admin.template.service.bpm.WorkflowManagement;
+import org.iartisan.admin.template.service.bpm.BpmWorkflowManagement;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportPageController;
@@ -27,7 +27,7 @@ public class BpmManagementPageController extends BaseController implements ISupp
     private DeploymentManagement deploymentManagement;
 
     @Autowired
-    private WorkflowManagement workflowManagement;
+    private BpmWorkflowManagement workflowManagement;
 
 
     @Override
