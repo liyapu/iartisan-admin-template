@@ -1,14 +1,15 @@
 package org.iartisan.admin.template.authentication;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
+
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.iartisan.admin.template.authentication.service.entity.UserEntity;
 import org.iartisan.admin.template.dao.mapper.SystemUserMapper;
 import org.iartisan.admin.template.dao.mapper.SystemUserRoleMapper;
 import org.iartisan.admin.template.dao.model.SystemUserDO;
 import org.iartisan.admin.template.dao.model.SystemUserRoleDO;
-import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.env.EnvContextConfig;
 import org.iartisan.runtime.jdbc.PageHelper;
 import org.iartisan.runtime.utils.MD5Util;
@@ -50,11 +51,12 @@ public class UserSupportService {
         SystemUserDO dbQuery = new SystemUserDO();
         dbQuery.setUserName(userName);
         dbQuery.setUserPwd(userPwd.toLowerCase());
-        return systemUserMapper.selectOne(dbQuery);
+        QueryWrapper<SystemUserDO> queryWrapper = new QueryWrapper<>(dbQuery);
+        return systemUserMapper.selectOne(queryWrapper);
     }
 
 
-    public PageWrapper<UserEntity> getUserPageData(Page page, String userName) {
+    public PageWrapper<UserEntity> getUserPageData(Pagination page, String userName) {
         SystemUserDO userDO = new SystemUserDO();
         if (StringUtils.isNotEmpty(userName)) {
             userDO.setUserName(userName);
@@ -62,7 +64,7 @@ public class UserSupportService {
         PageWrapper<SystemUserDO> dbResult = PageHelper.getPageData(systemUserMapper, page, userDO);
         PageWrapper<UserEntity> result = new PageWrapper<>(dbResult.getPage());
         List<UserEntity> pageList = new ArrayList<>();
-        for (SystemUserDO o : dbResult.getData()) {
+        for (SystemUserDO o : dbResult.getRows()) {
             UserEntity bean = new UserEntity();
             bean.setUserName(o.getUserName());
             bean.setUserId(o.getUserId());
@@ -71,7 +73,7 @@ public class UserSupportService {
             bean.setRoles(roleSupportService.getUserRoleNames(o.getUserId()));
             pageList.add(bean);
         }
-        result.setData(pageList);
+        result.setRows(pageList);
         return result;
     }
 
@@ -106,7 +108,7 @@ public class UserSupportService {
         SystemUserRoleDO entity = new SystemUserRoleDO();
         entity.setUserId(userEntity.getUserId());
         //更新角色信息
-        Wrapper<SystemUserRoleDO> dbDel = new EntityWrapper<>(entity);
+        Wrapper<SystemUserRoleDO> dbDel = new QueryWrapper<>(entity);
         systemUserRoleMapper.delete(dbDel);
         addUserRole(userEntity.getUserId(), userEntity.getRoles());
     }

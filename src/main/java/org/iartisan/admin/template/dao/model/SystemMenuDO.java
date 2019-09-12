@@ -3,9 +3,9 @@ package org.iartisan.admin.template.dao.model;
 import java.util.Date;
 import java.util.List;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import org.apache.ibatis.type.Alias;
 /**
 * system_menu 表模型

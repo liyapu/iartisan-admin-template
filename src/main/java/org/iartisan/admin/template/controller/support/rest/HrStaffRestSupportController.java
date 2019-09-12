@@ -3,8 +3,8 @@ package org.iartisan.admin.template.controller.support.rest;
 import org.iartisan.admin.template.service.entity.StaffEntity;
 import org.iartisan.admin.template.service.management.StaffManagementService;
 import org.iartisan.admin.template.service.query.StaffQueryService;
-import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
@@ -52,10 +52,10 @@ public class HrStaffRestSupportController extends BaseController implements ISup
     }
 
     @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
-    public WebR getPageData(Page page, StaffEntity staffEntity) {
+    public WebR getPageData(Pagination page, StaffEntity staffEntity) {
         PageWrapper<StaffEntity> pageDataByWrapper = staffQueryService.getPageData(page, staffEntity);
         WebR webR = new WebR(pageDataByWrapper.getPage());
-        webR.setData(pageDataByWrapper.getData());
+        webR.setData(pageDataByWrapper.getRows());
         return webR;
     }
 

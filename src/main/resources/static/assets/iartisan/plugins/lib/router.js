@@ -1,6 +1,6 @@
 layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (exports) {
 
-    var $ = layui.jquery, layer = layui.layer, table = layui.table;
+    var $ = layui.jquery, layer = parent.layer === undefined ? layui.layer : top.layer, table = layui.table;
 
     var success_code = "000000", err_msg = "请求异常，请重试";
 
@@ -88,7 +88,7 @@ layui.define(['layer', 'form', 'element', 'upload', 'util', 'table'], function (
                     countName: "totalRecords"
                 },
                 request: {
-                    pageName: 'currPage', //页码的参数名称，默认：page,
+                    pageName: 'pageIndex', //页码的参数名称，默认：page,
                     limitName: 'pageSize' //每页数据量的参数名，默认：limit
                 }
             });

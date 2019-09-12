@@ -1,7 +1,7 @@
 package org.iartisan.admin.template.service.query;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.Lists;
 import org.iartisan.admin.template.authentication.service.entity.ZTreeEntity;
 import org.iartisan.admin.template.dao.mapper.BizDeptMapper;
@@ -27,7 +27,7 @@ public class DeptQueryService extends BaseQueryServiceSupport<BizDeptMapper, Dep
         BizDeptDO rootQuery = new BizDeptDO();
         rootQuery.setDeptId("1");
         //获取root节点
-        Wrapper<BizDeptDO> queryWrapper = new EntityWrapper<>(rootQuery);
+        Wrapper<BizDeptDO> queryWrapper = new QueryWrapper<>(rootQuery);
         List<BizDeptDO> dbResult = this.baseMapper.selectList(queryWrapper);
         List<ZTreeEntity> dataList = new ArrayList<>();
         ZTreeEntity root = new ZTreeEntity();
@@ -57,7 +57,7 @@ public class DeptQueryService extends BaseQueryServiceSupport<BizDeptMapper, Dep
     private List<ZTreeEntity> getChildrenDept(String deptId) {
         BizDeptDO dbQuery = new BizDeptDO();
         dbQuery.setDeptParent(deptId);
-        Wrapper<BizDeptDO> queryWrapper = new EntityWrapper<>(dbQuery);
+        Wrapper<BizDeptDO> queryWrapper = new QueryWrapper<>(dbQuery);
         List<BizDeptDO> dbResult = this.baseMapper.selectList(queryWrapper);
         List<ZTreeEntity> dataList = Lists.newArrayList();
         if (CollectionUtil.isNotEmpty(dbResult)) {
