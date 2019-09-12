@@ -5,4 +5,7 @@ layui.config({
     $ = layui.$,
     layer = parent.layer === undefined ? layui.layer : top.layer;
     form = layui.form;
+    layer.config({
+        skin: 'layui-layer-molv'
+    })
 });

@@ -2,10 +2,9 @@ package org.iartisan.admin.template.controller.support.rest;
 
 import org.iartisan.admin.template.service.entity.LogEntity;
 import org.iartisan.admin.template.service.query.LogQueryService;
-import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.web.WebR;
-import org.iartisan.runtime.web.authentication.MenuTree;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
 import org.iartisan.runtime.web.controller.ISupportRestController;
@@ -44,10 +43,10 @@ public class LogRestController extends BaseController implements ISupportRestCon
 
 
     @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
-    public WebR queryPageData(Page page) {
+    public WebR queryPageData(Pagination page) {
         PageWrapper<LogEntity> pageData = logQueryService.getAllPageData(page);
         WebR webR = new WebR(pageData.getPage());
-        webR.setData(pageData.getData());
+        webR.setData(pageData.getRows());
         return webR;
     }
 }

@@ -1,19 +1,19 @@
 package org.iartisan.admin.template.authentication;
 
-import com.baomidou.mybatisplus.mapper.Condition;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.iartisan.admin.template.authentication.service.code.PermissionType;
+import org.iartisan.admin.template.authentication.service.entity.ResourceEntity;
+import org.iartisan.admin.template.authentication.service.entity.ZTreeEntity;
 import org.iartisan.admin.template.dao.mapper.SystemMenuMapper;
 import org.iartisan.admin.template.dao.mapper.SystemResourceMapper;
 import org.iartisan.admin.template.dao.mapper.SystemRolePermissionMapper;
 import org.iartisan.admin.template.dao.model.SystemMenuDO;
 import org.iartisan.admin.template.dao.model.SystemResourceDO;
 import org.iartisan.admin.template.dao.model.SystemRolePermissionDO;
-import org.iartisan.admin.template.authentication.service.entity.ResourceEntity;
-import org.iartisan.admin.template.authentication.service.entity.ZTreeEntity;
-import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.jdbc.PageHelper;
 import org.iartisan.runtime.utils.CollectionUtil;
 import org.iartisan.runtime.utils.UUIDUtil;
@@ -51,7 +51,7 @@ public class ResourceSupportService {
     public List<ZTreeEntity> getResourceTree() {
         List<ZTreeEntity> result = new ArrayList<>();
         //加载菜单列表
-        List<SystemMenuDO> menuDOList = systemMenuMapper.selectList(Condition.EMPTY);
+        List<SystemMenuDO> menuDOList = systemMenuMapper.selectList(Wrappers.emptyWrapper());
         if (CollectionUtil.isNotEmpty(menuDOList)) {
             for (SystemMenuDO systemMenuDO : menuDOList) {
                 ZTreeEntity entity = new ZTreeEntity();
@@ -79,7 +79,7 @@ public class ResourceSupportService {
     private List<SystemResourceDO> getResourceByMenuId(String menuId) {
         SystemResourceDO resourceDO = new SystemResourceDO();
         resourceDO.setMenuId(menuId);
-        List<SystemResourceDO> dbResult = systemResourceMapper.selectList(new EntityWrapper<>(resourceDO));
+        List<SystemResourceDO> dbResult = systemResourceMapper.selectList(new QueryWrapper<>(resourceDO));
         return dbResult;
     }
 
@@ -133,7 +133,7 @@ public class ResourceSupportService {
             for (String s : dbResult) {
                 SystemResourceDO dbResourceQuery = new SystemResourceDO();
                 dbResourceQuery.setResourceId(s);
-                Wrapper<SystemResourceDO> resourceDOWrapper = new EntityWrapper<>(dbResourceQuery);
+                Wrapper<SystemResourceDO> resourceDOWrapper = new QueryWrapper<>(dbResourceQuery);
                 List<SystemResourceDO> dbResourceResult = systemResourceMapper.selectList(resourceDOWrapper);
                 if (CollectionUtil.isNotEmpty(dbResourceResult)) {
                     for (SystemResourceDO systemResourceDO : dbResourceResult) {
@@ -161,20 +161,20 @@ public class ResourceSupportService {
         systemResourceMapper.insert(dbInsert);
     }
 
-    public PageWrapper<ResourceEntity> getResourcePageData(Page page, String menuId) {
+    public PageWrapper<ResourceEntity> getResourcePageData(Pagination page, String menuId) {
         SystemResourceDO dbResourceQuery = new SystemResourceDO();
         dbResourceQuery.setMenuId(menuId);
         PageWrapper<SystemResourceDO> dbResult = PageHelper.getPageData(systemResourceMapper, page, dbResourceQuery);
         PageWrapper<ResourceEntity> result = new PageWrapper<>(dbResult.getPage());
         List<ResourceEntity> pageList = new ArrayList<>();
-        for (SystemResourceDO o : dbResult.getData()) {
+        for (SystemResourceDO o : dbResult.getRows()) {
             ResourceEntity entity = new ResourceEntity();
             entity.setId(o.getResourceId());
             entity.setResourceName(o.getResourceName());
             entity.setResourcePermission(o.getResourcePermission());
             pageList.add(entity);
         }
-        result.setData(pageList);
+        result.setRows(pageList);
         return result;
     }
 

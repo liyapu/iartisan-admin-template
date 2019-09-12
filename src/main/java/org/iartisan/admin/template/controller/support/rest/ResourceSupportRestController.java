@@ -2,9 +2,8 @@ package org.iartisan.admin.template.controller.support.rest;
 
 import org.iartisan.admin.template.authentication.ResourceSupportService;
 import org.iartisan.admin.template.authentication.service.entity.ResourceEntity;
-import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
-import org.iartisan.runtime.env.EnvContextConfig;
+import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
@@ -28,6 +27,7 @@ public class ResourceSupportRestController extends BaseController implements ISu
     @Autowired
     private ResourceSupportService resourceSupportService;
 
+    @Override
     @PostMapping(ReqContants.REQ_DELETE_DATA)
     public WebR deleteData(String resourceId) {
         WebR r = new WebR();
@@ -40,6 +40,7 @@ public class ResourceSupportRestController extends BaseController implements ISu
         return null;
     }
 
+    @Override
     @PostMapping(ReqContants.REQ_ADD_DATA)
     public WebR addData(ResourceEntity resourceEntity) {
         WebR r = new WebR();
@@ -55,10 +56,10 @@ public class ResourceSupportRestController extends BaseController implements ISu
      * @return
      */
     @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
-    public WebR queryPageData(Page page, String menuId) {
+    public WebR queryPageData(Pagination page, String menuId) {
         PageWrapper<ResourceEntity> pageData = resourceSupportService.getResourcePageData(page, menuId);
         WebR webR = new WebR(pageData.getPage());
-        webR.setData(pageData.getData());
+        webR.setData(pageData.getRows());
         return webR;
     }
 }

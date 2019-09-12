@@ -31,6 +31,15 @@
         <li class="layui-nav-item" pc>
             <a href="javascript:;" lay-tips="点击清除缓存" id="clearCache"><i class="layui-icon">&#xe65f;</i></a>
         </li>
+        <!-- 消息提醒 -->
+        <li class="layui-nav-item">
+            <a href="javascript:void(0);" id="btnNotify">
+                <i class="fa layui-icon layui-icon-notice"></i>
+                <span class="layui-badge"
+                      style="border-radius: 50%;position: absolute !important;margin-top: -24px !important;">1</span>
+            </a>
+
+        </li>
         <li class="layui-nav-item">
             <a href="javascript:void(0);" id="btnFull">
                 <i class="fa layui-icon layui-icon-screen-full"></i>

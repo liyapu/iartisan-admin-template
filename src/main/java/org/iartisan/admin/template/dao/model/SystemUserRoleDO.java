@@ -1,9 +1,10 @@
 package org.iartisan.admin.template.dao.model;
 
-    import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableField;
-    import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import org.apache.ibatis.type.Alias;
+
+import java.util.Date;
 /**
 * system_user_role 表模型
 * @author King

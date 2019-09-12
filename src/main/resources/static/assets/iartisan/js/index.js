@@ -119,6 +119,19 @@ layui.config({
                 .then(_that.removeClass("layui-icon-screen-full").addClass("layui-icon-screen-restore"));
         }
     });
+    $("#btnNotify").on('click', function (event) {
+        top.layer.open({
+            type: 1,
+            title: '通知', //不显示标题栏,
+            closeBtn: 0,
+            area: ['60%','70%'],
+            btn: ['关闭'],
+            btnAlign: 'c',
+            moveType: 1, //拖拽模式，0或者1
+            content:"",
+            offset: ['20%', '30%']
+        });
+    })
 });
 
 //打开新窗口

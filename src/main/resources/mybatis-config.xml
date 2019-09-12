@@ -36,10 +36,10 @@
     </typeAliases>
 
     <plugins>
-        <plugin interceptor="com.baomidou.mybatisplus.plugins.PaginationInterceptor"></plugin>
-        <!-- 性能拦截器，兼打印sql，不建议生产环境配置
-        <plugin interceptor="com.baomidou.mybatisplus.plugins.PerformanceInterceptor"></plugin>
-        -->
+        <plugin interceptor="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor"></plugin>
+        <!-- 性能拦截器，兼打印sql，不建议生产环境配置 -->
+        <!--<plugin interceptor="com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor"></plugin>-->
+
     </plugins>
 
 </configuration>

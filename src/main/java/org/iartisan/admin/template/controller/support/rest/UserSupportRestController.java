@@ -1,10 +1,11 @@
 package org.iartisan.admin.template.controller.support.rest;
 
+import afu.org.checkerframework.checker.oigj.qual.O;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.iartisan.admin.template.authentication.UserSupportService;
 import org.iartisan.admin.template.authentication.service.entity.UserEntity;
-import org.iartisan.runtime.bean.Page;
 import org.iartisan.runtime.bean.PageWrapper;
+import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
@@ -28,13 +29,14 @@ public class UserSupportRestController extends BaseController implements ISuppor
 
 
     @PostMapping(ReqContants.REQ_QUERY_PAGE_DATA)
-    public WebR queryPageData(Page page, String userName) {
+    public WebR queryPageData(Pagination page, String userName) {
         PageWrapper<UserEntity> pageData = userSupportService.getUserPageData(page, userName);
         WebR webR = new WebR(pageData.getPage());
-        webR.setData(pageData.getData());
+        webR.setData(pageData.getRows());
         return webR;
     }
 
+    @Override
     @RequiresPermissions("auth:manage:user:addData")
     @PostMapping(ReqContants.REQ_ADD_DATA)
     public WebR addData(UserEntity entity) {
@@ -43,6 +45,7 @@ public class UserSupportRestController extends BaseController implements ISuppor
         return r;
     }
 
+    @Override
     @RequiresPermissions("auth:manage:user:modifyData")
     @PostMapping(ReqContants.REQ_MODIFY_DATA)
     public WebR modifyData(UserEntity entity) {
@@ -59,6 +62,7 @@ public class UserSupportRestController extends BaseController implements ISuppor
         return r;
     }
 
+    @Override
     @RequiresPermissions("auth:manage:user:deleteData")
     @PostMapping(ReqContants.REQ_DELETE_DATA)
     public WebR deleteData(String userId) {
