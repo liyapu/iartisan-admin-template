@@ -1,4 +1,5 @@
-CREATE TABLE `system_log` (
+DROP TABLE IF EXISTS `iartisan_admin_template`.`system_log`;
+CREATE TABLE `iartisan_admin_template`.`system_log` (
   `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `USER_ID` varchar(48) NOT NULL COMMENT '用户ID',
   `USER_NAME` varchar(50) NOT NULL COMMENT '用户名',

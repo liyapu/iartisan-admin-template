@@ -1,4 +1,5 @@
-CREATE TABLE `system_menu` (
+DROP TABLE IF EXISTS `iartisan_admin_template`.`system_user`;
+CREATE TABLE `iartisan_admin_template`.`system_menu` (
   `MENU_ID` varchar(50) NOT NULL COMMENT 'MENU_ID',
   `MENU_NAME` varchar(100) NOT NULL COMMENT '菜单名称',
   `MENU_PERMISSION` varchar(50) NOT NULL COMMENT '菜单权限编码 menu:一级菜单:二级菜单',

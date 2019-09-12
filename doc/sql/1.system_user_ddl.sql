@@ -1,4 +1,5 @@
-CREATE TABLE `system_user` (
+DROP TABLE IF EXISTS `iartisan_admin_template`.`system_user`;
+CREATE TABLE `iartisan_admin_template`.`system_user` (
   `USER_ID` varchar(48) NOT NULL COMMENT '主键',
   `USER_NAME` varchar(50) NOT NULL COMMENT '用户名',
   `USER_PWD` varchar(50) NOT NULL COMMENT '密码',
