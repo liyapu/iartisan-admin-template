@@ -45,7 +45,7 @@ public class BpmManagementRestController extends BaseController implements ISupp
     @PostMapping("start/" + ReqContants.REQ_ADD_DATA)
     public WebR addData(LeaveEntity leaveEntity) {
         WebR webR = new WebR();
-        Map<String, String> variables = new HashMap<>();
+        Map<String, Object> variables = new HashMap<>();
         variables.put("beginTime", leaveEntity.getBeginTime());
         variables.put("endTime", leaveEntity.getEndTime());
         variables.put("days", leaveEntity.getDays());

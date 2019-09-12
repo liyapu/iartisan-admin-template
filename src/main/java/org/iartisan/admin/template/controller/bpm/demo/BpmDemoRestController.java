@@ -1,5 +1,6 @@
 package org.iartisan.admin.template.controller.bpm.demo;
 
+import com.google.common.collect.Maps;
 import org.iartisan.admin.template.service.bpm.BpmWorkflowManagement;
 import org.iartisan.admin.template.service.bpm.entity.LeaveEntity;
 import org.iartisan.admin.template.service.bpm.entity.TaskEntity;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -29,7 +29,7 @@ public class BpmDemoRestController extends BaseController {
     @PostMapping("newItem/" + ReqContants.REQ_ADD_DATA)
     public WebR addData(LeaveEntity leaveEntity) {
         WebR webR = new WebR();
-        Map<String, String> variables = new HashMap<>();
+        Map<String, Object> variables = Maps.newHashMap();
         variables.put("beginTime", leaveEntity.getBeginTime());
         variables.put("endTime", leaveEntity.getEndTime());
         variables.put("days", leaveEntity.getDays());
@@ -50,5 +50,6 @@ public class BpmDemoRestController extends BaseController {
         r.setData(pageResult.getRows());
         return r;
     }
+
 
 }

@@ -6,7 +6,7 @@ layui.config({
     var urls = {
         addDataPage: "/bpm/demo/newItem/addDataPage",
         queryPageData: "/bpm/demo/myTask/queryPageData",
-        getProcessTrace: "/activiti/workflow/start/owner/queryPageData"
+        getProcessTrace: "/bpm/demo/getProcessTrace"
     };
 
     $("#btnStart").on('click', function () {
@@ -67,11 +67,11 @@ layui.config({
         });
     }
 
-    table.on('tool(_table)', function (obj) {
+    table.on('tool(dataList)', function (obj) {
         var layEvent = obj.event, data = obj.data;
         if (layEvent == 'processImg') {
             var processInstanceId = $("#processInstanceId").val();
-            var imageUrl = page.ajaxURL.getProcessDefineImg + "?processInstanceId=" + processInstanceId;
+            var imageUrl = url.getProcessTrace + "?processInstanceId=" + processInstanceId;
             $('#workflowTraceDiv img').attr('src', imageUrl);
             //渲染流程节点
             $.getJSON(page.ajaxURL.getProcessTrace + "?processInstanceId=" + processInstanceId, function (data) {

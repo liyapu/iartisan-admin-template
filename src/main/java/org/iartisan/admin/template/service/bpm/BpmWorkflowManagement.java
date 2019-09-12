@@ -48,13 +48,31 @@ public class BpmWorkflowManagement {
     @Autowired
     private RuntimeService runtimeService;
 
-    public void startProcess(String processId, String staffId, Map<String, String> variables) {
+
+    /**
+     * 启动流程
+     *
+     * @param processId
+     * @param staffId
+     * @param variables
+     */
+    public void startProcess(String processId, String staffId, Map<String, Object> variables) {
         identityService.setAuthenticatedUserId(staffId);
         ProcessDefinition definition = repositoryService.createProcessDefinitionQuery().deploymentId(processId).singleResult();
-        ProcessInstance processInstance = formService.submitStartFormData(definition.getId(), variables);
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(definition.getKey(), variables);
         logger.info("===>启动流程{}", processInstance);
+        //查询当前的inst task
+        Task task = taskService.createTaskQuery().processInstanceId(processInstance.getProcessInstanceId()).active().singleResult();
+        logger.info("===>task info:{}", task.getAssignee());
     }
 
+    /**
+     * 分页查询任务列表
+     *
+     * @param startedBy
+     * @param page
+     * @return
+     */
     public PageWrapper<TaskEntity> getPageTasks(String startedBy, Pagination page) {
         List<HistoricProcessInstance> result = historyService.createHistoricProcessInstanceQuery().startedBy(startedBy)
                 .listPage((page.getPageIndex() - 1) * page.getPageSize(), page.getPageSize());

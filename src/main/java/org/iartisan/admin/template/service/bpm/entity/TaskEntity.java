@@ -1,5 +1,9 @@
 package org.iartisan.admin.template.service.bpm.entity;
 
+import lombok.Data;
+
+import java.util.Date;
+
 /**
  * <p>
  * task entity
@@ -7,26 +11,24 @@ package org.iartisan.admin.template.service.bpm.entity;
  * @author King
  * @since 2018/7/12
  */
+@Data
 public class TaskEntity {
 
-    private String instId;//流程ID
+    /**
+     * 流程ID
+     */
+    private String instId;
 
-    private String taskNodeName;//当前任务节点名称
+    /**
+     * 流程实例名称
+     */
+    private String instName;
+
+    /**
+     * 当前任务节点名称
+     */
+    private String taskNodeName;
 
 
-    public String getTaskNodeName() {
-        return taskNodeName;
-    }
-
-    public void setTaskNodeName(String taskNodeName) {
-        this.taskNodeName = taskNodeName;
-    }
-
-    public String getInstId() {
-        return instId;
-    }
-
-    public void setInstId(String instId) {
-        this.instId = instId;
-    }
+    private Date createTime;
 }
