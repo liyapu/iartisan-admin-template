@@ -9,4 +9,4 @@ CREATE TABLE `iartisan_admin_template`.`system_user` (
   PRIMARY KEY (`USER_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 
-INSERT INTO system_user (USER_ID, USER_NAME, USER_PWD, STATUS, CREATE_TIME) VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'E', now());
+INSERT INTO `iartisan_admin_template`.`system_user` (USER_ID, USER_NAME, USER_PWD, STATUS, CREATE_TIME) VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'E', now());
