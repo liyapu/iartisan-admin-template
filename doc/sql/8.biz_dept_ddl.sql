@@ -7,4 +7,6 @@ CREATE TABLE `biz_dept` (
   `CREATE_TIME` datetime DEFAULT NULL COMMENT '创建时间',
   `UPDATE_TIME` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`DEPT_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='部门表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='部门表';
+
+INSERT INTO iartisan_admin_template.biz_dept (DEPT_ID, DEPT_NAME, DEPT_PATH, DEPT_PARENT, STATUS, CREATE_TIME, UPDATE_TIME) VALUES ('1', 'iartisan', '1', null, 'E', null, null);
