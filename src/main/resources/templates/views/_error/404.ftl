@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="/assets/iartisan/css/public.css" media="all"/>
     <link rel="stylesheet" href="/assets/iartisan/plugins/layui/css/layui.css" media="all"/>
 </head>
-<body class="childrenBody">
 <div class="noFind">
     <div class="ufo">
         <i class="seraph icon-test ufo_icon"></i>
@@ -25,4 +24,4 @@
     </div>
 </div>
 <script type="text/javascript" src="/assets/iartisan/plugins/layui/layui.js"></script>
-</body></html>
+</html>
