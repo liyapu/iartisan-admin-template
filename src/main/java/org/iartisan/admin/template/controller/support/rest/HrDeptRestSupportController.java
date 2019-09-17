@@ -4,6 +4,7 @@ import org.iartisan.admin.template.authentication.service.entity.ZTreeEntity;
 import org.iartisan.admin.template.service.entity.DeptEntity;
 import org.iartisan.admin.template.service.management.DeptManagementService;
 import org.iartisan.admin.template.service.query.DeptQueryService;
+import org.iartisan.runtime.exception.NotAllowedException;
 import org.iartisan.runtime.web.WebR;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
@@ -34,8 +35,14 @@ public class HrDeptRestSupportController extends BaseController implements ISupp
     @Override
     @GetMapping(ReqContants.REQ_DELETE_DATA)
     public WebR deleteData(String deptId) {
-        deptManagementService.deleteDataById(deptId);
-        return new WebR();
+        //如果deptId 是root节点则不允许删除
+        WebR webR = new WebR();
+        try {
+            deptManagementService.deleteData(deptId);
+        } catch (NotAllowedException e) {
+            webR.isError(e.getMessage());
+        }
+        return webR;
     }
 
     @Override

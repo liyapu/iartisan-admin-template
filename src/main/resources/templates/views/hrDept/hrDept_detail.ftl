@@ -12,6 +12,12 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label">部门负责人</label>
+        <div class="layui-input-inline layui-form-mid layui-word-aux">
+            ${dept.deptLeaderName}
+        </div>
+    </div>
+    <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-danger" type="button" id="btnDel" attr-data="${dept.deptId}">
                 删除

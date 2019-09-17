@@ -33,6 +33,12 @@ public class BizDeptDO {
     private String deptName;
 
     /**
+     * 列名: DEPT_LEADER
+     * 备注: 部门领导
+     */
+    @TableField("DEPT_LEADER")
+    private String deptLeader;
+    /**
      * 列名: DEPT_PATH
      * 备注: 部门树
      */

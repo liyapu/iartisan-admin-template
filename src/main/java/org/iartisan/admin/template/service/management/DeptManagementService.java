@@ -5,7 +5,9 @@ import org.iartisan.admin.template.dao.model.BizDeptDO;
 import org.iartisan.admin.template.service.entity.DeptEntity;
 import org.iartisan.admin.template.service.query.DeptQueryService;
 import org.iartisan.runtime.constants.DataStatus;
+import org.iartisan.runtime.exception.NotAllowedException;
 import org.iartisan.runtime.support.BaseManagementServiceSupport;
+import org.iartisan.runtime.utils.StringUtils;
 import org.iartisan.runtime.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,8 +49,12 @@ public class DeptManagementService extends BaseManagementServiceSupport<BizDeptM
         this.baseMapper.insert(dbInsert);
     }
 
-    @Override
-    public void deleteDataById(Serializable id) {
+    public void deleteData(Serializable id) throws NotAllowedException {
+        //root节点不允许删除
+        DeptEntity dbResult = deptQueryService.getDataById(id);
+        if (StringUtils.isEmpty(dbResult.getDeptParent())) {
+            throw new NotAllowedException("一级节点不允许删除");
+        }
         super.deleteDataById(id);
     }
 

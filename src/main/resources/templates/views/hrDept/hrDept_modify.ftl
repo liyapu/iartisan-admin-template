@@ -12,6 +12,20 @@
                    name="deptName" value="${dept.deptName}">
         </div>
     </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">部门负责人</label>
+        <div class="layui-input-inline">
+            <select name="deptLeader" lay-search>
+                <option value="">请选择部门负责人</option>
+                <#if staffList ?? >
+                    <#list staffList as val>
+                        <option value="${val.staffId}" <#if (val.staffId)=(dept.deptLeader)> selected </#if> >
+                         ${val.staffName}</option>
+                    </#list>
+                </#if>
+            </select>
+        </div>
+    </div>
     <input type="hidden" name="deptId" value="${dept.deptId}" >
     <input type="hidden" lay-submit="" lay-filter="addData" id="btnAdd"/>
 </form>

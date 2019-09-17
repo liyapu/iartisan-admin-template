@@ -16,4 +16,8 @@ public class DeptEntity {
 
     private String deptParent;
 
+    private String deptLeader;
+
+    private String deptLeaderName;
+
 }

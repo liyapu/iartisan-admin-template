@@ -50,9 +50,17 @@ public class BpmDeploymentRestController extends BaseController implements ISupp
         return webR;
     }
 
+    @PostMapping(ReqContants.REQ_DELETE_DATA)
     @Override
-    public WebR deleteData(String s) {
-        return null;
+    public WebR deleteData(String deploymentId) {
+        WebR webR = new WebR();
+        try {
+            deploymentManagement.delete(deploymentId);
+        } catch (Exception e) {
+            logger.error("bmp deloyment delete error ", e);
+            webR.isError("该流程下已有事项，不允许删除");
+        }
+        return webR;
     }
 
     @Override

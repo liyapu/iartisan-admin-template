@@ -1,7 +1,9 @@
 package org.iartisan.admin.template.controller.support.page;
 
 import org.iartisan.admin.template.service.entity.DeptEntity;
+import org.iartisan.admin.template.service.entity.StaffEntity;
 import org.iartisan.admin.template.service.query.DeptQueryService;
+import org.iartisan.admin.template.service.query.StaffQueryService;
 import org.iartisan.runtime.utils.StringUtils;
 import org.iartisan.runtime.web.contants.ReqContants;
 import org.iartisan.runtime.web.controller.BaseController;
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 /**
  * 部门管理页面
@@ -25,6 +29,9 @@ public class HrDeptPageSupportController extends BaseController implements ISupp
 
     @Autowired
     private DeptQueryService deptQueryService;
+
+    @Autowired
+    private StaffQueryService staffQueryService;
 
     @Override
     @GetMapping(ReqContants.REQ_INDEX)
@@ -53,12 +60,19 @@ public class HrDeptPageSupportController extends BaseController implements ISupp
 
     private void initData(Model model, String deptId) {
         DeptEntity entity = deptQueryService.getDataById(deptId);
+        if (StringUtils.isNotEmpty(entity.getDeptLeader())) {
+            StaffEntity staffEntity = staffQueryService.getDataById(entity.getDeptLeader());
+            entity.setDeptLeaderName(staffEntity.getStaffName());
+        }
         model.addAttribute("dept", entity);
         DeptEntity parentEntity = null;
         if (StringUtils.isNotEmpty(entity.getDeptParent())) {
             parentEntity = deptQueryService.getDataById(entity.getDeptParent());
         }
         model.addAttribute("parentDept", parentEntity == null ? new DeptEntity() : parentEntity);
+        //查询部门下的员工列表
+        List<StaffEntity> staffList = staffQueryService.getStaffListByDeptId(deptId);
+        model.addAttribute("staffList", staffList);
     }
 
     @Override

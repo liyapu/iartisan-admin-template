@@ -6,8 +6,11 @@ import org.iartisan.admin.template.service.entity.StaffEntity;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.bean.Pagination;
 import org.iartisan.runtime.constants.DataStatus;
+import org.iartisan.runtime.constants.FlagType;
 import org.iartisan.runtime.support.BaseQueryServiceSupport;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 部门管理
@@ -31,5 +34,11 @@ public class StaffQueryService extends BaseQueryServiceSupport<BizStaffMapper, S
         return getPageDataByWrapper(page, wrapper);
     }
 
+    public List<StaffEntity> getStaffListByDeptId(String deptId) {
+        StaffEntity t = new StaffEntity();
+        t.setStaffDept(deptId);
+        t.setStaffStatus(FlagType.Y.name());
+        return getListDataByObjs(t);
+    }
 
 }

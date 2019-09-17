@@ -10,3 +10,7 @@ CREATE TABLE `biz_dept` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='部门表';
 
 INSERT INTO iartisan_admin_template.biz_dept (DEPT_ID, DEPT_NAME, DEPT_PATH, DEPT_PARENT, STATUS, CREATE_TIME, UPDATE_TIME) VALUES ('1', 'iartisan', '1', null, 'E', null, null);
+
+alter table biz_dept add column
+DEPT_LEADER VARCHAR(32) DEFAULT NULL COMMENT '部门领导'
+after DEPT_NAME;

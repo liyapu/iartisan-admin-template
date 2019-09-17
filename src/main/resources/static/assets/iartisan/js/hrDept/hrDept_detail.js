@@ -5,19 +5,21 @@ layui.config({
         urls = {
             deleteData: "/hrDept/deleteData"
         },
-        layer = layui.layer;
-    layer.config({
-        skin: 'layui-layer-molv'
-    });
+        layer = parent.layui.layer;
     //删除
     $("#btnDel").on('click', function () {
         let deptId = $(this).attr("attr-data");
         top.layer.confirm('确认删除?', {icon: 3, title: '提示'}, function (index) {
             let load = layer.load(1);
-            router.ajaxGet(urls.deleteData, {deptId: deptId}, {}, function () {
+            router.ajaxGet(urls.deleteData, {deptId: deptId}, {}, function (res) {
                 layer.close(load);
-                location.reload();
-            })
+                if (res.code == '000000') {
+                    location.reload();
+                } else {
+                    top.layer.msg(res.message, {shift: 6});
+                }
+            });
+            top.layer.close(index);
         });
     })
 });
