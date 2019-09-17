@@ -1,11 +1,9 @@
 package org.iartisan.admin.template.config;
 
-import org.flowable.ui.modeler.properties.FlowableModelerAppProperties;
 import org.iartisan.runtime.env.EnvContextConfig;
 import org.iartisan.runtime.web.config.WebMvcConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
