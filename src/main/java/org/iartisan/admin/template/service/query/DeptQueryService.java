@@ -74,4 +74,6 @@ public class DeptQueryService extends BaseQueryServiceSupport<BizDeptMapper, Dep
     }
 
 
+
+
 }

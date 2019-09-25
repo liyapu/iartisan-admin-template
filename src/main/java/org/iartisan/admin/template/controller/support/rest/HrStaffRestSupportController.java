@@ -1,5 +1,7 @@
 package org.iartisan.admin.template.controller.support.rest;
 
+import org.iartisan.admin.template.authentication.UserSupportService;
+import org.iartisan.admin.template.authentication.service.entity.UserEntity;
 import org.iartisan.admin.template.service.entity.StaffEntity;
 import org.iartisan.admin.template.service.management.StaffManagementService;
 import org.iartisan.admin.template.service.query.StaffQueryService;
@@ -29,6 +31,9 @@ public class HrStaffRestSupportController extends BaseController implements ISup
 
     @Autowired
     private StaffManagementService staffManagementService;
+
+    @Autowired
+    private UserSupportService userSupportService;
 
     @Override
     @GetMapping(ReqContants.REQ_DELETE_DATA)
@@ -71,4 +76,18 @@ public class HrStaffRestSupportController extends BaseController implements ISup
         return webR;
     }
 
+    /**
+     * 分配登录权限
+     *
+     * @param staffId
+     * @return
+     */
+    @GetMapping("assignLoginPermissions")
+    public WebR assignLoginPermissions(String staffId) {
+        WebR webR = new WebR();
+        UserEntity userEntity = new UserEntity();
+        userEntity.setStaffId(staffId);
+        userSupportService.addUser(userEntity);
+        return webR;
+    }
 }

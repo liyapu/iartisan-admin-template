@@ -1,6 +1,7 @@
 package org.iartisan.admin.template.controller.bpm.demo;
 
 import com.google.common.collect.Maps;
+import org.iartisan.admin.template.authentication.UserSupportService;
 import org.iartisan.admin.template.service.bpm.BpmWorkflowManagement;
 import org.iartisan.admin.template.service.bpm.entity.LeaveEntity;
 import org.iartisan.admin.template.service.bpm.entity.TaskEntity;
@@ -26,6 +27,9 @@ public class BpmDemoRestController extends BaseController {
     @Autowired
     private BpmWorkflowManagement bpmWorkflowManagement;
 
+    @Autowired
+    private UserSupportService userSupportService;
+
     @PostMapping("newItem/" + ReqContants.REQ_ADD_DATA)
     public WebR addData(LeaveEntity leaveEntity) {
         WebR webR = new WebR();
@@ -34,7 +38,7 @@ public class BpmDemoRestController extends BaseController {
         variables.put("endTime", leaveEntity.getEndTime());
         variables.put("days", leaveEntity.getDays());
         variables.put("reason", leaveEntity.getReason());
-        bpmWorkflowManagement.startProcess(leaveEntity.getProcessId(), getCustId(), variables);
+        bpmWorkflowManagement.startProcess(leaveEntity.getProcessId(), userSupportService.getStaffId(getCustId()), variables);
         return webR;
     }
 
@@ -45,7 +49,7 @@ public class BpmDemoRestController extends BaseController {
      */
     @PostMapping("myTask/" + ReqContants.REQ_QUERY_PAGE_DATA)
     public WebR queryOwnerPageTasks(Pagination page) {
-        PageWrapper<TaskEntity> pageResult = bpmWorkflowManagement.getPageTasks(getCustId(), page);
+        PageWrapper<TaskEntity> pageResult = bpmWorkflowManagement.getPageTasks(userSupportService.getStaffId(getCustId()), page);
         WebR r = new WebR(pageResult.getPage());
         r.setData(pageResult.getRows());
         return r;

@@ -8,8 +8,11 @@ import org.iartisan.admin.template.dao.mapper.SystemUserMapper;
 import org.iartisan.admin.template.dao.mapper.SystemUserRoleMapper;
 import org.iartisan.admin.template.dao.model.SystemUserDO;
 import org.iartisan.admin.template.dao.model.SystemUserRoleDO;
+import org.iartisan.admin.template.service.entity.StaffEntity;
+import org.iartisan.admin.template.service.query.StaffQueryService;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.bean.Pagination;
+import org.iartisan.runtime.constants.DataStatus;
 import org.iartisan.runtime.env.EnvContextConfig;
 import org.iartisan.runtime.jdbc.PageHelper;
 import org.iartisan.runtime.utils.MD5Util;
@@ -77,10 +80,19 @@ public class UserSupportService {
         return result;
     }
 
+    @Autowired
+    private StaffQueryService staffQueryService;
+
     public void addUser(UserEntity userEntity) {
         SystemUserDO dbInsert = new SystemUserDO();
         String userId = UUIDUtil.shortId();
         dbInsert.setUserId(userId);
+        if (StringUtils.isNotEmpty(userEntity.getStaffId())) {
+            dbInsert.setStaffId(userEntity.getStaffId());
+            StaffEntity staffEntity = staffQueryService.getDataById(userEntity.getStaffId());
+            userEntity.setUserName(staffEntity.getStaffName());
+            userEntity.setUserStatus(DataStatus.E.name());
+        }
         dbInsert.setUserName(userEntity.getUserName());
         dbInsert.setStatus(userEntity.getUserStatus());
         dbInsert.setCreateTime(new Date());
@@ -121,19 +133,29 @@ public class UserSupportService {
         systemUserMapper.updateById(dbModify);
     }
 
-    private void addUserRole(String userId, String roleStr) {
-        String[] roles = roleStr.split(",");
-        for (String role : roles) {
-            SystemUserRoleDO db = new SystemUserRoleDO();
-            db.setUserId(userId);
-            db.setRoleId(role);
-            db.setCreateTime(new Date());
-            systemUserRoleMapper.insert(db);
+    private void addUserRole(String userId, String roleData) {
+        if (StringUtils.isNotEmpty(roleData)) {
+            String[] roles = roleData.split(",");
+            for (String role : roles) {
+                SystemUserRoleDO db = new SystemUserRoleDO();
+                db.setUserId(userId);
+                db.setRoleId(role);
+                db.setCreateTime(new Date());
+                systemUserRoleMapper.insert(db);
+            }
         }
     }
 
     public void deleteByUserId(String userId) {
         systemUserMapper.deleteById(userId);
+    }
+
+    public String getStaffId(String userId) {
+        SystemUserDO dbResult = systemUserMapper.selectById(userId);
+        if (null != dbResult) {
+            return dbResult.getStaffId();
+        }
+        return "";
     }
 
 }

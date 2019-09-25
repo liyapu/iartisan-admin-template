@@ -1,16 +1,21 @@
 package org.iartisan.admin.template.service.bpm;
 
 
+import cn.hutool.json.JSONUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.flowable.engine.*;
 import org.flowable.engine.history.HistoricProcessInstance;
 import org.flowable.engine.repository.ProcessDefinition;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.task.api.Task;
 import org.iartisan.admin.template.service.bpm.entity.TaskEntity;
+import org.iartisan.admin.template.service.entity.MessageEntity;
+import org.iartisan.admin.template.service.entity.StaffEntity;
+import org.iartisan.admin.template.service.management.SystemMsgManagementService;
+import org.iartisan.admin.template.service.query.StaffQueryService;
 import org.iartisan.runtime.bean.PageWrapper;
 import org.iartisan.runtime.bean.Pagination;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.iartisan.runtime.exception.NoRecordException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,16 +30,12 @@ import java.util.Map;
  * @author King
  * @since 2018/7/11
  */
+@Slf4j
 @Service
 public class BpmWorkflowManagement {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
-
     @Autowired
     protected IdentityService identityService;
-
-    @Autowired
-    private RepositoryService repositoryService;
 
     @Autowired
     protected FormService formService;
@@ -46,7 +47,16 @@ public class BpmWorkflowManagement {
     protected TaskService taskService;
 
     @Autowired
+    private RepositoryService repositoryService;
+
+    @Autowired
     private RuntimeService runtimeService;
+
+    @Autowired
+    private StaffQueryService staffQueryService;
+
+    @Autowired
+    private SystemMsgManagementService msgManagementService;
 
 
     /**
@@ -60,10 +70,26 @@ public class BpmWorkflowManagement {
         identityService.setAuthenticatedUserId(staffId);
         ProcessDefinition definition = repositoryService.createProcessDefinitionQuery().deploymentId(processId).singleResult();
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(definition.getKey(), variables);
-        logger.info("===>启动流程{}", processInstance);
+        log.info("===>启动流程{}", processInstance);
         //查询当前的inst task
         Task task = taskService.createTaskQuery().processInstanceId(processInstance.getProcessInstanceId()).active().singleResult();
-        logger.info("===>task info:{}", task.getAssignee());
+        log.info("===>task info:{}", JSONUtil.toJsonPrettyStr(task));
+
+        String taskDefinitionKey = task.getTaskDefinitionKey();
+        //如果部门领导人
+        if ("dept_leader".equals(taskDefinitionKey)) {
+            try {
+                StaffEntity deptLeader = staffQueryService.getDeptLeader(staffId);
+                task.setAssignee(deptLeader.getStaffId());
+                MessageEntity entity = new MessageEntity();
+                entity.setReceiverId(deptLeader.getStaffId());
+                entity.setReceiverName(deptLeader.getStaffName());
+                msgManagementService.addMsgEntity(entity);
+            } catch (NoRecordException e) {
+                log.info("===>NoRecordException", e);
+            }
+
+        }
     }
 
     /**
@@ -86,6 +112,7 @@ public class BpmWorkflowManagement {
                     if (null != task) {
                         entity.setTaskNodeName(task.getName());
                     }
+            entity.setCreateTime(task.getCreateTime());
                     dataList.add(entity);
                 }
         );

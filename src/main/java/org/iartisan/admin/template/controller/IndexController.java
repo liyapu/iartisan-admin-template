@@ -23,7 +23,6 @@ public class IndexController extends BaseController {
 
     @PostMapping(ReqContants.REQ_INDEX)
     public String index() {
-        System.out.println("=================");
         if (EnvContextConfig.get("iartisan.page.model").equals("single.page")) {
             return "singleIndex";
         }

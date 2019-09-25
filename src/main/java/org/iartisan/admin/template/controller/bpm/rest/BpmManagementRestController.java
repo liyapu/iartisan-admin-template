@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * <p>
@@ -41,17 +39,8 @@ public class BpmManagementRestController extends BaseController implements ISupp
         return null;
     }
 
-    @Override
-    @PostMapping("start/" + ReqContants.REQ_ADD_DATA)
     public WebR addData(LeaveEntity leaveEntity) {
-        WebR webR = new WebR();
-        Map<String, Object> variables = new HashMap<>();
-        variables.put("beginTime", leaveEntity.getBeginTime());
-        variables.put("endTime", leaveEntity.getEndTime());
-        variables.put("days", leaveEntity.getDays());
-        variables.put("reason", leaveEntity.getReason());
-        workflowManagement.startProcess(leaveEntity.getProcessId(), getCustId(), variables);
-        return webR;
+        return null;
     }
 
     /**

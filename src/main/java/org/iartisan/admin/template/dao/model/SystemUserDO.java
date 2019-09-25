@@ -1,17 +1,19 @@
 package org.iartisan.admin.template.dao.model;
 
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 import org.apache.ibatis.type.Alias;
+
+import java.util.Date;
 
 /**
  * system_user 表模型
  *
  * @author King
  */
+@Data
 @Alias("systemUser")
 @TableName(value = "system_user")
 public class SystemUserDO {
@@ -45,6 +47,13 @@ public class SystemUserDO {
     private String status;
 
     /**
+     * 列名: STAFF_ID
+     * 备注: 员工id
+     */
+    @TableField("STAFF_ID")
+    private String staffId;
+
+    /**
      * 列名: CREATE_TIME
      * 备注: 创建时间
      */
@@ -57,54 +66,4 @@ public class SystemUserDO {
      */
     @TableField("UPDATE_TIME")
     private Date updateTime;
-
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserPwd() {
-        return userPwd;
-    }
-
-    public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
 }

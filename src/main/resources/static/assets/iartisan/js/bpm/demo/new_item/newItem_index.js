@@ -51,7 +51,7 @@ layui.config({
                 {
                     title: '流程发起时间',
                     templet: function (d) {
-                        return util.toDateString(d.startTime);
+                        return util.toDateString(d.createTime);
                     },
                     align: 'center'
                 },

@@ -8,7 +8,8 @@ layui.config({
         addDataPage: "/hrStaff/addDataPage",
         queryPageData: "/hrStaff/queryPageData",
         updateStaffStatus: "/hrStaff/updateStaffStatus",
-        deleteData: "/hrStaff/deleteData"
+        deleteData: "/hrStaff/deleteData",
+        assignLoginPermissions: "/hrStaff/assignLoginPermissions"
     };
 
     let area = ['50%', '80%'];
@@ -25,9 +26,11 @@ layui.config({
                 {
                     field: 'staffName',
                     title: '员工姓名',
+                    width: "15%",
                 },
                 {
                     title: '状态',
+                    width: "11%",
                     templet: function (d) {
                         var checked = d.staffStatus == 'Y' ? 'checked' : null;
                         var status = "<input type='checkbox' value=" + d.staffId + " lay-skin='switch' lay-text='在职|离职' lay-filter='staffStatus' " + checked + "> ";
@@ -37,6 +40,7 @@ layui.config({
                 },
                 {
                     title: '创建时间',
+                    width: "22%",
                     templet: function (d) {
                         return util.toDateString(d.createDate);
 
@@ -44,6 +48,7 @@ layui.config({
                 },
                 {
                     title: '最后更新时间',
+                    width: "22%",
                     templet: function (d) {
                         return util.toDateString(d.createDate);
 
@@ -51,11 +56,12 @@ layui.config({
                 },
                 {
                     title: '操作',
-                    fixed: "right",
                     align: "center",
+                    width: "30%",
                     templet: function () {
                         var html = "<a class='layui-btn layui-btn-xs' lay-event='edit'>编辑</a>";
                         html += "<a class='layui-btn layui-btn-xs layui-btn-danger' lay-event='del'>删除</a>";
+                        html += "<a class='layui-btn layui-btn-xs layui-btn-normal' lay-event='assignLoginPermissions'>分配登录权限</a>";
                         return html;
 
                     }
@@ -90,6 +96,15 @@ layui.config({
                 layer.close(index);
                 router.get({
                     url: urls.deleteData, data: {staffId: data.staffId}, success: function () {
+                        tableIns.reload();
+                    }
+                })
+            });
+        } else if (layEvent == 'assignLoginPermissions') {
+            layer.confirm('确定分配登录权限吗？', {icon: 3, title: '提示信息'}, function (index) {
+                layer.close(index);
+                router.get({
+                    url: urls.assignLoginPermissions, data: {staffId: data.staffId}, success: function () {
                         tableIns.reload();
                     }
                 })
