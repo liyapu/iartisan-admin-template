@@ -26,6 +26,7 @@ public class WebSiteMeshConfig extends ConfigurableSiteMeshFilter {
         excluedPath = excluedPath + ",/userSupport/queryDetailPage";
         excluedPath = excluedPath + ",/bpm/deployment/toDesign";
         excluedPath = excluedPath + ",/modler/*";
+        excluedPath = excluedPath + ",/reminder/*";
         if (StringUtils.isNotEmpty(excluedPath)) {
             excluedPaths = Arrays.asList(excluedPath.split(","));
         }

@@ -87,7 +87,8 @@ layui.config({
 
     let urls = {
         getUserDetail: "/userSupport/queryDetailPage",
-        getUnreadCount: "/reminder/getUnreadCount"
+        getUnreadCount: "/reminder/getUnreadCount",
+        toSysMsg: "/reminder/index"
     };
     $("#ziliao").click(function () {
         var userId = $(this).attr("attr-data");
@@ -95,9 +96,9 @@ layui.config({
             top.layer.open({
                 type: 1,
                 title: false, //不显示标题栏,
-                closeBtn: 0,
                 shade: [0.5, '#393D49'],
-                area: ['40%','30%'],
+                area: '40%',
+                closeBtn: 2,
                 id: '_ziliao', //设定一个id，防止重复弹出
                 btn: ['关闭'],
                 btnAlign: 'c',
@@ -121,17 +122,22 @@ layui.config({
         }
     });
     $("#btnNotify").on('click', function (event) {
-        top.layer.open({
-            type: 1,
-            title: '通知', //不显示标题栏,
-            closeBtn: 0,
-            area: ['60%','70%'],
-            btn: ['关闭'],
-            btnAlign: 'c',
-            moveType: 1, //拖拽模式，0或者1
-            content:"",
-            offset: ['20%', '30%']
+        router.ajaxGet(urls.toSysMsg, {}, {async: false}, function (res) {
+            layer.open({
+                type: 1,
+                title: "消息提醒", //不显示标题栏,
+                closeBtn: 0,
+                area: '60%',
+                btn: ['关闭'],
+                btnAlign: 'c',
+                moveType: 1, //拖拽模式，0或者1
+                content: res,
+                offset: '22%',
+                shade:0.5,
+                skin: 'layui-layer-black'
+            });
         });
+
     });
     //查询未读消息
     router.ajaxGet(urls.getUnreadCount, {}, {async: false}, function (res) {
