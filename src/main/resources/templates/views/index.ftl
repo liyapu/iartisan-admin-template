@@ -35,8 +35,8 @@
         <li class="layui-nav-item">
             <a href="javascript:void(0);" id="btnNotify">
                 <i class="fa layui-icon layui-icon-notice"></i>
-                <span class="layui-badge"
-                      style="border-radius: 50%;position: absolute !important;margin-top: -24px !important;">1</span>
+                <span class="layui-badge notify"
+                      style="border-radius: 50%;position: absolute !important;margin-top: -24px !important; display: none;">1</span>
             </a>
 
         </li>

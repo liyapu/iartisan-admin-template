@@ -85,9 +85,10 @@ layui.config({
         layer.msg("缓存清除成功！", {shade: 0.5});
     });
 
-    var urls = {
-        getUserDetail: "/userSupport/queryDetailPage"
-    }
+    let urls = {
+        getUserDetail: "/userSupport/queryDetailPage",
+        getUnreadCount: "/reminder/getUnreadCount"
+    };
     $("#ziliao").click(function () {
         var userId = $(this).attr("attr-data");
         router.ajaxGet(urls.getUserDetail, {"userId": userId}, {async: false}, function (res) {
@@ -131,7 +132,15 @@ layui.config({
             content:"",
             offset: ['20%', '30%']
         });
-    })
+    });
+    //查询未读消息
+    router.ajaxGet(urls.getUnreadCount, {}, {async: false}, function (res) {
+        if (res.data > 0) {
+            $(".notify").show();
+            $(".notify").html(res.data);
+            $(".layui-icon-notice").css("color", "#FF5722");
+        }
+    });
 });
 
 //打开新窗口
