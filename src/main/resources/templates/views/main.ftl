@@ -33,7 +33,7 @@
                     <tr>
                         <td>当前版本</td>
                         <td>
-                            0.0.1
+                            等待1.x <span style="color: #ff0000"> (coming soon)</span>
                         </td>
                     </tr>
                     <tr>
@@ -44,7 +44,7 @@
                     </tr>
                     <tr>
                         <td>主要特色</td>
-                        <td>响应式 / 清爽 / 极简</td>
+                        <td style="color: #ff0000">......</td>
                     </tr>
                     <tr>
                         <td>获取渠道</td>

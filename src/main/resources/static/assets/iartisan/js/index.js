@@ -121,32 +121,6 @@ layui.config({
                 .then(_that.removeClass("layui-icon-screen-full").addClass("layui-icon-screen-restore"));
         }
     });
-    $("#btnNotify").on('click', function (event) {
-        router.ajaxGet(urls.toSysMsg, {}, {async: false}, function (res) {
-            layer.open({
-                type: 1,
-                title: "消息提醒", //不显示标题栏,
-                closeBtn: 0,
-                area: '60%',
-                btn: ['关闭'],
-                btnAlign: 'c',
-                moveType: 1, //拖拽模式，0或者1
-                content: res,
-                offset: '22%',
-                shade:0.5,
-                skin: 'layui-layer-black'
-            });
-        });
-
-    });
-    //查询未读消息
-    router.ajaxGet(urls.getUnreadCount, {}, {async: false}, function (res) {
-        if (res.data > 0) {
-            $(".notify").show();
-            $(".notify").html(res.data);
-            $(".layui-icon-notice").css("color", "#FF5722");
-        }
-    });
 });
 
 //打开新窗口
