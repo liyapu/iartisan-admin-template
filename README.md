@@ -61,5 +61,6 @@
 - activiti 工作流
 
 ### 登录
+https://gitee.com/iartisan/iartisan-admin-template
 http://localhost:8081/login
 用户名/密码 admin / admin
