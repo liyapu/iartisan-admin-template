@@ -59,3 +59,7 @@
 ### todo
 
 - activiti 工作流
+
+### 登录
+http://localhost:8081/login
+用户名/密码 admin / admin
