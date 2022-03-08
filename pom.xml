@@ -21,7 +21,7 @@
         <activiti.version>5.22.0</activiti.version>
         <poi.version>4.0.0</poi.version>
         <flowable.version>6.4.2</flowable.version>
-        <liquibase.version>3.6.2</liquibase.version>
+        <liquibase.version>4.8.0</liquibase.version>
     </properties>
 
     <developers>
